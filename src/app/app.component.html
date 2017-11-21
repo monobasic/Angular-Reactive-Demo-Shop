@@ -1,11 +1,28 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <nav>
-        <a routerLink="/home">Home</a>
-        <a routerLink="/products">Products</a>
-        <a routerLink="/cart">Cart</a>
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">NG Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a routerLink="/home" class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/products" class="nav-link" href="#">Products</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/cart" class="nav-link" href="#">Cart</a>
+            </li>
+          </ul>
+        </div>
       </nav>
+
     </div>
   </div>
 </div>
