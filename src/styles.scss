@@ -1,6 +1,7 @@
 @import 'variables';
+@import 'mixins';
 
 // Import Bootstrap SCSS chain
 @import '../node_modules/bootstrap/scss/bootstrap';
 
-@import 'mixins';
+@import 'anzeixer';
