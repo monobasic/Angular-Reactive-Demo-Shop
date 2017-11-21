@@ -1,10 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col text-center">
-      <h1>{{title}}</h1>
-      <button class="btn-primary btn-lg">Let's do it!</button>
+    <div class="col">
+      <nav>
+        <a routerLink="/home">Home</a>
+        <a routerLink="/products">Products</a>
+        <a routerLink="/cart">Cart</a>
+      </nav>
     </div>
   </div>
 </div>
+
+<router-outlet></router-outlet>
 
 <app-messages></app-messages>
