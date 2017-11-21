@@ -1,2 +1,0 @@
-# CAS-FEE-PROJEKT-2
-CAS FEE Projekt 2
