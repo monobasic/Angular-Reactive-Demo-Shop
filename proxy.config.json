@@ -1,0 +1,9 @@
+// https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md
+
+{
+	"/api": {
+		"target": "http://localhost:3000/api",
+		"secure": false,
+		"pathRewrite": { "^/api": "" }
+	}
+}
