@@ -6,6 +6,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Development with Express-Server as backend
+
+Run `npm start` to spin up ng-server at port 4200 and an express-driven backend at 3000. Requests to /api will be redirected to the server (as defined in proxy.config.json)
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
