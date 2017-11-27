@@ -8,6 +8,8 @@ const bodyParser = require('body-parser')
 
 // Get our API routes
 const api = require('./routes/api')
+const users = require('./routes/users')
+const articles = require('./routes/articles')
 
 const app = express()
 
@@ -17,6 +19,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // Set our api routes
 app.use('/api', api)
+app.use('/api/users', users)
+app.use('/api/articles', articles)
 
 /**
  * Get port from environment and store in Express.
