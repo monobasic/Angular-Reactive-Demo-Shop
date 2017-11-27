@@ -1,3 +1,5 @@
+// https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md
+
 // Get dependencies
 const express = require('express')
 const path = require('path')
@@ -6,6 +8,7 @@ const bodyParser = require('body-parser')
 
 // Get our API routes
 const api = require('./routes/api')
+const users = require('./routes/users')
 
 const app = express()
 
@@ -15,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // Set our api routes
 app.use('/api', api)
+app.use('/api/users', users)
 
 /**
  * Get port from environment and store in Express.
