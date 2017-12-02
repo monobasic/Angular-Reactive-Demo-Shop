@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Product } from './product';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { MessageService } from './message.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+
+import { MessageService } from './message.service';
+
+import { Product } from './product';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -51,15 +55,14 @@ export class ProductService {
       catchError(this.handleError('getProducts', []))
       );
   }
-
   /** GET hero by id. Will 404 if id not found */
-  // getHero(id: number): Observable<Hero> {
-  //   const url = `${this.heroesUrl}/${id}`;
-  //   return this.http.get<Hero>(url).pipe(
-  //     tap(_ => this.log(`fetched hero id=${id}`)),
-  //     catchError(this.handleError<Hero>(`getHero id=${id}`))
-  //   );
-  // }
+  getProduct(id: number): Observable<Product> {
+  const url = `${this.productsUrl}/${id}`;
+    return this.http.get<Product>(url).pipe(
+      tap(_ => this.log(`fetched hero id=${id}`)),
+      catchError(this.handleError<Product>(`getHero id=${id}`))
+    );
+  }
 
   // /** PUT: update the hero on the server */
   // updateHero(hero: Hero): Observable<any> {

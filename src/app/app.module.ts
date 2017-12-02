@@ -17,6 +17,7 @@ import { MessageService } from './message.service';
 import { ProductService } from './product.service';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AppRoutingModule } from './app-routing.module';
     MessagesComponent,
     HomeComponent,
     ProductsComponent,
-    CartComponent
+    CartComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
