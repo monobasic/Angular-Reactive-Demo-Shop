@@ -22,7 +22,7 @@ export class ProductService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  /** Log a HeroService message with the MessageService */
+  /** Log a ProductService message with the MessageService */
   private log(message: string) {
     this.messageService.add('ProductService: ' + message);
   }
@@ -36,13 +36,13 @@ export class ProductService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      // TODO: send the error to remote logging infrastructure
+    // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
-      // TODO: better job of transforming error for user consumption
+    // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
 
-      // Let the app keep running by returning an empty result.
+    // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
@@ -55,50 +55,48 @@ export class ProductService {
       catchError(this.handleError('getProducts', []))
       );
   }
-  /** GET hero by id. Will 404 if id not found */
+  /** GET product by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
   const url = `${this.productsUrl}/${id}`;
     return this.http.get<Product>(url).pipe(
-      tap(_ => this.log(`fetched hero id=${id}`)),
-      catchError(this.handleError<Product>(`getHero id=${id}`))
+      tap(_ => this.log(`fetched Product id=${id}`)),
+      catchError(this.handleError<Product>(`getProduct id=${id}`))
+    );
+  }
+  /** PUT: update the Product on the server */
+  updateProduct(product: Product): Observable<any> {
+    return this.http.put(this.productsUrl, Product, httpOptions).pipe(
+      tap(_ => this.log(`updated Product id=${product.id}`)),
+      catchError(this.handleError<any>('updateProduct'))
     );
   }
 
-  // /** PUT: update the hero on the server */
-  // updateHero(hero: Hero): Observable<any> {
-  //   return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
-  //     tap(_ => this.log(`updated hero id=${hero.id}`)),
-  //     catchError(this.handleError<any>('updateHero'))
-  //   );
-  // }
+ /** POST: add a new Product to the server */
+  addProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.productsUrl, Product, httpOptions).pipe(
+      tap((newProduct: Product) => this.log(`added Product w/ id=${newProduct.id}`)),
+      catchError(this.handleError<Product>('addProduct'))
+    );
+  }
+  searchProductes(term: string): Observable<Product[]> {
+    if (!term.trim()) {
+      // if not search term, return empty Product array.
+      return of([]);
+    }
+    return this.http.get<Product[]>(`api/products/?name=${term}`).pipe(
+      tap(_ => this.log(`found Productes matching "${term}"`)),
+      catchError(this.handleError<Product[]>('searchProductes', []))
+    );
+  }
+/*
+    deleteProduct(product: Product | number): Observable<Product> {
+      const id = typeof Product === 'number' ? product : product.id;
+      const url = `${this.productsUrl}/${id}`;
 
-  // /** POST: add a new hero to the server */
-  // addHero(hero: Hero): Observable<Hero> {
-  //   return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
-  //     tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
-  //     catchError(this.handleError<Hero>('addHero'))
-  //   );
-  // }
-
-  // deleteHero(hero: Hero | number): Observable<Hero> {
-  //   const id = typeof hero === 'number' ? hero : hero.id;
-  //   const url = `${this.heroesUrl}/${id}`;
-
-  //   return this.http.delete<Hero>(url, httpOptions).pipe(
-  //     tap(_ => this.log(`deleted hero id=${id}`)),
-  //     catchError(this.handleError<Hero>('deleteHero'))
-  //   );
-  // }
-
-  // searchHeroes(term: string): Observable<Hero[]> {
-  //   if (!term.trim()) {
-  //     // if not search term, return empty hero array.
-  //     return of([]);
-  //   }
-  //   return this.http.get<Hero[]>(`api/heroes/?name=${term}`).pipe(
-  //     tap(_ => this.log(`found heroes matching "${term}"`)),
-  //     catchError(this.handleError<Hero[]>('searchHeroes', []))
-  //   );
-  // }
-
+      return this.http.delete<Product>(url, httpOptions).pipe(
+        tap(_ => this.log(`deleted Product id=${id}`)),
+        catchError(this.handleError<Product>('deleteProduct'))
+      );
+    }
+  */
 }
