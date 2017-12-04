@@ -1,3 +1,5 @@
-<p>
-  products works!
-</p>
+<ul>
+  <li *ngFor="let product of products">
+    <a routerLink="/products/{{product.id}}" class="nav-link">{{ product.id }} {{ product.name }}</a>
+  </li>  
+</ul>
