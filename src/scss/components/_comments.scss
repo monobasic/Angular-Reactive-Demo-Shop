@@ -1,0 +1,111 @@
+//
+// Comments
+// --------------------------------------------------
+
+.comment {
+  display: block;
+  position: relative;
+  margin-bottom: 30px;
+  padding-left: ($comment-author-ava-size + 16);
+  .comment-author-ava {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $comment-author-ava-size;
+    border-radius: 50%;
+    overflow: hidden;
+    > img {
+      display: block;
+      width: 100%;
+    }
+  }
+  .comment-body {
+    position: relative;
+    padding: $grid-vertical-step;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-lg;
+    background-color: $body-bg;
+    &::after, &::before {
+      position: absolute;
+      top: 12px;
+      right: 100%;
+      width: 0;
+      height: 0;
+      border: solid transparent;
+      content: '';
+      pointer-events: none;
+    }
+    &::after {
+      border-width: 9px;
+      border-color: transparent;
+      border-right-color: $body-bg;
+    }
+    &::before {
+      margin-top: -1px;
+      border-width: 10px;
+      border-color: transparent;
+      border-right-color: $border-color;
+    }
+  }
+  .comment-title {
+    margin-bottom: floor($grid-vertical-step / 3); //~8px
+    color: $gray-dark;
+    font: {
+      size: $comment-title-size;
+      weight: $comment-title-weight;
+    }
+  }
+  .comment-text {
+    margin-bottom: floor($grid-vertical-step / 2); //~12px
+  }
+  .comment-footer {
+    display: table;
+    width: 100%;
+    > .column {
+      display: table-cell;
+      vertical-align: middle;
+      &:last-child { text-align: right; }
+    }
+  }
+  .comment-meta {
+    color: $gray;
+    font-size: $font-size-xs;
+  }
+  .reply-link {
+    transition: color .3s;
+    color: $nav-link-color;
+    font: {
+      size: $nav-link-font-size;
+      weight: $nav-link-font-weight;
+    }
+    letter-spacing: .07em;
+    text: {
+      transform: uppercase;
+      decoration: none;
+    }
+    > i {
+      display: inline-block;
+      margin: {
+        top: -3px;
+        right: 4px;
+      }
+      vertical-align: middle;
+    }
+    &:hover { color: $nav-link-hover-color; }
+  }
+  &.comment-reply {
+    margin: {
+      top: 30px;
+      bottom: 0;
+    }
+  }
+  @media (max-width: $screen-sm) {
+    padding-left: 0;
+    .comment-author-ava { display: none; }
+    .comment-body {
+      padding: 15px;
+      &::before, &::after { display: none; }
+    }
+  }
+}

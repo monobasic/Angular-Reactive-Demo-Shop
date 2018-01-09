@@ -1,0 +1,141 @@
+//
+// Scaffolding
+// --------------------------------------------------
+
+html * {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: {
+    position: center;
+    color: $body-bg;
+    repeat: no-repeat;
+    size: cover;
+  }
+  color: $body-color;
+  font: {
+    family: $font-family-base;
+    size: $font-size-sm;
+    weight: $font-weight-base;
+  }
+  text-transform: $text-transform-base;
+  line-height: $line-height-base;
+}
+
+// Links
+a {
+  color: $link-color;
+  text-decoration: underline;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: none;
+  }
+  &:focus { outline: none; }
+}
+
+.small, small { font-size: 85%; }
+
+// Navigation Links
+.navi-link,
+.navi-link-light {
+  transition: color .3s;
+  color: $nav-link-color;
+  text-decoration: none;
+  &:hover { color: $nav-link-hover-color; }
+}
+.navi-link-light { color: $white-color; }
+
+// Images
+// Responsive images (ensure images don't scale beyond their parents)
+img,
+figure {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+svg { max-width: 100%; }
+
+/* Responsive iframes */
+iframe { width: 100%; }
+
+/* Box Model */
+* { box-sizing: border-box; }
+*::before,
+*::after { box-sizing: border-box; }
+
+// Horizontal rules
+hr {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid $border-color;
+  &.hr-light { border-top-color: $border-light-color; }
+}
+
+// Pre tag
+pre {
+  display: block;
+  padding: 15px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-lg;
+  background-color: $gray-lighter;
+}
+
+// Text Selection Color
+::selection {
+  background: $gray-darker;
+  color: $white-color;
+}
+::-moz-selection {
+  background: $gray-darker;
+  color: $white-color;
+}
+
+
+// Image with caption
+// -------------------------------------------------------
+
+figure {
+  position: relative;
+  margin: 0;
+  figcaption {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: floor($grid-vertical-step / 2); // ~12px
+    font-size: $font-size-sm;
+  }
+}
+
+
+/* Bootstrap Overrides */
+@media (min-width: $screen-xl) {
+  .container {
+    width: 1170px;
+    max-width: 1170px;
+  }
+}
+@media (max-width: $screen-xl) {
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+.container-fluid {
+  max-width: 1920px;
+  margin: {
+    right: auto;
+    left: auto;
+  }
+  padding: {
+    right: 30px;
+    left: 30px;
+  }
+  @media (max-width: $screen-xl) { padding: 0 15px; }
+}

@@ -1,0 +1,55 @@
+//
+// Tables
+// --------------------------------------------------
+
+.table {
+  thead th, td, th { border-color: $border-color; }
+  &.table-inverse {
+    background-color: $gray-darker;
+    color: $white-color;
+    thead th, td, th { border-color: $border-light-color; }
+  }
+}
+
+// Table inverse
+.thead-inverse th {
+  background-color: $gray-darker;
+  color: $white-color;
+}
+.thead-default th {
+  background-color: $gray-lighter;
+  color: $body-color;
+}
+
+// Table striped
+.table-striped {
+  tbody tr:nth-of-type(odd) { background-color: $gray-lighter; }
+  &.table-inverse {
+    tbody tr:nth-of-type(odd) { background-color: rgba($black-color, .08); }
+  }
+}
+
+// Table hover
+.table-hover {
+  tbody tr:hover { background-color: $gray-lighter; }
+  &.table-inverse {
+    tbody tr:hover { background-color: rgba($black-color, .08); }
+  }
+}
+
+// Contextual classes
+.table-active,
+.table-active td,
+.table-active th { background-color: rgba($black-color, .05); }
+.table-success,
+.table-success td,
+.table-success th { background-color: rgba($brand-success, .09); }
+.table-info,
+.table-info td,
+.table-info th { background-color: rgba($brand-info, .09); }
+.table-warning,
+.table-warning td,
+.table-warning th { background-color: rgba($brand-warning, .09); }
+.table-danger,
+.table-danger td,
+.table-danger th { background-color: rgba($brand-danger, .09); }

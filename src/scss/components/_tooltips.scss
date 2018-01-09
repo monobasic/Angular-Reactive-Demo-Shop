@@ -1,0 +1,89 @@
+//
+// Tooltips and Popovers
+// --------------------------------------------------
+
+// Tooltip
+.tooltip {
+  font-family: $font-family-base;
+  &.bs-tooltip-top {
+    .arrow::before { border-top-color: $tooltip-arrow-color; }
+  }
+  &.bs-tooltip-right {
+    .arrow::before { border-right-color: $tooltip-arrow-color; }
+  }
+  &.bs-tooltip-bottom {
+    .arrow::before { border-bottom-color: $tooltip-arrow-color; }
+  }
+  &.bs-tooltip-left {
+    .arrow::before { border-left-color: $tooltip-arrow-color; }
+  }
+  &.show { opacity: $tooltip-opacity; }
+}
+.tooltip-inner {
+  border-radius: $border-radius-sm;
+  background-color: $tooltip-bg;
+  color: $tooltip-color;
+  font-size: $font-size-xs;
+}
+
+// Popover
+.popover {
+  border-radius: $border-radius-lg;
+  border-color: $border-color;
+  font-family: $font-family-base;
+  &.bs-popover-top .arrow::before { border-top-color: darken($border-color, 4%); }
+  &.bs-popover-right .arrow::before { border-right-color: darken($border-color, 4%); }
+  &.bs-popover-bottom .arrow {
+    &::before { border-bottom-color: darken($border-color, 4%); }
+    &::after { border-bottom-color: #f7f7f7; }
+  }
+  &.bs-popover-left .arrow::before { border-left-color: darken($border-color, 4%); }
+}
+.popover-header {
+  color: $headings-color;
+  font-family: $font-family-headings;
+}
+.popover-body { color: $body-color; }
+
+// For demo purpose only. TODO: remove on production
+.example-tooltip .tooltip {
+  display: inline-block;
+  position: relative;
+  margin: 10px 20px;
+  opacity: 1;
+}
+.example-popover .popover {
+  display: block;
+  position: relative;
+  width: 260px;
+  margin: 1.25rem;
+  float: left;
+}
+.bs-tooltip-bottom-demo,
+.bs-tooltip-top-demo {
+  .arrow {
+    left: 50%;
+    margin-left: -2px;
+  }
+}
+.bs-tooltip-left-demo,
+.bs-tooltip-right-demo {
+  .arrow {
+    top: 50%;
+    margin-top: -2px;
+  }
+}
+.bs-popover-bottom-demo,
+.bs-popover-top-demo {
+  .arrow {
+    left: 50%;
+    margin-left: -11px;
+  }
+}
+.bs-popover-left-demo,
+.bs-popover-right-demo {
+  .arrow {
+    top: 50%;
+    margin-top: -8px;
+  }
+}

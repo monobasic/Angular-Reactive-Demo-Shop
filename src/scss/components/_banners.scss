@@ -1,0 +1,30 @@
+//
+// Banners
+// --------------------------------------------------
+
+.promo-box {
+  position: relative;
+  padding: {
+    right: 15px;
+    left: 15px;
+  }
+  background: {
+    position: center;
+    color: $gray-lighter;
+    repeat: no-repeat;
+    size: cover;
+  }
+
+  // Overlay
+  .overlay-dark,
+  .overlay-light {
+    @include overlay-block(1, $black-color, .5);
+  }
+  .overlay-light { background-color: $white-color; }
+
+  // Content
+  .promo-box-content {
+    position: relative;
+    z-index: 5;
+  }
+}

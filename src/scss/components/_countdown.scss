@@ -1,0 +1,40 @@
+//
+// Countdown
+// --------------------------------------------------
+
+.countdown {
+  display: inline-block;
+  @include clearfix;
+  .item {
+    display: block;
+    margin: 7px;
+    float: left;
+    text-align: center;
+    .days, .hours,
+    .minutes, .seconds {
+      width: $countdown-box-size;
+      height: $countdown-box-size;
+      margin-bottom: 5px;
+      border: 1px solid $border-color;
+      border-radius: $border-radius-lg;
+      font-size: $countdown-font-size;
+      line-height: ($countdown-box-size - 2);
+    }
+    .days_ref, .hours_ref,
+    .minutes_ref, .seconds_ref {
+      font-size: $countdown-label-size;
+      text-transform: uppercase;
+    }
+  }
+  &.countdown-inverse {
+    .item {
+      .days, .hours,
+      .minutes, .seconds {
+        border-color: $border-light-color;
+        color: $white-color;
+      }
+      .days_ref, .hours_ref,
+      .minutes_ref, .seconds_ref { color: rgba($white-color, .8); }
+    }
+  }
+}

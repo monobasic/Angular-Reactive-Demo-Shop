@@ -1,0 +1,50 @@
+//
+// Accordion
+// --------------------------------------------------
+
+.accordion {
+  .card {
+    margin-bottom: floor($grid-vertical-step / 3); //~12px
+  }
+  [data-toggle='collapse'] {
+    display: block;
+    position: relative;
+    color: $nav-link-color;
+    text-decoration: none;
+    &::after {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 0;
+      height: 0;
+      margin-top: -2px;
+      transition: transform .25s;
+      border: {
+        right: 5px solid transparent;
+        bottom: 5px dashed;
+        left: 5px solid transparent;
+      }
+      content: '';
+    }
+    &.collapsed::after {
+      transform: rotate(-180deg);
+    }
+    > i {
+      margin: {
+        top: -4px;
+        right: 7px;
+      }
+      &.socicon-paypal {
+        display: inline-block;
+        margin-top: 1px;
+        font-size: .8em;
+        vertical-align: middle;
+      }
+      &.icon-medal {
+        width: 16px;
+        height: 16px;
+        background-size: 16px;
+      }
+    }
+  }
+}

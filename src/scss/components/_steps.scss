@@ -1,0 +1,90 @@
+//
+// Steps
+// ----------------------------------------------------
+
+.steps {
+  .step {
+    display: block;
+    width: 100%;
+    margin-bottom: 35px;
+    text-align: center;
+    .step-icon-wrap {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: $step-circle-size;
+      text-align: center;
+      &::before,
+      &::after {
+        display: block;
+        position: absolute;
+        top: 50%;
+        width: 50%;
+        height: $step-connect-height;
+        margin-top: -(floor($step-connect-height / 2));
+        background-color: $border-color;
+        content: '';
+        z-index: 1;
+      }
+      &::before { left: 0; }
+      &::after { right: 0; }
+    }
+    .step-icon {
+      display: inline-block;
+      position: relative;
+      width: $step-circle-size;
+      height: $step-circle-size;
+      border: 1px solid $border-color;
+      border-radius: 50%;
+      background-color: $step-icon-default-bg;
+      color: $step-icon-default-color;
+      font-size: $step-icon-size;
+      line-height: ($step-circle-size + 1);
+      z-index: 5;
+    }
+    .step-title {
+      margin: {
+        top: floor($grid-vertical-step / 1.5); //~16px
+        bottom: 0;
+      }
+      color: $step-title-color;
+      font: {
+        size: $step-title-size;
+        weight: 500;
+      }
+    }
+    &:first-child .step-icon-wrap::before { display: none; }
+    &:last-child .step-icon-wrap::after { display: none; }
+    &.completed {
+      .step-icon-wrap {
+        &::before,
+        &::after { background-color: $brand-primary; }
+      }
+      .step-icon {
+        border-color: $brand-primary;
+        background-color: $brand-primary;
+        color: $white-color;
+      }
+    }
+  }
+}
+@media (max-width: $screen-sm) {
+  .flex-sm-nowrap .step .step-icon-wrap {
+    &::before, &::after { display: none; }
+  }
+}
+@media (max-width: $screen-md) {
+  .flex-md-nowrap .step .step-icon-wrap {
+    &::before, &::after { display: none; }
+  }
+}
+@media (max-width: $screen-lg) {
+  .flex-lg-nowrap .step .step-icon-wrap {
+    &::before, &::after { display: none; }
+  }
+}
+@media (max-width: $screen-xl) {
+  .flex-xl-nowrap .step .step-icon-wrap {
+    &::before, &::after { display: none; }
+  }
+}

@@ -1,0 +1,322 @@
+//
+// Variables
+// --------------------------------------------------
+
+//== Colors
+//
+//## Gray and brand colors for use across Theme.
+//---------------------------------------------------
+
+// Grayscale
+$gray-darker:            #374250;
+$gray-dark:            	 #606975;
+$gray:                   #9da9b9;
+$gray-light:             #e1e7ec;
+$gray-lighter:           #f5f5f5;
+$white-color:            #ffffff;
+$black-color:            #000000;
+
+// Brand colors
+$brand-primary:         #0da9ef;
+$brand-info:		        #50c6e9;
+$brand-success:         #43d9a3;
+$brand-warning:         #ffb74f;
+$brand-danger:          #ff5252;
+
+// Body
+$body-bg: 							$white-color;
+$body-color: 						$gray-dark;
+
+// Inline links
+$link-color: 						$brand-primary;
+$link-hover-color: 			$brand-primary;
+
+// Hedings
+$headings-color:	 			$gray-darker;
+
+// Blockquote
+$quote-text-color:      $body-color;
+$quote-mark-color:      $gray;
+$quote-author-color:    $gray;
+
+// Borders
+$border-color:          $gray-light;
+$border-light-color:    rgba($white-color, .12);
+
+// Highlight color
+$highlight-color:       #fff8b0;
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+// -------------------------------------------------------
+
+$font-family-base: 			  'Maven Pro', Helvetica, Arial, sans-serif;
+$font-family-headings: 	  inherit;
+
+// Font sizes
+$font-size-base:          16px;
+$font-size-lead:          floor(($font-size-base * 1.125)); // ~18px
+$font-size-sm: 				    floor(($font-size-base * .875)); // ~14px
+$font-size-xs:         		floor(($font-size-base * .8125)); // ~13px
+
+// Headings
+$font-size-h1:            floor(($font-size-base * 2.25)); // ~36px
+$font-size-h2:            floor(($font-size-base * 1.875)); // ~30px
+$font-size-h3:            floor(($font-size-base * 1.5)); // ~24px
+$font-size-h4:            floor(($font-size-base * 1.25)); // ~20px
+$font-size-h5:            $font-size-lead; // ~18px
+$font-size-h6:            $font-size-base; // ~16px
+
+// Display headings
+$display-1:               floor(($font-size-base * 4.5)); // ~72px
+$display-2:               floor(($font-size-base * 3.75)); // ~60px
+$display-3:               floor(($font-size-base * 3.125)); // ~50px
+$display-4:               floor(($font-size-base * 2.5)); // ~40px
+
+// Font styles
+$font-style-base:         normal;
+$font-style-headings:     normal;
+
+// Font weights
+$font-weight-base:         normal;
+$font-weight-headings:     500;
+
+// Text transforms
+$text-transform-base:     none;
+$text-transform-headings: none;
+
+// Line heights
+$line-height-base:       1.5;
+$line-height-h1:         1.15;
+$line-height-h2:         1.2;
+$line-height-h3:         1.25;
+$line-height-h4:         1.3;
+$line-height-h5:         1.35;
+$line-height-h6:         1.4;
+$line-height-display:    1.15;
+
+
+//== Grid Vertical Step
+// -------------------------------------------------------
+
+$grid-vertical-step:     24px;
+
+
+//== Border Radius
+// -------------------------------------------------------
+
+$border-radius-lg: 		7px;
+$border-radius-base: 	5px;
+$border-radius-sm: 		3px;
+
+
+//== Forms
+// -------------------------------------------------------
+
+$input-height-lg:							54px;
+$input-height:								44px;
+$input-height-sm:							36px;
+$input-color-placeholder:     $gray;
+
+
+//== Buttons
+// -------------------------------------------------------
+
+$btn-font-size: 							$font-size-sm;
+$btn-sm-font-size: 						$font-size-xs;
+$btn-text-transform:          uppercase;
+$btn-font-weight: 						500;
+$btn-text-color:              $gray-dark;
+
+$btn-height: 									44px;
+$btn-lg-height: 							54px;
+$btn-sm-height: 							36px;
+
+$btn-margin:                  floor($grid-vertical-step / 2); //~12px
+$social-btn-size: 						$font-size-xs;
+
+
+//== Tables
+// -------------------------------------------------------
+
+$table-border-color: 					$border-color;
+$table-cell-padding:					15px;
+$table-bg-accent: 						$gray-lighter;
+
+
+//== Navbar / Logo
+//
+
+$navbar-min-height: 			84px;
+$navbar-stuck-shadow:     0 3px 25px 0 rgba(darken($gray-darker, 4%), .22);
+$logo-width: 				      129px;
+
+// Navbar Tools
+$navbar-tools-color:          $gray-dark;
+$navbar-tools-size:           $btn-height;
+$offcanvas-toggle-icon-size:  20px;
+$tools-icon-size:             17px;
+
+
+//== Navigation
+//
+
+$nav-link-font-size: 				$font-size-sm; // 14px
+$nav-link-font-weight: 			500;
+$nav-link-color: 						$gray-dark;
+$nav-link-hover-color: 			$brand-primary;
+$nav-link-active-color: 		$brand-primary;
+
+// Sub Menu / Mega Menu
+$sub-menu-width:            200px;
+$sub-menu-shadow:           0 7px 22px -5px rgba(darken($gray-darker, 4%), .2);
+
+// Off-Canvas
+$offcanvas-width:           290px;
+
+
+//== Tabs
+//
+
+$nav-tabs-font-size:								floor(($font-size-base * .875)); // ~14px
+$nav-tabs-link-color: 							$gray;
+$nav-tabs-link-active-color:  			$gray-dark;
+
+
+//== Progress
+//
+
+$progress-height:     18px;
+$progress-bg:         $brand-primary;
+
+
+//== Steps
+//
+
+$step-circle-size:        80px;
+$step-icon-default-bg:    $gray-lighter;
+$step-icon-size:          38px;
+$step-icon-default-color: $gray-darker;
+$step-title-size:         $font-size-sm;
+$step-title-color:        $gray-dark;
+$step-connect-height:     3px;
+
+
+// == Shop
+//
+
+// Product
+$product-title-font-size:     $font-size-base;
+$product-title-color:         $gray-darker;
+$product-title-hover-color:   $brand-primary;
+$product-price-font-size:     $font-size-base;
+$product-price-color:         $gray-dark;
+
+// Shop View
+$shop-view-size:            43px;
+$shop-view-color:           $gray-dark;
+$shop-view-bg-color:        $white-color;
+$shop-view-hover-bg-color:  $gray-lighter;
+$shop-view-active-bg-color: $brand-primary;
+
+// Cart
+$cart-thumb-size:         110px;
+
+// Account
+$cover-height:            120px;
+$user-ava-size:           115px;
+
+
+// == Blog
+//
+
+$blog-post-meta-color:      $gray-dark;
+$blog-post-meta-icon-color: $gray;
+$blog-post-meta-font-size:  $font-size-xs;
+$blog-post-color:           $headings-color;
+$blog-post-hover-color:     $brand-primary;
+
+
+// == Comments
+//
+
+$comment-author-ava-size:   50px;
+$comment-title-size:        $font-size-sm;
+$comment-title-weight:      500;
+
+
+//== Widgets
+//
+
+$sidebar-max-width:          400px;
+$widget-title-color:         $gray;
+$widget-title-font-size:     $font-size-sm;
+$widget-link-font-size:      $font-size-sm;
+$widget-meta-color:          $gray;
+$widget-meta-font-size:      floor(($font-size-base / 1.33)); //~12px
+$widget-entry-thumb-size:    50px;
+
+// Tags
+$widget-tags-height:              28px;
+$widget-tags-font-size:           $font-size-xs;
+$widget-tags-color:               $nav-link-color;
+$widget-tags-hover-bg:            $gray-lighter;
+$widget-tags-active-bg:           $nav-link-active-color;
+$widget-tags-active-border-color: $nav-link-active-color;
+$widget-tags-active-color:        $white-color;
+
+
+//== Pagination
+//
+
+$pagination-link-size:         $btn-sm-height;
+$pagination-link-font-size:    $font-size-sm;
+$pagination-link-font-weight:  500;
+$pagination-link-color:        $gray-dark;
+$pagination-link-active-color: $white-color;
+$pagination-link-hover-bg:     $gray-lighter;
+$pagination-link-active-bg:    $brand-primary;
+
+
+//== Tooltips
+//
+
+$tooltip-opacity:    		1;
+$tooltip-bg: 				 		darken($gray-darker, 4%);
+$tooltip-color:         $white-color;
+$tooltip-arrow-color: 	$tooltip-bg;
+
+
+//== Carousel
+//
+
+$carousel-navs-size: 				  $btn-height;
+$carousel-navs-icon-size: 	  19px;
+$carousel-navs-bg:            $white-color;
+$carousel-navs-color: 			  $gray-darker;
+$carousel-dots-size: 				  6px;
+$carousel-dots-color: 	  	  $gray-dark;
+
+// Hero Slider
+$hero-slider-min-height:      580px;
+
+//== Countdown
+//
+
+$countdown-box-size:          48px;
+$countdown-font-size:         floor(($font-size-base * 1.375)); // ~22px
+$countdown-label-size:        floor(($font-size-base * .75)); // ~12px
+
+
+//== Media queries (responsive breackpoints)
+//## Descktop, Tablet, Mobile
+
+$screen-xl: 1200px;
+$screen-lg: 991px;
+$screen-md: 768px;
+$screen-sm: 576px;
+$screen-xs: 360px;
+
+$nav-collapse:     1070px;

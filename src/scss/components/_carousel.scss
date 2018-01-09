@@ -1,0 +1,285 @@
+//
+// Carousel (based on OWL Carousel Plugin)
+// --------------------------------------------------
+
+// Base class
+.owl-carousel {
+  display: none;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  -webkit-tap-highlight-color: transparent;
+  .owl-stage {
+    position: relative;
+    -ms-touch-action: pan-Y;
+    -moz-backface-visibility: hidden; /* fix firefox animation glitch */
+	}
+  .owl-stage::after {
+    display: block;
+    height: 0;
+    clear: both;
+    line-height: 0;
+    content: '.';
+    visibility: hidden;
+	}
+  .owl-stage-outer {
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    overflow: hidden;
+	}
+  .owl-wrapper, .owl-item {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+	}
+  .owl-item {
+    position: relative;
+    min-height: 1px;
+    float: left;
+    backface-visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    .owl-lazy {
+      transition: opacity 400ms ease;
+      opacity: 0;
+    }
+
+    // Layers animation
+    .from-top, .from-bottom,
+    .from-left, .from-right,
+    .scale-up, .scale-down {
+      transition: all .45s .3s ease-in-out;
+      opacity: 0;
+      backface-visibility: hidden;
+    }
+    .from-top {
+      transform: translateY(-45px);
+    }
+    .from-bottom {
+      transform: translateY(45px);
+    }
+    .from-left {
+      transform: translateX(-45px);
+    }
+    .from-right {
+      transform: translateX(45px);
+    }
+    .scale-up {
+      transform: scale(0.8);
+    }
+    .scale-down {
+      transform: scale(1.2);
+    }
+    .delay-1 {
+      transition-delay: .5s;
+    }
+    .delay-2 {
+      transition-delay: .7s;
+    }
+    .delay-3 {
+      transition-delay: .9s;
+    }
+    .delay-4 {
+      transition-delay: 1.1s;
+    }
+    &.active {
+      .from-top, .from-bottom {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .from-left, .from-right {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      .scale-up, .scale-down {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+	}
+  .owl-item > img {
+    display: block;
+    width: 100%;
+    &.owl-lazy { transform-style: preserve-3d; }
+	}
+  .owl-nav.disabled,
+  .owl-dots.disabled {
+    display: none;
+	}
+  .owl-nav .owl-prev,
+  .owl-nav .owl-next,
+  .owl-dot {
+    cursor: pointer;
+    cursor: hand;
+    user-select: none;
+	}
+  &.owl-loaded { display: block; }
+  &.owl-loading {
+    display: block;
+    opacity: 0;
+	}
+  &.owl-hidden { opacity: 0; }
+  &.owl-refresh .owl-item { visibility: hidden; }
+  &.owl-drag .owl-item {
+    user-select: none;
+	}
+  &.owl-grab {
+    cursor: move;
+    cursor: grab;
+	}
+  &.owl-rtl { direction: rtl; }
+  &.owl-rtl .owl-item { float: right;}
+
+  // Owl Carousel - Animate Plugin
+  .animated {
+    animation-duration: 1000ms;
+    animation-fill-mode: both;
+	}
+  .owl-animated-in { z-index: 0; }
+  .owl-animated-out { z-index: 1; }
+  .fadeOut { animation-name: fadeOut; }
+
+  // Dots
+  .owl-dots {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    text-align: center;
+    .owl-dot {
+      display: inline-block;
+      width: $carousel-dots-size;
+      height: $carousel-dots-size;
+      margin: 0 6px;
+      transition: opacity .25s;
+      border-radius: 50%;
+      background-color: $carousel-dots-color;
+      opacity: .3;
+      &.active { opacity: .9; }
+    }
+  }
+
+  // Navs
+  .owl-prev,
+  .owl-next {
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: $carousel-navs-size;
+    height: $carousel-navs-size;
+    margin-top: -(($carousel-navs-size / 2) + 20);
+    transition: opacity .3s;
+    border: 1px solid $border-color;
+    border-radius: 50%;
+    background-color: $carousel-navs-bg;
+    color: $carousel-navs-color;
+    line-height: ($carousel-navs-size - 4);
+    text-align: center;
+    opacity: .7;
+    &:hover { opacity: 1; }
+    &::before {
+      font: {
+        family: feather;
+        size: $carousel-navs-icon-size;
+      }
+      content: '\f115';
+    }
+  }
+  .owl-prev {
+    left: 20px;
+    &::before { content: '\e094'; }
+  }
+  .owl-next {
+    right: 20px;
+    &::before { content: '\e095'; }
+  }
+  &.large-controls {
+    .owl-prev,
+    .owl-next {
+      width: $btn-lg-height;
+      height: $btn-lg-height;
+      margin-top: -(($btn-lg-height / 2) + 20);
+      line-height: ($btn-lg-height - 4);
+    }
+    .owl-prev { left: 30px; }
+    .owl-next { right: 30px; }
+  }
+  &.dots-inside {
+    .owl-dots {
+      position: absolute;
+      bottom: 0;
+      margin: 0;
+      padding-bottom: $grid-vertical-step;
+      .owl-dot {
+        background-color: $white-color;
+        opacity: .5;
+        &.active { opacity: 1; }
+      }
+    }
+    .owl-prev,
+    .owl-next { margin-top: -($carousel-navs-size / 2); }
+    &.large-controls {
+      .owl-prev,
+      .owl-next { margin-top: -($btn-lg-height / 2); }
+    }
+  }
+
+  // Widget inside
+  .widget {
+    margin-bottom: 0;
+    &.widget-featured-posts > .entry { margin-bottom: 0; }
+  }
+}
+
+// No Js
+.no-js .owl-carousel { display: block; }
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+//	Owl Carousel - Auto Height Plugin
+.owl-height { transition: height 500ms ease-in-out; }
+
+// Hero Slider
+.hero-slider {
+  width: 100%;
+  min-height: $hero-slider-min-height;
+  background: {
+    position: center;
+    color: $gray-lighter;
+    repeat: no-repeat;
+    size: cover;
+  }
+  overflow: hidden;
+  > .owl-carousel {
+    min-height: $hero-slider-min-height;
+    &.dots-inside {
+      .owl-dots {
+        display: inline-block;
+        left: 50%;
+        width: auto;
+        padding: 10px 22px 14px;
+        transform: translateX(-50%);
+        border-top-left-radius: $border-radius-lg;
+        border-top-right-radius: $border-radius-lg;
+        background-color: $gray-dark;
+      }
+    }
+    .owl-prev,
+    .owl-next { transition: all .35s ease-in-out; }
+    .owl-prev { transform: translateX(-150px); }
+    .owl-next { transform: translateX(150px); }
+    &:hover {
+      .owl-prev,
+      .owl-next { transform: translateX(0); }
+    }
+    @media (max-width: $screen-lg) {
+      .owl-prev,
+      .owl-next { display: none; }
+      }
+  }
+  @media (max-width: 1100px) {
+    min-height: $hero-slider-min-height - 150;
+    > .owl-carousel { min-height: $hero-slider-min-height - 150; }
+  }
+}

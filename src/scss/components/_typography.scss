@@ -1,0 +1,258 @@
+//
+// Typography
+// --------------------------------------------------
+
+// Headings
+// -------------------------------------------------------
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin: 0;
+  color: $headings-color;
+  font: {
+    family: $font-family-headings;
+    style: $font-style-headings;
+    weight: $font-weight-headings;
+  }
+  text-transform: $text-transform-headings;
+  small {
+    display: block;
+    padding-top: 3px;
+    color: $gray;
+  }
+}
+
+h1, .h1 {
+  margin-bottom: $grid-vertical-step; // ~24px
+  font-size: $font-size-h1;
+  line-height: $line-height-h1;
+  @media (max-width: $screen-md) {
+    font-size: floor($font-size-h1 * .88);
+  }
+}
+
+h2, .h2 {
+  margin-bottom: floor($grid-vertical-step / 1.5); // ~16px
+  font-size: $font-size-h2;
+  line-height: $line-height-h2;
+  @media (max-width: $screen-md) {
+    font-size: floor($font-size-h2 * .95);
+  }
+}
+
+h3, .h3 {
+  margin-bottom: floor($grid-vertical-step / 2); // ~12px
+  font-size: $font-size-h3;
+  line-height: $line-height-h3;
+  @media (max-width: $screen-md) {
+    font-size: floor($font-size-h3 * .95);
+  }
+}
+
+h4, .h4 {
+  margin-bottom: floor($grid-vertical-step / 3); // ~8px
+  font-size: $font-size-h4;
+  line-height: $line-height-h4;
+}
+
+h5, .h5 {
+  margin-bottom: floor($grid-vertical-step / 3); // ~8px
+  font-size: $font-size-h5;
+  line-height: $line-height-h5;
+}
+
+h6, .h6 {
+  margin-bottom: floor($grid-vertical-step / 4); // ~6px
+  font-size: $font-size-h6;
+  line-height: $line-height-h6;
+}
+
+
+// Display headings
+// -------------------------------------------------------
+.display-1, .display-2,
+.display-3, .display-4 {
+  font-weight: normal;
+  line-height: $line-height-display;
+}
+.display-1 {
+  font-size: $display-1;
+  @media (max-width: $screen-sm) {
+    font-size: floor($display-1 * .8);
+  }
+}
+.display-2 {
+  font-size: $display-2;
+  @media (max-width: $screen-sm) {
+    font-size: floor($display-2 * .8);
+  }
+}
+.display-3 {
+  font-size: $display-3;
+  @media (max-width: $screen-sm) {
+    font-size: floor($display-3 * .85);
+  }
+}
+.display-4 {
+  font-size: $display-4;
+  @media (max-width: $screen-sm) {
+    font-size: floor($display-4 * .9);
+  }
+}
+
+
+// Body text
+// -------------------------
+
+p {
+  margin: 0 0 floor($grid-vertical-step / 1.5); // ~16px
+}
+.lead { font-size: $font-size-lead; }
+.text-lg { font-size: $font-size-base; }
+.text-sm { font-size: $font-size-xs; }
+.text-xs { font-size: floor(($font-size-base / 1.33)); }
+
+
+// Lists
+// -------------------------
+
+// Unordered and Ordered lists
+ul, ol {
+  margin: {
+    top: 0;
+    bottom: floor($grid-vertical-step / 1.5); // ~16px
+  }
+  padding-left: 18px;
+  line-height: 1.8;
+  ul, ol { margin-bottom: 0; }
+}
+
+// List options
+.list-unstyled {
+  @include list-unstyled;
+}
+
+// Inline turns list items into inline-block
+.list-inline {
+  @include list-unstyled;
+  > li {
+    display: inline-block;
+    padding: {
+      right: 5px;
+      left: 5px;
+    }
+  }
+}
+
+// Icon list
+.list-icon {
+  padding: 0;
+  list-style: none;
+  > li {
+    position: relative;
+    margin-bottom: floor($grid-vertical-step / 4);
+    padding-left: 22px;
+    > i {
+      display: block;
+      position: absolute;
+      left: 0;
+      line-height: inherit;
+    }
+  }
+  &.text-lg > li { padding-left: 25px; }
+  &.text-sm > li { padding-left: 18px; }
+  &.lead > li { padding-left: 26px; }
+}
+
+// Description Lists
+dl {
+  margin-top: 0; // Remove browser default
+  margin-bottom: floor($grid-vertical-step / 1.5); // ~16px
+}
+dt, dd { line-height: $line-height-base; }
+dt {
+  padding-top: floor($grid-vertical-step / 2.5);
+  border-top: 1px solid $border-color;
+  color: $headings-color;
+  font-weight: 500;
+  &:first-child {
+    padding-top: 0;
+    border: 0;
+  }
+}
+dd {
+  margin: {
+    top: 3px;
+    bottom: 15px;
+    left: 0;
+  }
+}
+
+// Blockquotes
+blockquote {
+  position: relative;
+  margin: 0;
+  margin-bottom: floor($grid-vertical-step / 1.5); // ~16px
+  padding: $grid-vertical-step 0 $grid-vertical-step 36px;
+  border: {
+    top: 1px solid $border-color;
+    bottom: 1px solid $border-color;
+  }
+  color: $quote-text-color;
+  font-size: $font-size-lead;
+
+  // Quotation Mark
+  &::before {
+    position: absolute;
+    top: $grid-vertical-step;
+    left: -17px;
+    color: $quote-mark-color;
+    font-size: 82px;
+    font-style: italic;
+    line-height: .8;
+    content: '"';
+  }
+
+  cite {
+    display: block;
+    margin-top: floor($grid-vertical-step / 2.5);
+    color: $quote-author-color;
+    font: {
+      size: $font-size-sm;
+      style: normal;
+      weight: normal;
+    }
+    &::before {
+      display: inline-block;
+      margin: {
+        top: -2px;
+        right: 8px;
+      }
+      color: $quote-author-color;
+      font: {
+        family: feather;
+        size: .95em;
+      }
+      content: '\e074';
+      vertical-align: middle;
+    }
+  }
+
+  p { margin-bottom: 0; }
+
+  // Right Aligned
+  &.blockquote-reverse {
+    padding: {
+      right: 36px;
+      left: 0;
+    }
+    border-left: 0;
+    text-align: right;
+    &::before {
+      right: 10px;
+      left: auto;
+    }
+  }
+}
+
+kbd { background-color: $gray-dark; }

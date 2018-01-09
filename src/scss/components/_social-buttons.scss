@@ -1,0 +1,284 @@
+//
+// Social Buttons
+// --------------------------------------------------
+
+/* Base class */
+.social-button {
+  display: inline-block;
+  margin: {
+    top: 5px;
+    right: 18px;
+    bottom: 5px;
+	}
+  transition: color .3s;
+  color: $body-color;
+  font-size: $social-btn-size;
+  text-decoration: none;
+  vertical-align: middle;
+  &.shape-circle,
+  &.shape-rounded,
+  &.shape-square {
+    width: $btn-sm-height;
+    height: $btn-sm-height;
+    margin-right: 8px;
+    border: 1px solid $border-color;
+    line-height: $btn-sm-height - 1;
+    text-align: center;
+	}
+  &.shape-circle { border-radius: 50%; }
+  &.shape-rounded { border-radius: $border-radius-base; }
+  &:focus { text-decoration: none; }
+}
+.text-center {
+  .social-button {
+    margin: {
+      right: 9px;
+      left: 9px;
+    }
+    &.shape-circle,
+    &.shape-rounded,
+    &.shape-square {
+      margin: {
+        right: 4px;
+        left: 4px;
+      }
+		}
+	}
+}
+.text-right {
+  .social-button {
+    margin: {
+      right: 0;
+      left: 18px;
+    }
+    &.shape-circle,
+    &.shape-rounded,
+    &.shape-square {
+      margin: {
+        right: 0;
+        left: 8px;
+      }
+		}
+	}
+}
+
+/* Amazon */
+.sb-amazon {
+  font-size: 1.15em !important;
+  &:hover, &:focus { color: #ff9900 !important; }
+}
+
+/* Airbnb */
+.sb-airbnb {
+  &:hover, &:focus { color: #fd5c63 !important; }
+}
+
+/* Behance */
+.sb-behance {
+  font-size: 1.1em !important;
+  &:hover, &:focus { color: #1769ff !important; }
+}
+
+/* DeviantArt */
+.sb-deviantart {
+  font-size: 1.2em !important;
+  &:hover, &:focus { color: #4e6252 !important; }
+}
+
+/* Digg */
+.sb-digg {
+  font-size: 1.2em !important;
+  &:hover, &:focus { color: #000000 !important; }
+}
+
+/* Disqus */
+.sb-disqus {
+  font-size: 1.1em !important;
+  &:hover, &:focus { color: #2e9fff !important; }
+}
+
+/* Dribbble */
+.sb-dribbble {
+  &:hover, &:focus { color: #ea4c89 !important; }
+}
+
+/* Drupal */
+.sb-drupal {
+  font-size: 1.1em !important;
+  &:hover, &:focus { color: #0077c0 !important; }
+}
+
+/* Email */
+.sb-email {
+  &:hover, &:focus { color: $brand-primary !important; }
+}
+
+/* Facebook */
+.sb-facebook {
+  &:hover, &:focus { color: #3b5998 !important; }
+}
+
+/* Flickr */
+.sb-flickr {
+  &:hover, &:focus { color: #0063dc !important; }
+}
+
+/* Foursquare */
+.sb-foursquare {
+  &:hover, &:focus { color: #ef4b78 !important; }
+}
+
+/* GitHub */
+.sb-github {
+  &:hover, &:focus { color: #4183c4 !important; }
+}
+
+/* Google+ */
+.sb-google-plus {
+  font-size: 1.2em !important;
+  &:hover, &:focus { color: #dd4b39 !important; }
+}
+
+/* Instagram */
+.sb-instagram {
+  &:hover, &:focus { color: #3f729b !important; }
+}
+
+/* LastFM */
+.sb-lastfm {
+  font-size: 1.1em !important;
+  &:hover, &:focus { color: #e31b23 !important; }
+}
+
+/* LinkedIn */
+.sb-linkedin {
+  &:hover, &:focus { color: #0976b4 !important; }
+}
+
+/* PayPal */
+.sb-odnoklassniki {
+  font-size: 1.1em !important;
+  &:hover, &:focus { color: #ed812b !important; }
+}
+
+/* PayPal */
+.sb-paypal {
+  font-size: .9em !important;
+  &:hover, &:focus { color: #253b80 !important; }
+}
+
+/* Pinterest */
+.sb-pinterest {
+  &:hover, &:focus { color: #cc2127 !important; }
+}
+
+/* Reddit */
+.sb-reddit {
+  font-size: 1.1em !important;
+  &:hover, &:focus { color: #ff4500 !important; }
+}
+
+/* Reddit */
+.sb-rss {
+  font-size: .9em !important;
+  &:hover, &:focus { color: #f26522 !important; }
+}
+
+/* Skype */
+.sb-skype {
+  font-size: .9em !important;
+  &:hover, &:focus { color: #00aff0 !important; }
+}
+
+/* SoundCloud */
+.sb-soundcloud {
+  font-size: 1.2em !important;
+  &:hover, &:focus { color: #ff8800 !important; }
+}
+
+/* Stack Overflow */
+.sb-stackoverflow {
+  &:hover, &:focus { color: #fe7a15 !important; }
+}
+
+/* Steam */
+.sb-steam {
+  &:hover, &:focus { color: #7da10e !important; }
+}
+
+/* StumbleUpon */
+.sb-stumbleupon {
+  &:hover, &:focus { color: #eb4924 !important; }
+}
+
+/* Tumblr */
+.sb-tumblr {
+  &:hover, &:focus { color: #35465c !important; }
+}
+
+/* Twitch */
+.sb-twitch {
+  &:hover, &:focus { color: #6441a5 !important; }
+}
+
+/* Twitter */
+.sb-twitter {
+  &:hover, &:focus { color: #55acee !important; }
+}
+
+/* Vimeo */
+.sb-vimeo {
+  &:hover, &:focus { color: #1ab7ea !important; }
+}
+
+/* Vine */
+.sb-vine {
+  &:hover, &:focus { color: #00b488 !important; }
+}
+
+/* VKontakte */
+.sb-vk {
+  font-size: 1.1em !important;
+  &:hover, &:focus { color: #45668e !important; }
+}
+
+/* WordPress */
+.sb-wordpress {
+  &:hover, &:focus { color: #21759b !important; }
+}
+
+/* XING */
+.sb-xing {
+  &:hover, &:focus { color: #026466 !important; }
+}
+
+/* Yahoo! */
+.sb-yahoo {
+  font-size: 1.1em !important;
+  &:hover, &:focus { color: #400191 !important; }
+}
+
+/* Yelp */
+.sb-yelp {
+  &:hover, &:focus { color: #af0606 !important; }
+}
+
+/* YouTube */
+.sb-youtube {
+  &:hover, &:focus { color: #e52d27 !important; }
+}
+
+// Light skin
+.sb-light-skin {
+  transition: all .3s;
+  background-color: transparent;
+  color: rgba($white-color, .6) !important;
+  &:hover, &:focus { color: $white-color !important; }
+  &.shape-circle,
+  &.shape-rounded,
+  &.shape-square {
+    border-color: $border-light-color;
+    &:hover { background-color: rgba($white-color, .06); }
+    // &:hover, &:focus { color: rgba($white-color, .6) !important; }
+  }
+}

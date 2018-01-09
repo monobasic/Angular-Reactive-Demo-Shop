@@ -1,0 +1,175 @@
+//
+// Mixins
+// --------------------------------------------------
+
+// Block paddings classes
+@mixin block-padding-top($from: 1, $to: 10) {
+  @for $i from $from through $to {
+    .padding-top-#{$i}x {
+      padding-top: floor($grid-vertical-step * $i) !important;
+      @media (max-width: $screen-md) {
+        padding-top: floor(($grid-vertical-step * $i) / 1.5) !important;
+      }
+    }
+  }
+}
+@mixin block-padding-bottom($from: 1, $to: 10) {
+  @for $i from $from through $to {
+    .padding-bottom-#{$i}x {
+      padding-bottom: floor($grid-vertical-step * $i) !important;
+      @media (max-width: $screen-md) {
+        padding-bottom: floor(($grid-vertical-step * $i) / 1.5) !important;
+      }
+    }
+  }
+}
+
+// Block margins classes
+@mixin block-margin-top($from: 1, $to: 10) {
+  @for $i from $from through $to {
+    .margin-top-#{$i}x {
+      margin-top: floor($grid-vertical-step * $i) !important;
+      @media (max-width: $screen-md) {
+        margin-top: floor(($grid-vertical-step * $i) / 1.5) !important;
+      }
+    }
+  }
+}
+@mixin block-margin-bottom($from: 1, $to: 10) {
+  @for $i from $from through $to {
+    .margin-bottom-#{$i}x {
+      margin-bottom: floor($grid-vertical-step * $i) !important;
+      @media (max-width: $screen-md) {
+        margin-bottom: floor(($grid-vertical-step * $i) / 1.5) !important;
+      }
+    }
+  }
+}
+
+// Normal Button Variants
+@mixin button-variant($bg-color) {
+  background-color: $bg-color;
+  &:hover {
+    background-color: darken($bg-color, 10%);
+  }
+}
+
+// Outline Button Variants
+@mixin outline-button-variant($color) {
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
+  &:hover {
+    background-color: $color;
+    color: $white-color;
+  }
+}
+
+// Link Button Variants
+@mixin link-button-variant($color) {
+  color: $color;
+  &:hover {
+    color: darken($color, 10%);
+  }
+}
+
+// Alert Variants
+@mixin alert-variant($color, $bg-color, $border-color) {
+  background-color: $bg-color;
+  color: $color;
+  &::before { border-color: $border-color; }
+  > *,
+  h1, h2, h3, h4, h5, h6, p, ul, ol, a {
+    &:not(.text-white),
+    &:not(.text-light) { color: $color; }
+  }
+  .alert-close { color: $color; }
+}
+
+// List Group Variants
+@mixin list-group-variant($color, $bg-color) {
+  background-color: $bg-color;
+  color: $color !important;
+  > *,
+  h1, h2, h3, h4, h5, h6, p, ul, ol, a { color: $color !important; }
+}
+
+// Overlay Block
+@mixin overlay-block($zindex, $bg-color, $opacity) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $bg-color;
+  content: '';
+  opacity: $opacity;
+  z-index: $zindex;
+}
+
+// Placeholder text
+@mixin placeholder($color: $input-color-placeholder) {
+  // Firefox
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+  }
+  &:-ms-input-placeholder {
+    color: $color;
+  } // Internet Explorer 10+
+  &::-webkit-input-placeholder  {
+    color: $color;
+  } // Safari and Chrome
+}
+
+// Font smoothing
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Backface visibility
+@mixin backface-visibility($value) {
+  -webkit-backface-visibility: $value;
+  backface-visibility: $value;
+}
+
+// User select
+@mixin user-select($value) {
+  -webkit-user-select: $value;
+  -moz-user-select: $value;
+  -ms-user-select: $value;
+  user-select: $value;
+}
+
+// Appearance
+@mixin appearance($value) {
+  -webkit-appearance: $value;
+  -moz-appearance: $value;
+  appearance: $value;
+}
+
+
+// Text overflow
+// Requires inline-block or block for proper styling
+@mixin text-overflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// Unstyled list
+@mixin list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+// Provides an easy way to include a clearfix for containing floats.
+@mixin clearfix {
+  &::after {
+    display: block;
+    clear: both;
+    content: '';
+  }
+}

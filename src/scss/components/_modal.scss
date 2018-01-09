@@ -1,0 +1,44 @@
+//
+// Modal
+// --------------------------------------------------
+
+.modal { z-index: 9200; }
+.modal-content {
+  border-radius: $border-radius-lg;
+  border-color: $border-color;
+}
+.modal-header,
+.modal-body,
+.modal-footer {
+  padding: {
+    right: 20px;
+    left: 20px;
+  }
+}
+.modal-footer {
+  padding: {
+    top: floor($grid-vertical-step / 2);
+    bottom: floor($grid-vertical-step / 2);
+  }
+  .btn {
+    margin: {
+      right: 0;
+      left: 12px;
+    }
+  }
+}
+.modal-open.hasScrollbar .navbar-stuck {
+  width: calc(100% - 15px);
+}
+.modal-backdrop { z-index: 9100; }
+
+// For demo purpose only. TODO: remove on production
+.example-modal .modal {
+  display: block;
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  z-index: 1;
+}

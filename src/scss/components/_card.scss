@@ -1,0 +1,154 @@
+//
+// Card
+// --------------------------------------------------
+
+.card {
+  border-radius: $border-radius-lg;
+  border-color: $border-color;
+  .google-map {
+    border-top-left-radius: $border-radius-lg;
+    border-top-right-radius: $border-radius-lg;
+  }
+}
+.card-header {
+  border-bottom-color: $border-color;
+  h1, .h1, h2, .h2, h3, .h3,
+  h4, .h4, h5, .h5, h6, .h6 { margin-bottom: 0; }
+  &:first-child {
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+  }
+}
+.card-header,
+.card-footer { background-color: $gray-lighter; }
+.card-footer {
+  border-top-color: $border-color;
+  &:last-child {
+    border-radius: 0 0 $border-radius-lg $border-radius-lg;
+  }
+}
+.card-body {
+  p, ol, ul {
+    &:last-child { margin-bottom: 0; }
+  }
+  .tab-content {
+    padding: 0;
+    border: 0;
+  }
+}
+
+// Background variants
+.card.bg-primary {
+  border-color: darken($brand-primary, 5%);
+  .card-header {
+    border-bottom-color: darken($brand-primary, 5%);
+    background-color: darken($brand-primary, 2%);
+  }
+}
+.card.bg-secondary,
+.card.bg-faded {
+  .card-header {
+    background-color: darken($gray-lighter, 3%);
+  }
+}
+.card.bg-success {
+  border-color: darken($brand-success, 8%);
+  .card-header {
+    border-bottom-color: darken($brand-success, 8%);
+    background-color: darken($brand-success, 6%);
+  }
+}
+.card.bg-info {
+  border-color: darken($brand-info, 12%);
+  .card-header {
+    border-bottom-color: darken($brand-info, 12%);
+    background-color: darken($brand-info, 6%);
+  }
+}
+.card.bg-warning {
+  border-color: darken($brand-warning, 12%);
+  .card-header {
+    border-bottom-color: darken($brand-warning, 12%);
+    background-color: darken($brand-warning, 6%);
+  }
+}
+.card.bg-danger {
+  border-color: darken($brand-danger, 12%);
+  .card-header {
+    border-bottom-color: darken($brand-danger, 12%);
+    background-color: darken($brand-danger, 6%);
+  }
+}
+.card.bg-dark {
+  border-color: darken($gray-darker, 8%);
+  .card-header {
+    border-bottom-color: darken($gray-darker, 8%);
+    background-color: darken($gray-darker, 6%);
+  }
+}
+
+// Light skin
+.text-white,
+.text-light {
+  .card-title { color: $white-color; }
+}
+
+// Card Group
+.card-group .card {
+  .card-footer { border-radius: 0; }
+  &:first-child .card-footer { border-bottom-left-radius: $border-radius-lg; }
+  &:last-child .card-footer { border-bottom-right-radius: $border-radius-lg; }
+}
+
+// Card Tiled Image
+.card-img-tiles {
+  display: block;
+  border-bottom: 1px solid $border-color;
+  > .inner {
+    display: table;
+    width: 100%;
+  }
+  .main-img,
+  .thumblist {
+    display: table-cell;
+    width: 65%;
+    padding: 15px;
+    vertical-align: middle;
+    > img {
+      display: block;
+      width: 100%;
+      margin-bottom: 6px;
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+  .thumblist {
+    width: 35%;
+    border-left: 1px solid $border-color;
+  }
+}
+
+// Category Card
+.category-card {
+  .view-button {
+    transform: translateY(10px);
+    transition: all .4s;
+    opacity: 0;
+  }
+  &:hover {
+    .view-button {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+.touchevents  {
+  .category-card .view-button {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@media (max-width: $screen-md) {
+  .category-card .view-button {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,132 @@
+//
+// Tabs, Pills and Filters
+// --------------------------------------------------
+
+// Tabs
+// --------------------------------------------------
+.nav-tabs {
+  border-bottom-color: $border-color;
+  .nav-link {
+    padding: 10px 20px;
+    transition: color .3s;
+    border-top-left-radius: $border-radius-base;
+    border-top-right-radius: $border-radius-base;
+    color: $nav-link-color;
+    font: {
+      size: $nav-link-font-size;
+      weight: $nav-link-font-weight;
+    }
+    letter-spacing: .05em;
+    text: {
+      transform: uppercase;
+      decoration: none;
+    }
+    &:hover { color: $nav-link-hover-color; }
+    &:hover, &:focus { border-color: transparent; }
+    &.disabled { cursor: not-allowed; }
+    &.disabled,
+    &.disabled:hover { color: $gray; }
+    > i {
+      margin: {
+        top: -3px;
+        right: 5px;
+      }
+    }
+  }
+  .nav-item.show .nav-link,
+  .nav-link.active {
+    border-color: $border-color $border-color $white-color;
+    color: darken($gray, 3%);
+  }
+}
+.tab-content {
+  padding: $grid-vertical-step;
+  border: {
+    right: 1px solid $border-color;
+    bottom: 1px solid $border-color;
+    left: 1px solid $border-color;
+    bottom-left-radius: $border-radius-lg;
+    bottom-right-radius: $border-radius-lg;
+  }
+  overflow: hidden;
+  p, ul, ol {
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+// Pills
+// --------------------------------------------------
+.nav-pills {
+  .nav-link {
+    margin-right: 5px;
+    padding: 8px 16px;
+    transition: all .3s;
+    border-radius: ($btn-height / 2);
+    color: $btn-text-color;
+    font: {
+      size: $btn-sm-font-size;
+      weight: $btn-font-weight;
+    }
+    letter-spacing: .07em;
+    text: {
+      transform: $btn-text-transform;
+      decoration: none;
+    }
+    &:hover:not(.disabled) { background-color: $gray-lighter; }
+    &.disabled {
+      color: $gray;
+      cursor: not-allowed;
+    }
+    > i {
+      margin: {
+        top: -4px;
+        right: 5px;
+      }
+    }
+  }
+  .nav-item.show .nav-link,
+  .nav-link.active {
+    background-color: $nav-link-active-color !important;
+    color: $white-color;
+    cursor: default;
+  }
+  & + .tab-content {
+    padding: $grid-vertical-step 0 0;
+    border: 0;
+    border-radius: 0;
+  }
+  &.nav-justified .nav-link { margin-right: 0; }
+  &.justify-content-center .nav-link { margin: 0 3px; }
+  &.justify-content-end .nav-link { margin: 0 0 0 5px; }
+  &.flex-column .nav-link { margin: 0 0 5px; }
+}
+
+// Component Animations
+.transition {
+  &.fade {
+    transition: all .4s ease-in-out;
+    opacity: 0;
+    @include backface-visibility(hidden);
+    &.show { opacity: 1; }
+  }
+  &.scale.fade { transform: scale(.9); }
+  &.scaledown.fade { transform: scale(1.1); }
+  &.scale.fade.show,
+  &.scaledown.fade.show { transform: scale(1); }
+  &.left.fade { transform: translateX(40px); }
+  &.right.fade { transform: translateX(-40px); }
+  &.left.fade.show,
+  &.right.fade.show { transform: translateX(0); }
+  &.top.fade { transform: translateY(-40px); }
+  &.bottom.fade { transform: translateY(40px); }
+  &.top.fade.show,
+  &.bottom.fade.show { transform: translateY(0); }
+  &.flip.fade {
+    transform: rotateY(-90deg) scale(1.1);
+    transform-origin: 50% 50%;
+  }
+  &.flip.fade.show {
+    transform: rotateY(0deg) scale(1);
+    transform-origin: 50% 50%;
+  }
+}

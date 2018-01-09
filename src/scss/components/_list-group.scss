@@ -1,0 +1,112 @@
+//
+// List Group
+// ----------------------------------------------------
+
+.list-group-item {
+  border-color: $border-color;
+  background-color: $white-color;
+  text-decoration: none;
+  &:first-child {
+    border-top-left-radius: $border-radius-lg;
+    border-top-right-radius: $border-radius-lg;
+  }
+  &:last-child {
+    border-bottom-left-radius: $border-radius-lg;
+    border-bottom-right-radius: $border-radius-lg;
+  }
+  i {
+    margin-top: -4px;
+    margin-right: 8px;
+    font-size: 1.1em;
+  }
+  p, ul, ol, li, span { font-weight: normal !important; }
+}
+a.list-group-item,
+.list-group-item-action {
+  transition: all .25s;
+  color: $nav-link-color;
+  font-weight: 500;
+  &:hover,
+  &:focus, &:active {
+    background-color: $gray-lighter;
+    color: $nav-link-color;
+  }
+}
+a.list-group-item {
+  padding: {
+    top: .87rem;
+    bottom: .87rem;
+  }
+}
+
+// With badges
+.with-badge {
+  position: relative;
+  padding-right: 3.3rem;
+  .badge {
+    position: absolute;
+    top: 50%;
+    right: 1.15rem;
+    transform: translateY(-50%);
+  }
+}
+
+// Badges
+.badge {
+  color: $white-color;
+  font: {
+    size: 90%;
+    weight: 500;
+  }
+  &.badge-default {
+    background-color: lighten($gray-light, 3%);
+    color: $gray-dark;
+  }
+  &.badge-primary { background-color: $brand-primary; }
+  &.badge-info { background-color: $brand-info; }
+  &.badge-success { background-color: $brand-success; }
+  &.badge-warning { background-color: $brand-warning; }
+  &.badge-danger { background-color: $brand-danger; }
+}
+
+// Active state
+.list-group-item.active {
+  border-color: $brand-primary;
+  background-color: $brand-primary;
+  color: $white-color;
+  cursor: default;
+  pointer-events: none;
+  h1, .h1, h2, .h2, h3, .h3,
+  h4, .h4, h5, .h5, h6, .h6 { color: $white-color; }
+  .badge {
+    background-color: $white-color !important;
+    color: $gray-dark !important;
+  }
+}
+
+// Contextual classes
+.list-group-item-info {
+  @include list-group-variant($brand-info, rgba($brand-info, .12));
+}
+.list-group-item-success {
+  @include list-group-variant(darken($brand-success, 3%), rgba($brand-success, .12));
+}
+.list-group-item-warning {
+  @include list-group-variant(darken($brand-warning, 3%), rgba($brand-warning, .12));
+}
+.list-group-item-danger {
+  @include list-group-variant($brand-danger, rgba($brand-danger, .12));
+}
+.list-group-item-action:hover,
+.list-group-item-action.active {
+  &.list-group-item-info { background-color: rgba($brand-info, .24); }
+  &.list-group-item-success { background-color: rgba($brand-success, .24); }
+  &.list-group-item-warning { background-color: rgba($brand-warning, .24); }
+  &.list-group-item-danger { background-color: rgba($brand-danger, .24); }
+}
+
+// Next to card
+.card:not([class*='mb-']):not([class*='margin-bottom-']) + .list-group {
+  margin-top: -1px;
+  .list-group-item:first-child { border-radius: 0; }
+}
