@@ -23,6 +23,8 @@ import { HeaderComponent } from './header/header.component';
 import { NavigationOffCanvasComponent } from './navigation-off-canvas/navigation-off-canvas.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ContentComponent } from './content/content.component';
+import { MainSliderComponent } from './main-slider/main-slider.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { ContentComponent } from './content/content.component';
     HeaderComponent,
     NavigationOffCanvasComponent,
     TopBarComponent,
-    ContentComponent
+    ContentComponent,
+    MainSliderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
