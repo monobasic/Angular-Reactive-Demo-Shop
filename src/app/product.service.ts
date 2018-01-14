@@ -8,7 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from './core/messages/message.service';
 
-import { Product } from './product';
+import { Product } from './model/product';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
