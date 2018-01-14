@@ -10,7 +10,7 @@ export class InMemoryDataService implements InMemoryDbService {
         id: 11,
         name: 'Shoes',
         price: 99,
-        reduction: 0.3,
+        reduction: 70,
         description: 'Hello world',
         imageURLs: ['img/shop/products/01.jpg'],
         ratingIDs: [1],
