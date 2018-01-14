@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 

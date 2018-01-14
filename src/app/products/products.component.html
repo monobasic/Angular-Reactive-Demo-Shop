@@ -59,7 +59,7 @@
         <!-- Products-->
         <div *ngFor="let product of products" class="grid-item">
             <div class="product-card">
-                <div *ngIf="product.reduction" class="product-badge text-danger">{{ product.reduction * 100 }}% Off</div>
+                <div *ngIf="product.reduction" class="product-badge text-danger">{{ 100 - product.reduction * 100 }}% Off</div>
                 <a class="product-thumb" routerLink="/products/{{product.id}}">
                     <img src="{{product.imageURLs[0]}}" alt="{{product.name}}">
                 </a>
@@ -67,7 +67,7 @@
                     <a routerLink="/products/{{product.id}}">{{product.name}}</a>
                 </h3>
                 <h4 class="product-price">
-                    <del *ngIf="product.reduction">${{ product.price }}</del>${{ (product.price * product.reduction) || product.price }}
+                    <del *ngIf="product.reduction">${{ product.price }}</del>${{ (product.price * product.reduction) || product.price | number: '1.2-2'}}
                 </h4>
                 <div class="product-buttons">
                     <button class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Whishlist">
