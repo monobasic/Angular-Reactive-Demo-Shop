@@ -2,7 +2,7 @@ export class Product {
     id: number;
     name: string;
     description: string;
-    descriptionLong: string;
+    descriptionLong?: string;
     price: number;
     reduction?: number;
     imageURLs: string[];

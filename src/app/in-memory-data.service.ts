@@ -9,6 +9,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 11,
         name: 'Gloves',
+        price: 99,
         description: 'Hello world',
         imageURLs: ['/img1.jpg'],
         ratingIDs: [1, 2, 3],
@@ -20,6 +21,7 @@ export class InMemoryDataService implements InMemoryDbService {
             {
         id: 12,
         name: 'Gloves',
+        price: 99,
         description: 'Hello world',
         imageURLs: ['/img1.jpg'],
         ratingIDs: [1, 2, 3],
@@ -31,6 +33,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 13,
         name: 'Gloves',
+        price: 99,
         description: 'Hello world',
         imageURLs: ['/img1.jpg'],
         ratingIDs: [1, 2, 3],
@@ -42,6 +45,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 14,
         name: 'Gloves',
+        price: 99,
         description: 'Hello world',
         imageURLs: ['/img1.jpg'],
         ratingIDs: [1, 2, 3],
@@ -53,6 +57,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 15,
         name: 'Gloves',
+        price: 99,
         description: 'Hello world',
         imageURLs: ['/img1.jpg'],
         ratingIDs: [1, 2, 3],
@@ -64,6 +69,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 16,
         name: 'Gloves',
+        price: 99,
         description: 'Hello world',
         imageURLs: ['/img1.jpg'],
         ratingIDs: [1, 2, 3],
@@ -75,6 +81,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 17,
         name: 'Gloves',
+        price: 99,
         description: 'Hello world',
         imageURLs: ['/img1.jpg'],
         ratingIDs: [1, 2, 3],
@@ -86,6 +93,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 18,
         name: 'Gloves',
+        price: 99,
         description: 'Hello world',
         imageURLs: ['/img1.jpg'],
         ratingIDs: [1, 2, 3],
@@ -97,6 +105,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 19,
         name: 'Gloves',
+        price: 99,
         description: 'Hello world',
         imageURLs: ['/img1.jpg'],
         ratingIDs: [1, 2, 3],
@@ -108,6 +117,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 20,
         name: 'Gloves',
+        price: 99,
         description: 'Hello world',
         imageURLs: ['/img1.jpg'],
         ratingIDs: [1, 2, 3],
