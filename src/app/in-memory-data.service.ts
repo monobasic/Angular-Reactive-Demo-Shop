@@ -20,7 +20,7 @@ export class InMemoryDataService implements InMemoryDbService {
       },
             {
         id: 12,
-        name: 'Gloves',
+        name: 'Bag',
         price: 99,
         description: 'Hello world',
         imageURLs: ['../img/shop/products/02.jpg'],
@@ -32,7 +32,7 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 13,
-        name: 'Gloves',
+        name: 'Shades',
         price: 99,
         description: 'Hello world',
         imageURLs: ['../img/shop/products/03.jpg'],
@@ -44,7 +44,7 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 14,
-        name: 'Gloves',
+        name: 'Bracelet',
         price: 99,
         description: 'Hello world',
         imageURLs: ['../img/shop/products/04.jpg'],
@@ -56,7 +56,7 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 15,
-        name: 'Gloves',
+        name: 'Sweater',
         price: 99,
         description: 'Hello world',
         imageURLs: ['../img/shop/products/05.jpg'],
@@ -68,7 +68,7 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 16,
-        name: 'Gloves',
+        name: 'Trainer',
         price: 99,
         description: 'Hello world',
         imageURLs: ['../img/shop/products/06.jpg'],
@@ -80,7 +80,7 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 17,
-        name: 'Gloves',
+        name: 'Sweatpants',
         price: 99,
         description: 'Hello world',
         imageURLs: ['../img/shop/products/07.jpg'],
@@ -92,7 +92,7 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 18,
-        name: 'Gloves',
+        name: 'Bluse',
         price: 99,
         description: 'Hello world',
         imageURLs: ['../img/shop/products/08.jpg'],
@@ -104,7 +104,7 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 19,
-        name: 'Gloves',
+        name: 'Ballerinas',
         price: 99,
         description: 'Hello world',
         imageURLs: ['../img/shop/products/09.jpg'],
@@ -116,7 +116,7 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 20,
-        name: 'Gloves',
+        name: 'Baseball Hat',
         price: 99,
         description: 'Hello world',
         imageURLs: ['../img/shop/products/10.jpg'],
