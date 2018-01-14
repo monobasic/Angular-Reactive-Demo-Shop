@@ -1,6 +1,6 @@
-export default class Rating {
+export class Rating {
   id: number;
-  userID: string;
+  customerID: string;
   productID: number;
   rating: number;
 }

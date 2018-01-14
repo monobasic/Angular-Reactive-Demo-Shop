@@ -1,6 +1,6 @@
-export default class Review {
+export class Review {
   id: number;
-  userId: string;
+  customerId: string;
   text: string;
-  rating: number;
+  ratingID: number;
 }
