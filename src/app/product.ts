@@ -1,13 +1,11 @@
-import Review from './review';
-
 export class Product {
     id: number;
     name: string;
     description: string;
     images: string[];
     rating: number;
-    reviews: Review[];
+    reviewIDs: number[];
     size: number[];
     colors: string[];
-    categories: number[];
+    categoryIDs: number[];
 }
