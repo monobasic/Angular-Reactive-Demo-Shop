@@ -13,9 +13,9 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
-import { ProductsComponent } from './products/products.component';
+import { ProductsListComponent } from './products/products-list/products-list.component';
 import { CartComponent } from './cart/cart.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { NavigationMainComponent } from './navigation-main/navigation-main.component';
 import { NavigationOffCanvasComponent } from './navigation-off-canvas/navigation-off-canvas.component';
 import { HeaderComponent } from './header/header.component';
@@ -24,13 +24,13 @@ import { ContentComponent } from './content/content.component';
 import { MainSliderComponent } from './main-slider/main-slider.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { ProductService } from './product.service';
+import { ProductService } from './products/shared/product.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProductsComponent,
+    ProductsListComponent,
     CartComponent,
     ProductDetailComponent,
     NavigationMainComponent,

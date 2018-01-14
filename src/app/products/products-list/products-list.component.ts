@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 
-import { Product } from '../product';
-import { ProductService } from '../product.service';
+import { Product } from '../shared/product.model';
+
+import { ProductService } from '../shared/product.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsListComponent implements OnInit {
   products: Product[];
 
   constructor(private productService: ProductService) { }

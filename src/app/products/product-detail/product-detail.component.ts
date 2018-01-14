@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 
 import { ProductService } from '../product.service';
 
-import { Product } from '../model/product';
+import { Product } from '../model/product.model';
 
 @Component({
   selector: 'app-product-detail',
