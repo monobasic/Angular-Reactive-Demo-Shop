@@ -2,10 +2,10 @@ export class Product {
     id: number;
     name: string;
     description: string;
-    images: string[];
-    rating: number;
+    imageURLs: string[];
+    ratingIDs: number[];
     reviewIDs: number[];
-    size: number[];
+    sizes: number[];
     colors: string[];
     categoryIDs: number[];
 }

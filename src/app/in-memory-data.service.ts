@@ -1,18 +1,19 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { Product } from './product';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const products = [
-      { id: 11, name: 'Gloves' },
-      { id: 12, name: 'Sneakers' },
-      { id: 13, name: 'Jacket' },
-      { id: 14, name: 'Parka' },
-      { id: 15, name: 'Socks' },
-      { id: 16, name: 'Snowboard' },
-      { id: 17, name: 'CBD-Cannabis-Pack' },
-      { id: 18, name: 'Applepie' },
-      { id: 19, name: 'Fancy Pants' },
-      { id: 20, name: 'Tornado-Shelter-Pack' }
+    const products: Product[] = [
+      { id: 11,
+        name: 'Gloves',
+        description: 'Hello world',
+        imageURLs: ['/img1.jpg'],
+        ratingIDs: [1, 2, 3],
+        reviewIDs: [3, 4, 5],
+        sizes: [9, 10, 11] ,
+        colors: ['mauve', 'taube', 'mint'],
+        categoryIDs: [1, 2, 3]
+      }
     ];
     return { products };
   }
