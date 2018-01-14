@@ -1,6 +1,7 @@
 export class Review {
   id: number;
-  customerId: string;
-  text: string;
+  customerID: string;
+  productID: number;
   ratingID: number;
+  text: string;
 }
