@@ -7,6 +7,10 @@
 //Import Google Fonts (Maven Pro)
 @import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900');
 
+// Third party stuff
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~ngx-toastr/toastr-bs4-alert";
+
 // Helpers: Variables, Mixins and Placeholders
 @import 'helpers/variables';
 @import 'helpers/mixins';
@@ -18,6 +22,7 @@
 
 // Components
 @import 'components/typography';
+@import 'components/icons';
 @import 'components/forms';
 @import 'components/tables';
 @import 'components/buttons';
