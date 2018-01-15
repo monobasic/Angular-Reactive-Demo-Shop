@@ -1,0 +1,113 @@
+<!-- Page Title-->
+<div class="page-title">
+    <div class="container">
+        <div class="column">
+            <h1>Products</h1>
+        </div>
+        <div class="column">
+            <ul class="breadcrumbs">
+                <li>
+                    <a routerLink="/home" href="">Home</a>
+                </li>
+                <li class="separator">&nbsp;</li>
+                <li>Products</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Page Content-->
+<div class="container padding-bottom-3x mb-1">
+    <!-- Shop Toolbar-->
+    <div class="shop-toolbar padding-bottom-1x mb-2">
+        <div class="column">
+            <div class="shop-sorting">
+                <label for="sorting">Sort by:</label>
+                <select class="form-control" id="sorting">
+                    <option>Popularity</option>
+                    <option>Low - High Price</option>
+                    <option>High - Low Price</option>
+                    <option>Avarage Rating</option>
+                    <option>A - Z Order</option>
+                    <option>Z - A Order</option>
+                </select>
+                <span class="text-muted">Showing:&nbsp;</span>
+                <span>1 - 12 items</span>
+            </div>
+        </div>
+        <div class="column">
+            <div class="shop-view">
+                <a class="grid-view active" href="shop-grid-ns.html">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+                <a class="list-view" href="shop-list-ns.html">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Grid-->
+    <div class="isotope-grid cols-4 mb-2">
+        <div class="gutter-sizer"></div>
+        <div class="grid-sizer"></div>
+
+        <!-- Products-->
+        <div *ngFor="let product of products" class="grid-item">
+            <div class="product-card">
+                <div *ngIf="product.reduction" class="product-badge text-danger">{{ product.reduction }}% Off</div>
+                <a class="product-thumb" routerLink="/products/{{product.id}}">
+                    <img src="{{product.imageURLs[0]}}" alt="{{product.name}}">
+                </a>
+                <h3 class="product-title">
+                    <a routerLink="/products/{{product.id}}">{{product.name}}</a>
+                </h3>
+                <h4 class="product-price">
+                    <del *ngIf="product.reduction">${{ product.price }}</del>${{ (product.price * (1 - product.reduction / 100)) || product.price | number: '1.2-2'}}
+                </h4>
+                <div class="product-buttons">
+                    <button class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Whishlist">
+                        <i class="icon-heart"></i>
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check"
+                        data-toast-title="Product" data-toast-message="successfuly added to cart!">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination-->
+    <nav class="pagination">
+        <div class="column">
+            <ul class="pages">
+                <li class="active">
+                    <a href="#">1</a>
+                </li>
+                <li>
+                    <a href="#">2</a>
+                </li>
+                <li>
+                    <a href="#">3</a>
+                </li>
+                <li>
+                    <a href="#">4</a>
+                </li>
+                <li>...</li>
+                <li>
+                    <a href="#">12</a>
+                </li>
+            </ul>
+        </div>
+        <div class="column text-right hidden-xs-down">
+            <a class="btn btn-outline-secondary btn-sm" href="#">Next&nbsp;
+                <i class="icon-arrow-right"></i>
+            </a>
+        </div>
+    </nav>
+
+
+</div>

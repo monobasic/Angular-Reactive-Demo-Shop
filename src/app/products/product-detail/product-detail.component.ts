@@ -3,9 +3,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { ProductService } from '../product.service';
+import { ProductService } from '../shared/product.service';
 
-import { Product } from '../product';
+import { Product } from '../shared/product.model';
 
 @Component({
   selector: 'app-product-detail',
