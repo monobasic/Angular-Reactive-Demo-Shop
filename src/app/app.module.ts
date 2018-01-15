@@ -9,13 +9,12 @@ import { InMemoryDataService } from './model/in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
+import { ProductsModule } from './products/products.module';
 
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
-import { ProductsListComponent } from './products/products-list/products-list.component';
 import { CartComponent } from './cart/cart.component';
-import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { NavigationMainComponent } from './navigation-main/navigation-main.component';
 import { NavigationOffCanvasComponent } from './navigation-off-canvas/navigation-off-canvas.component';
 import { HeaderComponent } from './header/header.component';
@@ -26,13 +25,12 @@ import { FooterComponent } from './footer/footer.component';
 
 import { ProductService } from './products/shared/product.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProductsListComponent,
     CartComponent,
-    ProductDetailComponent,
     NavigationMainComponent,
     HeaderComponent,
     NavigationOffCanvasComponent,
@@ -43,13 +41,14 @@ import { ProductService } from './products/shared/product.service';
   ],
   imports: [
     BrowserModule,
-    CoreModule.forRoot(),
     NgbModule.forRoot(),
     FormsModule,
-    AppRoutingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false })
+      InMemoryDataService, { dataEncapsulation: false }),
+    CoreModule.forRoot(),
+    AppRoutingModule,
+    ProductsModule,
   ],
   providers: [
     ProductService
