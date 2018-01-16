@@ -1,3 +1,4 @@
+// Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -8,13 +9,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './model/in-memory-data.service';
 import { ToastrModule } from 'ngx-toastr';
-
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { ProductsModule } from './products/products.module';
 
+// Components
 import { AppComponent } from './app.component';
-
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import { NavigationMainComponent } from './navigation-main/navigation-main.component';
@@ -25,6 +25,7 @@ import { ContentComponent } from './content/content.component';
 import { MainSliderComponent } from './main-slider/main-slider.component';
 import { FooterComponent } from './footer/footer.component';
 
+// Services
 import { ProductService } from './products/shared/product.service';
 
 
