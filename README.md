@@ -1,17 +1,44 @@
 # CAS FEE PROJEKT 2 : SPA Shop Front End Implementation
 ## By Christian Zellweger (https://github.com/chzellweger) && André Abt (https://github.com/monobasic)
 
-# Background
+## Background
 The initial idea for this project was to implement a SPA based shop frontend which can be coupled to existing shop backends via REST API. The performance of a SPA application would be very nice to make the shopping process for users as fluid as possible. Imagine adding items to the cart, browsing and filtering products, typeahead search, updating your favorites/wish list - all handled by the front end application. 
 
 Although this would be cool, it's most likely a bit out of scope to provide all the API mappings for different shops like Shopify, Woocommerce, PrestaShop, Magento and the likes.
 
-So we decided to implement basic shop functionality for now and base the project target more around finding conclusions for challenges we will face during the process. Also the outcome should be, if it's even reasonable, using a SPA famework for a shop application.
+So we decided to implement basic shop functionality for now and base the project target more around finding conclusions for challenges we will face during the process.
 
-# Expected challenges
+## Expected challenges
 - Theme / third party ui component integration: Very common in the daily web agency business: Using a third party Template/Theme as a starting point. The challenge here is: Themes are commonly based around a styling framework like Bootstrap, HTML/CSS and user interface logic code in jQuery. As it seems, some of the well known UI components like Isotope grid, imagesLoaded, Carsousels and so on are not ported to Angular5 yet.
 - SEO - still a big topic arouns SPAs as it seems. For a shop application, indexing and deep linking to shop product details are most probably the most important thing. Also xml file generation for google merchant could be a issue
-- Angular5 ui performance: Is the performance of Angualr really as shiny as "they tell", Reacts UI performance should be much better "they say" so we will find out, worst case we could reroute to a React application - this conclusion would be very valuable anyway
+- Angular5 ui performance: Is the performance of Angualr really as shiny as "they tell", Reacts UI performance should be much better "they say" so we will find out, worst case we could reroute to a React application and see if it performs better
+
+## Expected outcome and conclusions
+- Is a shop front end implementation with a SPA reasonable?
+- Is the SEO thing something, that can be handled within reasonable additional expenditure?
+- Is Angular5 suited for fast, high end visual front ends or is React (Or another SPA framework) needed?
+- Are there replacements for well known jQuery front end ui components in Angular or do we need to relinquish for some parts?
+
+## Basic Feature Set
+### Shop functionality
+- Products served from backend via REST API
+- Products List, Product Detail View
+- Add to Cart functionality, View Cart, Edit Cart
+
+### Authentication
+- Checkout: As registered user / guest
+- Sign up: Create user account
+- Log in: General login or during checkout
+
+### Payment
+- Via paypal, invoice, pre-pay
+
+### Security
+- HTTPS
+
+
+
+
 
 
 
