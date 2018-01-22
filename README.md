@@ -6,6 +6,10 @@ Although this would be cool, it's most likely a bit out of scope to provide all 
 So we decided to implement basic shop functionality for now and base the project target more around finding out, what challenges we will face during the process. Also the outcome should be, if it's even reasonable, using a SPA famework for a shop application.
 
 # Expected challenges
+- Theme / third party ui component integration: Very common in the daily web agency business: Using a third party Template/Theme as a starting point. The challenge here is: Themes are commonly based around HTML/CSS and user interface logic code in jQuery. As it seems, some of the well known UI components like Isotope grid, imagesLoaded, Carsousels and so on are not ported to Angular5 yet.
+- SEO - still a big topic arouns SPAs as it seems. For a shop application, indexing and deep linking to shop product details are most probably the most important thing. Also xml file generation for google merchant could be a issue
+- Angular5 ui performance: Is the performance of Angualr really as shiny as "they tell", Reacts UI performance should be much better "they say" so we will find out, worst case we could reroute to a React application - this conclusion would be very valuable anyway
+
 
 
 --------------------------------------------------------------------
