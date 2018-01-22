@@ -1,3 +1,15 @@
+# Background
+The initial idea for this project was to implement a SPA based shop frontend which can be coupled to existing shop backends via REST API. The performance of a SPA application would be very nice to make the shopping process for users as fluid as possible. Imagine adding items to the cart, browsing and filtering products, typeahead search, updating your favorites/wish list - all handled by the front end application. 
+
+Although this would be cool, it's most likely a bit out of scope to provide all the API mappings for different shops like Shopify, Woocommerce, PrestaShop, Magento and the likes.
+
+So we decided to implement basic shop functionality for now and base the project target more around finding out, what challenges we will face during the process. Also the outcome should be, if it's even reasonable, using a SPA famework for a shop application.
+
+# Expected challenges
+
+
+--------------------------------------------------------------------
+
 # Shop
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.2.
