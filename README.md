@@ -1,6 +1,6 @@
 # CAS FEE PROJEKT 2 : SPA Shop Front End Implementation
-## By Christian Zellweger (https://github.com/chzellweger)
-## André Abt (https://github.com/monobasic)
+Christian Zellweger (https://github.com/chzellweger)
+André Abt (https://github.com/monobasic)
 
 ## Background
 The initial idea for this project was to implement a SPA based shop frontend which can be coupled to existing shop backends via REST API. The performance of a SPA application would be very nice to make the shopping process for users as fluid as possible. Imagine adding items to the cart, browsing and filtering products, typeahead search, updating your favorites/wish list - all handled by the front end application. 
