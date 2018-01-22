@@ -25,11 +25,17 @@ So we decided to implement basic shop functionality for now and base the project
 - Products served from backend via REST API
 - Products List, Product Detail View
 - Add to Cart functionality, View Cart, Edit Cart
+- Search functionality with typeahead
 
 ### Authentication
 - Checkout: As registered user / guest
 - Sign up: Create user account
 - Log in: General login or during checkout
+
+### Orders
+- Checkout process generates Order for registered user or guest
+- Order / Confirmation Email for Shop/User/Guest
+- Orders can be viewed by logged in user
 
 ### Payment
 - Via paypal, invoice, pre-pay
