@@ -1,5 +1,5 @@
 # CAS FEE PROJEKT 2 : SPA Shop Front End Implementation
-Christian Zellweger (https://github.com/chzellweger)
+Christian Zellweger (https://github.com/chzellweger), 
 André Abt (https://github.com/monobasic)
 
 ## Background
