@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -7,7 +6,6 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from '../../core/messages/message.service';
-
 import { Product } from './product.model';
 
 const httpOptions = {
@@ -51,8 +49,8 @@ export class ProductService {
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.productsUrl)
       .pipe(
-      tap(products => this.log(`fetched products`)),
-      catchError(this.handleError('getProducts', []))
+        tap(products => this.log(`fetched products`)),
+        catchError(this.handleError('getProducts', []))
       );
   }
   /** GET product by id. Will 404 if id not found */
@@ -71,21 +69,21 @@ export class ProductService {
     );
   }
 
- /** POST: add a new Product to the server */
+  /** POST: add a new Product to the server */
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.productsUrl, Product, httpOptions).pipe(
       tap((newProduct: Product) => this.log(`added Product w/ id=${newProduct.id}`)),
       catchError(this.handleError<Product>('addProduct'))
     );
   }
-  searchProductes(term: string): Observable<Product[]> {
+  searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
       // if not search term, return empty Product array.
       return of([]);
     }
     return this.http.get<Product[]>(`api/products/?name=${term}`).pipe(
       tap(_ => this.log(`found Productes matching "${term}"`)),
-      catchError(this.handleError<Product[]>('searchProductes', []))
+      catchError(this.handleError<Product[]>('searchProducts', []))
     );
   }
 /*
