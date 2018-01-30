@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '../shared/product.model';
+import { CartService } from '../../cart/cart.service';
+import { CartItem } from '../../cart/shared/cart-item.model';
 
 @Component({
   selector: 'app-products-list-item',
@@ -10,9 +12,13 @@ import { Product } from '../shared/product.model';
 export class ProductsListItemComponent implements OnInit {
   @Input() product: Product;
 
-  constructor() {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {
+  }
+
+  onAddToCart() {
+    this.cartService.addItem(new CartItem(this.product, 1));
   }
 
 }

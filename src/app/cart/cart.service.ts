@@ -1,12 +1,14 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Product } from '../products/shared/product.model';
 import { CartItem } from './shared/cart-item.model';
+import { MessageService } from '../core/messages/message.service';
 
+@Injectable()
 export class CartService {
-  private cartItems: CartItem[];
+  private cartItems: CartItem[] = [];
   public itemsChanged: EventEmitter<CartItem[]> = new EventEmitter<CartItem[]>();
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   getItems() {
     return this.cartItems.slice();
@@ -15,6 +17,7 @@ export class CartService {
   addItem(item: CartItem) {
     this.cartItems.push(item);
     this.itemsChanged.emit(this.cartItems.slice());
+    this.messageService.add('Added to cart: ' + item.product.name);
   }
 
   addItems(items: CartItem[]) {
