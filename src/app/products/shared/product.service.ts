@@ -34,13 +34,13 @@ export class ProductService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-    // TODO: send the error to remote logging infrastructure
+      // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
-    // TODO: better job of transforming error for user consumption
+      // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
 
-    // Let the app keep running by returning an empty result.
+      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
@@ -55,7 +55,7 @@ export class ProductService {
   }
   /** GET product by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
-  const url = `${this.productsUrl}/${id}`;
+    const url = `${this.productsUrl}/${id}`;
     return this.http.get<Product>(url).pipe(
       tap(_ => this.log(`fetched Product id=${id}`)),
       catchError(this.handleError<Product>(`getProduct id=${id}`))
@@ -86,15 +86,15 @@ export class ProductService {
       catchError(this.handleError<Product[]>('searchProducts', []))
     );
   }
-/*
-    deleteProduct(product: Product | number): Observable<Product> {
-      const id = typeof Product === 'number' ? product : product.id;
-      const url = `${this.productsUrl}/${id}`;
+  /*
+      deleteProduct(product: Product | number): Observable<Product> {
+        const id = typeof Product === 'number' ? product : product.id;
+        const url = `${this.productsUrl}/${id}`;
 
-      return this.http.delete<Product>(url, httpOptions).pipe(
-        tap(_ => this.log(`deleted Product id=${id}`)),
-        catchError(this.handleError<Product>('deleteProduct'))
-      );
-    }
-  */
+        return this.http.delete<Product>(url, httpOptions).pipe(
+          tap(_ => this.log(`deleted Product id=${id}`)),
+          catchError(this.handleError<Product>('deleteProduct'))
+        );
+      }
+    */
 }
