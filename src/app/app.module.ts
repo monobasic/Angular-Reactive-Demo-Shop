@@ -28,6 +28,7 @@ import { FooterComponent } from './footer/footer.component';
 
 // Services
 import { ProductService } from './products/shared/product.service';
+import { CartService } from './cart/cart.service';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { ProductService } from './products/shared/product.service';
     BsDropdownModule.forRoot()
   ],
   providers: [
-    ProductService
+    ProductService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })
