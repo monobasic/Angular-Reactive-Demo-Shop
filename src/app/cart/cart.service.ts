@@ -1,9 +1,10 @@
 import { EventEmitter } from '@angular/core';
 import { Product } from '../products/shared/product.model';
+import { CartItem } from './shared/cart-item.model';
 
 export class CartService {
-  private cartItems: Product[] = [];
-  public itemsChanged: EventEmitter<Product[]> = new EventEmitter<Product[]>();
+  private cartItems: CartItem[];
+  public itemsChanged: EventEmitter<CartItem[]> = new EventEmitter<CartItem[]>();
 
   constructor() { }
 
@@ -11,13 +12,13 @@ export class CartService {
     return this.cartItems.slice();
   }
 
-  addItem(product: Product) {
-    this.cartItems.push(product);
+  addItem(item: CartItem) {
+    this.cartItems.push(item);
     this.itemsChanged.emit(this.cartItems.slice());
   }
 
-  addItems(products: Product[]) {
-    this.cartItems.push(...products);
+  addItems(items: CartItem[]) {
+    this.cartItems.push(...items);
     this.itemsChanged.emit(this.cartItems.slice());
   }
 
