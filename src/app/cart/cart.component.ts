@@ -22,7 +22,6 @@ export class CartComponent implements OnInit {
   }
 
   onClearCart(event) {
-    console.log('clear cart!');
     event.stopPropagation();
     this.cartService.clearCart();
   }
