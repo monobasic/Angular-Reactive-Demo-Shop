@@ -21,6 +21,11 @@ export class CartService {
     this.itemsChanged.emit(this.cartItems.slice());
   }
 
+  removeItem(id: number) {
+    this.cartItems.splice(id, 1);
+    this.itemsChanged.emit(this.cartItems.slice());
+  }
+
   clearCart() {
     this.cartItems = [];
     this.itemsChanged.emit(this.cartItems.slice());
