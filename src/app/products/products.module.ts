@@ -6,8 +6,6 @@ import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsListItemComponent } from './products-list-item/products-list-item.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 
-import { ProductService } from './shared/product.service';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -22,6 +20,6 @@ import { ProductService } from './shared/product.service';
     ProductsListComponent,
     ProductDetailComponent
   ],
-  providers: [ProductService]
+  providers: []
 })
 export class ProductsModule { }
