@@ -44,11 +44,11 @@ import { ProductService } from './products/shared/product.service';
     FooterComponent
   ],
   imports: [
+    CoreModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    CoreModule.forRoot(),
     AppRoutingModule,
     ProductsModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
