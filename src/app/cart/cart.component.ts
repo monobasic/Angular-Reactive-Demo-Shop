@@ -22,8 +22,15 @@ export class CartComponent implements OnInit {
   }
 
   onClearCart(event) {
+    event.preventDefault();
     event.stopPropagation();
     this.cartService.clearCart();
+  }
+
+  onRemoveItem(event, item: CartItem) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.cartService.removeItem(item);
   }
 
 }

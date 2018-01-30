@@ -72,7 +72,11 @@
                 <td class="text-center text-lg text-medium">$43.90</td>
                 <td class="text-center text-lg text-medium">$18.00</td>
                 <td class="text-center">
-                  <a class="remove-from-cart" href="#" data-toggle="tooltip" title="Remove item">
+                  <a class="remove-from-cart"
+                    href="#"
+                    data-toggle="tooltip"
+                    title="Remove item"
+                    (click)="onRemoveItem($event, item)">
                     <i class="icon-cross"></i>
                   </a>
                 </td>

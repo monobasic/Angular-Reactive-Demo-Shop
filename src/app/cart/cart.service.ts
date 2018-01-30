@@ -57,8 +57,15 @@ export class CartService {
     this.itemsChanged.emit(this.cartItems.slice());
   }
 
-  removeItem(id: number) {
-    this.cartItems.splice(id, 1);
+  removeItem(item: CartItem) {
+    // Determine index of item to be removed
+    const indexToRemove = this.cartItems.map((element) => {
+      if (element.product.id === item.product.id) {
+        return this.cartItems.indexOf(element);
+      }
+    });
+    console.log('remove index:' + indexToRemove )
+    this.cartItems.splice(indexToRemove, 1);
     this.itemsChanged.emit(this.cartItems.slice());
   }
 
