@@ -10,7 +10,8 @@ import { Product } from '../shared/product.model';
 export class ProductsListItemComponent implements OnInit {
   @Input() product: Product;
 
-  constructor() { }
+  constructor() {}
+
   ngOnInit() {
   }
 
