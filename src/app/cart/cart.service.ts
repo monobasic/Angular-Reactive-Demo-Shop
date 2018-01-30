@@ -60,7 +60,9 @@ export class CartService {
   removeItem(item: CartItem) {
     // TODO: Right now, only the product id is used for determining the index for the item to be removed..
     const indexToRemove = this.cartItems.findIndex((element) => {
-      return element.product.id === item.product.id;
+      // return element.product.id === item.product.id;
+      // compare by reference
+      return element === item;
     });
     this.cartItems.splice(indexToRemove, 1);
     this.itemsChanged.emit(this.cartItems.slice());
