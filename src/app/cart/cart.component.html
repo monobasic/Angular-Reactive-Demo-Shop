@@ -40,15 +40,16 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+
+              <tr *ngFor="let item of items">
                 <td>
                   <div class="product-item">
                     <a class="product-thumb" href="shop-single.html">
-                      <img src="img/shop/cart/01.jpg" alt="Product">
+                      <img [src]="item.product.imageURLs[0]" alt="Product">
                     </a>
                     <div class="product-info">
                       <h4 class="product-title">
-                        <a href="shop-single.html">Unionbay Park</a>
+                        <a href="shop-single.html">{{item.product.name}}</a>
                       </h4>
                       <span>
                         <em>Size:</em> 10.5</span>
@@ -76,78 +77,7 @@
                   </a>
                 </td>
               </tr>
-              <tr>
-                <td>
-                  <div class="product-item">
-                    <a class="product-thumb" href="shop-single.html">
-                      <img src="img/shop/cart/02.jpg" alt="Product">
-                    </a>
-                    <div class="product-info">
-                      <h4 class="product-title">
-                        <a href="shop-single.html">Daily Fabric Cap</a>
-                      </h4>
-                      <span>
-                        <em>Size:</em> XL</span>
-                      <span>
-                        <em>Color:</em> Black</span>
-                    </div>
-                  </div>
-                </td>
-                <td class="text-center">
-                  <div class="count-input">
-                    <select class="form-control">
-                      <option>1</option>
-                      <option selected>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                </td>
-                <td class="text-center text-lg text-medium">$24.89</td>
-                <td class="text-center">&mdash;</td>
-                <td class="text-center">
-                  <a class="remove-from-cart" href="#" data-toggle="tooltip" title="Remove item">
-                    <i class="icon-cross"></i>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="product-item">
-                    <a class="product-thumb" href="shop-single.html">
-                      <img src="img/shop/cart/03.jpg" alt="Product">
-                    </a>
-                    <div class="product-info">
-                      <h4 class="product-title">
-                        <a href="shop-single.html">Cole Haan Crossbody</a>
-                      </h4>
-                      <span>
-                        <em>Size:</em> -</span>
-                      <span>
-                        <em>Color:</em> Turquoise</span>
-                    </div>
-                  </div>
-                </td>
-                <td class="text-center">
-                  <div class="count-input">
-                    <select class="form-control">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                </td>
-                <td class="text-center text-lg text-medium">$200.00</td>
-                <td class="text-center">&mdash;</td>
-                <td class="text-center">
-                  <a class="remove-from-cart" href="#" data-toggle="tooltip" title="Remove item">
-                    <i class="icon-cross"></i>
-                  </a>
-                </td>
-              </tr>
+
             </tbody>
           </table>
         </div>
