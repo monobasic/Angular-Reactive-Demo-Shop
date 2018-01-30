@@ -14,6 +14,17 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.items = this.cartService.getItems();
+    this.cartService.itemsChanged.subscribe(
+      (items: CartItem[]) => {
+        this.items = items;
+      }
+    );
+  }
+
+  onClearCart(event) {
+    console.log('clear cart!');
+    event.stopPropagation();
+    this.cartService.clearCart();
   }
 
 }
