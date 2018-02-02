@@ -82,6 +82,14 @@ export class CartService {
     this.itemsChanged.emit(this.cartItems.slice());
   }
 
+  updateItemAmount(item: CartItem, newAmount: number) {
+    this.cartItems.forEach((cartItem) => {
+      if (cartItem.product.id === item.product.id) {
+        cartItem.amount = newAmount;
+      }
+    });
+  }
+
   clearCart() {
     this.cartItems = [];
     this.itemsChanged.emit(this.cartItems.slice());
