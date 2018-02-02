@@ -39,8 +39,14 @@ export class CartComponent implements OnInit {
 
   decreaseAmount(item: CartItem) {
     item.amount--;
-    if (item.amount < 0) {
-      item.amount = 0;
+    if (item.amount < 1) {
+      item.amount = 1;
+    }
+  }
+
+  checkAmount(item: CartItem) {
+    if (item.amount < 1 || !item.amount || isNaN(item.amount)) {
+      item.amount = 1;
     }
   }
 
