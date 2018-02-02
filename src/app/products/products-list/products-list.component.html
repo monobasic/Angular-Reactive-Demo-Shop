@@ -52,41 +52,37 @@
     </div>
 
     <!-- Products Grid-->
-    <div class="isotope-grid cols-4 mb-2">
-        <div class="gutter-sizer"></div>
-        <div class="grid-sizer"></div>
-
-        <!-- Products-->
-        <app-products-list-item *ngFor="let product of products" [product]="product">
+    <div class="row">
+        <app-products-list-item ngClass="col col-sm-6 col-md-4 col-lg-3" *ngFor="let product of products" [product]="product">
         </app-products-list-item>
-        <!-- Pagination-->
-        <nav class="pagination">
-            <div class="column">
-                <ul class="pages">
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>...</li>
-                    <li>
-                        <a href="#">12</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="column text-right hidden-xs-down">
-                <a class="btn btn-outline-secondary btn-sm" href="#">Next&nbsp;
-                    <i class="icon-arrow-right"></i>
-                </a>
-            </div>
-        </nav>
-
-
     </div>
+
+
+    <!-- Pagination-->
+    <nav class="pagination">
+        <div class="column">
+            <ul class="pages">
+                <li class="active">
+                    <a href="#">1</a>
+                </li>
+                <li>
+                    <a href="#">2</a>
+                </li>
+                <li>
+                    <a href="#">3</a>
+                </li>
+                <li>
+                    <a href="#">4</a>
+                </li>
+                <li>...</li>
+                <li>
+                    <a href="#">12</a>
+                </li>
+            </ul>
+        </div>
+        <div class="column text-right hidden-xs-down">
+            <a class="btn btn-outline-secondary btn-sm" href="#">Next&nbsp;
+                <i class="icon-arrow-right"></i>
+            </a>
+        </div>
+    </nav>
