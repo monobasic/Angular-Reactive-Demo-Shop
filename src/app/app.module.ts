@@ -29,6 +29,7 @@ import { FooterComponent } from './footer/footer.component';
 // Services
 import { ProductService } from './products/shared/product.service';
 import { CartService } from './cart/cart.service';
+import { ToolbarCartComponent } from './toolbar/cart/cart.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { CartService } from './cart/cart.service';
     TopBarComponent,
     ContentComponent,
     MainSliderComponent,
-    FooterComponent
+    FooterComponent,
+    ToolbarCartComponent
   ],
   imports: [
     CoreModule.forRoot(),
