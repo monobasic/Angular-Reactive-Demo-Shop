@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { CartItem } from './shared/cart-item.model';
 
@@ -7,7 +7,7 @@ import { CartItem } from './shared/cart-item.model';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit, OnChanges {
+export class CartComponent implements OnInit {
   public items: CartItem[];
   public total: number;
 
@@ -22,10 +22,6 @@ export class CartComponent implements OnInit, OnChanges {
         this.total = this.cartService.getTotal();
       }
     );
-  }
-
-  ngOnChanges() {
-    console.log('ngOnChanges called!');
   }
 
   onClearCart(event) {
