@@ -88,11 +88,21 @@ export class CartService {
         cartItem.amount = newAmount;
       }
     });
+    this.itemsChanged.emit(this.cartItems.slice());
   }
 
   clearCart() {
     this.cartItems = [];
     this.itemsChanged.emit(this.cartItems.slice());
+  }
+
+  getTotal() {
+    let total = 0;
+    this.cartItems.forEach((cartItem) => {
+      total += cartItem.amount * cartItem.product.price;
+    });
+    console.log('total: ' + total);
+    return total;
   }
 
 }

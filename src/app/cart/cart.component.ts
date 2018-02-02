@@ -9,15 +9,17 @@ import { CartItem } from './shared/cart-item.model';
 })
 export class CartComponent implements OnInit, OnChanges {
   public items: CartItem[];
-  public total: number = 0;
+  public total: number;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
     this.items = this.cartService.getItems();
+    this.total = this.cartService.getTotal();
     this.cartService.itemsChanged.subscribe(
       (items: CartItem[]) => {
         this.items = items;
+        this.total = this.cartService.getTotal();
       }
     );
   }
@@ -48,9 +50,7 @@ export class CartComponent implements OnInit, OnChanges {
   }
 
   checkAmount(item: CartItem) {
-    if (item.amount < 1 || !item.amount || isNaN(item.amount)) {
-      this.cartService.updateItemAmount(item, 1);
-    }
+    this.cartService.updateItemAmount(item, (item.amount < 1 || !item.amount || isNaN(item.amount) ? 1 : item.amount));
   }
 
 }
