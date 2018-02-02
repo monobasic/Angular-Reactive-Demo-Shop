@@ -5,37 +5,8 @@ import { MessageService } from '../core/messages/message.service';
 
 @Injectable()
 export class CartService {
-  private cartItems: CartItem[] = [
-    new CartItem(
-      {
-        id: 11,
-        name: 'Shoes',
-        price: 99,
-        reduction: 70,
-        description: 'Hello world',
-        imageURLs: ['img/shop/products/01.jpg'],
-        ratingIDs: [1],
-        reviewIDs: [],
-        sizes: [9, 10, 11],
-        colors: ['mauve', 'taube', 'mint'],
-        categoryIDs: [1, 2, 3]
-      }, 1
-    ),
-    new CartItem(
-      {
-        id: 12,
-        name: 'Bag',
-        price: 99,
-        description: 'Hello world',
-        imageURLs: ['img/shop/products/02.jpg'],
-        ratingIDs: [],
-        reviewIDs: [],
-        sizes: [],
-        colors: ['mauve', 'taube', 'mint'],
-        categoryIDs: [1, 2, 3]
-      }, 2
-    )
-  ];
+  // Init and generate some fixtures
+  private cartItems: CartItem[] = [];
   public itemsChanged: EventEmitter<CartItem[]> = new EventEmitter<CartItem[]>();
 
   constructor(private messageService: MessageService) { }
@@ -44,12 +15,26 @@ export class CartService {
     return this.cartItems.slice();
   }
 
+  // Get Product ids out of CartItem[] in a new array
+  private getItemIds() {
+    return this.getItems().map(cartItem => cartItem.product.id);
+  }
+
   addItem(item: CartItem) {
-    // TODO: check for already exising items and merge amount
-    this.cartItems.push(item);
-    this.itemsChanged.emit(this.cartItems.slice());
-    this.messageService.add('Added to cart: ' + item.product.name);
-    console.log(this.cartItems);
+    // If item is already in cart, add to the amount, otherwise push item into cart
+    if (this.getItemIds().includes(item.product.id)) {
+      this.cartItems.forEach(function (cartItem) {
+        if (cartItem.product.id === item.product.id) {
+          cartItem.amount += item.amount;
+        }
+      });
+      this.itemsChanged.emit(this.cartItems.slice());
+      this.messageService.add('Amount in cart changed for: ' + item.product.name);
+    } else {
+      this.cartItems.push(item);
+      this.itemsChanged.emit(this.cartItems.slice());
+      this.messageService.add('Added to cart: ' + item.product.name);
+    }
   }
 
   addItems(items: CartItem[]) {
@@ -58,10 +43,7 @@ export class CartService {
   }
 
   removeItem(item: CartItem) {
-    // TODO: Right now, only the product id is used for determining the index for the item to be removed..
     const indexToRemove = this.cartItems.findIndex((element) => {
-      // return element.product.id === item.product.id;
-      // compare by reference
       return element === item;
     });
     this.cartItems.splice(indexToRemove, 1);
