@@ -13,8 +13,8 @@ export class MessageService {
     // Toastr API doc: https://github.com/scttcper/ngx-toastr
     // setTimeout is needed: https://github.com/scttcper/ngx-toastr/issues/160
     setTimeout(() => this.toastr.success(message, 'Message:', {
-      disableTimeOut: true,
-      closeButton: true
+      disableTimeOut: false,
+      closeButton: false
     }));
   }
 
