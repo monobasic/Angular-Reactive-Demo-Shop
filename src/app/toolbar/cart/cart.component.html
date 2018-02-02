@@ -4,18 +4,25 @@
   <span class="count">{{items.length}}</span>
   <span class="subtotal">${{ total | number: '1.2-2' }}</span>
   <div class="toolbar-dropdown">
-    <div *ngFor="let item of items" class="dropdown-product-item">
-      <span class="dropdown-product-remove">
-        <i class="icon-cross"></i>
-      </span>
-      <a class="dropdown-product-thumb" href="shop-single.html">
-        <img [src]="item.product.imageURLs[0]" alt="{{item.product.name}}">
-      </a>
-      <div class="dropdown-product-info">
-        <a class="dropdown-product-title" href="shop-single.html">{{item.product.name}}</a>
-        <span class="dropdown-product-details">{{item.amount}} x ${{ item.product.price | number: '1.2-2' }}</span>
+    <div *ngIf="items.length; else noItemsInCart">
+      <div *ngFor="let item of items" class="dropdown-product-item">
+        <span class="dropdown-product-remove" (click)="onRemoveItem($event, item)">
+          <i class="icon-cross"></i>
+        </span>
+        <a class="dropdown-product-thumb" href="shop-single.html">
+          <img [src]="item.product.imageURLs[0]" alt="{{item.product.name}}">
+        </a>
+        <div class="dropdown-product-info">
+          <a class="dropdown-product-title" href="shop-single.html">{{item.product.name}}</a>
+          <span class="dropdown-product-details">{{item.amount}} x ${{ item.product.price | number: '1.2-2' }}</span>
+        </div>
       </div>
     </div>
+    <ng-template #noItemsInCart>
+      <div><p>
+        There are no items in your cart..
+      </p></div>
+    </ng-template>
     <div class="toolbar-dropdown-group">
       <div class="column">
         <span class="text-lg">Total:</span>
