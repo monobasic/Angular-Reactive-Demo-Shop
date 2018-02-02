@@ -80,6 +80,7 @@ export class CartService {
     });
     this.cartItems.splice(indexToRemove, 1);
     this.itemsChanged.emit(this.cartItems.slice());
+    this.messageService.add('Deleted from cart: ' + item.product.name);
   }
 
   updateItemAmount(item: CartItem, newAmount: number) {
@@ -89,11 +90,13 @@ export class CartService {
       }
     });
     this.itemsChanged.emit(this.cartItems.slice());
+    this.messageService.add('Updated amount for: ' + item.product.name);
   }
 
   clearCart() {
     this.cartItems = [];
     this.itemsChanged.emit(this.cartItems.slice());
+    this.messageService.add('Cleared cart');
   }
 
   getTotal() {
