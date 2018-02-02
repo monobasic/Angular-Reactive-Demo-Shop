@@ -62,7 +62,15 @@
                 </td>
                 <td class="text-center">
                   <div class="count-input">
-                    <input type="text" value="{{item.amount}}">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" (click)="decreaseAmount(item)">-</button>
+                      </div>
+                      <input type="text" class="form-control text-center" placeholder="" [(ngModel)]="item.amount">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" (click)="increaseAmount(item)">+</button>
+                      </div>
+                    </div>
                   </div>
                 </td>
                 <td class="text-center text-lg text-medium">${{ item.product.price | number: '1.2-2' }}</td>
