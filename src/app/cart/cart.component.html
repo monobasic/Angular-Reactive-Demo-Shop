@@ -39,8 +39,8 @@
                 </th>
               </tr>
             </thead>
-            <tbody>
 
+            <tbody *ngIf="items.length; else noItemsInCart">
               <tr *ngFor="let item of items">
                 <td>
                   <div class="product-item">
@@ -75,8 +75,16 @@
                   </a>
                 </td>
               </tr>
-
             </tbody>
+
+            <ng-template #noItemsInCart>
+              <tbody>
+                <tr>
+                  <td colspan="5">There are no items in your cart..</td>
+                </tr>
+              </tbody>
+            </ng-template>
+
           </table>
         </div>
         <div class="shopping-cart-footer">
