@@ -104,7 +104,6 @@ export class CartService {
     this.cartItems.forEach((cartItem) => {
       total += cartItem.amount * cartItem.product.price;
     });
-    console.log('total: ' + total);
     return total;
   }
 
