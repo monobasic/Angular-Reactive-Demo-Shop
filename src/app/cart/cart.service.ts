@@ -38,8 +38,9 @@ export class CartService {
   }
 
   addItems(items: CartItem[]) {
-    this.cartItems.push(...items);
-    this.itemsChanged.emit(this.cartItems.slice());
+    items.forEach(function(cartItem) {
+      this.addItem(cartItem);
+    });
   }
 
   removeItem(item: CartItem) {
