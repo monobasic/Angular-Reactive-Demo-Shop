@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from '../../cart/cart.service';
+import { CartItem } from '../../cart/shared/cart-item.model';
 
 @Component({
   selector: 'app-toolbar-cart',
@@ -6,10 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.scss']
 })
 export class ToolbarCartComponent implements OnInit {
+  public items: CartItem[];
+  public total: number;
 
-  constructor() { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
+    this.items = this.cartService.getItems();
+    this.total = this.cartService.getTotal();
+    this.cartService.itemsChanged.subscribe(
+      (items: CartItem[]) => {
+        this.items = items;
+        this.total = this.cartService.getTotal();
+      }
+    );
+  }
+
+  onRemoveItem(event, item: CartItem) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.cartService.removeItem(item);
   }
 
 }
