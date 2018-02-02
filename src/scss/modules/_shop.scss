@@ -305,7 +305,7 @@
     .product-thumb,
     .product-info {
       display: table-cell;
-      vertical-align: top;
+      vertical-align: middle;
     }
     .product-thumb {
       width: ($cart-thumb-size + 20);
