@@ -10,9 +10,9 @@
     <del *ngIf="product.reduction">${{ product.price }}</del>${{ (product.price * (1 - product.reduction / 100)) || product.price | number: '1.2-2'}}
   </h4>
   <div class="product-buttons">
-    <button class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Whishlist">
+    <!-- <button class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Whishlist">
       <i class="icon-heart"></i>
-    </button>
+    </button> -->
     <button class="btn btn-outline-primary btn-sm" (click)="onAddToCart()">Add to Cart</button>
   </div>
 </div>
