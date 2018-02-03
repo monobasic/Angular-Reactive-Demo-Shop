@@ -24,7 +24,7 @@ import products from './routes/products';
 // create app
 const app = express();
 
-// apply middleware...
+// apply middleware:
 // cross origin handler...
 app.use(cors());
 
@@ -43,12 +43,9 @@ app.use('/api/products', products);
 const port = process.env.PORT;
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+// Create HTTP server.
+// for ssl try https://aghassi.github.io/ssl-using-express-4/
 const server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+// Listen on provided port, on all network interfaces.
 server.listen(port, () => console.log(`API running on localhost:${port}`));

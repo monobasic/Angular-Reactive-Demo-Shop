@@ -11,12 +11,7 @@ router.get('/', async (req, res, next) => {
 
   try {
     const products = await productsController.getProducts();
-/*
-    const response = {
-      products,
-      success: true
-    };
-*/
+
     res.write(JSON.stringify(products, null, 2));
     res.end();
 
@@ -56,12 +51,11 @@ router.post('/', async (req, res, next) => {
   } catch (error) {
     const answer = {
       success: false,
-      message: `Failed to create a new list. Error: ${error}`
+      message: `Failed to create a new product. Error: ${error}`
     };
     res.json(answer);
     res.end();
   }
-
 });
 
 router.delete('/:id', (req, res, next) => {

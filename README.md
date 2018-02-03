@@ -62,7 +62,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Development with Express-Server/mLab remote-DB as backend
 
 - Remove HttpClientInMemoryWebApiModule from app.module imports.
-- Run `npm run start:remote` to spin up ng-server at port 4200 and an express-driven backend at 3000. Requests to /api/* will be redirected to the server (as defined in proxy.config.json)
+- Run `npm run start:remote` to spin up ng-server at port 4200 and an express-driven backend at 3000. Requests to /api/* will be redirected to the server (as defined in proxy.config.json) 
 
 ## Code scaffolding
 
