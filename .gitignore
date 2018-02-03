@@ -4,9 +4,13 @@
 /dist
 /tmp
 /out-tsc
+/server/compiled
 
 # dependencies
 /node_modules
+
+#config values
+.env
 
 # IDEs and editors
 /.idea
