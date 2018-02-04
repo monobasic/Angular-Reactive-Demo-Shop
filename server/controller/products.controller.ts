@@ -4,6 +4,10 @@ const getProducts = () => {
   return ProductModel.find().exec();
 };
 
+const getSingleProduct = (id) => {
+  return ProductModel.findOne({id: id}).exec();
+};
+
 const addProduct = (newProduct) => {
   return newProduct.save();
 };
@@ -13,6 +17,7 @@ const deleteProduct = (id, callback) => {
 };
 
 export default {
-  getProducts: getProducts,
+  getProducts,
+  getSingleProduct,
   addProduct: addProduct
 };

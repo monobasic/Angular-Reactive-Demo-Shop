@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './model/in-memory-data.service';
+// import { InMemoryDataService } from './model/in-memory-data.service';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
@@ -54,7 +54,7 @@ import { ToolbarCartComponent } from './toolbar/cart/cart.component';
     HttpClientModule,
     AppRoutingModule,
     ProductsModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     ToastrModule.forRoot(),
     BsDropdownModule.forRoot()
   ],

@@ -11,15 +11,16 @@ import * as http from 'http';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import * as mongoose from 'mongoose';
+import * as queryParams from 'express-query-params';
 
 // connect to mlab hosted mongoDB
 import config from './config/database';
 mongoose.connect(config.database);
 
 // Get our API routes
-import api from './routes/api';
-import users from './routes/users';
-import products from './routes/products';
+import api from './routes/api.routes';
+import users from './routes/user.routes';
+import products from './routes/products.routes';
 
 // create app
 const app = express();
@@ -31,6 +32,7 @@ app.use(cors());
 // ...parsers for POST data...
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(queryParams());
 
 // ...and our api routes.
 app.use('/api', api);

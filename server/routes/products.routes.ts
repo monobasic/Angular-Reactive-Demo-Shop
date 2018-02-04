@@ -1,4 +1,4 @@
-import productsController from '../controller/products';
+import productsController from '../controller/products.controller';
 import ProductModel from '../model/product.model';
 
 import * as express from 'express';
@@ -8,6 +8,7 @@ const router = Router();
 
 router.get('/', async (req, res, next) => {
   console.log('getting products remotely');
+  console.log(req.url);
 
   try {
     const products = await productsController.getProducts();
@@ -24,6 +25,18 @@ router.get('/', async (req, res, next) => {
       res.json(JSON.stringify(response));
 
     res.end();
+  }
+});
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const product = await productsController.getSingleProduct(id);
+
+    res.write(JSON.stringify(product, null, 2));
+    res.end();
+  } catch (error) {
+    console.log(error);
   }
 });
 
