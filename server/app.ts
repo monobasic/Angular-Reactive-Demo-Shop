@@ -1,9 +1,5 @@
 // https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md
 
-// setup super-secret env variables
-import * as dotenv from 'dotenv';
-dotenv.config();
-
 // Get dependencies
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
@@ -26,18 +22,22 @@ import products from './routes/products.routes';
 const app = express();
 
 // apply middleware:
+// logging
 app.use(morgan('common'));
+
+// security
 app.use(helmet());
 
-// cross origin handler...
+// cross origin handler
 app.use(cors());
 
-// ...parsers for POST data...
+// parsers for POST data
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse query params
 app.use(queryParams());
 
-// ...and our api routes.
+// api routes.
 app.use('/api', api);
 app.use('/api/users', users);
 app.use('/api/products', products);
