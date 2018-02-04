@@ -8,7 +8,6 @@ const router = Router();
 
 router.get('/', async (req, res, next) => {
   console.log('getting products remotely');
-  console.log(req.url);
 
   try {
     const products = await productsController.getProducts();
@@ -41,7 +40,8 @@ router.get('/:id', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  const newProduct = new ProductModel({
+  const product = {
+    id: req.body.id,
     name: req.body.name,
     description: req.body.description,
     price: req.body.price,
@@ -49,10 +49,10 @@ router.post('/', async (req, res, next) => {
     sizes: req.body.sizes,
     colors: req.body.colors,
     categoryIDs: req.body.categoryIDs
-  });
+  };
 
   try {
-    const dbResponse = await productsController.addProduct(newProduct);
+    const dbResponse = await productsController.addProduct(product);
 
     const answer = {
       success: true,

@@ -8,7 +8,9 @@ const getSingleProduct = (id) => {
   return ProductModel.findOne({id: id}).exec();
 };
 
-const addProduct = (newProduct) => {
+const addProduct = (product) => {
+  const newProduct = new ProductModel(product);
+
   return newProduct.save();
 };
 
