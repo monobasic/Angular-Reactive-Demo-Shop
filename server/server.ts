@@ -9,8 +9,9 @@ import * as express from 'express';
 import * as path from 'path';
 import * as http from 'http';
 import * as bodyParser from 'body-parser';
-import * as cors from 'cors';
 import * as morgan from 'morgan';
+import * as helmet from 'helmet';
+import * as cors from 'cors';
 import * as mongoose from 'mongoose';
 import * as queryParams from 'express-query-params';
 
@@ -26,9 +27,10 @@ import products from './routes/products.routes';
 // create app
 const app = express();
 
-app.use(morgan('common'));
-
 // apply middleware:
+app.use(morgan('common'));
+app.use(helmet());
+
 // cross origin handler...
 app.use(cors());
 
