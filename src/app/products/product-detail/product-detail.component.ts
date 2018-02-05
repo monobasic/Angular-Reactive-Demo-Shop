@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { ProductService } from '../shared/product.service';
-
 import { Product } from '../shared/product.model';
 
 @Component({
