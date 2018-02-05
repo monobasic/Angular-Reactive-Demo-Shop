@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { ProductService } from '../shared/product.service';
 import { Product } from '../shared/product.model';
 import { CartService } from '../../cart/cart.service';
+import { CartItem } from '../../cart/shared/cart-item.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,6 +17,7 @@ export class ProductDetailComponent implements OnInit {
   @Input() product: Product;
   activeImageUrl: string;
   activeImageIndex: number;
+  selectedQuantity: number;
 
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
@@ -25,6 +27,7 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProduct();
+    this.selectedQuantity = 1;
   }
 
   getProduct(): void {
@@ -44,6 +47,10 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onAddToCart() {
-    this.cartService.addItem(new CartItem(this.product, 1));
+    this.cartService.addItem(new CartItem(this.product, this.selectedQuantity));
+  }
+
+  onSelectQuantity(event) {
+    this.selectedQuantity = <number>event.target.value;
   }
 }
