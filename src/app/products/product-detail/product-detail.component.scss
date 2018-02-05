@@ -6,13 +6,20 @@
   .btn {
     margin: 0;
     margin-left: 8px;
+
     &.btn-wishlist {
       width: $btn-sm-height;
       padding: 0;
       padding-left: 1px;
       border-radius: 50%;
-      > i { font-size: 1.2em; }
-      &.active { color: $brand-danger; }
+
+      > i {
+        font-size: 1.2em;
+      }
+
+      &.active {
+        color: $brand-danger;
+      }
     }
   }
 }
@@ -20,47 +27,17 @@
 // Product Gallery
 .product-gallery {
   position: relative;
+
   padding: {
     top: ($btn-height + 30);
     right: 15px;
     bottom: 15px;
     left: 15px;
   }
+
   border: 1px solid $border-color;
   border-radius: $border-radius-lg;
-  .gallery-item {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    margin-bottom: 0;
-    > a {
-      display: none;
-      width: $btn-height;
-      height: $btn-height;
-      transition: background-color .3s;
-      border: 1px solid $border-color;
-      border-radius: 50%;
-      text-decoration: none;
-      &::before { display: none !important; }
-      &::after {
-        position: static;
-        top: 0;
-        margin: {
-          top: 0;
-          left: 1px;
-        }
-        transform: none;
-        transition: none;
-        color: $gray-dark;
-        font-size: 22px;
-        line-height: $btn-height - 4;
-        content: '\e037';
-        opacity: 1;
-      }
-      &:hover { background-color: $gray-lighter; }
-    }
-    &.active > a { display: block; }
-  }
+
   .product-badge {
     top: 25px;
     left: 15px;
@@ -72,9 +49,11 @@
     padding: 0;
     list-style: none;
     text-align: center;
+
     > li {
       display: inline-block;
       margin: 0 3px 10px;
+
       > a {
         display: block;
         width: 94px;
@@ -83,10 +62,18 @@
         border-radius: $border-radius-base;
         overflow: hidden;
       }
+
       &.active > a {
         border-color: $brand-primary;
         cursor: default;
       }
     }
+  }
+}
+
+.product-gallery-image {
+
+  img {
+    min-width: 100%;
   }
 }
