@@ -32,8 +32,8 @@
               <img class="img-fluid" [src]="activeImageUrl" alt="{{product.name}}">
           </div>
           <ul class="product-thumbnails">
-            <li *ngFor="let image of product.imageURLs; let i = index" [ngClass]="{'active': i === 0}">
-              <a href="" data-target="{{i}}" (click)="onSelectThumbnail($event)">
+            <li *ngFor="let image of product.imageURLs; let i = index" [ngClass]="{'active': i === activeImageIndex}">
+              <a href="" (click)="onSelectThumbnail($event, i)">
                 <img [src]="image" alt="Product">
               </a>
             </li>

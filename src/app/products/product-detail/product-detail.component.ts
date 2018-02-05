@@ -14,6 +14,7 @@ import { Product } from '../shared/product.model';
 export class ProductDetailComponent implements OnInit {
   @Input() product: Product;
   activeImageUrl: string;
+  activeImageIndex: number;
 
   constructor(private route: ActivatedRoute, private productService: ProductService, private location: Location) { }
 
@@ -27,6 +28,7 @@ export class ProductDetailComponent implements OnInit {
     .subscribe(product => {
       this.product = product;
       this.activeImageUrl = this.product.imageURLs[0];
+      this.activeImageIndex = 0;
     });
   }
 
@@ -34,10 +36,10 @@ export class ProductDetailComponent implements OnInit {
     this.location.back();
   }
 
-  onSelectThumbnail(e) {
-    e.preventDefault();
-    console.log(e);
-    //this.activeImageUrl = this.product.imageURLs[0];
+  onSelectThumbnail(event, index) {
+    event.preventDefault();
+    this.activeImageUrl = this.product.imageURLs[index];
+    this.activeImageIndex = index;
   }
 
 //  save(): void {
