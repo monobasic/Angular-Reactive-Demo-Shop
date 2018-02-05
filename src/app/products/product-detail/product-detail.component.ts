@@ -42,4 +42,8 @@ export class ProductDetailComponent implements OnInit {
     this.activeImageUrl = this.product.imageURLs[index];
     this.activeImageIndex = index;
   }
+
+  onAddToCart() {
+    this.cartService.addItem(new CartItem(this.product, 1));
+  }
 }
