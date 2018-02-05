@@ -14,6 +14,7 @@ import { Product } from '../shared/product.model';
 })
 export class ProductDetailComponent implements OnInit {
   @Input() product: Product;
+  activeImageUrl: string;
 
   constructor(private route: ActivatedRoute, private productService: ProductService, private location: Location) { }
 
@@ -24,11 +25,20 @@ export class ProductDetailComponent implements OnInit {
   getProduct(): void {
   const id = +this.route.snapshot.paramMap.get('id');
   this.productService.getProduct(id)
-    .subscribe(product => this.product = product);
+    .subscribe(product => {
+      this.product = product;
+      this.activeImageUrl = this.product.imageURLs[0];
+    });
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  onSelectThumbnail(e) {
+    e.preventDefault();
+    console.log(e);
+    //this.activeImageUrl = this.product.imageURLs[0];
   }
 
 //  save(): void {
