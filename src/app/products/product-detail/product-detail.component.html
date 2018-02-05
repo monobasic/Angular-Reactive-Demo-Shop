@@ -27,7 +27,7 @@
       <!-- Poduct Gallery-->
       <div class="col-md-6">
         <div class="product-gallery">
-          <span class="product-badge text-danger">{{product.reduction}}% Off</span>
+          <span *ngIf="product.reduction" class="product-badge text-danger">{{product.reduction}}% Off</span>
           <div class="product-gallery-image">
               <img class="img-fluid" [src]="activeImageUrl" alt="{{product.name}}">
           </div>
@@ -45,7 +45,8 @@
         <div class="padding-top-2x mt-2 hidden-md-up"></div>
         <h2 class="padding-top-1x text-normal">{{ product.name }}</h2>
         <span class="h2 d-block">
-          <del class="text-muted text-normal">${{ product.price }}</del>${{ (product.price * (1 - product.reduction / 100)) || product.price | number: '1.2-2'}}</span>
+          <del *ngIf="product.reduction" class="text-muted text-normal">${{ product.price }}</del>${{ (product.price * (1 - product.reduction / 100)) || product.price | number: '1.2-2'}}
+        </span>
         <p>{{product.description}}</p>
         <div class="row margin-top-1x">
           <div class="col-sm-4">
