@@ -27,13 +27,13 @@
       <!-- Poduct Gallery-->
       <div class="col-md-6">
         <div class="product-gallery">
-          <!-- <span class="product-badge text-danger">30% Off</span> -->
-          <div class="">
-              <img [src]="activeImageUrl" alt="Product">
+          <span class="product-badge text-danger">{{product.reduction}}% Off</span>
+          <div>
+              <img class="img-fluid" [src]="activeImageUrl" alt="{{product.name}}">
           </div>
           <ul class="product-thumbnails">
             <li *ngFor="let image of product.imageURLs; let i = index" [ngClass]="{'active': i === 0}">
-              <a href="" (click)="onSelectThumbnail($event)">
+              <a href="" data-target="{{i}}" (click)="onSelectThumbnail($event)">
                 <img [src]="image" alt="Product">
               </a>
             </li>
@@ -46,10 +46,7 @@
         <h2 class="padding-top-1x text-normal">{{ product.name }}</h2>
         <span class="h2 d-block">
           <del class="text-muted text-normal">${{ product.price }}</del>${{ (product.price * (1 - product.reduction / 100)) || product.price | number: '1.2-2'}}</span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta voluptatibus quos ea dolore rem, molestias laudantium
-          et explicabo assumenda fugiat deserunt in, facilis laborum excepturi aliquid nobis ipsam deleniti aut? Aliquid
-          sit hic id velit qui fuga nemo suscipit obcaecati. Officia nisi quaerat minus nulla saepe aperiam sint possimus
-          magni veniam provident.</p>
+        <p>{{product.description}}</p>
         <div class="row margin-top-1x">
           <div class="col-sm-4">
             <div class="form-group">
@@ -126,6 +123,12 @@
               <i class="icon-bag"></i> Add to Cart</button>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="row padding-top-3x">
+      <div class="col">
+         <p>{{product.descriptionLong}}</p>
       </div>
     </div>
 
