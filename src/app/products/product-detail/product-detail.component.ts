@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 
 import { ProductService } from '../shared/product.service';
 import { Product } from '../shared/product.model';
+import { CartService } from '../../cart/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,24 +17,24 @@ export class ProductDetailComponent implements OnInit {
   activeImageUrl: string;
   activeImageIndex: number;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService, private location: Location) { }
+  constructor(private route: ActivatedRoute,
+    private productService: ProductService,
+    private location: Location,
+    private cartService: CartService) { }
+
 
   ngOnInit(): void {
     this.getProduct();
   }
 
   getProduct(): void {
-  const id = +this.route.snapshot.paramMap.get('id');
-  this.productService.getProduct(id)
-    .subscribe(product => {
-      this.product = product;
-      this.activeImageUrl = this.product.imageURLs[0];
-      this.activeImageIndex = 0;
-    });
-  }
-
-  goBack(): void {
-    this.location.back();
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.productService.getProduct(id)
+      .subscribe(product => {
+        this.product = product;
+        this.activeImageUrl = this.product.imageURLs[0];
+        this.activeImageIndex = 0;
+      });
   }
 
   onSelectThumbnail(event, index) {
@@ -41,9 +42,4 @@ export class ProductDetailComponent implements OnInit {
     this.activeImageUrl = this.product.imageURLs[index];
     this.activeImageIndex = index;
   }
-
-//  save(): void {
-//    this.productService.updateProduct(this.product)
-//      .subscribe(() => this.goBack());
-// }
 }
