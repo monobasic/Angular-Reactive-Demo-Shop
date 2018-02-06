@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, DecimalPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsListItemComponent } from './products-list-item/products-list-item.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { PricePipe } from '../price.pipe';
 
 @NgModule({
   imports: [
@@ -14,12 +15,16 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
   declarations: [
     ProductsListComponent,
     ProductsListItemComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    PricePipe
   ],
   exports: [
     ProductsListComponent,
     ProductDetailComponent
   ],
-  providers: []
+  providers: [
+    CurrencyPipe,
+    DecimalPipe
+  ]
 })
 export class ProductsModule { }

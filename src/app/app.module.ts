@@ -29,9 +29,6 @@ import { ProductService } from './products/shared/product.service';
 import { CartService } from './cart/cart.service';
 import { ToolbarCartComponent } from './toolbar/cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PricePipe } from './price.pipe';
-import { CurrencyPipe } from '@angular/common';
-import { DecimalPipe } from '@angular/common';
 
 
 @NgModule({
@@ -47,8 +44,7 @@ import { DecimalPipe } from '@angular/common';
     MainSliderComponent,
     FooterComponent,
     ToolbarCartComponent,
-    PageNotFoundComponent,
-    PricePipe
+    PageNotFoundComponent
   ],
   imports: [
     CoreModule.forRoot(),
@@ -63,9 +59,7 @@ import { DecimalPipe } from '@angular/common';
   ],
   providers: [
     ProductService,
-    CartService,
-    CurrencyPipe,
-    DecimalPipe
+    CartService
   ],
   bootstrap: [AppComponent]
 })
