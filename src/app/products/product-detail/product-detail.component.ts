@@ -51,6 +51,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onSelectQuantity(event) {
-    this.selectedQuantity = <number>event.target.value;
+    this.selectedQuantity = <number>+event.target.value;
   }
 }
