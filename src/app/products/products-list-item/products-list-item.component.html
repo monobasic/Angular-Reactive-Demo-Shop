@@ -6,9 +6,7 @@
   <h3 class="product-title">
     <a routerLink="/products/{{product.id}}">{{product.name}}</a>
   </h3>
-  <h4 class="product-price">
-    <del *ngIf="product.reduction">${{ product.price }}</del>${{ (product.price * (1 - product.reduction / 100)) || product.price | number: '1.2-2'}}
-  </h4>
+  <h4 class="product-price" [innerHTML]="product.price | price:product.reduction"></h4>
   <div class="product-buttons">
     <!-- <button class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Whishlist">
       <i class="icon-heart"></i>
