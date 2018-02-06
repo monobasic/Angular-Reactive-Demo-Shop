@@ -12,8 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { ProductsModule } from './products/products.module';
 
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -57,8 +55,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AppRoutingModule,
     ProductsModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
-    ToastrModule.forRoot(),
-    BsDropdownModule.forRoot()
+    ToastrModule.forRoot()
   ],
   providers: [
     ProductService,
