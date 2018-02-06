@@ -44,8 +44,7 @@
       <div class="col-md-6">
         <div class="padding-top-2x mt-2 hidden-md-up"></div>
         <h2 class="padding-top-1x text-normal">{{ product.name }}</h2>
-        <span class="h2 d-block">
-          <del *ngIf="product.reduction" class="text-muted text-normal">${{ product.price }}</del>${{ (product.price * (1 - product.reduction / 100)) || product.price | number: '1.2-2'}}
+        <span class="h2 d-block" [innerHTML]="product.price | price:product.reduction">
         </span>
         <p>{{product.description}}</p>
         <div class="row margin-top-1x">
