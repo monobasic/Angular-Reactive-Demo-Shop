@@ -7,6 +7,7 @@ import { ProductService } from '../shared/product.service';
 import { Product } from '../shared/product.model';
 import { CartService } from '../../cart/cart.service';
 import { CartItem } from '../../cart/shared/cart-item.model';
+import { Params } from '@angular/router/src/shared';
 
 @Component({
   selector: 'app-product-detail',
@@ -28,6 +29,10 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getProduct();
     this.selectedQuantity = 1;
+
+    this.route.params.subscribe((params: Params) => {
+      this.getProduct();
+    });
   }
 
   getProduct(): void {

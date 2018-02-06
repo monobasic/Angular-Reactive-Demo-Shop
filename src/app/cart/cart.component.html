@@ -46,12 +46,12 @@
               <tr *ngFor="let item of items">
                 <td>
                   <div class="product-item">
-                    <a class="product-thumb" href="shop-single.html">
+                    <a class="product-thumb" routerLink="/products/{{item.product.id}}">
                       <img [src]="item.product.imageURLs[0]" alt="Product">
                     </a>
                     <div class="product-info">
                       <h4 class="product-title">
-                        <a href="shop-single.html">{{item.product.name}}</a>
+                        <a routerLink="/products/{{item.product.id}}">{{item.product.name}}</a>
                       </h4>
                       <!-- <span>
                         <em>Size:</em> 10.5</span>

@@ -9,11 +9,11 @@
         <span class="dropdown-product-remove" (click)="onRemoveItem($event, item)">
           <i class="icon-cross"></i>
         </span>
-        <a class="dropdown-product-thumb" href="shop-single.html">
+        <a class="dropdown-product-thumb" [routerLink]="['/products', item.product.id]">
           <img [src]="item.product.imageURLs[0]" alt="{{item.product.name}}">
         </a>
         <div class="dropdown-product-info">
-          <a class="dropdown-product-title" href="shop-single.html">{{item.product.name}}</a>
+          <a class="dropdown-product-title" [routerLink]="['/products', item.product.id]">{{item.product.name}}</a>
           <span class="dropdown-product-details">{{item.amount}} x ${{ item.product.price | number: '1.2-2' }}</span>
         </div>
       </div>
