@@ -74,7 +74,7 @@
                   </div>
                 </td>
                 <td class="text-center text-lg text-medium" [innerHTML]="item.product.price | price:item.product.reduction"></td>
-                <td class="text-center text-lg text-medium">${{ (item.product.price * item.amount) | price }}</td>
+                <td class="text-center text-lg text-medium">{{ (item.product.price * item.amount) | price }}</td>
                 <td class="text-right">
                   <a class="remove-from-cart"
                     href="#"
