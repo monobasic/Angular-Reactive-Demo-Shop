@@ -12,8 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { ProductsModule } from './products/products.module';
 
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -30,6 +28,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductService } from './products/shared/product.service';
 import { CartService } from './cart/cart.service';
 import { ToolbarCartComponent } from './toolbar/cart/cart.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -44,7 +43,8 @@ import { ToolbarCartComponent } from './toolbar/cart/cart.component';
     ContentComponent,
     MainSliderComponent,
     FooterComponent,
-    ToolbarCartComponent
+    ToolbarCartComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CoreModule.forRoot(),

@@ -25,7 +25,6 @@ export class ToolbarCartComponent implements OnInit {
   }
 
   onRemoveItem(event, item: CartItem) {
-    event.preventDefault();
     event.stopPropagation();
     this.cartService.removeItem(item);
   }

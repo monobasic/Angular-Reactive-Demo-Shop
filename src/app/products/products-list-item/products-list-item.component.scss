@@ -1,0 +1,123 @@
+@import '~scss/helpers/variables';
+@import '~scss/helpers/mixins';
+
+.product-card {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 18px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-lg;
+  background-color: $white-color;
+  margin-bottom: 20px;
+
+  .product-thumb {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    > img {
+      display: block;
+      width: 100%;
+    }
+  }
+  .product-title {
+    margin-bottom: 10px;
+    font: {
+      size: $product-title-font-size;
+      weight: normal;
+    }
+    text-align: center;
+    > a {
+      transition: color .3s;
+      color: $product-title-color;
+      text-decoration: none;
+      &:hover { color: $product-title-hover-color; }
+    }
+  }
+  .product-price {
+    margin-bottom: 10px;
+    color: $product-price-color;
+    font: {
+      size: $product-price-font-size;
+      weight: 500;
+    }
+    text-align: center;
+    > del {
+      margin-right: 5px;
+      color: $gray;
+    }
+  }
+  .product-buttons {
+    padding: 12px 0 8px;
+    text-align: center;
+    > .btn {
+      margin: 0 4px;
+      &.btn-wishlist {
+        width: $btn-sm-height;
+        padding: 0;
+        padding-left: 1px;
+        border-radius: 50%;
+        > i { font-size: 1.2em; }
+        &.active { color: $brand-danger; }
+      }
+    }
+  }
+  .product-badge {
+    top: 15px;
+    left: 18px;
+  }
+  .rating-stars {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+  }
+  &.product-list { margin-bottom: 30px; }
+  @media (min-width: $screen-sm) {
+    &.product-list {
+      display: table;
+      width: 100%;
+      padding: 0;
+      .product-thumb,
+      .product-info {
+        display: table-cell;
+        vertical-align: middle;
+      }
+      .product-thumb {
+        position: relative;
+        width: 270px;
+        padding: 20px 18px;
+        border-right: 1px solid $border-color;
+      }
+      .product-info {
+        padding: 20px 22px;
+        .product-title,
+        .product-price,
+        .product-buttons { text-align: left; }
+        .product-buttons {
+          padding: {
+            top: 20px;
+            bottom: 0;
+          }
+          border-top: 1px solid $border-color;
+          > .btn {
+            margin: 0;
+            margin-right: 8px;
+          }
+        }
+      }
+      .product-title {
+        font-size: $font-size-lead;
+      }
+    }
+  }
+}
+
+.product-badge {
+  position: absolute;
+  font: {
+    size: $font-size-sm;
+    weight: 500;
+  }
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
