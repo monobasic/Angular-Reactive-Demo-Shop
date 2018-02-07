@@ -5,8 +5,14 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 import * as http from 'http';
+import * as mongoose from 'mongoose';
+
+import config from './config/database';
 
 import app from './app';
+
+// connect to mlab hosted mongoDB
+mongoose.connect(config.database);
 
 /**
  * Get port from environment and store in Express.

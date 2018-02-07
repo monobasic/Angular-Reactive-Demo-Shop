@@ -6,12 +6,7 @@ import * as bodyParser from 'body-parser';
 import * as morgan from 'morgan';
 import * as helmet from 'helmet';
 import * as cors from 'cors';
-import * as mongoose from 'mongoose';
 import * as queryParams from 'express-query-params';
-
-// connect to mlab hosted mongoDB
-import config from './config/database';
-mongoose.connect(config.database);
 
 // Get our API routes
 import api from './routes/api.routes';
