@@ -5,10 +5,10 @@ const productsSchema = new mongoose.Schema({
   name: { type: String },
   description: { type: String },
   price: { type: Number },
+  priceNormal: { type: String },
+  reduction: { type: Number},
   imageURLs: { type: Array},
-  sizes: { type: Array},
-  colors: { type: Array},
-  categoryIDs: Array
+  categories: Array
 });
 
 const ProductModel = mongoose.model('Product', productsSchema);
