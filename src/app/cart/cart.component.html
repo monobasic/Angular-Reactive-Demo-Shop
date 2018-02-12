@@ -73,8 +73,8 @@
                     </div>
                   </div>
                 </td>
-                <td class="text-center text-lg text-medium" [innerHTML]="item.product.price | price:item.product.reduction"></td>
-                <td class="text-center text-lg text-medium">{{ (item.product.price * item.amount) | price }}</td>
+                <td class="text-center text-lg text-medium"><app-price [product]="item.product"></app-price></td>
+                <td class="text-center text-lg text-medium">{{ (item.product.price * item.amount) | currency }}</td>
                 <td class="text-right">
                   <a class="remove-from-cart"
                     href="#"
@@ -106,7 +106,7 @@
             </form> -->
           </div>
           <div class="column text-lg">Total:
-            <span class="text-medium">{{ total | price }}</span>
+            <span class="text-medium">{{ total }}</span>
           </div>
         </div>
         <div class="shopping-cart-footer">

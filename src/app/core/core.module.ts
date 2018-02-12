@@ -3,20 +3,19 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders } from '@angular/core/src/metadata/ng_module';
 
 import { MessagesComponent } from './messages/messages.component';
+import { PriceComponent } from '../price/price.component';
 
 import { MessageService } from './messages/message.service';
-import { PricePipe } from '../price.pipe';
-import { DecimalPipe, CurrencyPipe } from '@angular/common';
 
 @NgModule({
   imports: [CommonModule],
   declarations: [
     MessagesComponent,
-    PricePipe
+    PriceComponent
   ],
   exports: [
     MessagesComponent,
-    PricePipe
+    PriceComponent
   ]
 })
 export class CoreModule {
@@ -24,9 +23,7 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        MessageService,
-        DecimalPipe,
-        CurrencyPipe
+        MessageService
       ]
     };
   }

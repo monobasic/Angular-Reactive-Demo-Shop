@@ -6,7 +6,7 @@
   <h3 class="product-title">
     <a routerLink="/products/{{product.id}}">{{product.name}}</a>
   </h3>
-  <h4 class="product-price" [innerHTML]="product.price | price:product.reduction"></h4>
+  <h4 class="product-price"><app-price [product]="product"></app-price></h4>
   <div class="product-buttons">
     <!-- <button class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Whishlist">
       <i class="icon-heart"></i>
