@@ -14,14 +14,13 @@ router.get('/', async (req, res, next) => {
 
     res.write(JSON.stringify(products, null, 2));
     res.end();
-
   } catch (error) {
-      const response = {
-        success: false,
-        message: `Failed to load products. Error: ${error}`
-      };
+    const response = {
+      success: false,
+      message: `Failed to load products. Error: ${error}`
+    };
 
-      res.json(JSON.stringify(response));
+    res.json(JSON.stringify(response));
 
     res.end();
   }
