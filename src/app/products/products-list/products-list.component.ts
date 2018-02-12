@@ -41,7 +41,7 @@ export class ProductsListComponent implements OnInit {
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }
-    this.pager = this.pagerService.getPager(this.products.length, page, 4);
+    this.pager = this.pagerService.getPager(this.products.length, page, 8);
     this.productsPaged = this.products.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 }
