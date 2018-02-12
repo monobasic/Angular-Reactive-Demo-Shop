@@ -2,7 +2,7 @@
   <a routerLink="/cart"></a>
   <i class="icon-bag"></i>
   <span class="count">{{items.length}}</span>
-  <span class="subtotal">{{ total | price }}</span>
+  <span class="subtotal">{{ total }}</span>
   <div class="toolbar-dropdown">
     <div *ngIf="items.length; else noItemsInCart">
       <div *ngFor="let item of items" class="dropdown-product-item">
@@ -14,7 +14,7 @@
         </a>
         <div class="dropdown-product-info">
           <a class="dropdown-product-title" [routerLink]="['/products', item.product.id]">{{item.product.name}}</a>
-          <span class="dropdown-product-details">{{item.amount}} x <span [innerHTML]="item.product.price | price:item.product.reduction"></span></span>
+          <span class="dropdown-product-details">{{item.amount}} x <span [innerHTML]="item.product.price"></span></span>
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
         <span class="text-lg">Total:</span>
       </div>
       <div class="column text-right">
-        <span class="text-lg text-medium" [innerHTML]="total | price">&nbsp;</span>
+        <span class="text-lg text-medium" [innerHTML]="total">&nbsp;</span>
       </div>
     </div>
     <div class="toolbar-dropdown-group">
