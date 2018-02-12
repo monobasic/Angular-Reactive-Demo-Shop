@@ -8,15 +8,19 @@ import { PriceComponent } from '../price/price.component';
 import { MessageService } from './messages/message.service';
 import { PagerService } from './pager/pager.service';
 
+import { SortPipe } from './sort.pipe';
+
 @NgModule({
   imports: [CommonModule],
   declarations: [
     MessagesComponent,
-    PriceComponent
+    PriceComponent,
+    SortPipe
   ],
   exports: [
     MessagesComponent,
-    PriceComponent
+    PriceComponent,
+    SortPipe
   ]
 })
 export class CoreModule {
