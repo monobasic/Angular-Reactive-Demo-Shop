@@ -60,14 +60,14 @@
 
     <!-- Products List Mode View-->
     <div class="row" *ngIf="displayMode === 'list'">
-        <app-products-list-item ngClass="col-12" *ngFor="let product of productsPaged" [product]="product" [displayMode]="displayMode">
+        <app-products-list-item ngClass="col-12" *ngFor="let product of products" [product]="product" [displayMode]="displayMode">
         </app-products-list-item>
     </div>
 
 
 
     <!-- Pagination-->
-    <nav *ngIf="pager.pages && pager.pages.length"class="pagination">
+    <nav *ngIf="pager.pages && pager.pages.length && displayMode ==='grid'"class="pagination">
         <div class="column text-left hidden-xs-down">
             <a class="btn btn-outline-secondary btn-sm" [ngClass]="{disabled:pager.currentPage === 1}" (click)="setPage(pager.currentPage - 1)"><i class="icon-arrow-left"></i>&nbsp;Previous
             </a>
