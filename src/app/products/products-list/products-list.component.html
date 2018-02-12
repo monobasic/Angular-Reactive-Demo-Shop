@@ -72,7 +72,7 @@
             <a class="btn btn-outline-secondary btn-sm" [ngClass]="{disabled:pager.currentPage === 1}" (click)="setPage(pager.currentPage - 1)"><i class="icon-arrow-left"></i>&nbsp;Previous
             </a>
         </div>
-        <div class="column">
+        <div class="column text-center">
             <ul class="pages">
                 <li *ngFor="let page of pager.pages" [ngClass]="{active: pager.currentPage === page}">
                     <a (click)="setPage(page)">{{page}}</a>

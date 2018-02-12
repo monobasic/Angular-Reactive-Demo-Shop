@@ -1,9 +1,9 @@
 export class PagerService {
   getPager(totalItems: number, currentPage: number = 1, pageSize: number = 10) {
-    // calculate total pages
     const totalPages = Math.ceil(totalItems / pageSize);
+    let startPage: number,
+    endPage: number;
 
-    let startPage: number, endPage: number;
     if (totalPages <= 10) {
       // less than 10 total pages so show all
       startPage = 1;
@@ -27,8 +27,8 @@ export class PagerService {
     const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
     // create an array of pages to ng-repeat in the pager control
-    // const pages = _.range(startPage, endPage + 1);
-    const pages = Array.from(new Array(endPage + 1), (x, i) => i + startPage);
+    const pages = Array.from(Array(totalPages), (_, i) => 1 + i);
+
 
     // return object with all pager properties required by the view
     return {
