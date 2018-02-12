@@ -1,6 +1,8 @@
 // https://hackernoon.com/angular-simple-in-memory-cache-service-on-the-ui-with-rxjs-77f167387e39
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
+
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 import { tap } from 'rxjs/operators';
@@ -53,7 +55,10 @@ export class ProductsCacheService {
   }
 
   getProductsById(id: number, fallback?: Observable<any>, maxAge?: number) {
-    const product = this.cache.get('product').value.find((el) => el.id === id);
+    const product =
+      this.cache.size > 0 &&
+      this.cache.get('product').value.find((el) => el.id === id);
+
     if (product) {
       return of(product);
     } else {
