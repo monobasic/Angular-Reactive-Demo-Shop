@@ -37,12 +37,12 @@
         </div>
         <div class="column">
             <div class="shop-view">
-                <a class="grid-view" [ngClass]="{active: displayMode === 'grid'}" (click)="onDisplayModeChange('grid')">
+                <a href="" class="grid-view" [ngClass]="{active: displayMode === 'grid'}" (click)="onDisplayModeChange('grid', $event)">
                     <span></span>
                     <span></span>
                     <span></span>
                 </a>
-                <a class="list-view" [ngClass]="{active: displayMode === 'list'}" (click)="onDisplayModeChange('list')">
+                <a href="" class="list-view" [ngClass]="{active: displayMode === 'list'}" (click)="onDisplayModeChange('list', $event)">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -53,13 +53,14 @@
 
     <!-- Products Grid Mode View -->
     <div class="row" *ngIf="displayMode === 'grid'">
-        <app-products-list-item ngClass="col col-sm-6 col-md-4 col-lg-3" *ngFor="let product of products" [product]="product">
+        <app-products-list-item ngClass="col col-sm-6 col-md-4 col-lg-3" *ngFor="let product of products" [product]="product" [displayMode]="displayMode">
         </app-products-list-item>
     </div>
 
     <!-- Products List Mode View-->
     <div class="row" *ngIf="displayMode === 'list'">
-        list view
+        <app-products-list-item ngClass="col-12" *ngFor="let product of products" [product]="product" [displayMode]="displayMode">
+        </app-products-list-item>
     </div>
 
 

@@ -11,6 +11,7 @@ import { CartItem } from '../../cart/shared/cart-item.model';
 })
 export class ProductsListItemComponent implements OnInit {
   @Input() product: Product;
+  @Input() displayMode: string;
 
   constructor(private cartService: CartService) {}
 

@@ -28,7 +28,8 @@ export class ProductsListComponent implements OnInit {
       });
   }
 
-  onDisplayModeChange(mode: string) {
+  onDisplayModeChange(mode: string, e: Event) {
     this.displayMode = mode;
+    e.preventDefault();
   }
 }
