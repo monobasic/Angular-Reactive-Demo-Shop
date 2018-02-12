@@ -54,13 +54,13 @@
 
     <!-- Products Grid Mode View -->
     <div class="row" *ngIf="displayMode === 'grid'">
-        <app-products-list-item ngClass="col col-sm-6 col-md-4 col-lg-3" *ngFor="let product of productsPaged" [product]="product" [displayMode]="displayMode">
+        <app-products-list-item ngClass="col col-sm-6 col-md-4 col-lg-3" *ngFor="let product of productsPaged | sort:sortBy" [product]="product" [displayMode]="displayMode">
         </app-products-list-item>
     </div>
 
     <!-- Products List Mode View-->
     <div class="row" *ngIf="displayMode === 'list'">
-        <app-products-list-item ngClass="col-12" *ngFor="let product of products" [product]="product" [displayMode]="displayMode">
+        <app-products-list-item ngClass="col-12" *ngFor="let product of products | sort:sortBy" [product]="product" [displayMode]="displayMode">
         </app-products-list-item>
     </div>
 

@@ -16,11 +16,13 @@ export class ProductsListComponent implements OnInit {
   productsPaged: Product[];
   displayMode: string;
   pager: any = {};
+  sortBy: string = name;
 
   constructor(private productService: ProductService, private pagerService: PagerService) { }
 
   ngOnInit() {
     this.displayMode = 'grid';
+    this.sortBy = 'name';
     this.getProducts();
   }
 
