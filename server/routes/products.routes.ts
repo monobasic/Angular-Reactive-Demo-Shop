@@ -7,7 +7,11 @@ import { Router } from 'express';
 const router = Router();
 
 router.get('/', productsController.getProducts);
-router.post('/', productsController.addProduct);
+router.post('/',
+  productsController.uploadImages,
+  productsController.resizeImages,
+  productsController.addProduct
+);
 
 router.get('/:id', productsController.getProduct);
 router.delete('/:id', productsController.deleteProduct);
