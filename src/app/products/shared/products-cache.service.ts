@@ -47,17 +47,19 @@ export class ProductsCacheService {
     maxAge?: number
   ): Observable<any> | Subject<any> {
     if (typeof key === 'number') {
-      return this.getProductsById(key, fallback && fallback, maxAge && maxAge);
+      return this.getProductsById(key, fallback && fallback);
     }
     return this.getProducts(key, fallback && fallback);
   }
 
-  getProductsById(
-    id: number,
-    fallback?: Observable<any>,
-    maxAge?: number
-  ) {
-    return of([0]);
+  getProductsById(id: number, fallback?: Observable<any>, maxAge?: number) {
+    const product = this.cache.get('product').value.find((el) => el.id === id);
+    if (product) {
+      return of(product);
+    } else {
+      this.getProducts('products');
+      return fallback;
+    }
   }
 
   getProducts(
@@ -68,6 +70,9 @@ export class ProductsCacheService {
     if (this.hasValidCachedValue(key)) {
       // this.log(`%cGetting from cache ${key}`);
       console.log(`%cGetting from cache ${key}`, 'color: green');
+
+      console.log(this.cache);
+
       return of(this.cache.get(key).value);
     }
 
