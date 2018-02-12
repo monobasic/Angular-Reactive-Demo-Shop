@@ -23,15 +23,13 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { ContentComponent } from './content/content.component';
 import { MainSliderComponent } from './main-slider/main-slider.component';
 import { FooterComponent } from './footer/footer.component';
+import { ToolbarCartComponent } from './toolbar/cart/cart.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // Services
 import { ProductService } from './products/shared/product.service';
 import { ProductsCacheService } from './products/shared/products-cache.service';
-
 import { CartService } from './cart/cart.service';
-import { ToolbarCartComponent } from './toolbar/cart/cart.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
 
 @NgModule({
   declarations: [

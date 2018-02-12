@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 import { tap } from 'rxjs/operators';
-import { MessageService } from '../../core/messages/message.service';
+
+// import { MessageService } from '../../core/messages/message.service';
 
 interface CacheContent {
   expiry: number;
@@ -59,6 +60,7 @@ export class ProductsCacheService {
       return this.inFlightObservables.get(key);
     } else if (fallback && fallback instanceof Observable) {
       this.inFlightObservables.set(key, new Subject());
+      // this.log(`%c Calling api for ${key}`);
       console.log(`%c Calling api for ${key}`, 'color: purple');
       return fallback.pipe(
         tap((value) => {
@@ -95,6 +97,11 @@ export class ProductsCacheService {
       const inFlight = this.inFlightObservables.get(key);
       const observersCount = inFlight.observers.length;
       if (observersCount) {
+        // this.log(
+        //   `%cNotifying ${
+        //     inFlight.observers.length
+        //   } flight subscribers for ${key}`
+        // );
         console.log(
           `%cNotifying ${
             inFlight.observers.length
@@ -123,11 +130,3 @@ export class ProductsCacheService {
     }
   }
 }
-
-// this.cacheService.get('products', this.productService.getProducts()).subscribe((products) => {
-//   this.products = products;
-// });
-
-// // this.cacheService.get(products, id, this.productsService.getProduct(id)).subscribe(products => {
-// this.products = products;
-// });)
