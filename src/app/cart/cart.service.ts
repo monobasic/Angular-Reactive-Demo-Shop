@@ -11,29 +11,24 @@ export class CartService {
       {
         id: 11,
         name: 'Shoes',
-        price: 99,
+        price: 29.7,
+        priceNormal: 99,
         reduction: 70,
         description: 'Hello world',
         imageURLs: ['img/shop/products/01.jpg'],
-        ratingIDs: [1],
-        reviewIDs: [],
-        sizes: [9, 10, 11],
-        colors: ['mauve', 'taube', 'mint'],
-        categoryIDs: [1, 2, 3]
+        categories: ['Shoes']
       }, 1
     ),
     new CartItem(
       {
         id: 12,
         name: 'Bag',
-        price: 99,
-        description: 'Hello world',
-        imageURLs: ['img/shop/products/02.jpg'],
-        ratingIDs: [],
-        reviewIDs: [],
-        sizes: [],
-        colors: ['mauve', 'taube', 'mint'],
-        categoryIDs: [1, 2, 3]
+        price: 49,
+        priceNormal: 49,
+        reduction: 0,
+        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
+        imageURLs: ['img/shop/products/02.jpg', 'img/shop/products/02.jpg', 'img/shop/products/02.jpg'],
+        categories: ['Bags']
       }, 2
     )
   ];

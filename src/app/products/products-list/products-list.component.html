@@ -24,10 +24,8 @@
             <div class="shop-sorting">
                 <label for="sorting">Sort by:</label>
                 <select class="form-control" id="sorting">
-                    <option>Popularity</option>
                     <option>Low - High Price</option>
                     <option>High - Low Price</option>
-                    <option>Avarage Rating</option>
                     <option>A - Z Order</option>
                     <option>Z - A Order</option>
                 </select>
@@ -37,12 +35,12 @@
         </div>
         <div class="column">
             <div class="shop-view">
-                <a class="grid-view active" href="shop-grid-ns.html">
+                <a href="" class="grid-view" [ngClass]="{active: displayMode === 'grid'}" (click)="onDisplayModeChange('grid', $event)">
                     <span></span>
                     <span></span>
                     <span></span>
                 </a>
-                <a class="list-view" href="shop-list-ns.html">
+                <a href="" class="list-view" [ngClass]="{active: displayMode === 'list'}" (click)="onDisplayModeChange('list', $event)">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -51,9 +49,15 @@
         </div>
     </div>
 
-    <!-- Products Grid-->
-    <div class="row">
-        <app-products-list-item ngClass="col col-sm-6 col-md-4 col-lg-3" *ngFor="let product of products" [product]="product">
+    <!-- Products Grid Mode View -->
+    <div class="row" *ngIf="displayMode === 'grid'">
+        <app-products-list-item ngClass="col col-sm-6 col-md-4 col-lg-3" *ngFor="let product of products" [product]="product" [displayMode]="displayMode">
+        </app-products-list-item>
+    </div>
+
+    <!-- Products List Mode View-->
+    <div class="row" *ngIf="displayMode === 'list'">
+        <app-products-list-item ngClass="col-12" *ngFor="let product of products" [product]="product" [displayMode]="displayMode">
         </app-products-list-item>
     </div>
 

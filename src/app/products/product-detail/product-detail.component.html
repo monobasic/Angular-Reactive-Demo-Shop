@@ -44,7 +44,8 @@
       <div class="col-md-6">
         <div class="padding-top-2x mt-2 hidden-md-up"></div>
         <h2 class="padding-top-1x text-normal">{{ product.name }}</h2>
-        <span class="h2 d-block" [innerHTML]="product.price | price:product.reduction">
+        <span class="h2 d-block">
+          <app-price [product]="product"></app-price>
         </span>
         <p>{{product.description}}</p>
         <div class="row margin-top-1x">
@@ -123,12 +124,6 @@
             </button>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="row padding-top-3x">
-      <div class="col">
-         <p>{{product.descriptionLong}}</p>
       </div>
     </div>
 

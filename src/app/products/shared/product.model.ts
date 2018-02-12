@@ -2,13 +2,9 @@ export class Product {
     id: number;
     name: string;
     description: string;
-    descriptionLong?: string;
     price: number;
+    priceNormal: number;
     reduction?: number;
     imageURLs: string[];
-    ratingIDs?: number[];
-    reviewIDs?: number[];
-    sizes: number[];
-    colors: string[];
-    categoryIDs: number[];
+    categories: string[];
 }

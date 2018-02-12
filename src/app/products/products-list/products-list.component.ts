@@ -12,7 +12,8 @@ import { ProductsCacheService } from '../shared/products-cache.service';
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements OnInit {
-  products: Product[] = [];
+  products: Product[];
+  displayMode: string;
 
   constructor(
     private productService: ProductService,
@@ -20,6 +21,7 @@ export class ProductsListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.displayMode = 'grid';
     this.getProducts();
   }
 
@@ -29,5 +31,10 @@ export class ProductsListComponent implements OnInit {
       .subscribe((products) => {
         this.products = products;
       });
+  }
+
+  onDisplayModeChange(mode: string, e: Event) {
+    this.displayMode = mode;
+    e.preventDefault();
   }
 }
