@@ -42,6 +42,25 @@ export class ProductsCacheService {
    * Subject inFlightObservable and return the source observable.
    */
   get(
+    key: string | number,
+    fallback?: Observable<any>,
+    maxAge?: number
+  ): Observable<any> | Subject<any> {
+    if (typeof key === 'number') {
+      return this.getProductsById(key, fallback && fallback, maxAge && maxAge);
+    }
+    return this.getProducts(key, fallback && fallback);
+  }
+
+  getProductsById(
+    id: number,
+    fallback?: Observable<any>,
+    maxAge?: number
+  ) {
+    return of([0]);
+  }
+
+  getProducts(
     key: string,
     fallback?: Observable<any>,
     maxAge?: number
