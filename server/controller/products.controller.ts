@@ -1,66 +1,78 @@
-import * as multer from 'multer';
-import * as jimp from 'jimp';
-import * as uuid from 'uuid';
+import { find, findOne, save, remove } from '../services/product.service';
 
 import ProductModel from '../model/product.model';
 
-const multerOptions = {
-  storage: multer.memoryStorage(),
-  fileFilter(req, file, next) {
-    const isPhoto = file.mimetype.startsWith('image/');
-    if (isPhoto) {
-      next(null, true);
-    } else {
-      next({ message: 'That filetype isn\'t allowed!' }, false);
-    }
+export const getProducts = async (req, res, next) => {
+  console.log('getting products remotely');
+
+  try {
+    const products = await find();
+
+    res.write(JSON.stringify(products, null, 2));
+    res.end();
+  } catch (error) {
+    const response = {
+      success: false,
+      message: `Failed to load products. Error: ${error}`
+    };
+
+    res.json(JSON.stringify(response));
+
+    res.end();
   }
 };
 
-const upload = multer(multerOptions).array('photo');
+export const getProduct = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const product = await findOne(id);
 
-const resize = async (req, res, next) => {
-  // check if there is no new file to resize
-  if (!req.files) {
-    next(); // skip to the next middleware
-    return;
+    res.write(JSON.stringify(product, null, 2));
+    res.end();
+  } catch (error) {
+    console.log(error);
   }
-
-  const extension = req.file.mimetype.split('/')[1];
-  req.body.photo = `${uuid.v4()}.${extension}`;
-
-  // now we resize
-  const photo = await jimp.read(req.file.buffer);
-  await photo.resize(800, jimp.AUTO);
-  await photo.write(`./public/uploads/${req.body.photo}`);
-  // once we have written the photo to our filesystem, keep going!
-  next();
 };
 
-const createProduct = async (req, res) => {
-  const product = await new ProductModel(req.body).save();
-  res.redirect(`/products/${product.id}`);
+export const addProduct = async (req, res, next) => {
+  const product = {
+    id: req.body.id,
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price,
+    priceNormal: req.body.priceNormal,
+    reduction: req.body.reduction,
+    imageURLs: req.body.imageURLs,
+    categories: req.body.categoryIDs
+  };
+
+  try {
+    const dbResponse = await save(product);
+
+    const answer = {
+      success: true,
+      message: `Added successfully item with id ${dbResponse.id}`
+    };
+
+    res.json(answer);
+    res.end();
+  } catch (error) {
+    const answer = {
+      success: false,
+      message: `Failed to create a new product. Error: ${error}`
+    };
+    res.json(answer);
+    res.end();
+  }
 };
 
-const getProducts = () => {
-  return ProductModel.find().exec();
-};
-
-const getSingleProduct = (id) => {
-  return ProductModel.findOne({ id: id }).exec();
-};
-
-const addProduct = (product) => {
-  const newProduct = new ProductModel(product);
-
-  return newProduct.save();
-};
-
-const deleteProduct = (id, callback) => {
-  const query = { _id: id };
+export const deleteProduct = (req, res, next) => {
+  res.send(req.params.id + ' to delete...');
 };
 
 export default {
   getProducts,
-  getSingleProduct,
-  addProduct: addProduct
+  getProduct,
+  addProduct,
+  deleteProduct
 };
