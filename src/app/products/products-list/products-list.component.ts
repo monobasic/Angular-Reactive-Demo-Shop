@@ -12,10 +12,12 @@ import { ProductService } from '../shared/product.service';
 })
 export class ProductsListComponent implements OnInit {
   products: Product[];
+  displayMode: string;
 
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.displayMode = 'grid';
     this.getProducts();
   }
 
@@ -24,5 +26,9 @@ export class ProductsListComponent implements OnInit {
       .subscribe(products => {
         this.products = products;
       });
+  }
+
+  onDisplayModeChange(mode: string) {
+    this.displayMode = mode;
   }
 }
