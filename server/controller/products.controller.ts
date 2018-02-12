@@ -1,3 +1,7 @@
+const multer = require('multer');
+const jimp = require('jimp');
+const uuid = require('uuid');
+
 import ProductModel from '../model/product.model';
 
 const getProducts = () => {
@@ -5,7 +9,7 @@ const getProducts = () => {
 };
 
 const getSingleProduct = (id) => {
-  return ProductModel.findOne({id: id}).exec();
+  return ProductModel.findOne({ id: id }).exec();
 };
 
 const addProduct = (product) => {
