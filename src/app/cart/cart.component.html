@@ -73,7 +73,7 @@
                     </div>
                   </div>
                 </td>
-                <td class="text-center text-lg text-medium" [innerHTML]="item.product.price"></td>
+                <td class="text-center text-lg text-medium"><app-price [product]="item.product"></app-price></td>
                 <td class="text-center text-lg text-medium">{{ (item.product.price * item.amount) }}</td>
                 <td class="text-right">
                   <a class="remove-from-cart"

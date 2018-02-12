@@ -6,7 +6,6 @@ import { CoreModule } from '../core/core.module';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsListItemComponent } from './products-list-item/products-list-item.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { PriceComponent } from '../price/price.component';
 
 @NgModule({
   imports: [
@@ -17,8 +16,7 @@ import { PriceComponent } from '../price/price.component';
   declarations: [
     ProductsListComponent,
     ProductsListItemComponent,
-    ProductDetailComponent,
-    PriceComponent
+    ProductDetailComponent
   ],
   exports: [
     ProductsListComponent,

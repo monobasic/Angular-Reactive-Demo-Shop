@@ -14,7 +14,7 @@
         </a>
         <div class="dropdown-product-info">
           <a class="dropdown-product-title" [routerLink]="['/products', item.product.id]">{{item.product.name}}</a>
-          <span class="dropdown-product-details">{{item.amount}} x <span [innerHTML]="item.product.price"></span></span>
+          <span class="dropdown-product-details">{{item.amount}} x <span><app-price [product]="item.product"></app-price></span></span>
         </div>
       </div>
     </div>
