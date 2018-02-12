@@ -7,8 +7,7 @@ import { Product } from '../products/shared/product.model';
   styleUrls: ['./price.component.scss']
 })
 export class PriceComponent implements OnInit {
-  @Input()
-  product: Product;
+  @Input() product: Product;
 
   constructor() { }
 

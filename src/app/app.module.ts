@@ -29,7 +29,6 @@ import { ProductService } from './products/shared/product.service';
 import { CartService } from './cart/cart.service';
 import { ToolbarCartComponent } from './toolbar/cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PriceComponent } from './price/price.component';
 
 
 @NgModule({
@@ -45,8 +44,7 @@ import { PriceComponent } from './price/price.component';
     MainSliderComponent,
     FooterComponent,
     ToolbarCartComponent,
-    PageNotFoundComponent,
-    PriceComponent
+    PageNotFoundComponent
   ],
   imports: [
     CoreModule.forRoot(),
