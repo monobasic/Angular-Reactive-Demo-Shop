@@ -46,4 +46,4 @@ testem.log
 Thumbs.db
 
 .env
-server/compiled
+server/compiled/
