@@ -6,6 +6,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { PriceComponent } from '../price/price.component';
 
 import { MessageService } from './messages/message.service';
+import { PagerService } from './pager/pager.service';
 
 @NgModule({
   imports: [CommonModule],
@@ -23,7 +24,8 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        MessageService
+        MessageService,
+        PagerService
       ]
     };
   }
