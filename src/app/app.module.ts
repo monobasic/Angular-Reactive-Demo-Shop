@@ -26,6 +26,8 @@ import { FooterComponent } from './footer/footer.component';
 
 // Services
 import { ProductService } from './products/shared/product.service';
+import { ProductsCacheService } from './products/shared/products-cache.service';
+
 import { CartService } from './cart/cart.service';
 import { ToolbarCartComponent } from './toolbar/cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -56,10 +58,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ProductsModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     ToastrModule.forRoot(),
-    BsDropdownModule.forRoot()
+    // BsDropdownModule.forRoot()
   ],
   providers: [
     ProductService,
+    ProductsCacheService,
     CartService
   ],
   bootstrap: [AppComponent]
