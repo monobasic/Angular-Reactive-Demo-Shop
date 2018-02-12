@@ -1,6 +1,7 @@
 import * as multer from 'multer';
 import * as jimp from 'jimp';
 import * as uuid from 'uuid';
+import * as fs from 'fs';
 
 import { find, findOne, save, remove } from '../services/product.service';
 const multerOptions = {
@@ -58,29 +59,16 @@ export const resizeImages = async (req, res, next) => {
     return;
   }
 
-  // const ext = req.files[0].mimetype.split('/')[1];
-  // const fn = `${uuid.v4()}.${ext}`;
-  // console.log('fnnnnnn', fn);
-
-  // const p = await jimp.read(req.files[0].buffer);
-  // await p.resize(800, jimp.AUTO);
-  // await p.write(`../../src/img/uploads/${fn}`, (err, f) => {
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  //   console.log('ffffff: ', f);
-  // });
-
   req.body.photos = [];
 
-  // TODO: FIX WRITE TO FILESYSTEM
   for (const file of req.files) {
     console.log('ffffile', file);
 
     const extension = file.mimetype.split('/')[1];
     const fileName = `${uuid.v4()}.${extension}`;
 
-    const path = `../../src/img/uploads/${fileName}`;
+    // TODO: USE RELATIVE PATH IN CORRECT WAY
+    const path = `/www/sites/_CAS-FEE/Projekt2/CAS-FEE-PROJEKT-2/src/img/uploads/${fileName}`;
     console.log(path);
 
     req.body.photos.push(`/img/uploads/${fileName}`);
@@ -89,7 +77,7 @@ export const resizeImages = async (req, res, next) => {
     const photo = await jimp.read(file.buffer);
     console.log('read');
 
-    await photo.resize(800, jimp.AUTO);
+    await photo.resize(450, jimp.AUTO);
 
     await photo.write(path);
   }
@@ -107,7 +95,7 @@ export const addProduct = async (req, res, next) => {
     priceNormal: req.body.priceNormal,
     reduction: req.body.reduction,
     imageURLs: req.body.photos,
-    categories: req.body.categoryIDs
+    categories: req.body.categories
   };
 
   try {
