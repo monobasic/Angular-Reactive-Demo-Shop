@@ -11,6 +11,7 @@ export class CartService {
       {
         id: 11,
         name: 'Shoes',
+        date: '2017-01-07',
         price: 29.7,
         priceNormal: 99,
         reduction: 70,
@@ -23,6 +24,7 @@ export class CartService {
       {
         id: 12,
         name: 'Bag',
+        date: '2017-04-08',
         price: 49,
         priceNormal: 49,
         reduction: 0,
