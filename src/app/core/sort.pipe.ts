@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(array: any[], field: string): any[] {
+  transform(array: any[], field: string, reverse?: boolean): any[] {
     if (!array) {
       return;
     }
@@ -18,6 +18,9 @@ export class SortPipe implements PipeTransform {
         return 0;
       }
     });
+    if (reverse) {
+      return array.reverse();
+    }
     return array;
   }
 
