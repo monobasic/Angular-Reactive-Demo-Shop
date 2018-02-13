@@ -29,7 +29,8 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         MessageService,
-        PagerService
+        PagerService,
+        SortPipe
       ]
     };
   }

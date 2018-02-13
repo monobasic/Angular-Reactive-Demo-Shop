@@ -5,6 +5,7 @@ import { Product } from '../shared/product.model';
 
 import { ProductService } from '../shared/product.service';
 import { PagerService } from '../../core/pager/pager.service';
+import { SortPipe } from '../../core/sort.pipe';
 
 @Component({
   selector: 'app-products',
@@ -16,9 +17,9 @@ export class ProductsListComponent implements OnInit {
   productsPaged: Product[];
   displayMode: string;
   pager: any = {};
-  sortBy: string = name;
+  sortBy: string;
 
-  constructor(private productService: ProductService, private pagerService: PagerService) { }
+  constructor(private productService: ProductService, private pagerService: PagerService, private sortPipe: SortPipe) { }
 
   ngOnInit() {
     this.displayMode = 'grid';
@@ -45,5 +46,12 @@ export class ProductsListComponent implements OnInit {
     }
     this.pager = this.pagerService.getPager(this.products.length, page, 8);
     this.productsPaged = this.products.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+
+  onSort(sortBy: string) {
+    // check for reverse
+    const reverse = sortBy.endsWith(':reverse');
+    this.sortPipe.transform(this.products, sortBy.replace(':reverse', ''), reverse);
+    this.setPage(this.pager.currentPage);
   }
 }
