@@ -3,17 +3,18 @@ import ProductModel from '../model/product.model';
 
 import * as express from 'express';
 import { Router } from 'express';
+import { catchErrors } from '../errorHandlers';
 
 const router = Router();
 
 router.get('/', productsController.getProducts);
 router.post('/',
   productsController.uploadImages,
-  productsController.resizeImages,
-  productsController.addProduct
+  catchErrors(productsController.resizeImages),
+  catchErrors(productsController.addProduct)
 );
 
-router.get('/:id', productsController.getProduct);
-router.delete('/:id', productsController.deleteProduct);
+router.get('/:id', catchErrors(productsController.getProduct));
+router.delete('/:id', catchErrors(productsController.deleteProduct));
 
 export default router;

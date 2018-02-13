@@ -21,10 +21,8 @@ const multerOptions = {
 
 export const getProducts = async (req, res, next) => {
   console.log('getting products remotely');
-
   try {
     const products = await find();
-
     res.write(JSON.stringify(products, null, 2));
     res.end();
   } catch (error) {
@@ -32,9 +30,7 @@ export const getProducts = async (req, res, next) => {
       success: false,
       message: `Failed to load products. Error: ${error}`
     };
-
     res.json(JSON.stringify(response));
-
     res.end();
   }
 };
@@ -44,10 +40,20 @@ export const getProduct = async (req, res, next) => {
     const id = req.params.id;
     const product = await findOne(id);
 
-    res.write(JSON.stringify(product, null, 2));
-    res.end();
+    if (product) {
+      res.write(JSON.stringify(product, null, 2));
+      res.end();
+    } else {
+      throw new Error(`Found no product with id ${id} in database.`);
+    }
   } catch (error) {
-    console.log(error);
+    res.status(404)
+    .json({
+      'error': {
+        message: `${error.message}`,
+        id: req.params.id
+      }
+    });
   }
 };
 
@@ -108,8 +114,9 @@ export const addProduct = async (req, res, next) => {
   } catch (error) {
     const answer = {
       success: false,
-      message: `Failed to create a new product. Error: ${error}`
+      message: `Failed to create a new product. This may be a temporary error. Try again. Error: ${error}`
     };
+    res.status(500);
     res.json(answer);
     res.end();
   }
