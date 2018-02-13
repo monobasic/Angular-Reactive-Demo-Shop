@@ -4,9 +4,9 @@ import { DecimalPipe } from '@angular/common';
 import { Product } from '../shared/product.model';
 
 import { ProductService } from '../shared/product.service';
-import { ProductsCacheService } from '../shared/products-cache.service';
 import { PagerService } from '../../pager/pager.service';
 import { SortPipe } from '../../sort.pipe';
+import { ProductsCacheService } from '../shared/products-cache.service';
 
 @Component({
   selector: 'app-products',
@@ -24,7 +24,8 @@ export class ProductsListComponent implements OnInit {
     private productService: ProductService,
     private productsCacheService: ProductsCacheService,
     private pagerService: PagerService,
-    private sortPipe: SortPipe) { }
+    private sortPipe: SortPipe
+  ) {}
 
   ngOnInit() {
     this.displayMode = 'grid';
