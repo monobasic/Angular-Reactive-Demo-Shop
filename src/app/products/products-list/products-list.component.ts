@@ -49,9 +49,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   onSort(sortBy: string) {
-    // check for reverse
-    const reverse = sortBy.endsWith(':reverse');
-    this.sortPipe.transform(this.products, sortBy.replace(':reverse', ''), reverse);
+    this.sortPipe.transform(this.products, sortBy.replace(':reverse', ''), sortBy.endsWith(':reverse'));
     this.setPage(this.pager.currentPage);
   }
 }
