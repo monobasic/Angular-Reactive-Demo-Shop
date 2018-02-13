@@ -72,7 +72,6 @@ export const resizeImages = async (req, res, next) => {
     // const filePath = `'../../../src/img/uploads/${fileName}`;
     // const filePath = `/www/sites/_CAS-FEE/Projekt2/CAS-FEE-PROJEKT-2/src/img/uploads/${fileName}`;
     const filePath = `../../../src/img/uploads/${fileName}`;
-    // const filepath = '../../../src/img/uploads');
 
     console.log(filePath);
     console.log('curr dir: ', __dirname);
