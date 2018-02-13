@@ -31,6 +31,7 @@ export class ProductsListComponent implements OnInit {
     this.productService.getProducts()
       .subscribe(products => {
         this.products = products;
+        this.sortPipe.transform(this.products, 'date', true);
         this.setPage(1);
       });
   }
