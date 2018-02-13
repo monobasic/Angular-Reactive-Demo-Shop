@@ -5,7 +5,8 @@ import { Product } from '../shared/product.model';
 
 import { ProductService } from '../shared/product.service';
 import { ProductsCacheService } from '../shared/products-cache.service';
-import { PagerService } from '../../core/pager/pager.service';
+import { PagerService } from '../../pager/pager.service';
+import { SortPipe } from '../../sort.pipe';
 
 @Component({
   selector: 'app-products',
@@ -17,15 +18,17 @@ export class ProductsListComponent implements OnInit {
   productsPaged: Product[];
   displayMode: string;
   pager: any = {};
+  sortBy: string;
 
   constructor(
     private productService: ProductService,
     private productsCacheService: ProductsCacheService,
-    private pagerService: PagerService
-  ) {}
+    private pagerService: PagerService,
+    private sortPipe: SortPipe) { }
 
   ngOnInit() {
     this.displayMode = 'grid';
+    this.sortBy = 'name';
     this.getProducts();
   }
 
@@ -34,6 +37,7 @@ export class ProductsListComponent implements OnInit {
       .get('product', this.productService.getProducts())
       .subscribe((products) => {
         this.products = products;
+        this.sortPipe.transform(this.products, 'date', true);
         this.setPage(1);
       });
   }
@@ -52,5 +56,10 @@ export class ProductsListComponent implements OnInit {
       this.pager.startIndex,
       this.pager.endIndex + 1
     );
+  }
+
+  onSort(sortBy: string) {
+    this.sortPipe.transform(this.products, sortBy.replace(':reverse', ''), sortBy.endsWith(':reverse'));
+    this.setPage(this.pager.currentPage);
   }
 }

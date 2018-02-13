@@ -9,6 +9,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 11,
         name: 'Shoes',
+        date: '2017-12-23',
         price: 69.3,
         priceNormal: 99,
         reduction: 70,
@@ -19,6 +20,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 12,
         name: 'Bag',
+        date: '2016-12-23',
         price: 49,
         priceNormal: 49,
         reduction: 0,
@@ -29,6 +31,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 13,
         name: 'Shades',
+        date: '2017-12-12',
         price: 35.1,
         priceNormal: 39,
         reduction: 10,
@@ -39,6 +42,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 14,
         name: 'Bracelet',
+        date: '2017-10-11',
         price: 19,
         priceNormal: 19,
         reduction: 0,
@@ -49,6 +53,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 15,
         name: 'Sweater',
+        date: '2017-08-03',
         price: 69,
         priceNormal: 69,
         reduction: 0,
@@ -59,6 +64,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 16,
         name: 'Trainer',
+        date: '2017-01-13',
         price: 65,
         priceNormal: 65,
         reduction: 0,
@@ -69,6 +75,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 17,
         name: 'Sweatpants',
+        date: '2017-02-02',
         price: 45,
         priceNormal: 45,
         reduction: 0,
@@ -79,6 +86,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 18,
         name: 'Bluse',
+        date: '2016-01-23',
         price: 68,
         priceNormal: 68,
         reduction: 0,
@@ -89,6 +97,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 19,
         name: 'Ballerinas',
+        date: '2016-04-30',
         price: 89,
         priceNormal: 89,
         reduction: 0,
@@ -99,6 +108,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 20,
         name: 'Baseball Hat',
+        date: '2017-06-01',
         price: 20,
         priceNormal: 25,
         reduction: 20,
@@ -109,6 +119,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 21,
         name: 'Shoes',
+        date: '2017-08-03',
         price: 69.3,
         priceNormal: 99,
         reduction: 70,
@@ -119,6 +130,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 22,
         name: 'Bag',
+        date: '2017-09-24',
         price: 49,
         priceNormal: 49,
         reduction: 0,
@@ -129,6 +141,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 23,
         name: 'Shades',
+        date: '2017-11-22',
         price: 35.1,
         priceNormal: 39,
         reduction: 10,
@@ -139,6 +152,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 24,
         name: 'Bracelet',
+        date: '2018-01-23',
         price: 19,
         priceNormal: 19,
         reduction: 0,
@@ -149,6 +163,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 25,
         name: 'Sweater',
+        date: '2018-05-12',
         price: 69,
         priceNormal: 69,
         reduction: 0,
@@ -159,6 +174,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 26,
         name: 'Trainer',
+        date: '2018-02-22',
         price: 65,
         priceNormal: 65,
         reduction: 0,
@@ -169,6 +185,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 27,
         name: 'Sweatpants',
+        date: '2018-12-01',
         price: 45,
         priceNormal: 45,
         reduction: 0,
@@ -179,6 +196,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 28,
         name: 'Bluse',
+        date: '2015-01-15',
         price: 68,
         priceNormal: 68,
         reduction: 0,
@@ -189,6 +207,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 29,
         name: 'Ballerinas',
+        date: '2016-06-02',
         price: 89,
         priceNormal: 89,
         reduction: 0,
@@ -199,6 +218,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 30,
         name: 'Baseball Hat',
+        date: '2017-03-12',
         price: 20,
         priceNormal: 25,
         reduction: 20,
@@ -209,6 +229,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 31,
         name: 'Shoes',
+        date: '2017-02-29',
         price: 69.3,
         priceNormal: 99,
         reduction: 70,
@@ -219,6 +240,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 32,
         name: 'Bag',
+        date: '2017-08-09',
         price: 49,
         priceNormal: 49,
         reduction: 0,
@@ -229,6 +251,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 33,
         name: 'Shades',
+        date: '2018-02-11',
         price: 35.1,
         priceNormal: 39,
         reduction: 10,
@@ -239,6 +262,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 34,
         name: 'Bracelet',
+        date: '2018-11-09',
         price: 19,
         priceNormal: 19,
         reduction: 0,
@@ -249,6 +273,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 35,
         name: 'Sweater',
+        date: '2018-03-04',
         price: 69,
         priceNormal: 69,
         reduction: 0,
@@ -259,6 +284,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 36,
         name: 'Trainer',
+        date: '2016-12-11',
         price: 65,
         priceNormal: 65,
         reduction: 0,
@@ -269,6 +295,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 37,
         name: 'Sweatpants',
+        date: '2015-12-29',
         price: 45,
         priceNormal: 45,
         reduction: 0,
@@ -279,6 +306,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 38,
         name: 'Bluse',
+        date: '2018-07-11',
         price: 68,
         priceNormal: 68,
         reduction: 0,
@@ -289,6 +317,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 39,
         name: 'Ballerinas',
+        date: '2017-10-10',
         price: 89,
         priceNormal: 89,
         reduction: 0,
@@ -299,6 +328,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 40,
         name: 'Baseball Hat',
+        date: '2017-10-10',
         price: 20,
         priceNormal: 25,
         reduction: 20,
@@ -309,6 +339,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 41,
         name: 'Shoes',
+        date: '2017-10-09',
         price: 69.3,
         priceNormal: 99,
         reduction: 70,
@@ -319,6 +350,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 42,
         name: 'Bag',
+        date: '2017-11-12',
         price: 49,
         priceNormal: 49,
         reduction: 0,
@@ -329,6 +361,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 43,
         name: 'Shades',
+        date: '2017-09-05',
         price: 35.1,
         priceNormal: 39,
         reduction: 10,
@@ -339,6 +372,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 44,
         name: 'Bracelet',
+        date: '2017-05-04',
         price: 19,
         priceNormal: 19,
         reduction: 0,
@@ -349,6 +383,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 45,
         name: 'Sweater',
+        date: '2017-01-02',
         price: 69,
         priceNormal: 69,
         reduction: 0,
@@ -359,6 +394,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 46,
         name: 'Trainer',
+        date: '2017-02-03',
         price: 65,
         priceNormal: 65,
         reduction: 0,
@@ -369,6 +405,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 47,
         name: 'Sweatpants',
+        date: '2017-02-03',
         price: 45,
         priceNormal: 45,
         reduction: 0,
@@ -379,6 +416,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 48,
         name: 'Bluse',
+        date: '2017-03-04',
         price: 68,
         priceNormal: 68,
         reduction: 0,
@@ -389,6 +427,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 49,
         name: 'Ballerinas',
+        date: '2017-03-05',
         price: 89,
         priceNormal: 89,
         reduction: 0,
@@ -399,206 +438,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 50,
         name: 'Baseball Hat',
-        price: 20,
-        priceNormal: 25,
-        reduction: 20,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/10.jpg', 'img/shop/products/10.jpg'],
-        categories: ['Caps']
-      },
-      {
-        id: 51,
-        name: 'Shoes',
-        price: 69.3,
-        priceNormal: 99,
-        reduction: 70,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/01.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Shoes']
-      },
-      {
-        id: 52,
-        name: 'Bag',
-        price: 49,
-        priceNormal: 49,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/02.jpg', 'img/shop/products/02.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Bags']
-      },
-      {
-        id: 53,
-        name: 'Shades',
-        price: 35.1,
-        priceNormal: 39,
-        reduction: 10,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/03.jpg', 'img/shop/products/03.jpg', 'img/shop/products/03.jpg', 'img/shop/products/03.jpg'],
-        categories: ['Shades']
-      },
-      {
-        id: 54,
-        name: 'Bracelet',
-        price: 19,
-        priceNormal: 19,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/04.jpg', 'img/shop/products/04.jpg'],
-        categories: ['Jewelry']
-      },
-      {
-        id: 55,
-        name: 'Sweater',
-        price: 69,
-        priceNormal: 69,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/05.jpg', 'img/shop/products/05.jpg', 'img/shop/products/05.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 56,
-        name: 'Trainer',
-        price: 65,
-        priceNormal: 65,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/06.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 57,
-        name: 'Sweatpants',
-        price: 45,
-        priceNormal: 45,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/07.jpg', 'img/shop/products/07.jpg', 'img/shop/products/07.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 58,
-        name: 'Bluse',
-        price: 68,
-        priceNormal: 68,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/08.jpg', 'img/shop/products/08.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 59,
-        name: 'Ballerinas',
-        price: 89,
-        priceNormal: 89,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/09.jpg', 'img/shop/products/09.jpg', 'img/shop/products/09.jpg', 'img/shop/products/09.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 60,
-        name: 'Baseball Hat',
-        price: 20,
-        priceNormal: 25,
-        reduction: 20,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/10.jpg', 'img/shop/products/10.jpg'],
-        categories: ['Caps']
-      },
-      {
-        id: 61,
-        name: 'Shoes',
-        price: 69.3,
-        priceNormal: 99,
-        reduction: 70,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/01.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Shoes']
-      },
-      {
-        id: 62,
-        name: 'Bag',
-        price: 49,
-        priceNormal: 49,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/02.jpg', 'img/shop/products/02.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Bags']
-      },
-      {
-        id: 63,
-        name: 'Shades',
-        price: 35.1,
-        priceNormal: 39,
-        reduction: 10,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/03.jpg', 'img/shop/products/03.jpg', 'img/shop/products/03.jpg', 'img/shop/products/03.jpg'],
-        categories: ['Shades']
-      },
-      {
-        id: 64,
-        name: 'Bracelet',
-        price: 19,
-        priceNormal: 19,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/04.jpg', 'img/shop/products/04.jpg'],
-        categories: ['Jewelry']
-      },
-      {
-        id: 65,
-        name: 'Sweater',
-        price: 69,
-        priceNormal: 69,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/05.jpg', 'img/shop/products/05.jpg', 'img/shop/products/05.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 66,
-        name: 'Trainer',
-        price: 65,
-        priceNormal: 65,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/06.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 67,
-        name: 'Sweatpants',
-        price: 45,
-        priceNormal: 45,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/07.jpg', 'img/shop/products/07.jpg', 'img/shop/products/07.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 68,
-        name: 'Bluse',
-        price: 68,
-        priceNormal: 68,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/08.jpg', 'img/shop/products/08.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 69,
-        name: 'Ballerinas',
-        price: 89,
-        priceNormal: 89,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/09.jpg', 'img/shop/products/09.jpg', 'img/shop/products/09.jpg', 'img/shop/products/09.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 70,
-        name: 'Baseball Hat',
+        date: '2017-04-04',
         price: 20,
         priceNormal: 25,
         reduction: 20,

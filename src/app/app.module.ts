@@ -3,14 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { InMemoryDataService } from './model/in-memory-data.service';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
-import { ProductsModule } from './products/products.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -25,11 +21,22 @@ import { MainSliderComponent } from './main-slider/main-slider.component';
 import { FooterComponent } from './footer/footer.component';
 import { ToolbarCartComponent } from './toolbar/cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ProductsListComponent } from './products/products-list/products-list.component';
+import { ProductsListItemComponent } from './products/products-list-item/products-list-item.component';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
+import { MessagesComponent } from './messages/messages.component';
+import { PriceComponent } from './price/price.component';
 
 // Services
+import { InMemoryDataService } from './model/in-memory-data.service';
 import { ProductService } from './products/shared/product.service';
 import { ProductsCacheService } from './products/shared/products-cache.service';
 import { CartService } from './cart/cart.service';
+import { MessageService } from './messages/message.service';
+import { PagerService } from './pager/pager.service';
+
+// Pipes
+import { SortPipe } from './sort.pipe';
 
 @NgModule({
   declarations: [
@@ -44,24 +51,30 @@ import { CartService } from './cart/cart.service';
     MainSliderComponent,
     FooterComponent,
     ToolbarCartComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    MessagesComponent,
+    PriceComponent,
+    ProductsListComponent,
+    ProductsListItemComponent,
+    ProductDetailComponent,
+    SortPipe
   ],
   imports: [
-    CoreModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ProductsModule,
-    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
-    ToastrModule.forRoot(),
-    // BsDropdownModule.forRoot()
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
+    ToastrModule.forRoot()
   ],
   providers: [
     ProductService,
     ProductsCacheService,
-    CartService
+    MessageService,
+    CartService,
+    PagerService,
+    SortPipe
   ],
   bootstrap: [AppComponent]
 })

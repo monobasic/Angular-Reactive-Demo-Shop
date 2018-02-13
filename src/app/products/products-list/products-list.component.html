@@ -23,11 +23,12 @@
         <div class="column">
             <div class="shop-sorting">
                 <label for="sorting">Sort by:</label>
-                <select class="form-control" id="sorting">
-                    <option>Low - High Price</option>
-                    <option>High - Low Price</option>
-                    <option>A - Z Order</option>
-                    <option>Z - A Order</option>
+                <select class="form-control" id="sorting" #selectSort (change)="onSort(selectSort.value)">
+                    <option value="date:reverse">Newest Articles</option>
+                    <option value="price">Low - High Price</option>
+                    <option value="price:reverse">High - Low Price</option>
+                    <option value="name">A - Z Order</option>
+                    <option value="name:reverse">Z - A Order</option>
                 </select>
                 <span class="text-muted">Showing:&nbsp;</span>
                 <span>1 - 12 items</span>
