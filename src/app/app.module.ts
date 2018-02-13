@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -28,7 +28,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { PriceComponent } from './price/price.component';
 
 // Services
-import { InMemoryDataService } from './model/in-memory-data.service';
+// import { InMemoryDataService } from './model/in-memory-data.service';
 import { ProductService } from './products/shared/product.service';
 import { ProductsCacheService } from './products/shared/products-cache.service';
 import { CartService } from './cart/cart.service';
@@ -65,7 +65,7 @@ import { SortPipe } from './sort.pipe';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     ToastrModule.forRoot()
   ],
   providers: [
