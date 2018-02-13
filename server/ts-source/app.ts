@@ -19,6 +19,8 @@ import api from './routes/api.routes';
 import users from './routes/user.routes';
 import products from './routes/products.routes';
 
+import errorHandlers from './errorHandlers';
+
 // create app
 const app = express();
 
@@ -42,5 +44,16 @@ app.use(queryParams());
 app.use('/api', api);
 app.use('/api/users', users);
 app.use('/api/products', products);
+
+app.use(errorHandlers.notFound);
+
+// Otherwise this was a really bad error we didn't expect! Shoot eh
+if (app.get('env') === 'development') {
+  /* Development Error Handler - Prints stack trace */
+  app.use(errorHandlers.devErrors);
+}
+
+// production error handler
+app.use(errorHandlers.prodErrors);
 
 export default app;
