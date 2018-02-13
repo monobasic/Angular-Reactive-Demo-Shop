@@ -1,4 +1,5 @@
 // Modules
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -9,7 +10,6 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './model/in-memory-data.service';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
 import { ProductsModule } from './products/products.module';
 
 // Components
@@ -29,6 +29,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 // Services
 import { ProductService } from './products/shared/product.service';
 import { CartService } from './cart/cart.service';
+import { MessagesComponent } from './messages/messages.component';
+import { PriceComponent } from './price/price.component';
+import { SortPipe } from './sort.pipe';
 
 
 @NgModule({
@@ -44,10 +47,13 @@ import { CartService } from './cart/cart.service';
     MainSliderComponent,
     FooterComponent,
     ToolbarCartComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    MessagesComponent,
+    PriceComponent,
+    SortPipe
   ],
   imports: [
-    CoreModule.forRoot(),
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

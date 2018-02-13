@@ -4,8 +4,8 @@ import { DecimalPipe } from '@angular/common';
 import { Product } from '../shared/product.model';
 
 import { ProductService } from '../shared/product.service';
-import { PagerService } from '../../core/pager/pager.service';
-import { SortPipe } from '../../core/sort.pipe';
+import { PagerService } from '../../pager/pager.service';
+import { SortPipe } from '../../sort.pipe';
 
 @Component({
   selector: 'app-products',
