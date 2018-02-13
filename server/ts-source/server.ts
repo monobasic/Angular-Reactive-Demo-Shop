@@ -12,7 +12,11 @@ import config from './config/database';
 import app from './app';
 
 // connect to mlab hosted mongoDB
-mongoose.connect(config.database);
+mongoose.connect(config.database).catch(error => {
+  console.log(`\n ${error.name} ${error.message}`);
+  console.log('Maybe you forgot your .env-file or it isn\'t placed in the root-folder of your project.');
+  console.log(error);
+});
 
 /**
  * Get port from environment and store in Express.
