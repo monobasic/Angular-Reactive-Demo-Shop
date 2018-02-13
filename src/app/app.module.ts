@@ -5,10 +5,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-<<<<<<< HEAD
-=======
-// import { InMemoryDataService } from './model/in-memory-data.service';
->>>>>>> #18-implement-backend
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 
