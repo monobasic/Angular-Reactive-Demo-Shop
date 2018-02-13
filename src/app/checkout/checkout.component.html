@@ -48,6 +48,34 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
+            <label for="checkout-address1">Address 1</label>
+            <input class="form-control" type="text" id="checkout-address1">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="checkout-address2">Address 2</label>
+            <input class="form-control" type="text" id="checkout-address2">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="checkout-zip">ZIP Code</label>
+            <input class="form-control" type="text" id="checkout-zip">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="checkout-city">City</label>
+            <input class="form-control" type="text" id="checkout-city">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
             <label for="checkout-email">E-mail Address</label>
             <input class="form-control" type="email" id="checkout-email">
           </div>
@@ -69,50 +97,9 @@
         <div class="col-sm-6">
           <div class="form-group">
             <label for="checkout-country">Country</label>
-            <select class="form-control" id="checkout-country">
-              <option>Choose country</option>
-              <option>Australia</option>
-              <option>Canada</option>
-              <option>France</option>
-              <option>Germany</option>
-              <option>Switzerland</option>
-              <option>USA</option>
+            <select class="form-control" id="checkout-country" disabled>
+              <option selected>Switzerland</option>
             </select>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-city">City</label>
-            <select class="form-control" id="checkout-city">
-              <option>Choose city</option>
-              <option>Amsterdam</option>
-              <option>Berlin</option>
-              <option>Geneve</option>
-              <option>New York</option>
-              <option>Paris</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-zip">ZIP Code</label>
-            <input class="form-control" type="text" id="checkout-zip">
-          </div>
-        </div>
-      </div>
-      <div class="row padding-bottom-1x">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-address1">Address 1</label>
-            <input class="form-control" type="text" id="checkout-address1">
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-address2">Address 2</label>
-            <input class="form-control" type="text" id="checkout-address2">
           </div>
         </div>
       </div>
@@ -127,7 +114,7 @@
       </div>
       <div class="checkout-footer">
         <div class="column">
-          <a class="btn btn-outline-secondary" href="cart.html">
+          <a class="btn btn-outline-secondary" routerLink="/cart">
             <i class="icon-arrow-left"></i>
             <span class="hidden-xs-down">&nbsp;Back To Cart</span>
           </a>
@@ -150,19 +137,15 @@
           <table class="table">
             <tr>
               <td>Cart Subtotal:</td>
-              <td class="text-medium">$289.68</td>
+              <td class="text-medium">{{cartSubtotal | currency}}</td>
             </tr>
             <tr>
               <td>Shipping:</td>
-              <td class="text-medium">$22.50</td>
+              <td class="text-medium">{{shipping | currency}}</td>
             </tr>
             <tr>
-              <td>Estimated tax:</td>
-              <td class="text-medium">$3.42</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td class="text-lg text-medium">$315.60</td>
+              <td>Order Total:</td>
+              <td class="text-lg text-medium">{{orderTotal | currency}}</td>
             </tr>
           </table>
         </section>
