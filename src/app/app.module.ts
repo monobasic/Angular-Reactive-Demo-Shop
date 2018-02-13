@@ -10,7 +10,6 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './model/in-memory-data.service';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
-import { ProductsModule } from './products/products.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -32,6 +31,11 @@ import { CartService } from './cart/cart.service';
 import { MessagesComponent } from './messages/messages.component';
 import { PriceComponent } from './price/price.component';
 import { SortPipe } from './sort.pipe';
+import { ProductsListComponent } from './products/products-list/products-list.component';
+import { ProductsListItemComponent } from './products/products-list-item/products-list-item.component';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
+import { MessageService } from './messages/message.service';
+import { PagerService } from './pager/pager.service';
 
 
 @NgModule({
@@ -50,7 +54,10 @@ import { SortPipe } from './sort.pipe';
     PageNotFoundComponent,
     MessagesComponent,
     PriceComponent,
-    SortPipe
+    SortPipe,
+    ProductsListComponent,
+    ProductsListItemComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,
@@ -59,13 +66,15 @@ import { SortPipe } from './sort.pipe';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ProductsModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     ToastrModule.forRoot()
   ],
   providers: [
     ProductService,
-    CartService
+    MessageService,
+    CartService,
+    PagerService,
+    SortPipe
   ],
   bootstrap: [AppComponent]
 })
