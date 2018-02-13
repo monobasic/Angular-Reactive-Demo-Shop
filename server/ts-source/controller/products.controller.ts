@@ -2,6 +2,7 @@ import * as multer from 'multer';
 import * as jimp from 'jimp';
 import * as uuid from 'uuid';
 import * as path from 'path';
+import * as appRootDir from 'app-root-dir';
 
 import { find, findOne, save, remove } from '../services/product.service';
 
@@ -62,19 +63,10 @@ export const resizeImages = async (req, res, next) => {
   req.body.photos = [];
 
   for (const file of req.files) {
-    console.log('ffffile', file);
-
     const extension = file.mimetype.split('/')[1];
     const fileName = `${uuid.v4()}.${extension}`;
-
-    // TODO: USE RELATIVE PATH IN CORRECT WAY
-    // `../../img/uploads/${fileName}`;
-    // const filePath = `'../../../src/img/uploads/${fileName}`;
-    // const filePath = `/www/sites/_CAS-FEE/Projekt2/CAS-FEE-PROJEKT-2/src/img/uploads/${fileName}`;
-    const filePath = `../../../src/img/uploads/${fileName}`;
-
-    console.log(filePath);
-    console.log('curr dir: ', __dirname);
+    const filePath = `${appRootDir.get()}/src/img/uploads/${fileName}`;
+    console.log('filePath', filePath);
 
     req.body.photos.push(`img/uploads/${fileName}`);
 
