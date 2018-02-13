@@ -59,9 +59,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Development with Express-Server as backend
+## Development with Express-Server/mLab remote-DB as backend
 
-Run `npm start` to spin up ng-server at port 4200 and an express-driven backend at 3000. Requests to /api will be redirected to the server (as defined in proxy.config.json)
+- Remove HttpClientInMemoryWebApiModule from app.module imports.
+- Run `npm run start:remote` to spin up ng-server at port 4200 and an express-driven backend at 3000. Requests to /api/* will be redirected to the server (as defined in proxy.config.json) 
 
 ## Code scaffolding
 

@@ -5,6 +5,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+<<<<<<< HEAD
+=======
+// import { InMemoryDataService } from './model/in-memory-data.service';
+>>>>>>> #18-implement-backend
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -30,13 +34,13 @@ import { PriceComponent } from './price/price.component';
 // Services
 import { InMemoryDataService } from './model/in-memory-data.service';
 import { ProductService } from './products/shared/product.service';
+import { ProductsCacheService } from './products/shared/products-cache.service';
 import { CartService } from './cart/cart.service';
 import { MessageService } from './messages/message.service';
 import { PagerService } from './pager/pager.service';
 
 // Pipes
 import { SortPipe } from './sort.pipe';
-
 
 @NgModule({
   declarations: [
@@ -70,10 +74,12 @@ import { SortPipe } from './sort.pipe';
   ],
   providers: [
     ProductService,
+    ProductsCacheService,
     MessageService,
     CartService,
     PagerService,
     SortPipe
+
   ],
   bootstrap: [AppComponent]
 })

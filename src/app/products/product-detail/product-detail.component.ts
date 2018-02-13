@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { ProductService } from '../shared/product.service';
+import { ProductsCacheService } from '../shared/products-cache.service';
+
 import { Product } from '../shared/product.model';
 import { CartService } from '../../cart/cart.service';
 import { CartItem } from '../../cart/shared/cart-item.model';
@@ -20,11 +22,13 @@ export class ProductDetailComponent implements OnInit {
   activeImageIndex: number;
   selectedQuantity: number;
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private productService: ProductService,
+    private productsCacheService: ProductsCacheService,
     private location: Location,
-    private cartService: CartService) { }
-
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.getProduct();
@@ -34,17 +38,16 @@ export class ProductDetailComponent implements OnInit {
       this.getProduct();
     });
   }
-
   getProduct(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.productService.getProduct(id)
-      .subscribe(product => {
+    this.productsCacheService
+      .get(id, this.productService.getProduct(id))
+      .subscribe((product) => {
         this.product = product;
         this.activeImageUrl = this.product.imageURLs[0];
         this.activeImageIndex = 0;
       });
   }
-
   onSelectThumbnail(event, index) {
     event.preventDefault();
     this.activeImageUrl = this.product.imageURLs[index];
