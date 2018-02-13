@@ -31,78 +31,79 @@
       </div>
       <h4>Billing Address</h4>
       <hr class="padding-bottom-1x">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-fn">First Name</label>
-            <input class="form-control" type="text" id="checkout-fn">
+      <form (ngSubmit)="onSubmit(formAddress)" #formAddress="ngForm">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="checkout-fn">First Name</label>
+              <input class="form-control" type="text" id="checkout-fn" name="checkout-fn" ngModel>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="checkout-ln">Last Name</label>
+              <input class="form-control" type="text" id="checkout-ln">
+            </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-ln">Last Name</label>
-            <input class="form-control" type="text" id="checkout-ln">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="checkout-address1">Address 1</label>
+              <input class="form-control" type="text" id="checkout-address1">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="checkout-address2">Address 2</label>
+              <input class="form-control" type="text" id="checkout-address2">
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-address1">Address 1</label>
-            <input class="form-control" type="text" id="checkout-address1">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="checkout-zip">ZIP Code</label>
+              <input class="form-control" type="text" id="checkout-zip">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="checkout-city">City</label>
+              <input class="form-control" type="text" id="checkout-city">
+            </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-address2">Address 2</label>
-            <input class="form-control" type="text" id="checkout-address2">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="checkout-email">E-mail Address</label>
+              <input class="form-control" type="email" id="checkout-email">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="checkout-phone">Phone Number</label>
+              <input class="form-control" type="text" id="checkout-phone">
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-zip">ZIP Code</label>
-            <input class="form-control" type="text" id="checkout-zip">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="checkout-company">Company</label>
+              <input class="form-control" type="text" id="checkout-company">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="checkout-country">Country</label>
+              <select class="form-control" id="checkout-country" disabled>
+                <option selected>Switzerland</option>
+              </select>
+            </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-city">City</label>
-            <input class="form-control" type="text" id="checkout-city">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-email">E-mail Address</label>
-            <input class="form-control" type="email" id="checkout-email">
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-phone">Phone Number</label>
-            <input class="form-control" type="text" id="checkout-phone">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-company">Company</label>
-            <input class="form-control" type="text" id="checkout-company">
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="checkout-country">Country</label>
-            <select class="form-control" id="checkout-country" disabled>
-              <option selected>Switzerland</option>
-            </select>
-          </div>
-        </div>
-      </div>
       <h4>Shipping Address</h4>
       <hr class="padding-bottom-1x">
       <div class="form-group">
@@ -120,12 +121,13 @@
           </a>
         </div>
         <div class="column">
-          <a class="btn btn-primary" href="checkout-shipping.html">
+          <button type="submit" class="btn btn-primary" href="checkout-shipping.html">
             <span class="hidden-xs-down">Continue&nbsp;</span>
             <i class="icon-arrow-right"></i>
-          </a>
+          </button>
         </div>
       </div>
+      </form>
     </div>
     <!-- Sidebar          -->
     <div class="col-xl-3 col-lg-4">
