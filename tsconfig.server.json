@@ -10,6 +10,6 @@
     ],
     "outDir": "server/compiled/"
   },
-  "files": ["server/server.ts"],
-  "include": ["server/**/*"]
+  "files": ["server/ts-source/server.ts"],
+  "include": ["server/ts-source/**/*"]
 }

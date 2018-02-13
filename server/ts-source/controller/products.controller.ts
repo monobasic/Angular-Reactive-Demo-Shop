@@ -1,18 +1,19 @@
 import * as multer from 'multer';
 import * as jimp from 'jimp';
 import * as uuid from 'uuid';
-import * as fs from 'fs';
+import * as path from 'path';
 
 import { find, findOne, save, remove } from '../services/product.service';
+
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
     const isPhoto = file.mimetype.startsWith('image/');
     if (isPhoto) {
-      console.log('is image...');
       next(null, true);
     } else {
-      next({ message: 'That filetype isn\'t allowed!' }, false);
+      // tslint:disable-next-line:quotemark
+      next({ message: "That filetype isn't allowed!" }, false);
     }
   }
 };
@@ -52,7 +53,6 @@ export const getProduct = async (req, res, next) => {
 export const uploadImages = multer(multerOptions).array('photos', 5);
 
 export const resizeImages = async (req, res, next) => {
-  console.log('resizing...');
   // check if there is no new file to resize
   if (!req.files) {
     next(); // skip to the next middleware
@@ -68,10 +68,16 @@ export const resizeImages = async (req, res, next) => {
     const fileName = `${uuid.v4()}.${extension}`;
 
     // TODO: USE RELATIVE PATH IN CORRECT WAY
-    const path = `/www/sites/_CAS-FEE/Projekt2/CAS-FEE-PROJEKT-2/src/img/uploads/${fileName}`;
-    console.log(path);
+    // `../../img/uploads/${fileName}`;
+    // const filePath = `'../../../src/img/uploads/${fileName}`;
+    // const filePath = `/www/sites/_CAS-FEE/Projekt2/CAS-FEE-PROJEKT-2/src/img/uploads/${fileName}`;
+    const filePath = `../../../src/img/uploads/${fileName}`;
+    // const filepath = '../../../src/img/uploads');
 
-    req.body.photos.push(`/img/uploads/${fileName}`);
+    console.log(filePath);
+    console.log('curr dir: ', __dirname);
+
+    req.body.photos.push(`img/uploads/${fileName}`);
 
     // // now we resize
     const photo = await jimp.read(file.buffer);
@@ -79,7 +85,7 @@ export const resizeImages = async (req, res, next) => {
 
     await photo.resize(450, jimp.AUTO);
 
-    await photo.write(path);
+    await photo.write(filePath);
   }
   // once we have written all the photos to our filesystem, keep going!
   console.log('body', req.body.photos);
