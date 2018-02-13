@@ -37,6 +37,7 @@ import { PagerService } from './pager/pager.service';
 
 // Pipes
 import { SortPipe } from './sort.pipe';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { SortPipe } from './sort.pipe';
     ProductsListComponent,
     ProductsListItemComponent,
     ProductDetailComponent,
-    SortPipe
+    SortPipe,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
