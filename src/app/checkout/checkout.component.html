@@ -20,57 +20,89 @@
   <div class="row">
     <!-- Checkout Adress-->
     <div class="col-xl-9 col-lg-8">
+
+
+
       <div class="checkout-steps">
-        <a href="checkout-review.html">4. Review</a>
-        <a href="checkout-payment.html">
-          <span class="angle"></span>3. Payment</a>
-        <a href="checkout-shipping.html">
-          <span class="angle"></span>2. Shipping</a>
-        <a class="active" href="checkout-address.html">
-          <span class="angle"></span>1. Address</a>
+        <a *ngFor="let step of steps; let i = index" href="" (click)="onStepClicked(i)"><span class="angle" *ngIf="i < steps.length-1"></span>{{step}}</a>
       </div>
+
+
+
       <h4>Billing Address</h4>
       <hr class="padding-bottom-1x">
-      <form (ngSubmit)="onSubmit(formAddress)" #formAddress="ngForm">
+      <form
+        (ngSubmit)="onSubmit()"
+        [formGroup]="formAddress"
+        >
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <label for="checkout-fn">First Name</label>
-              <input class="form-control" type="text" id="checkout-fn" name="checkout-fn" ngModel>
+              <label for="firstname">First Name</label>
+              <input
+                class="form-control"
+                type="text"
+                id="firstname"
+                name="firstname"
+                formControlName="firstname"
+                >
+              <div class="form-control-feedback" *ngIf="formAddress.get('firstname').invalid && formAddress.get('firstname').touched">Please enter your firstname!</div>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
-              <label for="checkout-ln">Last Name</label>
-              <input class="form-control" type="text" id="checkout-ln">
+              <label for="lastname">Last Name</label>
+              <input
+                class="form-control"
+                type="text"
+                id="lastname"
+                name="lastname"
+                formControlName="lastname"
+                >
+              <div class="form-control-feedback" *ngIf="formAddress.get('lastname').invalid && formAddress.get('lastname').touched">Please enter your lastname!</div>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <label for="checkout-address1">Address 1</label>
-              <input class="form-control" type="text" id="checkout-address1">
+              <label for="address1">Address 1</label>
+              <input
+                class="form-control"
+                type="text"
+                id="address1"
+                name="address1"
+                formControlName="address1"
+                >
+              <div class="form-control-feedback" *ngIf="formAddress.get('address1').invalid && formAddress.get('address1').touched">Please enter your address!</div>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
-              <label for="checkout-address2">Address 2</label>
-              <input class="form-control" type="text" id="checkout-address2">
+              <label for="address2">Address 2</label>
+              <input
+                class="form-control"
+                type="text"
+                id="address2"
+                name="address2"
+                formControlName="address2"
+                >
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <label for="checkout-zip">ZIP Code</label>
-              <input class="form-control" type="text" id="checkout-zip">
+              <label for="zip">ZIP Code</label>
+              <input class="form-control" type="text" name="zip" id="zip" formControlName="zip">
+              <div class="form-control-feedback" *ngIf="formAddress.get('zip').invalid && formAddress.get('zip').touched">Please enter your zip code!</div>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
-              <label for="checkout-city">City</label>
-              <input class="form-control" type="text" id="checkout-city">
+              <label for="city">City</label>
+              <input class="form-control" type="text" name="city" id="city" formControlName="city">
+              <div class="form-control-feedback" *ngIf="formAddress.get('city').invalid && formAddress.get('city').touched">Please enter your city!</div>
             </div>
           </div>
         </div>
@@ -121,12 +153,13 @@
           </a>
         </div>
         <div class="column">
-          <button type="submit" class="btn btn-primary" href="checkout-shipping.html">
+          <button type="submit" class="btn btn-primary" href="checkout-shipping.html" [disabled]="!formAddress.valid">
             <span class="hidden-xs-down">Continue&nbsp;</span>
             <i class="icon-arrow-right"></i>
           </button>
         </div>
       </div>
+      <div class="help-block text-right mt-2 text-danger" *ngIf="formAddress.invalid && formAddress.touched">Please correct the marked fields above!</div>
       </form>
     </div>
     <!-- Sidebar          -->
