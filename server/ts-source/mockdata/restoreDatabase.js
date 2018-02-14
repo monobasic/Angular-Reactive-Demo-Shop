@@ -16,4 +16,5 @@ upload.on('close', (code) => {
     return
   }
   console.log('restoring database succeeded!')
+  return
 });
