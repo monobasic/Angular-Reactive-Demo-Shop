@@ -23,9 +23,7 @@ export class OrderService {
   }
 
   removeOrder(number: number) {
-    const indexToRemove = this.orders.findIndex((element) => {
-      return element.number === number;
-    });
+    const indexToRemove = this.orders.findIndex(element => element.number === number);
     this.orders.splice(indexToRemove, 1);
     this.ordersChanged.emit(this.orders.slice());
     this.messageService.add('Removed order: ' + number);
