@@ -47,9 +47,8 @@ export const getProduct = async (req, res, next) => {
       throw new Error(`Found no product with id ${id} in database.`);
     }
   } catch (error) {
-    res.status(404)
-    .json({
-      'error': {
+    res.status(404).json({
+      error: {
         message: `${error.message}`,
         id: req.params.id
       }
@@ -90,25 +89,15 @@ export const resizeImages = async (req, res, next) => {
 };
 
 export const addProduct = async (req, res, next) => {
-  const product = {
-    id: req.body.id,
-    name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
-    priceNormal: req.body.priceNormal,
-    reduction: req.body.reduction,
-    imageURLs: req.body.photos,
-    categories: req.body.categories
-  };
-
+  console.log('BODY', req.body);
+  const product = { ...req.body, imageURLs: req.body.photos };
   try {
     const dbResponse = await save(product);
-
     const answer = {
       success: true,
-      message: `Added successfully item with id ${dbResponse.id}`
+      message: `Added successfully item with id ${dbResponse.id}`,
+      product: dbResponse
     };
-
     res.json(answer);
     res.end();
   } catch (error) {
