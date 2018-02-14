@@ -1,14 +1,19 @@
 <div class="checkout-footer">
   <div class="column">
-    <a class="btn btn-outline-secondary" routerLink="/cart">
+    <button *ngIf="activeStep === 0" class="btn btn-outline-secondary" routerLink="/cart">
+      <i class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;Back To Cart</span>
+    </button>
+    <button *ngIf="activeStep > 0" class="btn btn-outline-secondary" (click)="onChangeStep(activeStep - 1)">
       <i class="icon-arrow-left"></i>
-      <span class="hidden-xs-down">&nbsp;Back To Cart</span>
-    </a>
+      <span class="hidden-xs-down">&nbsp;Back</span>
+    </button>
   </div>
   <div class="column">
-    <button type="submit" class="btn btn-primary" href="">
-      <span class="hidden-xs-down">Continue&nbsp;</span>
-      <i class="icon-arrow-right"></i>
+    <button *ngIf="activeStep < 3" class="btn btn-primary" href="" (click)="onChangeStep(activeStep + 1)">
+      <span class="hidden-xs-down">Continue&nbsp;</span><i class="icon-arrow-right"></i>
+    </button>
+    <button *ngIf="activeStep === 3" class="btn btn-primary" href="">
+      <span class="hidden-xs-down">Complete Order</span>
     </button>
   </div>
 </div>

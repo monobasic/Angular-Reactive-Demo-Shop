@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-checkout-footer',
@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  @Input()
+  activeStep: number;
+
+  @Output()
+  changedStep: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onChangeStep(step: number) {
+    this.changedStep.emit(step);
   }
 
 }
