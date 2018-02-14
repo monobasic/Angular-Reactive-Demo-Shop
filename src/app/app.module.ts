@@ -26,6 +26,12 @@ import { ProductsListItemComponent } from './products/products-list-item/product
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { PriceComponent } from './price/price.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { AddressComponent as CheckoutAddressComponent } from './checkout/address/address.component';
+import { ShippingComponent as CheckoutShippingComponent } from './checkout/shipping/shipping.component';
+import { PaymentComponent as CheckoutPaymentComponent } from './checkout/payment/payment.component';
+import { ReviewComponent as CheckoutReviewComponent } from './checkout/review/review.component';
+import { FooterComponent as CheckoutFooterComponent } from './checkout/footer/footer.component';
 
 // Services
 import { InMemoryDataService } from './model/in-memory-data.service';
@@ -37,7 +43,6 @@ import { PagerService } from './pager/pager.service';
 
 // Pipes
 import { SortPipe } from './sort.pipe';
-import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +64,12 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ProductsListItemComponent,
     ProductDetailComponent,
     SortPipe,
-    CheckoutComponent
+    CheckoutComponent,
+    CheckoutAddressComponent,
+    CheckoutShippingComponent,
+    CheckoutPaymentComponent,
+    CheckoutReviewComponent,
+    CheckoutFooterComponent
   ],
   imports: [
     BrowserModule,

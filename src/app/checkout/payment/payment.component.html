@@ -1,0 +1,124 @@
+<h4>
+  Choose Payment Method</h4>
+<hr class="padding-bottom-1x">
+<div class="accordion" id="accordion" role="tablist">
+  <div class="card">
+    <div class="card-header" role="tab">
+      <h6>
+        <a href="#card" data-toggle="collapse" data-parent="#accordion">
+          <i class="icon-columns"></i>Pay with Credit Card</a>
+      </h6>
+    </div>
+    <div class="collapse show" id="card" role="tabpanel">
+      <div class="card-body">
+        <p>We accept following credit cards:&nbsp;
+          <img class="d-inline-block align-middle" src="img/credit-cards.png" style="width: 120px;" alt="Cerdit Cards">
+        </p>
+        <div class="card-wrapper" data-jp-card-initialized="true">
+          <div class="jp-card-container">
+            <div class="jp-card">
+              <div class="jp-card-front">
+                <div class="jp-card-logo jp-card-elo">
+                  <div class="e">e</div>
+                  <div class="l">l</div>
+                  <div class="o">o</div>
+                </div>
+                <div class="jp-card-logo jp-card-visa">visa</div>
+                <div class="jp-card-logo jp-card-mastercard">MasterCard</div>
+                <div class="jp-card-logo jp-card-maestro">Maestro</div>
+                <div class="jp-card-logo jp-card-amex"></div>
+                <div class="jp-card-logo jp-card-discover">discover</div>
+                <div class="jp-card-logo jp-card-dinersclub"></div>
+                <div class="jp-card-logo jp-card-dankort">
+                  <div class="dk">
+                    <div class="d"></div>
+                    <div class="k"></div>
+                  </div>
+                </div>
+                <div class="jp-card-lower">
+                  <div class="jp-card-shiny"></div>
+                  <div class="jp-card-cvc jp-card-display">•••</div>
+                  <div class="jp-card-number jp-card-display">•••• •••• •••• ••••</div>
+                  <div class="jp-card-name jp-card-display">Full Name</div>
+                  <div class="jp-card-expiry jp-card-display" data-before="month/year" data-after="validthru">••/••</div>
+                </div>
+              </div>
+              <div class="jp-card-back">
+                <div class="jp-card-bar"></div>
+                <div class="jp-card-cvc jp-card-display">•••</div>
+                <div class="jp-card-shiny"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="interactive-credit-card row">
+          <div class="form-group col-sm-6">
+            <input class="form-control" type="text" name="number" placeholder="Card Number" required="">
+          </div>
+          <div class="form-group col-sm-6">
+            <input class="form-control" type="text" name="name" placeholder="Full Name" required="">
+          </div>
+          <div class="form-group col-sm-3">
+            <input class="form-control" type="text" name="expiry" placeholder="MM/YY" required="">
+          </div>
+          <div class="form-group col-sm-3">
+            <input class="form-control" type="text" name="cvc" placeholder="CVC" required="">
+          </div>
+          <div class="col-sm-6">
+            <button class="btn btn-outline-primary btn-block margin-top-none" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <h6>
+        <a class="collapsed" href="#paypal" data-toggle="collapse" data-parent="#accordion">
+          <i class="socicon-paypal"></i>Pay with PayPal</a>
+      </h6>
+    </div>
+    <div class="collapse" id="paypal" role="tabpanel">
+      <div class="card-body">
+        <p>PayPal - the safer, easier way to pay</p>
+        <form class="row" method="post">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <input class="form-control" type="email" placeholder="E-mail" required="">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <input class="form-control" type="password" placeholder="Password" required="">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+              <a class="navi-link" href="#">Forgot password?</a>
+              <button class="btn btn-outline-primary margin-top-none" type="submit">Log In</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <h6>
+        <a class="collapsed" href="#points" data-toggle="collapse" data-parent="#accordion">
+          <i class="icon-medal"></i>Redeem Reward Points</a>
+      </h6>
+    </div>
+    <div class="collapse" id="points" role="tabpanel">
+      <div class="card-body">
+        <p>You currently have
+          <span class="text-medium"> 290</span> Reward Points to spend.</p>
+        <label class="custom-control custom-checkbox d-block">
+          <input class="custom-control-input" type="checkbox">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Use my Reward Points to pay for this order.</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
