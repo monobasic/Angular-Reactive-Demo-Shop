@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
+import { AddEditComponent } from './add-edit/add-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -13,15 +14,13 @@ const routes: Routes = [
   { path: 'products', component: ProductsListComponent },
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartComponent },
-  { path: '**', component: PageNotFoundComponent}
+  { path: 'add', component: AddEditComponent },
+  { path: 'edit', component: AddEditComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

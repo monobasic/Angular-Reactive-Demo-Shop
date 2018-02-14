@@ -26,6 +26,7 @@ import { ProductsListItemComponent } from './products/products-list-item/product
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { PriceComponent } from './price/price.component';
+import { AddEditComponent } from './add-edit/add-edit.component';
 
 // Services
 // import { InMemoryDataService } from './model/in-memory-data.service';
@@ -57,7 +58,8 @@ import { SortPipe } from './sort.pipe';
     ProductsListComponent,
     ProductsListItemComponent,
     ProductDetailComponent,
-    SortPipe
+    SortPipe,
+    AddEditComponent
   ],
   imports: [
     BrowserModule,
