@@ -21,12 +21,9 @@
     <!-- Checkout Adress-->
     <div class="col-xl-9 col-lg-8">
 
-
-
       <div class="checkout-steps">
-        <a *ngFor="let step of steps; let i = index" href="" (click)="onStepClicked(i)"><span class="angle" *ngIf="i < steps.length-1"></span>{{step}}</a>
+        <a [ngClass]="{'active': i === activeStep, 'active-sibling': i === activeStep-1}" *ngFor="let step of steps; let i = index" href="" (click)="onStepClicked($event, i)"><span class="angle" *ngIf="i < steps.length-1"></span>{{step}}</a>
       </div>
-
 
 
       <h4>Billing Address</h4>

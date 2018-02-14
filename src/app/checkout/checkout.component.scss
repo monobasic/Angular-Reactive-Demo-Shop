@@ -80,7 +80,10 @@
       pointer-events: none;
 
       > .angle::after { border-left-color: $nav-link-active-color; }
-      //& + a > .angle { background-color: $nav-link-active-color; }
+    }
+
+    &.active-sibling {
+        > .angle { background-color: $nav-link-active-color; }
     }
 
     &.completed > .step-indicator {

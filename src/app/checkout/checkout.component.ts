@@ -41,8 +41,9 @@ export class CheckoutComponent implements OnInit {
     console.log(this.formAddress.value);
   }
 
-  onStepClicked(index: number) {
+  onStepClicked(event: Event, index: number) {
     this.activeStep = index;
+    event.preventDefault();
   }
 
 }
