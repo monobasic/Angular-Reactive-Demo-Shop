@@ -1,4 +1,1 @@
-mongo <host> -u <user> -p <pw>
-
--> new process:
-mongoimport -h ds121118.mlab.com:21118 -d cas-fee-project-2 -c <collectionName> -u <user> -p <pw> <inputFile> --jsonArray,
+mongoimport -h ds121118.mlab.com:21118 -d cas-fee-project-2 -u chzellweger -p Zelli12219_ --collection products --drop --file ./products.json --jsonArray
