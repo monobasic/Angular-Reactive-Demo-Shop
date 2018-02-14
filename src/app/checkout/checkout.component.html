@@ -18,47 +18,20 @@
 
 <div class="container padding-bottom-3x mb-2">
   <div class="row">
-    <!-- Checkout Adress-->
     <div class="col-xl-9 col-lg-8">
-
       <div class="checkout-steps">
         <a [ngClass]="{'active': i === activeStep, 'active-sibling': i === activeStep-1}" *ngFor="let step of steps; let i = index" href="" (click)="onStepClicked($event, i)"><span class="angle" *ngIf="i < steps.length-1"></span>{{step}}</a>
       </div>
 
       <app-checkout-address *ngIf="activeStep === 0"></app-checkout-address>
-
       <app-checkout-shipping *ngIf="activeStep === 1"></app-checkout-shipping>
-
       <app-checkout-payment *ngIf="activeStep === 2"></app-checkout-payment>
-
       <app-checkout-review *ngIf="activeStep === 3"></app-checkout-review>
 
       <app-checkout-footer></app-checkout-footer>
-
     </div>
-    <!-- Sidebar          -->
     <div class="col-xl-3 col-lg-4">
-      <aside class="sidebar">
-        <div class="padding-top-2x hidden-lg-up"></div>
-        <!-- Order Summary Widget-->
-        <section class="widget widget-order-summary">
-          <h3 class="widget-title">Order Summary</h3>
-          <table class="table">
-            <tr>
-              <td>Cart Subtotal:</td>
-              <td class="text-medium">{{cartSubtotal | currency}}</td>
-            </tr>
-            <tr>
-              <td>Shipping:</td>
-              <td class="text-medium">{{shipping | currency}}</td>
-            </tr>
-            <tr>
-              <td>Order Total:</td>
-              <td class="text-lg text-medium">{{orderTotal | currency}}</td>
-            </tr>
-          </table>
-        </section>
-      </aside>
+      <app-checkout-sidebar></app-checkout-sidebar>
     </div>
   </div>
 </div>
