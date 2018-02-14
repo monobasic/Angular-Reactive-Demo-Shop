@@ -1,5 +1,0 @@
-https://docs.mongodb.com/getting-started/shell/import-data/
-
-mongoimport -h ds121118.mlab.com:21118 --d cas-fee-project-2 -u <user> -p <pw> --collection products --drop --file server/ts-source/mockdata/products.json --jsonArray
-
-mongoimport -h ds121118.mlab.com:21118 -d cas-fee-project-2 -u  -p Zelli12219_ --collection products --drop --file ./products.json --jsonArray
