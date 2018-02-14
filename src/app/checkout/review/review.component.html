@@ -10,76 +10,24 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let item of items; let i = index">
         <td>
           <div class="product-item">
-            <a class="product-thumb" href="shop-single.html">
-              <img src="img/shop/cart/01.jpg" alt="Product">
+            <a class="product-thumb" routerLink="/products/{{item.product.id}}">
+              <img [src]="item.product.imageURLs[0]" alt="{{item.product.name}}">
             </a>
             <div class="product-info">
               <h4 class="product-title">
-                <a href="shop-single.html">Unionbay Park
-                  <small>x 1</small>
+                <a routerLink="/products/{{item.product.id}}">{{item.product.name}}
+                  <small>x {{item.amount}}</small>
                 </a>
               </h4>
-              <span>
-                <em>Size:</em> 10.5</span>
-              <span>
-                <em>Color:</em> Dark Blue</span>
             </div>
           </div>
         </td>
-        <td class="text-center text-lg text-medium">$43.90</td>
+        <td class="text-center text-lg text-medium">{{ (item.product.price * item.amount) | currency }}</td>
         <td class="text-center">
-          <a class="btn btn-outline-primary btn-sm" href="cart.html">Edit</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="product-item">
-            <a class="product-thumb" href="shop-single.html">
-              <img src="img/shop/cart/02.jpg" alt="Product">
-            </a>
-            <div class="product-info">
-              <h4 class="product-title">
-                <a href="shop-single.html">Daily Fabric Cap
-                  <small>x 2</small>
-                </a>
-              </h4>
-              <span>
-                <em>Size:</em> XL</span>
-              <span>
-                <em>Color:</em> Black</span>
-            </div>
-          </div>
-        </td>
-        <td class="text-center text-lg text-medium">$24.89</td>
-        <td class="text-center">
-          <a class="btn btn-outline-primary btn-sm" href="cart.html">Edit</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="product-item">
-            <a class="product-thumb" href="shop-single.html">
-              <img src="img/shop/cart/03.jpg" alt="Product">
-            </a>
-            <div class="product-info">
-              <h4 class="product-title">
-                <a href="shop-single.html">Cole Haan Crossbody
-                  <small>x 1</small>
-                </a>
-              </h4>
-              <span>
-                <em>Size:</em> -</span>
-              <span>
-                <em>Color:</em> Turquoise</span>
-            </div>
-          </div>
-        </td>
-        <td class="text-center text-lg text-medium">$200.00</td>
-        <td class="text-center">
-          <a class="btn btn-outline-primary btn-sm" href="cart.html">Edit</a>
+          <a class="btn btn-outline-primary btn-sm" routerLink="/cart">Edit</a>
         </td>
       </tr>
     </tbody>
@@ -88,7 +36,7 @@
 <div class="shopping-cart-footer">
   <div class="column"></div>
   <div class="column text-lg">Subtotal:
-    <span class="text-medium">$289.68</span>
+    <span class="text-medium">{{ total | currency }}</span>
   </div>
 </div>
 <div class="row padding-top-1x mt-3">
