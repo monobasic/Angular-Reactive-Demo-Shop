@@ -10,7 +10,10 @@ export class FooterComponent implements OnInit {
   activeStep: number;
 
   @Output()
-  changedStep: EventEmitter<number> = new EventEmitter();
+  changedStep: EventEmitter<number> = new EventEmitter<number>();
+
+  @Output()
+  completeOrder: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 
@@ -19,6 +22,10 @@ export class FooterComponent implements OnInit {
 
   onChangeStep(step: number) {
     this.changedStep.emit(step);
+  }
+
+  onCompleteOrder(event: Event) {
+    this.completeOrder.emit();
   }
 
 }

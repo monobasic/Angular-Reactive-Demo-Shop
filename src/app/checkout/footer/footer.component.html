@@ -12,7 +12,7 @@
     <button *ngIf="activeStep < 3" class="btn btn-primary" href="" (click)="onChangeStep(activeStep + 1)">
       <span class="hidden-xs-down">Continue&nbsp;</span><i class="icon-arrow-right"></i>
     </button>
-    <button *ngIf="activeStep === 3" class="btn btn-primary" href="">
+    <button *ngIf="activeStep === 3" class="btn btn-primary" href="" (click)="onCompleteOrder($event)">
       <span class="hidden-xs-down">Complete Order</span>
     </button>
   </div>

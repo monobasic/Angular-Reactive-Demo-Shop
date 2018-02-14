@@ -28,7 +28,7 @@
       <app-checkout-payment *ngIf="activeStep === 2"></app-checkout-payment>
       <app-checkout-review *ngIf="activeStep === 3"></app-checkout-review>
 
-      <app-checkout-footer [activeStep]="activeStep" (changedStep)="onStepChanged($event)"></app-checkout-footer>
+      <app-checkout-footer [activeStep]="activeStep" (changedStep)="onStepChanged($event)" (completeOrder)="onCompleteOrder($event)"></app-checkout-footer>
     </div>
     <div class="col-xl-3 col-lg-4">
       <app-checkout-sidebar></app-checkout-sidebar>

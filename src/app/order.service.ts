@@ -9,7 +9,6 @@ export class OrderService {
 
   constructor(private messageService: MessageService) { }
 
-
   getOrders() {
     return this.orders.slice();
   }
@@ -28,6 +27,4 @@ export class OrderService {
     this.ordersChanged.emit(this.orders.slice());
     this.messageService.add('Removed order: ' + number);
   }
-
-
 }
