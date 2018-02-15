@@ -4,7 +4,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from '../products/shared/product.service';
 import { ProductsCacheService } from '../products/shared/products-cache.service';
 
-
 @Component({
   selector: 'app-add-edit',
   templateUrl: './add-edit.component.html',
@@ -19,10 +18,16 @@ export class AddEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private productsCacheService: ProductsCacheService,
-    // private location: Location
+    private productsCacheService: ProductsCacheService
   ) {}
   ngOnInit(): void {
+    this.setProduct();
+    this.initForm();
+  }
+  initForm() {
+    this.productForm = new FormGroup({});
+  }
+  setProduct() {
     this.route.params.subscribe((params: Params) => {
       this.id = +this.route.snapshot.paramMap.get('id');
 
