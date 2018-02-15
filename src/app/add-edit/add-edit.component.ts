@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ProductService } from '../products/shared/product.service';
+import { ProductsCacheService } from '../products/shared/products-cache.service';
 
 @Component({
   selector: 'app-add-edit',
@@ -6,10 +9,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-edit.component.scss']
 })
 export class AddEditComponent implements OnInit {
+  product: any;
+  id: any;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private productsCacheService: ProductsCacheService,
+    // private location: Location
+  ) {}
+  ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.id = +this.route.snapshot.paramMap.get('id');
 
-  ngOnInit() {
+      this.getProduct();
+    });
   }
-
+  getProduct(): void {
+    if (this.id) {
+      console.log(this.id);
+      // this.productsCacheService
+      // .get(this.id, this.productService.getProduct(this.id))
+      // .subscribe((product) => {
+      //   this.product = product;
+      // });
+    }
+  }
 }
