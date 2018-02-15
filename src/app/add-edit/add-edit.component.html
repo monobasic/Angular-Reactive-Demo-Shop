@@ -63,12 +63,12 @@
           </div>
         </div>
 
-        <div formGroupName="price">
+
           <div class="form-group row">
             <label class="col-2 col-form-label" for="price">Actual Price</label>
             <div class="col-10">
               <input class="form-control form-control-square form-control-sm" formControlName="price" type="number" id="price" value="">
-              <div *ngIf="!productForm.get('price.price').valid && productForm.get('price.price').touched" class="form-control-feedback">
+              <div *ngIf="!productForm.get('price').valid && productForm.get('price').touched" class="form-control-feedback">
                 Shucks, enter a price for your product.
               </div>
             </div>
@@ -77,16 +77,15 @@
           <div class="form-group row">
             <label class="col-2 col-form-label" for="price-normal">Original Price</label>
             <div class="col-10">
-              <input class="form-control form-control-square form-control-sm" formControlName="price-normal" type="number" id="price-normal"
+              <input class="form-control form-control-square form-control-sm" formControlName="priceNormal" type="number" id="price-normal"
                 value="0">
-              <div *ngIf="!productForm.get('price.price-normal').valid && productForm.get('price.price-normal').touched"
+              <div *ngIf="!productForm.get('priceNormal').valid && productForm.get('priceNormal').touched"
                 class="form-control-feedback">
                 Shucks, enter a base price for your product.
               </div>
             </div>
           </div>
 
-        </div>
 
         <div class="form-group row">
           <div class="col-10"></div>

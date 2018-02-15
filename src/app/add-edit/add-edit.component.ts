@@ -1,5 +1,4 @@
 // TODO:
-// FIX IMAGE-URLs-PARSING ERROR
 // FIX UNNECESSARY FORM-GROUP-NESTINGS
 
 import { Component, OnInit } from '@angular/core';
@@ -62,19 +61,16 @@ export class AddEditComponent implements OnInit {
       imageURLs: new FormControl(
         this.product.imageURLs || ['img/shop/products/05.jpg']
       ),
-      price: new FormGroup({
-        price: new FormControl(this.product.price, [
-          Validators.required,
-          Validators.min(0)
-        ]),
-        'price-normal': new FormControl(this.product.priceNormal, [
-          Validators.required,
-          Validators.min(0)
-        ]),
-        reduction: new FormControl(this.product.reduction)
-      })
+      price: new FormControl(this.product.price, [
+        Validators.required,
+        Validators.min(0)
+      ]),
+      priceNormal: new FormControl(this.product.priceNormal, [
+        Validators.required,
+        Validators.min(0)
+      ]),
+      reduction: new FormControl(this.product.reduction)
     });
-
     this.onChanges();
   }
   onChanges() {
@@ -82,26 +78,14 @@ export class AddEditComponent implements OnInit {
       this.syncProduct(val);
     });
   }
-  syncProduct(val) {
-    console.log(val.imageURLs);
-    const priceNormal = val.price['price-normal'] || val.priceNormal;
-    const price = val.price.price || val.price;
+  syncProduct(val: Product) {
+    const priceNormal = val.priceNormal;
+    const price = val.price;
 
     const calcReduction = Math.round((priceNormal - price) / priceNormal * 100);
-
     const reduction = calcReduction > 0 ? calcReduction : undefined;
 
-    this.product = {
-      id: val.id,
-      date: new Date().toString(),
-      name: val.name,
-      description: val.description,
-      price: price,
-      priceNormal: priceNormal,
-      imageURLs: val.imageURLs || ['img/shop/products/13.jpg'],
-      categories: val.categories || ['Some', 'Example', 'Categories'],
-      reduction: reduction
-    };
+    this.product = {...val, reduction, date: new Date().toString()};
   }
   setProduct() {
     this.route.params.subscribe((params: Params) => {
@@ -112,7 +96,6 @@ export class AddEditComponent implements OnInit {
   }
   getProduct(): void {
     if (this.id) {
-      console.log(this.id);
       this.productsCacheService
         .get(this.id, this.productService.getProduct(this.id))
         .subscribe((product) => {
