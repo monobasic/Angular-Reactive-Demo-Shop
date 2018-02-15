@@ -2,36 +2,59 @@
   <div class="row">
     <div class="col-lg-9 col-md-8 order-md-2">
       <h6 class="text-muted text-normal text-uppercase">Product Preview</h6>
+      <hr class="margin-bottom-1x">
       <app-products-list-item [product]="product" [displayMode]="'list'"></app-products-list-item>
       <h6 class="text-muted text-normal text-uppercase">Add or Edit Product</h6>
       <hr class="margin-bottom-1x">
 
-      <form action="#" method="GET">
+      <form [formGroup]="productForm" action="#" method="GET">
         <div class="form-group row">
           <label class="col-2 col-form-label" for="product-name">Product Name</label>
           <div class="col-10">
-            <input class="form-control form-control-square form-control-sm" type="text" id="product-name" value="">
+            <input
+              class="form-control form-control-square form-control-sm"
+              formControlName="product-name"
+              type="text"
+              id="product-name"
+              value=""
+              >
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-2 col-form-label" for="product-id">Custom Id</label>
           <div class="col-10">
-            <input class="form-control form-control-square form-control-sm" type="number" id="product-id" value="0">
+            <input
+              class="form-control form-control-square form-control-sm"
+              formControlName="product-id"
+              type="number"
+              id="product-id"
+              value="0"
+              >
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-2 col-form-label" for="product-categories">Categories (commma seperated)</label>
           <div class="col-10">
-            <input class="form-control form-control-square form-control-sm" type="text" id="product-categories" value="Your, Categories, go, here">
+            <input
+              class="form-control form-control-square form-control-sm"
+              formControlName="product-categories"
+              type="text"
+              id="product-categories"
+              value="">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-2 col-form-label" for="product-description">Product description</label>
           <div class="col-10">
-            <textarea class="form-control form-control-square form-control-sm" id="product-description" rows="5">Describe your product</textarea>
+            <textarea
+              class="form-control form-control-square form-control-sm"
+              formControlName="product-description"
+              id="product-description"
+              rows="5">
+            </textarea>
           </div>
         </div>
 
@@ -48,21 +71,36 @@
         <div class="form-group row">
           <label class="col-2 col-form-label" for="product-price">Actual Price</label>
           <div class="col-10">
-            <input class="form-control form-control-square form-control-sm" type="number" id="product-price" value="0">
+            <input 
+              class="form-control form-control-square form-control-sm" 
+              formControlName="product-price"
+              type="number"
+              id="product-price"
+              value="">
           </div>
         </div>
 
         <div class="form-group row">
-          <label class="col-2 col-form-label" for="product-original-price">Original Price</label>
+          <label class="col-2 col-form-label" for="product-price-normal">Original Price</label>
           <div class="col-10">
-            <input class="form-control form-control-square form-control-sm" type="number" id="product-original-price" value="0">
+            <input
+              class="form-control form-control-square form-control-sm"
+              formControlName="product-price-normal"
+              type="number"
+              id="product-price-normal"
+              value="0">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-2 col-form-label" for="product-reduction">Reduction</label>
           <div class="col-10">
-            <input class="form-control form-control-square form-control-sm" type="number" id="product-reduction" value="0">
+            <input
+              class="form-control form-control-square form-control-sm"
+              formControlName="product-reduction"
+              type="number"
+              id="product-reduction"
+              value="">
           </div>
         </div>
 

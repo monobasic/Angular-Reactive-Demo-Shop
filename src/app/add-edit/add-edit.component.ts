@@ -8,7 +8,7 @@ import { Product } from '../products/shared/product.model';
 const placeholderProduct: Product = {
   id: 999,
   date: new Date().toString(),
-  name: 'Placeholder',
+  name: 'Placeholder Product Name',
   description: 'Come up with something descriptive',
   price: 999,
   priceNormal: 1999,
@@ -42,12 +42,12 @@ export class AddEditComponent implements OnInit {
     this.productForm = new FormGroup({
       'product-name': new FormControl(this.product.name),
       'product-id': new FormControl(this.product.id),
-      'product-categories': new FormControl(null),
-      'product-description': new FormControl(null),
+      'product-categories': new FormControl(this.product.categories),
+      'product-description': new FormControl(this.product.description),
       'file-input': new FormControl(null),
-      'product-price': new FormControl(null),
-      'product-original-price': new FormControl(null),
-      '"product-reduction': new FormControl(null)
+      'product-price': new FormControl(this.product.price),
+      'product-price-normal': new FormControl(this.product.priceNormal),
+      'product-reduction': new FormControl(null)
     });
   }
   setProduct() {
