@@ -41,6 +41,7 @@ import { ProductsCacheService } from './products/shared/products-cache.service';
 import { CartService } from './cart/cart.service';
 import { MessageService } from './messages/message.service';
 import { PagerService } from './pager/pager.service';
+import { OrderService } from './order.service';
 
 // Pipes
 import { SortPipe } from './sort.pipe';
@@ -89,6 +90,7 @@ import { SortPipe } from './sort.pipe';
     MessageService,
     CartService,
     PagerService,
+    OrderService,
     SortPipe
 
   ],
