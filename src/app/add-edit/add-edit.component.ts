@@ -1,3 +1,7 @@
+// TODO:
+// FIX IMAGE-URLs-PARSING ERROR
+// FIX UNNECESSARY FORM-GROUP-NESTINGS
+
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -29,7 +33,6 @@ const placeholderProduct: Product = {
 })
 export class AddEditComponent implements OnInit {
   productForm: FormGroup;
-
   product: Product;
   id: any;
 
@@ -56,7 +59,9 @@ export class AddEditComponent implements OnInit {
         this.product.description,
         Validators.required
       ),
-      imageURLs: new FormControl(null),
+      imageURLs: new FormControl(
+        this.product.imageURLs[0] || 'img/shop/products/05.jpg'
+      ),
       price: new FormGroup({
         price: new FormControl(this.product.price, [
           Validators.required,
@@ -74,28 +79,29 @@ export class AddEditComponent implements OnInit {
   }
   onChanges() {
     this.productForm.valueChanges.subscribe((val) => {
-      console.log(val);
-      console.log(this.product);
-
-      const calcReduction =
-        Math.round((val.price['price-normal'] - val.price.price) /
-        val.price['price-normal'] *
-        100);
-
-      const reduction = calcReduction > 0 ? calcReduction : undefined;
-
-      this.product = {
-        id: val.id,
-        date: new Date().toString(),
-        name: val.name,
-        description: val.description,
-        price: val.price.price,
-        priceNormal: val.price['price-normal'],
-        imageURLs: ['img/shop/products/13.jpg'],
-        categories: ['Some', 'Example', 'Categories'],
-        reduction: reduction
-      };
+      this.syncProduct(val);
     });
+  }
+  syncProduct(val) {
+    console.log(val.imageURLs);
+    const priceNormal = val.price['price-normal'] || val.priceNormal;
+    const price = val.price.price || val.price;
+
+    const calcReduction = Math.round((priceNormal - price) / priceNormal * 100);
+
+    const reduction = calcReduction > 0 ? calcReduction : undefined;
+
+    this.product = {
+      id: val.id,
+      date: new Date().toString(),
+      name: val.name,
+      description: val.description,
+      price: price,
+      priceNormal: priceNormal,
+      imageURLs: val.imageURLs[0] || ['img/shop/products/13.jpg'],
+      categories: val.categories || ['Some', 'Example', 'Categories'],
+      reduction: reduction
+    };
   }
   setProduct() {
     this.route.params.subscribe((params: Params) => {
@@ -107,14 +113,21 @@ export class AddEditComponent implements OnInit {
   getProduct(): void {
     if (this.id) {
       console.log(this.id);
-      // this.productsCacheService
-      // .get(this.id, this.productService.getProduct(this.id))
-      // .subscribe((product) => {
-      //   this.product = product;
-      // });
+      this.productsCacheService
+        .get(this.id, this.productService.getProduct(this.id))
+        .subscribe((product) => {
+          this.product = product;
+          this.syncProduct(this.product);
+          this.initForm();
+        });
+    } else {
+      this.product = placeholderProduct;
+      this.initForm();
     }
   }
   onSubmit() {
+    this.syncProduct(this.productForm.value);
     console.log(this.productForm);
+    console.log(this.product);
   }
 }
