@@ -7,7 +7,7 @@
       <h6 class="text-muted text-normal text-uppercase">Add or Edit Product</h6>
       <hr class="margin-bottom-1x">
 
-      <form [formGroup]="productForm" action="#" method="GET">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="form-group row">
           <label class="col-2 col-form-label" for="product-name">Product Name</label>
           <div class="col-10">

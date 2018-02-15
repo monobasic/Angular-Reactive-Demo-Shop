@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  ReactiveFormsModule,
+  FormControl,
+  Validators
+} from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from '../products/shared/product.service';
 import { ProductsCacheService } from '../products/shared/products-cache.service';
@@ -40,13 +45,28 @@ export class AddEditComponent implements OnInit {
   }
   initForm() {
     this.productForm = new FormGroup({
-      'product-name': new FormControl(this.product.name),
-      'product-id': new FormControl(this.product.id),
-      'product-categories': new FormControl(this.product.categories),
-      'product-description': new FormControl(this.product.description),
+      'product-name': new FormControl(this.product.name, Validators.required),
+      'product-id': new FormControl(this.product.id, [
+        Validators.required,
+        Validators.min(0)
+      ]),
+      'product-categories': new FormControl(
+        this.product.categories,
+        Validators.required
+      ),
+      'product-description': new FormControl(
+        this.product.description,
+        Validators.required
+      ),
       'file-input': new FormControl(null),
-      'product-price': new FormControl(this.product.price),
-      'product-price-normal': new FormControl(this.product.priceNormal),
+      'product-price': new FormControl(
+        this.product.price,
+        [Validators.required, Validators.min(0)]
+      ),
+      'product-price-normal': new FormControl(
+        this.product.priceNormal,
+        [Validators.required, Validators.min(0)]
+      ),
       'product-reduction': new FormControl(null)
     });
   }
@@ -66,5 +86,8 @@ export class AddEditComponent implements OnInit {
       //   this.product = product;
       // });
     }
+  }
+  onSubmit() {
+    console.log(this.productForm);
   }
 }
