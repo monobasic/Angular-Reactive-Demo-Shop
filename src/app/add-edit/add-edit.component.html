@@ -24,6 +24,9 @@
           <div class="col-10">
             <input class="form-control form-control-square form-control-sm" formControlName="product-id" type="number" id="product-id"
               value="0">
+            <div *ngIf="!productForm.get('product-id').valid && productForm.get('product-id').touched" class="form-control-feedback">
+              Shucks, enter a number as id for your product.
+            </div>
           </div>
         </div>
 
@@ -32,6 +35,9 @@
           <div class="col-10">
             <input class="form-control form-control-square form-control-sm" formControlName="product-categories" type="text" id="product-categories"
               value="">
+            <div *ngIf="!productForm.get('product-categories').valid && productForm.get('product-categories').touched" class="form-control-feedback">
+              Shucks, enter at least one category for your product.
+            </div>
           </div>
         </div>
 
@@ -41,6 +47,9 @@
             <textarea class="form-control form-control-square form-control-sm" formControlName="product-description" id="product-description"
               rows="5">
             </textarea>
+            <div *ngIf="!productForm.get('product-description').valid && productForm.get('product-description').touched" class="form-control-feedback">
+              Shucks, enter a description for your product.
+            </div>
           </div>
         </div>
 
@@ -56,26 +65,35 @@
 
         <div formGroupName="product-price">
           <div class="form-group row">
-            <label class="col-2 col-form-label" for="product-price">Actual Price</label>
+            <label class="col-2 col-form-label" for="price">Actual Price</label>
             <div class="col-10">
-              <input class="form-control form-control-square form-control-sm" formControlName="price" type="number" id="product-price"
+              <input class="form-control form-control-square form-control-sm" formControlName="price" type="number" id="sprice"
                 value="">
+            <div *ngIf="!productForm.get('product-price.price').valid && productForm.get('product-price.price').touched" class="form-control-feedback">
+              Shucks, enter a price for your product.
+            </div>
             </div>
           </div>
 
           <div class="form-group row">
-            <label class="col-2 col-form-label" for="product-price-normal">Original Price</label>
+            <label class="col-2 col-form-label" for="price-normal">Original Price</label>
             <div class="col-10">
-              <input class="form-control form-control-square form-control-sm" formControlName="price-normal" type="number" id="product-price-normal"
+              <input class="form-control form-control-square form-control-sm" formControlName="price-normal" type="number" id="price-normal"
                 value="0">
-            </div>
+                <div *ngIf="!productForm.get('product-price.price-normal').valid && productForm.get('product-price.price-normal').touched" class="form-control-feedback">
+                  Shucks, enter a base price for your product.
+                </div>
+              </div>
           </div>
 
           <div class="form-group row">
-            <label class="col-2 col-form-label" for="product-reduction">Reduction</label>
+            <label class="col-2 col-form-label" for="reduction">Reduction</label>
             <div class="col-10">
-              <input class="form-control form-control-square form-control-sm" formControlName="reduction" type="number" id="product-reduction"
+              <input class="form-control form-control-square form-control-sm" formControlName="reduction" type="number" id="reduction"
                 value="">
+            <div *ngIf="!productForm.get('product-price.reduction').valid && productForm.get('product-price.reduction').touched" class="form-control-feedback">
+              Shucks, enter a name for your product.
+            </div>
             </div>
           </div>
         </div>
