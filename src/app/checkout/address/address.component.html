@@ -51,29 +51,29 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
-        <label for="checkout-email">E-mail Address</label>
-        <input class="form-control" type="email" id="checkout-email">
+        <label for="email">E-mail Address</label>
+        <input class="form-control" type="email" id="email" name="email" formControlName="email">
       </div>
     </div>
     <div class="col-sm-6">
       <div class="form-group">
-        <label for="checkout-phone">Phone Number</label>
-        <input class="form-control" type="text" id="checkout-phone">
+        <label for="phone">Phone Number</label>
+        <input class="form-control" type="text" id="phone" name="phone" formControlName="phone">
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
-        <label for="checkout-company">Company</label>
-        <input class="form-control" type="text" id="checkout-company">
+        <label for="company">Company</label>
+        <input class="form-control" type="text" id="company" name="company" formControlName="company">
       </div>
     </div>
     <div class="col-sm-6">
       <div class="form-group">
-        <label for="checkout-country">Country</label>
-        <select class="form-control" id="checkout-country" disabled>
-          <option selected>Switzerland</option>
+        <label for="country">Country</label>
+        <select class="form-control" id="country" name="country" formControlName="country">
+          <option *ngFor="let country of countries" value="{{country.value}}">{{country.name}}</option>
         </select>
       </div>
     </div>

@@ -8,6 +8,7 @@ import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AddressComponent implements OnInit {
   formAddress: FormGroup;
+  countries: object[];
 
   constructor() { }
 
@@ -20,7 +21,16 @@ export class AddressComponent implements OnInit {
       'address2': new FormControl(null),
       'zip': new FormControl(null, [Validators.required, Validators.pattern(/^\d\d\d\d$/)]),
       'city': new FormControl(null, Validators.required),
+      'email': new FormControl(null, Validators.email),
+      'phone': new FormControl(null),
+      'company': new FormControl(null),
+      'country': new FormControl({ value: 'switzerland', disabled: true}, Validators.required)
     });
+
+    this.countries = [{
+        name: 'Switzerland',
+        value: 'switzerland'
+    }];
   }
 
   onSubmit() {
