@@ -3,6 +3,18 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from '../products/shared/product.service';
 import { ProductsCacheService } from '../products/shared/products-cache.service';
+import { Product } from '../products/shared/product.model';
+
+const placeholderProduct: Product = {
+  id: 999,
+  date: new Date().toString(),
+  name: 'Placeholder',
+  description: 'Come up with something descriptive',
+  price: 999,
+  priceNormal: 1999,
+  imageURLs: ['img/shop/products/13.jpg'],
+  categories: ['Some', 'Example', 'Categories']
+};
 
 @Component({
   selector: 'app-add-edit',
@@ -12,14 +24,16 @@ import { ProductsCacheService } from '../products/shared/products-cache.service'
 export class AddEditComponent implements OnInit {
   productForm: FormGroup;
 
-  product: any;
+  product: Product;
   id: any;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private productsCacheService: ProductsCacheService
-  ) {}
+  ) {
+    this.product = placeholderProduct;
+  }
   ngOnInit(): void {
     this.setProduct();
     this.initForm();
