@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from '../products/shared/product.service';
 import { ProductsCacheService } from '../products/shared/products-cache.service';
+
 
 @Component({
   selector: 'app-add-edit',
@@ -9,6 +11,8 @@ import { ProductsCacheService } from '../products/shared/products-cache.service'
   styleUrls: ['./add-edit.component.scss']
 })
 export class AddEditComponent implements OnInit {
+  productForm: FormGroup;
+
   product: any;
   id: any;
 
