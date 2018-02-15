@@ -60,7 +60,7 @@ export class AddEditComponent implements OnInit {
         Validators.required
       ),
       imageURLs: new FormControl(
-        this.product.imageURLs[0] || 'img/shop/products/05.jpg'
+        this.product.imageURLs || ['img/shop/products/05.jpg']
       ),
       price: new FormGroup({
         price: new FormControl(this.product.price, [
@@ -98,7 +98,7 @@ export class AddEditComponent implements OnInit {
       description: val.description,
       price: price,
       priceNormal: priceNormal,
-      imageURLs: val.imageURLs[0] || ['img/shop/products/13.jpg'],
+      imageURLs: val.imageURLs || ['img/shop/products/13.jpg'],
       categories: val.categories || ['Some', 'Example', 'Categories'],
       reduction: reduction
     };
