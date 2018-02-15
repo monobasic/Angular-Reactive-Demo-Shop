@@ -59,15 +59,17 @@ export class AddEditComponent implements OnInit {
         Validators.required
       ),
       'file-input': new FormControl(null),
-      'product-price': new FormControl(
-        this.product.price,
-        [Validators.required, Validators.min(0)]
-      ),
-      'product-price-normal': new FormControl(
-        this.product.priceNormal,
-        [Validators.required, Validators.min(0)]
-      ),
-      'product-reduction': new FormControl(null)
+      'product-price': new FormGroup({
+        'price': new FormControl(
+          this.product.price,
+          [Validators.required, Validators.min(0)]
+        ),
+        'price-normal': new FormControl(
+          this.product.priceNormal,
+          [Validators.required, Validators.min(0)]
+        ),
+        'reduction': new FormControl(null)
+      })
     });
   }
   setProduct() {
