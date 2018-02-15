@@ -15,10 +15,11 @@ const placeholderProduct: Product = {
   date: new Date().toString(),
   name: 'Placeholder Product Name',
   description: 'Come up with something descriptive',
-  price: 999,
-  priceNormal: 1999,
+  price: 1000,
+  priceNormal: 2000,
   imageURLs: ['img/shop/products/13.jpg'],
-  categories: ['Some', 'Example', 'Categories']
+  categories: ['Some', 'Example', 'Categories'],
+  reduction: 50
 };
 
 @Component({
@@ -45,31 +46,55 @@ export class AddEditComponent implements OnInit {
   }
   initForm() {
     this.productForm = new FormGroup({
-      'product-name': new FormControl(this.product.name, Validators.required),
-      'product-id': new FormControl(this.product.id, [
+      name: new FormControl(this.product.name, Validators.required),
+      id: new FormControl(this.product.id, [
         Validators.required,
         Validators.min(0)
       ]),
-      'product-categories': new FormControl(
-        this.product.categories,
-        Validators.required
-      ),
-      'product-description': new FormControl(
+      categories: new FormControl(this.product.categories, Validators.required),
+      description: new FormControl(
         this.product.description,
         Validators.required
       ),
-      'file-input': new FormControl(null),
-      'product-price': new FormGroup({
-        'price': new FormControl(
-          this.product.price,
-          [Validators.required, Validators.min(0)]
-        ),
-        'price-normal': new FormControl(
-          this.product.priceNormal,
-          [Validators.required, Validators.min(0)]
-        ),
-        'reduction': new FormControl(null)
+      imageURLs: new FormControl(null),
+      price: new FormGroup({
+        price: new FormControl(this.product.price, [
+          Validators.required,
+          Validators.min(0)
+        ]),
+        'price-normal': new FormControl(this.product.priceNormal, [
+          Validators.required,
+          Validators.min(0)
+        ]),
+        reduction: new FormControl(this.product.reduction)
       })
+    });
+
+    this.onChanges();
+  }
+  onChanges() {
+    this.productForm.valueChanges.subscribe((val) => {
+      console.log(val);
+      console.log(this.product);
+
+      const calcReduction =
+        Math.round((val.price['price-normal'] - val.price.price) /
+        val.price['price-normal'] *
+        100);
+
+      const reduction = calcReduction > 0 ? calcReduction : undefined;
+
+      this.product = {
+        id: val.id,
+        date: new Date().toString(),
+        name: val.name,
+        description: val.description,
+        price: val.price.price,
+        priceNormal: val.price['price-normal'],
+        imageURLs: ['img/shop/products/13.jpg'],
+        categories: ['Some', 'Example', 'Categories'],
+        reduction: reduction
+      };
     });
   }
   setProduct() {

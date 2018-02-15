@@ -9,66 +9,66 @@
 
       <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="form-group row">
-          <label class="col-2 col-form-label" for="product-name">Product Name</label>
+          <label class="col-2 col-form-label" for="name">Product Name</label>
           <div class="col-10">
-            <input class="form-control form-control-square form-control-sm" formControlName="product-name" type="text" id="product-name"
+            <input class="form-control form-control-square form-control-sm" formControlName="name" type="text" id="name"
               value="">
-            <div *ngIf="!productForm.get('product-name').valid && productForm.get('product-name').touched" class="form-control-feedback">
+            <div *ngIf="!productForm.get('name').valid && productForm.get('name').touched" class="form-control-feedback">
               Shucks, enter a name for your product.
             </div>
           </div>
         </div>
 
         <div class="form-group row">
-          <label class="col-2 col-form-label" for="product-id">Custom Id</label>
+          <label class="col-2 col-form-label" for="id">Custom Id</label>
           <div class="col-10">
-            <input class="form-control form-control-square form-control-sm" formControlName="product-id" type="number" id="product-id"
+            <input class="form-control form-control-square form-control-sm" formControlName="id" type="number" id="id"
               value="0">
-            <div *ngIf="!productForm.get('product-id').valid && productForm.get('product-id').touched" class="form-control-feedback">
+            <div *ngIf="!productForm.get('id').valid && productForm.get('id').touched" class="form-control-feedback">
               Shucks, enter a number as id for your product.
             </div>
           </div>
         </div>
 
         <div class="form-group row">
-          <label class="col-2 col-form-label" for="product-categories">Categories (commma seperated)</label>
+          <label class="col-2 col-form-label" for="categories">Categories (commma seperated)</label>
           <div class="col-10">
-            <input class="form-control form-control-square form-control-sm" formControlName="product-categories" type="text" id="product-categories"
+            <input class="form-control form-control-square form-control-sm" formControlName="categories" type="text" id="categories"
               value="">
-            <div *ngIf="!productForm.get('product-categories').valid && productForm.get('product-categories').touched" class="form-control-feedback">
+            <div *ngIf="!productForm.get('categories').valid && productForm.get('categories').touched" class="form-control-feedback">
               Shucks, enter at least one category for your product.
             </div>
           </div>
         </div>
 
         <div class="form-group row">
-          <label class="col-2 col-form-label" for="product-description">Product description</label>
+          <label class="col-2 col-form-label" for="description">Product description</label>
           <div class="col-10">
-            <textarea class="form-control form-control-square form-control-sm" formControlName="product-description" id="product-description"
+            <textarea class="form-control form-control-square form-control-sm" formControlName="description" id="description"
               rows="5">
             </textarea>
-            <div *ngIf="!productForm.get('product-description').valid && productForm.get('product-description').touched" class="form-control-feedback">
+            <div *ngIf="!productForm.get('description').valid && productForm.get('description').touched" class="form-control-feedback">
               Shucks, enter a description for your product.
             </div>
           </div>
         </div>
 
         <div class="form-group row">
-          <label class="col-2 col-form-label" for="file-input">File</label>
+          <label class="col-2 col-form-label" for="imageURLs">File</label>
           <div class="col-10">
             <div class="custom-file">
               <input class="custom-file-input" type="file" id="product-photos">
-              <label class="custom-file-label" for="file-input">Choose file...</label>
+              <label class="custom-file-label" for="imageURLs">Choose file...</label>
             </div>
           </div>
         </div>
 
-        <div formGroupName="product-price">
+        <div formGroupName="price">
           <div class="form-group row">
             <label class="col-2 col-form-label" for="price">Actual Price</label>
             <div class="col-10">
-              <input class="form-control form-control-square form-control-sm" formControlName="price" type="number" id="sprice" value="">
-              <div *ngIf="!productForm.get('product-price.price').valid && productForm.get('product-price.price').touched" class="form-control-feedback">
+              <input class="form-control form-control-square form-control-sm" formControlName="price" type="number" id="price" value="">
+              <div *ngIf="!productForm.get('price.price').valid && productForm.get('price.price').touched" class="form-control-feedback">
                 Shucks, enter a price for your product.
               </div>
             </div>
@@ -79,23 +79,13 @@
             <div class="col-10">
               <input class="form-control form-control-square form-control-sm" formControlName="price-normal" type="number" id="price-normal"
                 value="0">
-              <div *ngIf="!productForm.get('product-price.price-normal').valid && productForm.get('product-price.price-normal').touched"
+              <div *ngIf="!productForm.get('price.price-normal').valid && productForm.get('price.price-normal').touched"
                 class="form-control-feedback">
                 Shucks, enter a base price for your product.
               </div>
             </div>
           </div>
 
-          <div class="form-group row">
-            <label class="col-2 col-form-label" for="reduction">Reduction</label>
-            <div class="col-10">
-              <input class="form-control form-control-square form-control-sm" formControlName="reduction" type="number" id="reduction"
-                value="">
-              <div *ngIf="!productForm.get('product-price.reduction').valid && productForm.get('product-price.reduction').touched" class="form-control-feedback">
-                Shucks, enter a name for your product.
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="form-group row">
