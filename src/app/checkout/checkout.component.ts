@@ -10,7 +10,7 @@ import { OrderService } from '../order.service';
 export class CheckoutComponent implements OnInit {
   activeStep: number;
   steps: string[];
-  order: Order;
+  orderInProgress: Order;
 
   constructor(private orderService: OrderService) { }
 
@@ -30,7 +30,7 @@ export class CheckoutComponent implements OnInit {
 
   onCompleteOrder(event: Event) {
     console.log('complete order!');
-    this.orderService.addOrder(this.order);
+    this.orderService.addOrder(this.orderInProgress);
   }
 
 }
