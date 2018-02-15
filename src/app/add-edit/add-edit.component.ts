@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from '../products/shared/product.service';
 import { ProductsCacheService } from '../products/shared/products-cache.service';
@@ -39,7 +39,16 @@ export class AddEditComponent implements OnInit {
     this.initForm();
   }
   initForm() {
-    this.productForm = new FormGroup({});
+    this.productForm = new FormGroup({
+      'product-name': new FormControl(this.product.name),
+      'product-id': new FormControl(this.product.id),
+      'product-categories': new FormControl(null),
+      'product-description': new FormControl(null),
+      'file-input': new FormControl(null),
+      'product-price': new FormControl(null),
+      'product-original-price': new FormControl(null),
+      '"product-reduction': new FormControl(null)
+    });
   }
   setProduct() {
     this.route.params.subscribe((params: Params) => {
