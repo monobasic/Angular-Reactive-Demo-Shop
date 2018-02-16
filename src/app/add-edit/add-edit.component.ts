@@ -12,18 +12,7 @@ import { ProductService } from '../products/shared/product.service';
 import { ProductsCacheService } from '../products/shared/products-cache.service';
 
 import { Product } from '../products/shared/product.model';
-
-const placeholderProduct: Product = {
-  id: 999,
-  date: new Date().toString(),
-  name: 'Placeholder Product Name',
-  description: 'Come up with something descriptive',
-  price: 1000,
-  priceNormal: 2000,
-  imageURLs: ['img/shop/products/13.jpg'],
-  categories: ['Some', 'Example', 'Categories'],
-  reduction: 50
-};
+import { placeholderProduct } from './placeholderProduct';
 
 @Component({
   selector: 'app-add-edit',
@@ -33,12 +22,12 @@ const placeholderProduct: Product = {
 export class AddEditComponent implements OnInit {
   productForm: FormGroup;
   product: Product;
-  id: any;
+  id;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private productsCacheService: ProductsCacheService,
+    private productsCacheService: ProductsCacheService
   ) {
     this.product = placeholderProduct;
   }
@@ -85,32 +74,35 @@ export class AddEditComponent implements OnInit {
     const calcReduction = Math.round((priceNormal - price) / priceNormal * 100);
     const reduction = calcReduction > 0 ? calcReduction : undefined;
 
-    this.product = { ...val, reduction, date: new Date().toString() };
+    this.product = {
+      ...val,
+      reduction,
+      date: new Date().toString()
+    };
+    console.log(this.product);
   }
   setProduct() {
     this.route.params.subscribe((params: Params) => {
-      this.id = +this.route.snapshot.paramMap.get('id');
-
-      this.getProduct();
+      const id = +this.route.snapshot.paramMap.get('id');
+      if (id) {
+        this.getProduct(id);
+      } else {
+        this.product = placeholderProduct;
+        this.initForm();
+      }
     });
   }
-  getProduct(): void {
-    if (this.id) {
-      this.productsCacheService
-        .get(this.id, this.productService.getProduct(this.id))
-        .subscribe((product) => {
-          this.product = product;
-          this.syncProduct(this.product);
-          this.initForm();
-        });
-    } else {
-      this.product = placeholderProduct;
-      this.initForm();
-    }
+  getProduct(id): void {
+    this.productsCacheService
+      .get(id, this.productService.getProduct(id))
+      .subscribe((product) => {
+        this.syncProduct(this.product);
+        this.initForm();
+      });
   }
   onSubmit() {
     this.syncProduct(this.productForm.value);
-    console.log(this.product);
+
     this.productService
       .addProduct(this.product)
       .subscribe((val) => console.log(val));
