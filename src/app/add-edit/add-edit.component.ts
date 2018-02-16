@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from '../products/shared/product.service';
 import { ProductsCacheService } from '../products/shared/products-cache.service';
+
 import { Product } from '../products/shared/product.model';
 
 const placeholderProduct: Product = {
@@ -35,7 +36,7 @@ export class AddEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private productsCacheService: ProductsCacheService
+    private productsCacheService: ProductsCacheService,
   ) {
     this.product = placeholderProduct;
   }
@@ -66,7 +67,7 @@ export class AddEditComponent implements OnInit {
       priceNormal: new FormControl(this.product.priceNormal, [
         Validators.required,
         Validators.min(0)
-      ]),
+      ])
     });
     this.onChanges();
   }
@@ -82,7 +83,7 @@ export class AddEditComponent implements OnInit {
     const calcReduction = Math.round((priceNormal - price) / priceNormal * 100);
     const reduction = calcReduction > 0 ? calcReduction : undefined;
 
-    this.product = {...val, reduction, date: new Date().toString()};
+    this.product = { ...val, reduction, date: new Date().toString() };
   }
   setProduct() {
     this.route.params.subscribe((params: Params) => {
@@ -107,7 +108,9 @@ export class AddEditComponent implements OnInit {
   }
   onSubmit() {
     this.syncProduct(this.productForm.value);
-    console.log(this.productForm);
     console.log(this.product);
+    this.productService
+      .addProduct(this.product)
+      .subscribe((val) => console.log(val));
   }
 }

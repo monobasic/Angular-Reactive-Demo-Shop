@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -29,7 +29,7 @@ import { PriceComponent } from './price/price.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
 
 // Services
-import { InMemoryDataService } from './model/in-memory-data.service';
+// import { InMemoryDataService } from './model/in-memory-data.service';
 import { ProductService } from './products/shared/product.service';
 import { ProductsCacheService } from './products/shared/products-cache.service';
 import { CartService } from './cart/cart.service';
@@ -70,7 +70,7 @@ import { FileInputValueAccessorDirective } from './add-edit/file-input-value-acc
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     ToastrModule.forRoot()
   ],
   providers: [
@@ -83,4 +83,4 @@ import { FileInputValueAccessorDirective } from './add-edit/file-input-value-acc
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
