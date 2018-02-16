@@ -38,7 +38,6 @@ import { PagerService } from './pager/pager.service';
 
 // Pipes
 import { SortPipe } from './sort.pipe';
-import { FileInputValueAccessorDirective } from './add-edit/file-input-value-accessor.directive';
 
 @NgModule({
   declarations: [
@@ -60,8 +59,7 @@ import { FileInputValueAccessorDirective } from './add-edit/file-input-value-acc
     ProductsListItemComponent,
     ProductDetailComponent,
     SortPipe,
-    AddEditComponent,
-    FileInputValueAccessorDirective
+    AddEditComponent
   ],
   imports: [
     BrowserModule,
