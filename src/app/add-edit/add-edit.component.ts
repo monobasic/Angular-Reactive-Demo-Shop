@@ -56,10 +56,10 @@ export class AddEditComponent implements OnInit {
         this.product.description,
         Validators.required
       ),
-      imageURLs: new FormControl(
-        this.product.imageURLs || ['img/shop/products/05.jpg']
-      ),
-      photos: new FormControl(),
+      // imageURLs: new FormControl(
+      //   this.product.imageURLs || ['img/shop/products/05.jpg']
+      // ),
+      // photos: new FormControl(),
       price: new FormControl(this.product.price, [
         Validators.required,
         Validators.min(0)

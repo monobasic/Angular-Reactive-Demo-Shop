@@ -63,15 +63,15 @@ export class ProductService {
   }
   /** PUT: update the Product on the server */
   updateProduct(product: Product): Observable<any> {
-    return this.http.put(this.productsUrl, Product, httpOptions).pipe(
+    return this.http.put(this.productsUrl, product, httpOptions).pipe(
       tap(_ => this.log(`updated Product id=${product.id}`)),
       catchError(this.handleError<any>('updateProduct'))
     );
   }
-
   /** POST: add a new Product to the server */
   addProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.productsUrl, Product, httpOptions).pipe(
+    console.log(product);
+    return this.http.post<Product>(this.productsUrl, product, httpOptions).pipe(
       tap((newProduct: Product) => this.log(`added Product w/ id=${newProduct.id}`)),
       catchError(this.handleError<Product>('addProduct'))
     );
