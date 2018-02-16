@@ -1,6 +1,3 @@
-// TODO:
-// FIX UNNECESSARY FORM-GROUP-NESTINGS
-
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -61,6 +58,7 @@ export class AddEditComponent implements OnInit {
       imageURLs: new FormControl(
         this.product.imageURLs || ['img/shop/products/05.jpg']
       ),
+      photos: new FormControl(),
       price: new FormControl(this.product.price, [
         Validators.required,
         Validators.min(0)
@@ -69,7 +67,6 @@ export class AddEditComponent implements OnInit {
         Validators.required,
         Validators.min(0)
       ]),
-      reduction: new FormControl(this.product.reduction)
     });
     this.onChanges();
   }
