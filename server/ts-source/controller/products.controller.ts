@@ -107,18 +107,22 @@ export const resizeImages = async (req, res, next) => {
   next();
 };
 
-export const addProduct = async (req, res, next) => {
-  const categories = req.body.categories.split(',').map((el) => el.trim());
-
+export const createProduct = (req, res, next) => {
+  console.log('CREATING PRODUCT');
+  req.body.categories = req.body.categories.split(',').map((el) => el.trim());
   const product = {
     ...req.body,
-    categories: categories,
+    categories: req.body.categories,
     imageURLs: req.body.photos
   };
-  console.log('PRODUCT BEFORE ADD: ', req.body);
+  req.body.product = product;
+  next();
+};
 
+export const addProduct = async (req, res, next) => {
+  console.log('PRODUCT BEFORE ADD: ', req.body.product);
   try {
-    const dbResponse = await save(product);
+    const dbResponse = await save(req.body.product);
     const answer = {
       success: true,
       message: `Added successfully item with id ${dbResponse.id}`,
@@ -138,16 +142,9 @@ export const addProduct = async (req, res, next) => {
 };
 
 export const updateProduct = async (req, res, next) => {
-  console.log('UPDATING PRODUCT');
-
-  const categories = req.body.categories.split(',').map((el) => el.trim());
-  const product = {
-    ...req.body,
-    categories: categories,
-    imageURLs: req.body.photos
-  };
+  console.log('UPDATING PRODUCT', req.body.product);
   try {
-    const dbResponse = await update(product);
+    const dbResponse = await update(req.body.product);
     const answer = {
       success: true,
       message: `Updated successfully item with id ${dbResponse.id}`,
@@ -175,6 +172,7 @@ export default {
   getProduct,
   uploadImages,
   resizeImages,
+  createProduct,
   addProduct,
   updateProduct,
   deleteProduct,

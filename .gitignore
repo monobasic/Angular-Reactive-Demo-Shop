@@ -48,3 +48,4 @@ Thumbs.db
 .env
 server/compiled/
 src/img/uploads/
+assets/uploads

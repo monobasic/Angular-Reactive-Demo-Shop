@@ -4,6 +4,7 @@ import ProductModel from '../model/product.model';
 import * as express from 'express';
 import { Router } from 'express';
 import { catchErrors } from '../errorHandlers';
+import { createProduct } from '../controller/products.controller';
 
 const router = Router();
 
@@ -14,6 +15,7 @@ router.post(
   productsController.uploadImages,
   productsController.log,
   catchErrors(productsController.resizeImages),
+  productsController.createProduct,
   catchErrors(productsController.addProduct)
 );
 
