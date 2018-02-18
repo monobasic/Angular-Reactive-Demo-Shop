@@ -17,6 +17,13 @@ router.post(
   catchErrors(productsController.addProduct)
 );
 
+router.put(
+  '/:id',
+  productsController.uploadImages,
+  productsController.log,
+  catchErrors(productsController.resizeImages),
+  catchErrors(productsController.updateProduct)
+);
 router.get('/:id', catchErrors(productsController.getProduct));
 router.delete('/:id', catchErrors(productsController.deleteProduct));
 

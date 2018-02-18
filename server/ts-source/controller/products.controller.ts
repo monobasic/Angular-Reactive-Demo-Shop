@@ -5,7 +5,13 @@ import * as path from 'path';
 import * as appRootDir from 'app-root-dir';
 console.log('root: ', appRootDir.get());
 
-import { find, findOne, save, remove } from '../services/product.service';
+import {
+  find,
+  findOne,
+  save,
+  remove,
+  update
+} from '../services/product.service';
 import { HttpHeaders } from '@angular/common/http';
 
 const multerOptions = {
@@ -102,9 +108,13 @@ export const resizeImages = async (req, res, next) => {
 };
 
 export const addProduct = async (req, res, next) => {
-  const categories = req.body.categories.split(',').map(el => el.trim());
+  const categories = req.body.categories.split(',').map((el) => el.trim());
 
-  const product = { ...req.body, categories: categories, imageURLs: req.body.photos };
+  const product = {
+    ...req.body,
+    categories: categories,
+    imageURLs: req.body.photos
+  };
   console.log('PRODUCT BEFORE ADD: ', req.body);
 
   try {
@@ -127,6 +137,35 @@ export const addProduct = async (req, res, next) => {
   }
 };
 
+export const updateProduct = async (req, res, next) => {
+  console.log('UPDATING PRODUCT');
+
+  const categories = req.body.categories.split(',').map((el) => el.trim());
+  const product = {
+    ...req.body,
+    categories: categories,
+    imageURLs: req.body.photos
+  };
+  try {
+    const dbResponse = await update(product);
+    const answer = {
+      success: true,
+      message: `Updated successfully item with id ${dbResponse.id}`,
+      product: dbResponse
+    };
+    res.json(answer);
+    res.end();
+  } catch (error) {
+    const answer = {
+      success: false,
+      message: `Failed to update product. This may be a temporary error. Try again. Error: ${error}`
+    };
+    res.status(500);
+    res.json(answer);
+    res.end();
+  }
+};
+
 export const deleteProduct = (req, res, next) => {
   res.send(req.params.id + ' to delete...');
 };
@@ -137,6 +176,7 @@ export default {
   uploadImages,
   resizeImages,
   addProduct,
+  updateProduct,
   deleteProduct,
   log
 };

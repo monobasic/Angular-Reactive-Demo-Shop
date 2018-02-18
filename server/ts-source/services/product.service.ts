@@ -17,7 +17,10 @@ export const save = (product) => {
 };
 
 export const update = (product) => {
-  return ProductModel.findOneAndUpdate({ id: product.id }).exec();
+  console.log('PRODUCT BEFORE UPDATE', product);
+  console.log(product);
+  console.log(product.id);
+  return ProductModel.findOneAndUpdate({ id: product.id }, {$set: { ...product }}, { new: true }).exec();
 };
 
 export const remove = (id, callback) => {
