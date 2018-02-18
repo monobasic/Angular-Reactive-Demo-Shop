@@ -12,13 +12,19 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+const multipartHeader = {
+  headers: new HttpHeaders({ 'Content-Type': '' })
+};
+multipartHeader.headers.delete('Content-Type');
+
 @Injectable()
 export class ProductService {
-  private productsUrl = 'api/products';  // URL to web api
+  private productsUrl = 'api/products'; // URL to web api
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService
+  ) {}
 
   /** Log a ProductService message with the MessageService */
   private log(message: string) {
@@ -33,7 +39,6 @@ export class ProductService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
@@ -47,44 +52,63 @@ export class ProductService {
 
   /** GET products from the server */
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl)
+    return this.http
+      .get<Product[]>(this.productsUrl)
       .pipe(
-        tap(products => this.log(`fetched products`)),
+        tap((products) => this.log(`fetched products`)),
         catchError(this.handleError('getProducts', []))
       );
   }
   /** GET product by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
-    return this.http.get<Product>(url).pipe(
-      tap(_ => this.log(`fetched Product id=${id}`)),
-      catchError(this.handleError<Product>(`getProduct id=${id}`))
-    );
+    return this.http
+      .get<Product>(url)
+      .pipe(
+        tap((_) => this.log(`fetched Product id=${id}`)),
+        catchError(this.handleError<Product>(`getProduct id=${id}`))
+      );
   }
   /** PUT: update the Product on the server */
   updateProduct(product: Product): Observable<any> {
-    return this.http.put(this.productsUrl, product, httpOptions).pipe(
-      tap(_ => this.log(`updated Product id=${product.id}`)),
-      catchError(this.handleError<any>('updateProduct'))
-    );
+    return this.http
+      .put(this.productsUrl, product, httpOptions)
+      .pipe(
+        tap((_) => this.log(`updated Product id=${product.id}`)),
+        catchError(this.handleError<any>('updateProduct'))
+      );
   }
   /** POST: add a new Product to the server */
-  addProduct(product: Product): Observable<Product> {
-    console.log(product);
-    return this.http.post<Product>(this.productsUrl, product, httpOptions).pipe(
-      tap((newProduct: Product) => this.log(`added Product w/ id=${newProduct.id}`)),
-      catchError(this.handleError<Product>('addProduct'))
-    );
+  // TODO: CHANGE SIGNATURE!
+  // addProduct(product: Product): Observable<Product> {
+  //   console.log(product);
+  //   return this.http.post<Product>(this.productsUrl, product, httpOptions).pipe(
+  //     tap((newProduct: Product) => this.log(`added Product w/ id=${newProduct.id}`)),
+  //     catchError(this.handleError<Product>('addProduct'))
+  //   );
+  // }
+  addProduct(data: FormData): Observable<any> {
+    console.log('will upload this photos: ', data.getAll('photos'));
+    return this.http
+      .post<any>(this.productsUrl, data)
+      .pipe(
+        tap((dbResponse: any) =>
+          this.log(`added Product w/ id=${dbResponse.product.id}`)
+        ),
+        catchError(this.handleError<Product>('addProduct'))
+      );
   }
   searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
       // if not search term, return empty Product array.
       return of([]);
     }
-    return this.http.get<Product[]>(`api/products/?name=${term}`).pipe(
-      tap(_ => this.log(`found Productes matching "${term}"`)),
-      catchError(this.handleError<Product[]>('searchProducts', []))
-    );
+    return this.http
+      .get<Product[]>(`api/products/?name=${term}`)
+      .pipe(
+        tap((_) => this.log(`found Productes matching "${term}"`)),
+        catchError(this.handleError<Product[]>('searchProducts', []))
+      );
   }
   /*
       deleteProduct(product: Product | number): Observable<Product> {

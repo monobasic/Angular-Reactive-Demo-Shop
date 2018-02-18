@@ -3,12 +3,15 @@ import * as jimp from 'jimp';
 import * as uuid from 'uuid';
 import * as path from 'path';
 import * as appRootDir from 'app-root-dir';
+console.log('root: ', appRootDir.get());
 
 import { find, findOne, save, remove } from '../services/product.service';
+import { HttpHeaders } from '@angular/common/http';
 
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
+    console.log('multer-ing....');
     const isPhoto = file.mimetype.startsWith('image/');
     if (isPhoto) {
       next(null, true);
@@ -56,32 +59,42 @@ export const getProduct = async (req, res, next) => {
   }
 };
 
+export const log = (req, res, next) => {
+  console.log('method', req.method);
+  console.log('headers', req.headers);
+  console.log('body', req.body);
+  console.log('files', req.files);
+  next();
+};
+
 export const uploadImages = multer(multerOptions).array('photos', 5);
 
 export const resizeImages = async (req, res, next) => {
+  console.log('RESIZEING');
+  console.log(req.files);
   // check if there is no new file to resize
   if (!req.files) {
     next(); // skip to the next middleware
     return;
   }
 
-  req.body.photos = [];
+  req.body.photos = [req.body.imageURLs] || [];
+  console.log('req.body.photos', req.body.photos);
 
   for (const file of req.files) {
     const extension = file.mimetype.split('/')[1];
     const fileName = `${uuid.v4()}.${extension}`;
-    const filePath = `${appRootDir.get()}/src/img/uploads/${fileName}`;
-    console.log('filePath', filePath);
+    const filePath = `${appRootDir.get()}/src/assets/uploads/${fileName}`;
+    console.log('filePath in resize:', filePath);
 
-    req.body.photos.push(`img/uploads/${fileName}`);
+    req.body.photos.push(`assets/uploads/${fileName}`);
 
     // // now we resize
     const photo = await jimp.read(file.buffer);
-    console.log('read');
 
     await photo.resize(450, jimp.AUTO);
 
-    await photo.write(filePath);
+    await photo.write(filePath, () => console.log('written'));
   }
   // once we have written all the photos to our filesystem, keep going!
   console.log('body', req.body.photos);
@@ -89,8 +102,11 @@ export const resizeImages = async (req, res, next) => {
 };
 
 export const addProduct = async (req, res, next) => {
-  console.log('BODY', req.body);
-  const product = { ...req.body, imageURLs: req.body.photos };
+  const categories = req.body.categories.split(',').map(el => el.trim());
+
+  const product = { ...req.body, categories: categories, imageURLs: req.body.photos };
+  console.log('PRODUCT BEFORE ADD: ', req.body);
+
   try {
     const dbResponse = await save(product);
     const answer = {
@@ -121,5 +137,6 @@ export default {
   uploadImages,
   resizeImages,
   addProduct,
-  deleteProduct
+  deleteProduct,
+  log
 };

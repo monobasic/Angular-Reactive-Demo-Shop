@@ -9,9 +9,15 @@ export const findOne = (id) => {
 };
 
 export const save = (product) => {
+  console.log('SAVE PRODUCT', product);
+
   const newProduct = new ProductModel(product);
 
   return newProduct.save();
+};
+
+export const update = (product) => {
+  return ProductModel.findOneAndUpdate({ id: product.id }).exec();
 };
 
 export const remove = (id, callback) => {

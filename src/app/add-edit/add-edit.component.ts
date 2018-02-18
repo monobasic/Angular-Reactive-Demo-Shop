@@ -1,13 +1,12 @@
-// TODO: ENABLE FILE-UPLOADING
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
 import {
   FormGroup,
   ReactiveFormsModule,
   FormControl,
   Validators
 } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 import { ProductService } from '../products/shared/product.service';
 import { ProductsCacheService } from '../products/shared/products-cache.service';
 
@@ -19,17 +18,21 @@ import { placeholderProduct } from './placeholderProduct';
   templateUrl: './add-edit.component.html',
   styleUrls: ['./add-edit.component.scss']
 })
-export class AddEditComponent implements OnInit {
+export class AddEditComponent implements OnInit, OnChanges {
+  @ViewChild('photos') photos;
   productForm: FormGroup;
-  product: Product;
+  product: Product = placeholderProduct;
+  mode: string;
   id;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private productService: ProductService,
     private productsCacheService: ProductsCacheService
-  ) {
-    this.product = placeholderProduct;
+  ) {}
+  ngOnChanges() {
+    // this.product = placeholderProduct;
   }
   ngOnInit(): void {
     this.setProduct();
@@ -38,7 +41,7 @@ export class AddEditComponent implements OnInit {
   initForm() {
     this.productForm = new FormGroup({
       name: new FormControl(this.product.name, Validators.required),
-      id: new FormControl(this.product.id, [
+      id: new FormControl({ value: this.product.id, disabled: true }, [
         Validators.required,
         Validators.min(0)
       ]),
@@ -47,10 +50,6 @@ export class AddEditComponent implements OnInit {
         this.product.description,
         Validators.required
       ),
-      // imageURLs: new FormControl(
-      //   this.product.imageURLs || ['img/shop/products/05.jpg']
-      // ),
-      // photos: new FormControl(),
       price: new FormControl(this.product.price, [
         Validators.required,
         Validators.min(0)
@@ -60,34 +59,58 @@ export class AddEditComponent implements OnInit {
         Validators.min(0)
       ])
     });
-    this.onChanges();
+    this.onFormChanges();
   }
-  onChanges() {
+  onFormChanges() {
     this.productForm.valueChanges.subscribe((val) => {
-      this.syncProduct(val);
+      const product = { ...this.product, ...val };
+      this.syncProduct(product);
     });
   }
-  syncProduct(val: Product) {
+  syncProduct(val) {
+    // product changed
+    // calculate reduction
+    // add new date
+    // tslint:disable-next-line:no-console
+    console.log('val', val);
+    const randomId = Math.floor(Math.random() * new Date().getTime());
+    const id = val.id === 1 ? randomId : val.id;
+
     const priceNormal = val.priceNormal;
     const price = val.price;
 
     const calcReduction = Math.round((priceNormal - price) / priceNormal * 100);
     const reduction = calcReduction > 0 ? calcReduction : undefined;
 
+    const categories =
+      Array.isArray(val.categories)
+        ? val.categories.join(',') :
+          val.categories;
+    categories.split(',');
+
+    const date = new Date().toString();
+
     this.product = {
       ...val,
       reduction,
-      date: new Date().toString()
+      id,
+      categories,
+      date,
+      imageURLs: this.product.imageURLs || [],
     };
-    console.log(this.product);
   }
   setProduct() {
     this.route.params.subscribe((params: Params) => {
-      const id = +this.route.snapshot.paramMap.get('id');
-      if (id) {
-        this.getProduct(id);
+      this.id = +this.route.snapshot.paramMap.get('id');
+
+      // if we're in edit mode, we have an id
+      if (this.id) {
+        this.mode = 'edit';
+        this.getProduct(this.id);
       } else {
-        this.product = placeholderProduct;
+        // else we are in add mode and use a placeholder
+        this.mode = 'add';
+        this.syncProduct(placeholderProduct);
         this.initForm();
       }
     });
@@ -96,15 +119,29 @@ export class AddEditComponent implements OnInit {
     this.productsCacheService
       .get(id, this.productService.getProduct(id))
       .subscribe((product) => {
-        this.syncProduct(this.product);
+        this.syncProduct(product);
         this.initForm();
       });
   }
   onSubmit() {
-    this.syncProduct(this.productForm.value);
+    this.syncProduct({ ...this.product, ...this.productForm.value });
+    const formData = new FormData();
 
-    this.productService
-      .addProduct(this.product)
-      .subscribe((val) => console.log(val));
+    const product = this.product;
+    for (const [key, value] of Object.entries(this.product)) {
+      formData.append(key, value);
+    }
+
+    const files: FileList = this.photos.nativeElement.files;
+    if (files.length > 0) {
+      for (const file of Object.values(files)) {
+        formData.append('photos', file, file.name);
+      }
+    }
+
+    this.productService.addProduct(formData).subscribe((response) => {
+      console.log('val: ', response);
+      this.router.navigateByUrl(`/products/${response.product.id}`);
+    });
   }
 }

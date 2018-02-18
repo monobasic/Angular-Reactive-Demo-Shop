@@ -8,8 +8,11 @@ import { catchErrors } from '../errorHandlers';
 const router = Router();
 
 router.get('/', productsController.getProducts);
-router.post('/',
+router.post(
+  '/',
+  // productsController.log,
   productsController.uploadImages,
+  productsController.log,
   catchErrors(productsController.resizeImages),
   catchErrors(productsController.addProduct)
 );

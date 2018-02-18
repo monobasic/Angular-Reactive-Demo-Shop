@@ -3,7 +3,7 @@
     <div class="col-lg-9 col-md-8 order-md-2">
       <h6 class="text-muted text-normal text-uppercase">Product Preview</h6>
       <hr class="margin-bottom-1x">
-      <!--<app-products-list-item [product]="product" [displayMode]="'list'"></app-products-list-item>-->
+      <app-products-list-item [product]="product" [displayMode]="'list'"></app-products-list-item>
       <h6 class="text-muted text-normal text-uppercase">Add or Edit Product</h6>
       <hr class="margin-bottom-1x">
 
@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-group row">
-          <label class="col-2 col-form-label" for="id">Custom Id</label>
+          <label class="col-2 col-form-label" for="id">Id</label>
           <div class="col-10">
             <input class="form-control form-control-square form-control-sm" formControlName="id" type="number" id="id"
               value="0">
@@ -57,7 +57,7 @@
           <label class="col-2 col-form-label" for="photos">File</label>
           <div class="col-10">
             <div class="custom-file">
-              <input class="custom-file-input" type="file" id="photos">
+              <input class="custom-file-input" type="file" id="photos"  multiple #photos>
               <label class="custom-file-label" for="photos">Choose file...</label>
             </div>
           </div>
