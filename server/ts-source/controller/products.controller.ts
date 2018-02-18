@@ -105,6 +105,7 @@ export const resizeImages = async (req, res, next) => {
 export const createProduct = (req, res, next) => {
   console.log('CREATING PRODUCT');
   req.body.categories = req.body.categories.split(',').map((el) => el.trim());
+
   const product = {
     ...req.body,
     categories: req.body.categories,
@@ -119,7 +120,9 @@ export const addProduct = async (req, res, next) => {
     const dbResponse = await save(req.body.product);
     const answer = {
       success: true,
-      message: `Added successfully item with id ${dbResponse.id}`,
+      message: `Added successfully item with id ${dbResponse.id}, ${
+        dbResponse._id
+      }`,
       product: dbResponse
     };
     res.json(answer);

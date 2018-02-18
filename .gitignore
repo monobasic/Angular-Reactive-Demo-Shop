@@ -36,6 +36,10 @@
 npm-debug.log
 testem.log
 /typings
+.env
+server/compiled/
+src/img/uploads/
+src/assets/uploads
 
 # e2e
 /e2e/*.js
@@ -44,8 +48,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
-.env
-server/compiled/
-src/img/uploads/
-assets/uploads
