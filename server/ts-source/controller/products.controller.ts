@@ -3,7 +3,6 @@ import * as jimp from 'jimp';
 import * as uuid from 'uuid';
 import * as path from 'path';
 import * as appRootDir from 'app-root-dir';
-console.log('root: ', appRootDir.get());
 
 import {
   find,
@@ -77,7 +76,6 @@ export const uploadImages = multer(multerOptions).array('photos', 5);
 
 export const resizeImages = async (req, res, next) => {
   console.log('RESIZEING');
-  console.log(req.files);
   // check if there is no new file to resize
   if (!req.files) {
     next(); // skip to the next middleware
@@ -85,13 +83,11 @@ export const resizeImages = async (req, res, next) => {
   }
 
   req.body.photos = [req.body.imageURLs] || [];
-  console.log('req.body.photos', req.body.photos);
 
   for (const file of req.files) {
     const extension = file.mimetype.split('/')[1];
     const fileName = `${uuid.v4()}.${extension}`;
     const filePath = `${appRootDir.get()}/src/assets/uploads/${fileName}`;
-    console.log('filePath in resize:', filePath);
 
     req.body.photos.push(`assets/uploads/${fileName}`);
 
@@ -103,7 +99,6 @@ export const resizeImages = async (req, res, next) => {
     await photo.write(filePath, () => console.log('written'));
   }
   // once we have written all the photos to our filesystem, keep going!
-  console.log('body', req.body.photos);
   next();
 };
 
@@ -120,7 +115,6 @@ export const createProduct = (req, res, next) => {
 };
 
 export const addProduct = async (req, res, next) => {
-  console.log('PRODUCT BEFORE ADD: ', req.body.product);
   try {
     const dbResponse = await save(req.body.product);
     const answer = {
@@ -142,7 +136,6 @@ export const addProduct = async (req, res, next) => {
 };
 
 export const updateProduct = async (req, res, next) => {
-  console.log('UPDATING PRODUCT', req.body.product);
   try {
     const dbResponse = await update(req.body.product);
     const answer = {

@@ -19,20 +19,21 @@ const router = Router();
 
 router.get('/', getProducts);
 router.post('/',
-  catchErrors(uploadImages),
-  catchErrors(log),
-  catchErrors(resizeImages),
-  catchErrors(createProduct),
-  catchErrors(addProduct)
+  uploadImages,
+  // log,
+  resizeImages,
+  createProduct,
+  addProduct
 );
 
-router.get('/:id', catchErrors(getProduct));
-router.delete('/:id', catchErrors(deleteProduct));
+router.get('/:id', getProduct);
+router.delete('/:id', deleteProduct);
 router.put('/:id',
-  catchErrors(uploadImages),
-  catchErrors(log),
-  catchErrors(resizeImages),
-  catchErrors(updateProduct)
+  uploadImages,
+  log,
+  resizeImages,
+  createProduct,
+  updateProduct
 );
 
 

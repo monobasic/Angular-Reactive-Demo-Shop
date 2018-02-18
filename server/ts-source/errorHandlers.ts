@@ -1,4 +1,5 @@
 export const catchErrors = (fn) => {
+  console.log(fn.name);
   return function(req, res, next) {
     return fn(req, res, next).catch(next);
   };
