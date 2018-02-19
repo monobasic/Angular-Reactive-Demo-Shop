@@ -8,6 +8,7 @@ import { CartComponent } from './cart/cart.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminGuard } from './admin.guard';
+import { RegisterLoginComponent } from './register-login/register-login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'admin/add', component: AddEditComponent, canActivate: [AdminGuard] },
   { path: 'admin/edit/:id', component: AddEditComponent, canActivate: [AdminGuard] },
+  { path: 'register-login', component: RegisterLoginComponent }
   { path: '**', component: PageNotFoundComponent }
 ];
 
