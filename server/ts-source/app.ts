@@ -18,6 +18,7 @@ appRootDir.set(root);
 import api from './routes/api.routes';
 import users from './routes/user.routes';
 import products from './routes/products.routes';
+import auth from './routes/auth.routes';
 
 import errorHandlers from './errorHandlers';
 
@@ -42,6 +43,7 @@ app.use(queryParams());
 
 // api routes.
 app.use('/api', api);
+app.use('/api/auth', auth);
 app.use('/api/users', users);
 app.use('/api/products', products);
 
