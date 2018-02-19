@@ -7,6 +7,7 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
 import { CartComponent } from './cart/cart.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AdminGuard } from './admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,8 +15,8 @@ const routes: Routes = [
   { path: 'products', component: ProductsListComponent },
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'admin/add', component: AddEditComponent },
-  { path: 'admin/edit/:id', component: AddEditComponent },
+  { path: 'admin/add', component: AddEditComponent, canActivate: [AdminGuard] },
+  { path: 'admin/edit/:id', component: AddEditComponent, canActivate: [AdminGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
 

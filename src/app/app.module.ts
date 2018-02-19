@@ -38,6 +38,7 @@ import { PagerService } from './pager/pager.service';
 
 // Pipes
 import { SortPipe } from './sort.pipe';
+import { AdminGuard } from './admin.guard';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { SortPipe } from './sort.pipe';
     MessageService,
     CartService,
     PagerService,
-    SortPipe
+    SortPipe,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })
