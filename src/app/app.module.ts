@@ -40,6 +40,7 @@ import { PagerService } from './pager/pager.service';
 import { SortPipe } from './sort.pipe';
 import { AdminGuard } from './admin.guard';
 import { AuthService } from './auth.service';
+import { RegisterLoginComponent } from './register-login/register-login.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { AuthService } from './auth.service';
     ProductsListItemComponent,
     ProductDetailComponent,
     SortPipe,
-    AddEditComponent
+    AddEditComponent,
+    RegisterLoginComponent
   ],
   imports: [
     BrowserModule,
