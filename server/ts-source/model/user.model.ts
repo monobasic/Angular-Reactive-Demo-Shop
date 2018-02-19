@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 import * as crypto from 'crypto';
 import * as jwt from 'jsonwebtoken';
 
-export const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
@@ -57,3 +57,5 @@ userSchema.methods.generateJwt = function() {
     'MY_SECRET'
   ); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };
+
+export const UserModel = mongoose.model('User', userSchema);

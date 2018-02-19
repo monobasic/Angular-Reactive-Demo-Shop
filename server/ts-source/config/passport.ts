@@ -1,16 +1,14 @@
 import * as passport from 'passport';
 import { Strategy } from 'passport-local';
 import * as mongoose from 'mongoose';
-import { userSchema } from '../model/user.model';
-
-const User = mongoose.model('User', userSchema);
+import { UserModel } from '../model/user.model';
 
 passport.use(
   new Strategy(
     { usernameField: 'email' },
     async (username, password, done) => {
       try {
-        const user = await User.findOne({ email: username }).exec();
+        const user = await UserModel.findOne({ email: username }).exec();
         if (!user) {
           return done(null, false, {
             message: 'User not found'
