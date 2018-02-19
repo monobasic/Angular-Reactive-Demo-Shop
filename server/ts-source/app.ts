@@ -8,6 +8,7 @@ import * as helmet from 'helmet';
 import * as cors from 'cors';
 import * as queryParams from 'express-query-params';
 import * as appRootDir from 'app-root-dir';
+import * as passport from 'passport';
 
 const root = appRootDir.get();
 console.log('root: ', root);
@@ -40,6 +41,8 @@ app.use(bodyParser.json());
 
 // parse query params
 app.use(queryParams());
+
+app.use(passport.initialize());
 
 // api routes.
 app.use('/api', api);

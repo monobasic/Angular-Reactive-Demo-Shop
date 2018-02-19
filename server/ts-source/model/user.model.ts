@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 import * as crypto from 'crypto';
 import * as jwt from 'jsonwebtoken';
 
-const userSchema = new mongoose.Schema({
+export const userSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
