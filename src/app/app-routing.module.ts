@@ -21,8 +21,8 @@ const routes: Routes = [
   { path: 'admin/add', component: AddEditComponent, canActivate: [AdminGuard] },
   { path: 'admin/edit/:id', component: AddEditComponent, canActivate: [AdminGuard] },
   { path: 'register-login', component: RegisterLoginComponent },
-  { path: 'orders', component: OrdersComponent},
-  { path: 'profile', component: ProfileComponent},
+  { path: 'users/:id/orders', component: OrdersComponent},
+  { path: 'users/:id/profile', component: ProfileComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 
