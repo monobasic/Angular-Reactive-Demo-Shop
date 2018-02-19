@@ -41,6 +41,8 @@ import { SortPipe } from './sort.pipe';
 import { AdminGuard } from './admin.guard';
 import { AuthService } from './auth.service';
 import { RegisterLoginComponent } from './register-login/register-login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { RegisterLoginComponent } from './register-login/register-login.componen
     ProductDetailComponent,
     SortPipe,
     AddEditComponent,
-    RegisterLoginComponent
+    RegisterLoginComponent,
+    ProfileComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

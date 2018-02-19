@@ -9,6 +9,8 @@ import { AddEditComponent } from './add-edit/add-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminGuard } from './admin.guard';
 import { RegisterLoginComponent } from './register-login/register-login.component';
+import { OrdersComponent } from './orders/orders.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,7 +20,9 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'admin/add', component: AddEditComponent, canActivate: [AdminGuard] },
   { path: 'admin/edit/:id', component: AddEditComponent, canActivate: [AdminGuard] },
-  { path: 'register-login', component: RegisterLoginComponent }
+  { path: 'register-login', component: RegisterLoginComponent },
+  { path: 'orders', component: OrdersComponent},
+  { path: 'profile', component: ProfileComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 
