@@ -53,6 +53,7 @@
       <div class="form-group">
         <label for="email">E-mail Address</label>
         <input class="form-control" type="email" id="email" name="email" formControlName="email">
+        <div class="form-control-feedback" *ngIf="formAddress.get('email').invalid && formAddress.get('email').touched">Please enter your E-mail!</div>
       </div>
     </div>
     <div class="col-sm-6">
