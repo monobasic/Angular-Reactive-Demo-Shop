@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,7 @@ import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AddressComponent implements OnInit {
   formAddress: FormGroup;
-  countries: object[];
+  countries: { name: string, value: string; }[];
 
   constructor() { }
 
@@ -32,10 +32,4 @@ export class AddressComponent implements OnInit {
         value: 'switzerland'
     }];
   }
-
-  onSubmit() {
-    console.log('form submit!');
-    console.log(this.formAddress.value);
-  }
-
 }
