@@ -33,10 +33,6 @@ export class AddressComponent implements OnInit {
   onContinue() {
     this.checkoutService.orderInProgress.customer = new Customer();
     this.checkoutService.orderInProgress.customer = this.formAddress.value;
-
-    console.log(this.checkoutService.orderInProgress);
-
-    // Goto next step...
     this.checkoutService.nextStep();
   }
 }
