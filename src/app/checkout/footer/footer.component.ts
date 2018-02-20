@@ -7,24 +7,31 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
   @Input()
-  activeStep: number;
+  buttons: string[];
+
+  @Input()
+  continueEnabled: boolean;
 
   @Output()
-  changedStep: EventEmitter<number> = new EventEmitter<number>();
-
+  back: EventEmitter<void> = new EventEmitter<void>();
+  @Output()
+  continue: EventEmitter<void> = new EventEmitter<void>();
   @Output()
   completeOrder: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  onBack(e: Event) {
+    this.back.emit();
   }
 
-  onChangeStep(step: number) {
-    this.changedStep.emit(step);
+  onContinue(e: Event) {
+    this.continue.emit();
   }
 
-  onCompleteOrder(event: Event) {
+  onCompleteOrder(e: Event) {
     this.completeOrder.emit();
   }
 

@@ -1,18 +1,18 @@
 <div class="checkout-footer">
   <div class="column">
-    <button *ngIf="activeStep === 0" class="btn btn-outline-secondary" routerLink="/cart">
+    <button *ngIf="buttons.includes('backToCart')" class="btn btn-outline-secondary" routerLink="/cart">
       <i class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;Back To Cart</span>
     </button>
-    <button *ngIf="activeStep > 0" class="btn btn-outline-secondary" (click)="onChangeStep(activeStep - 1)">
+    <button *ngIf="buttons.includes('back')" class="btn btn-outline-secondary" (click)="onBack($event)">
       <i class="icon-arrow-left"></i>
       <span class="hidden-xs-down">&nbsp;Back</span>
     </button>
   </div>
   <div class="column">
-    <button *ngIf="activeStep < 3" class="btn btn-primary" href="" (click)="onChangeStep(activeStep + 1)">
+    <button *ngIf="buttons.includes('continue')" class="btn btn-primary" href="" (click)="onContinue($event)" [disabled]="!continueEnabled">
       <span class="hidden-xs-down">Continue&nbsp;</span><i class="icon-arrow-right"></i>
     </button>
-    <button *ngIf="activeStep === 3" class="btn btn-primary" href="" (click)="onCompleteOrder($event)">
+    <button *ngIf="buttons.includes('completeOrder')" class="btn btn-primary" href="" (click)="onCompleteOrder($event)">
       <span class="hidden-xs-down">Complete Order</span>
     </button>
   </div>

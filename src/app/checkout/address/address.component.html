@@ -89,3 +89,5 @@
     </label>
   </div>
 </form>
+
+<app-checkout-footer [buttons]="['backToCart', 'continue']" (continue)="onContinue()" [continueEnabled]="formAddress.valid"></app-checkout-footer>

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { CheckoutService } from '../../checkout.service';
+import { Customer } from '../../model/customer.model';
 
 @Component({
   selector: 'app-checkout-address',
@@ -10,7 +12,7 @@ export class AddressComponent implements OnInit {
   formAddress: FormGroup;
   countries: string[];
 
-  constructor() { }
+  constructor(private checkoutService: CheckoutService) { }
 
   ngOnInit() {
     this.countries = ['Switzerland'];
@@ -26,5 +28,15 @@ export class AddressComponent implements OnInit {
       'company': new FormControl(null),
       'country': new FormControl({ value: this.countries[0], disabled: false})
     });
+  }
+
+  onContinue() {
+    this.checkoutService.orderInProgress.customer = new Customer();
+    this.checkoutService.orderInProgress.customer = this.formAddress.value;
+
+    console.log(this.checkoutService.orderInProgress);
+
+    // Goto next step...
+    this.checkoutService.changeStep(1);
   }
 }
