@@ -21,4 +21,9 @@ export class CheckoutService {
     this.activeStep++;
     this.stepChanged.emit(this.activeStep);
   }
+
+  previousStep() {
+    this.activeStep--;
+    this.stepChanged.emit(this.activeStep);
+  }
 }
