@@ -20,7 +20,7 @@
   <div class="row">
     <div class="col-xl-9 col-lg-8">
       <div class="checkout-steps">
-        <a [ngClass]="{'active': i === activeStep, 'active-sibling': i === activeStep-1}" *ngFor="let step of steps; let i = index" href="" (click)="onStepClicked($event, i)"><span class="angle" *ngIf="i < steps.length-1"></span>{{step}}</a>
+        <button [ngClass]="{'active': i === activeStep, 'active-sibling': i === activeStep-1}" *ngFor="let step of steps; let i = index"><span class="angle" *ngIf="i < steps.length-1"></span>{{step}}<span *ngIf="stepsValidated.includes(i)"> (ok)</span></button>
       </div>
 
       <app-checkout-address *ngIf="activeStep === 0"></app-checkout-address>
