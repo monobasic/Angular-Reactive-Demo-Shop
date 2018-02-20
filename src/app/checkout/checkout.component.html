@@ -23,10 +23,10 @@
         <button [ngClass]="{'active': i === activeStep, 'active-sibling': i === activeStep-1}" *ngFor="let step of steps; let i = index"><span class="angle" *ngIf="i < steps.length-1"></span>{{step}}<span *ngIf="stepsValidated.includes(i)"> (ok)</span></button>
       </div>
 
-      <app-checkout-address *ngIf="activeStep === 0"></app-checkout-address>
-      <app-checkout-shipping *ngIf="activeStep === 1"></app-checkout-shipping>
-      <app-checkout-payment *ngIf="activeStep === 2"></app-checkout-payment>
-      <app-checkout-review *ngIf="activeStep === 3"></app-checkout-review>
+      <app-checkout-address [ngClass]="{'d-none': activeStep !== 0}"></app-checkout-address>
+      <app-checkout-shipping [ngClass]="{'d-none': activeStep !== 1}"></app-checkout-shipping>
+      <app-checkout-payment [ngClass]="{'d-none': activeStep !== 2}"></app-checkout-payment>
+      <app-checkout-review [ngClass]="{'d-none': activeStep !== 3}"></app-checkout-review>
 
       <app-checkout-footer [activeStep]="activeStep" (changedStep)="onStepChanged($event)" (completeOrder)="onCompleteOrder($event)"></app-checkout-footer>
     </div>

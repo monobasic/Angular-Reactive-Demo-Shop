@@ -48,8 +48,8 @@ export class CheckoutComponent implements OnInit {
         this.orderInProgress.customer = this.addressComponent.formAddress.value;
 
         // Set step statue
-        if (!this.stepsValidated.includes(step)) {
-          this.stepsValidated.push(step);
+        if (!this.stepsValidated.includes(step - 1)) {
+          this.stepsValidated.push(step - 1);
         }
 
         // Change step
@@ -59,6 +59,22 @@ export class CheckoutComponent implements OnInit {
       }
     } else if (step === 2) {
       console.log('validate step 1 (= 2. Shipping)');
+      console.log('validate step 0 (= 1. Address)');
+      if (this.shippingComponent.formShipping.valid) {
+
+        // Save form data to orderInProgress
+        this.orderInProgress.shippingMethod = this.shippingComponent.formShipping.controls.shippingMethod.value;
+
+        // Set step statue
+        if (!this.stepsValidated.includes(step - 1)) {
+          this.stepsValidated.push(step - 1);
+        }
+
+        // Change step
+        this.activeStep = step;
+      } else {
+        this.validateAllFields(this.shippingComponent.formShipping);
+      }
 
     } else if (step === 3) {
       console.log('validate step 2 (= 3. Payment)');
