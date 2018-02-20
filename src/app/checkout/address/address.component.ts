@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CheckoutService } from '../../checkout.service';
-import { Customer } from '../../model/customer.model';
 
 @Component({
   selector: 'app-checkout-address',
@@ -31,7 +30,6 @@ export class AddressComponent implements OnInit {
   }
 
   onContinue() {
-    this.checkoutService.orderInProgress.customer = new Customer();
     this.checkoutService.orderInProgress.customer = this.formAddress.value;
     this.checkoutService.nextStep();
   }

@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Order } from './model/order.model';
+import { Customer } from './model/customer.model';
 
 @Injectable()
 export class CheckoutService {
@@ -9,6 +10,7 @@ export class CheckoutService {
 
   constructor() {
     this.orderInProgress = new Order();
+    this.orderInProgress.customer = new Customer();
     this.activeStep = 0;
   }
 
