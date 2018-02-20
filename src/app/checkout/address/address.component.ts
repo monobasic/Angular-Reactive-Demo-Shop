@@ -30,7 +30,7 @@ export class AddressComponent implements OnInit {
   }
 
   onContinue() {
-    this.checkoutService.orderInProgress.customer = this.formAddress.value;
+    this.checkoutService.setCustomer(this.formAddress.value);
     this.checkoutService.nextStep();
   }
 

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { CartService } from '../../cart/cart.service';
 import { CartItem } from '../../cart/shared/cart-item.model';
 import { CheckoutService } from '../../checkout.service';
 import { Customer } from '../../model/customer.model';
+import { Order } from '../../model/order.model';
 
 @Component({
   selector: 'app-checkout-review',
@@ -26,6 +27,11 @@ export class ReviewComponent implements OnInit {
       }
     );
     this.customer = this.checkoutService.orderInProgress.customer;
+    this.checkoutService.orderInProgressChanged.subscribe(
+      (order: Order) => {
+        this.customer = order.customer;
+      }
+    );
   }
 
   onBack() {
@@ -33,9 +39,9 @@ export class ReviewComponent implements OnInit {
   }
 
   onCompleteOrder() {
-    this.checkoutService.orderInProgress.items = this.cartService.getItems();
+    this.checkoutService.setOrderItems(this.cartService.getItems());
 
-    console.log(this.checkoutService.orderInProgress);
+    console.log(this.checkoutService.getOrderInProgress());
     console.log('Create "real" order via Order Service');
     console.log('Goto final confirmation screen..');
   }
