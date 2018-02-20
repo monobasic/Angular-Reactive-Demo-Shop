@@ -26,7 +26,7 @@ export class ReviewComponent implements OnInit {
         this.total = this.cartService.getTotal();
       }
     );
-    this.customer = this.checkoutService.orderInProgress.customer;
+    this.customer = this.checkoutService.getOrderInProgress().customer;
     this.checkoutService.orderInProgressChanged.subscribe(
       (order: Order) => {
         this.customer = order.customer;
