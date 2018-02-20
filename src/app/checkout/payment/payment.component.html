@@ -1,41 +1,30 @@
 <h4>
   Choose Payment Method</h4>
 <hr class="padding-bottom-1x">
-<div class="accordion" id="accordion" role="tablist">
-  <div class="card">
-    <div class="card-header" role="tab">
-      <h6>
-        <a class="" (click)="$event.preventDefault()" href="#paypal" data-toggle="collapse" data-parent="#accordion">
-          <i class="socicon-paypal"></i>Pay with PayPal</a>
-      </h6>
-    </div>
-    <div class="collapse show" id="paypal" role="tabpanel">
-      <div class="card-body">
-        <p>PayPal - the safer, easier way to pay</p>
-        <form *ngIf="!paypalLoggedIn" class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <input class="form-control" type="email" placeholder="E-mail" required="">
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="form-group">
-              <input class="form-control" type="password" placeholder="Password" required="">
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="d-flex flex-wrap justify-content-between align-items-center">
-              <a class="navi-link" href="#">Forgot password?</a>
-              <button type="button" class="btn btn-outline-primary margin-top-none" (click)="onPaypalLogin($event)">Log In</button>
-            </div>
-          </div>
-        </form>
-        <p *ngIf="paypalLoggedIn">
-          Logged in to Paypal, please proceed to Order Review / Completion.
-        </p>
-      </div>
-    </div>
-  </div>
+<form [formGroup]="formPayment">
+<div class="table-responsive">
+  <table class="table">
+    <thead class="thead-default">
+      <tr>
+        <th>Payment method</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paymentMethod of paymentMethods">
+        <td class="align-middle">
+          <span class="text-medium"><i class="socicon-paypal" *ngIf="paymentMethod === 'Paypal'"></i>{{paymentMethod}}</span>
+        </td>
+        <td class="align-middle">
+          <label class="custom-control custom-radio">
+            <input class="form-control-radio" type="radio" name="paymentMethod" value="{{paymentMethod}}" formControlName="paymentMethod">
+            <span class="custom-control-indicator"></span>
+          </label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+</form>
 
-<app-checkout-footer [buttons]="['back', 'continue']" (back)="onBack()" (continue)="onContinue()" [continueEnabled]="paypalLoggedIn"></app-checkout-footer>
+<app-checkout-footer [buttons]="['back', 'continue']" (back)="onBack()" (continue)="onContinue()" [continueEnabled]="formPayment.valid"></app-checkout-footer>
