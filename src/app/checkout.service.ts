@@ -50,4 +50,9 @@ export class CheckoutService {
   getOrderInProgress() {
     return this.orderInProgress;
   }
+
+  setPaymentMethod(paymentMethod: string) {
+    this.orderInProgress.paymentMethod = paymentMethod;
+    this.orderInProgressChanged.emit(this.orderInProgress);
+  }
 }

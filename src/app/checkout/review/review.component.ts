@@ -11,9 +11,10 @@ import { Order } from '../../model/order.model';
   styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent implements OnInit {
-  public items: CartItem[];
-  public total: number;
-  public customer: Customer;
+  items: CartItem[];
+  total: number;
+  customer: Customer;
+  paymentMethod: string;
 
   constructor(private cartService: CartService, private checkoutService: CheckoutService) { }
 
@@ -30,6 +31,7 @@ export class ReviewComponent implements OnInit {
     this.checkoutService.orderInProgressChanged.subscribe(
       (order: Order) => {
         this.customer = order.customer;
+        this.paymentMethod = order.paymentMethod;
       }
     );
   }

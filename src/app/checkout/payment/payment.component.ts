@@ -9,11 +9,13 @@ import { CheckoutService } from '../../checkout.service';
 export class PaymentComponent implements OnInit {
 
   paypalLoggedIn: boolean;
+  paymentMethod: string;
 
   constructor(private checkoutService: CheckoutService) { }
 
   ngOnInit() {
     this.paypalLoggedIn = false;
+    this.paymentMethod = 'Paypal';
   }
 
   onPaypalLogin(event: Event) {
@@ -25,6 +27,7 @@ export class PaymentComponent implements OnInit {
   }
 
   onContinue() {
+    this.checkoutService.setPaymentMethod(this.paymentMethod);
     this.checkoutService.nextStep();
   }
 
