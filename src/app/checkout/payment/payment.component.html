@@ -13,7 +13,7 @@
     <tbody>
       <tr *ngFor="let paymentMethod of paymentMethods">
         <td class="align-middle">
-          <span class="text-medium">{{paymentMethod}} <i class="socicon-paypal" *ngIf="paymentMethod === 'Paypal'"></i></span>
+          <img src="img/paypal.svg" alt="{{paymentMethod}}" *ngIf="paymentMethod === 'Paypal'" /><span *ngIf="paymentMethod !== 'Paypal'" class="text-medium">{{paymentMethod}}</span>
         </td>
         <td class="align-middle">
           <label class="custom-control custom-radio">
