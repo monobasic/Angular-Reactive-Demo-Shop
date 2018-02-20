@@ -42,6 +42,7 @@ import { CartService } from './cart/cart.service';
 import { MessageService } from './messages/message.service';
 import { PagerService } from './pager/pager.service';
 import { OrderService } from './order.service';
+import { CheckoutService } from './checkout.service';
 
 // Pipes
 import { SortPipe } from './sort.pipe';
@@ -91,8 +92,8 @@ import { SortPipe } from './sort.pipe';
     CartService,
     PagerService,
     OrderService,
+    CheckoutService,
     SortPipe
-
   ],
   bootstrap: [AppComponent]
 })
