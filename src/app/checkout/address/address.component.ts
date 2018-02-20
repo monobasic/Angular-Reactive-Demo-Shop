@@ -35,4 +35,21 @@ export class AddressComponent implements OnInit {
     this.checkoutService.orderInProgress.customer = this.formAddress.value;
     this.checkoutService.nextStep();
   }
+
+  // Debug: Fill Form Helper MEthod
+  onFillForm(event: Event) {
+    event.preventDefault();
+    this.formAddress.setValue({
+      firstname: 'Hans',
+      lastname: 'Muster',
+      address1: 'Musterstrasse 13',
+      address2: '',
+      zip: 1234,
+      city: 'Musterhausen',
+      email: 'hans.muster@muster.com',
+      phone: '+41791234567',
+      company: '',
+      country: 'Switzerland'
+    });
+  }
 }
