@@ -44,11 +44,11 @@
     <h5>Shipping to:</h5>
     <ul class="list-unstyled">
       <li>
-        <span class="text-muted">Client:</span>Daniel Adams</li>
+        <span class="text-muted">Client:</span>{{customer.firstname}} {{customer.lastname}}</li>
       <li>
-        <span class="text-muted">Address:</span>44 Shirley Ave. West Chicago, IL 60185, USA</li>
+        <span class="text-muted">Address:</span>{{customer.address1}} {{customer.address2}}</li>
       <li>
-        <span class="text-muted">Phone:</span>+1(808) 764 554 330</li>
+        <span class="text-muted">Phone:</span>{{customer.phone}}</li>
     </ul>
   </div>
   <div class="col-sm-6">
@@ -60,4 +60,4 @@
   </div>
 </div>
 
-<app-checkout-footer [buttons]="['back', 'completeOrder']" (back)="onBack()"></app-checkout-footer>
+<app-checkout-footer [buttons]="['back', 'completeOrder']" (back)="onBack()" (completeOrder)="onCompleteOrder()"></app-checkout-footer>

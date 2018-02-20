@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../cart/cart.service';
 import { CartItem } from '../../cart/shared/cart-item.model';
 import { CheckoutService } from '../../checkout.service';
+import { Customer } from '../../model/customer.model';
 
 @Component({
   selector: 'app-checkout-review',
@@ -11,6 +12,7 @@ import { CheckoutService } from '../../checkout.service';
 export class ReviewComponent implements OnInit {
   public items: CartItem[];
   public total: number;
+  public customer: Customer;
 
   constructor(private cartService: CartService, private checkoutService: CheckoutService) { }
 
@@ -23,10 +25,19 @@ export class ReviewComponent implements OnInit {
         this.total = this.cartService.getTotal();
       }
     );
+    this.customer = this.checkoutService.orderInProgress.customer;
   }
 
   onBack() {
     this.checkoutService.previousStep();
+  }
+
+  onCompleteOrder() {
+    this.checkoutService.orderInProgress.items = this.cartService.getItems();
+
+    console.log(this.checkoutService.orderInProgress);
+    console.log('Create "real" order via Order Service');
+    console.log('Goto final confirmation screen..');
   }
 
 }
