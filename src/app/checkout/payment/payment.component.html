@@ -12,7 +12,7 @@
     <div class="collapse show" id="paypal" role="tabpanel">
       <div class="card-body">
         <p>PayPal - the safer, easier way to pay</p>
-        <form class="row" method="post">
+        <form *ngIf="!paypalLoggedIn" class="row">
           <div class="col-sm-6">
             <div class="form-group">
               <input class="form-control" type="email" placeholder="E-mail" required="">
@@ -26,13 +26,16 @@
           <div class="col-12">
             <div class="d-flex flex-wrap justify-content-between align-items-center">
               <a class="navi-link" href="#">Forgot password?</a>
-              <button class="btn btn-outline-primary margin-top-none" type="submit" (click)="onPaypalLogin($event)">Log In</button>
+              <button type="button" class="btn btn-outline-primary margin-top-none" (click)="onPaypalLogin($event)">Log In</button>
             </div>
           </div>
         </form>
+        <p *ngIf="paypalLoggedIn">
+          Logged in to Paypal, please proceed to Order Review / Completion.
+        </p>
       </div>
     </div>
   </div>
 </div>
 
-<app-checkout-footer [buttons]="['back', 'continue']" (continue)="onContinue()" [continueEnabled]="paymentMethodChoosen"></app-checkout-footer>
+<app-checkout-footer [buttons]="['back', 'continue']" (back)="onBack()" (continue)="onContinue()" [continueEnabled]="paypalLoggedIn"></app-checkout-footer>

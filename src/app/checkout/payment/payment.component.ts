@@ -8,16 +8,20 @@ import { CheckoutService } from '../../checkout.service';
 })
 export class PaymentComponent implements OnInit {
 
-  paymentMethodChoosen: boolean;
+  paypalLoggedIn: boolean;
 
   constructor(private checkoutService: CheckoutService) { }
 
   ngOnInit() {
-    this.paymentMethodChoosen = false;
+    this.paypalLoggedIn = false;
   }
 
   onPaypalLogin(event: Event) {
-    this.paymentMethodChoosen = true;
+    this.paypalLoggedIn = true;
+  }
+
+  onBack() {
+    this.checkoutService.previousStep();
   }
 
   onContinue() {
