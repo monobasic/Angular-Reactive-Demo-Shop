@@ -1,0 +1,111 @@
+@import '~scss/helpers/variables';
+@import '~scss/helpers/mixins';
+
+.checkout-steps {
+  margin-bottom: floor($grid-vertical-step * 1.7); // ~40px
+  @include clearfix;
+
+  > a,
+  > button {
+    display: block;
+    position: relative;
+    padding-right: 18px;
+    width: 25%;
+    height: 55px;
+    float: left;
+    transition: color .3s;
+    border: none;
+
+    border: {
+      top: 1px solid $border-color;
+      bottom: 1px solid $border-color;
+    }
+
+    background-color: $body-bg;
+    color: $nav-link-color;
+
+    font: {
+      size: $nav-link-font-size;
+      weight: $nav-link-font-weight;
+    }
+
+    line-height: 53px;
+
+    text: {
+      decoration: none;
+      align: center;
+    }
+
+    > .angle {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0px;
+      width: 27px;
+      height: 53px;
+      background-color: $body-bg;
+
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border: solid transparent;
+        content: '';
+        pointer-events: none;
+      }
+
+      &::after {
+        border-width: 26px;
+        border-color: transparent;
+        border-left-color: $body-bg;
+      }
+
+      &::before {
+        margin-top: -1px;
+        border-width: 27px;
+        border-color: transparent;
+        border-left-color: darken($border-color, 3%);
+      }
+    }
+
+    &.active {
+      background-color: $nav-link-active-color;
+      color: $white-color;
+      cursor: default;
+      pointer-events: none;
+
+      > .angle::after { border-left-color: $nav-link-active-color; }
+    }
+
+    &.active-sibling {
+        > .angle { background-color: $nav-link-active-color; }
+    }
+
+    &:first-child {
+      border-left: 1px solid $border-color;
+      border-top-left-radius: $border-radius-lg;
+      border-bottom-left-radius: $border-radius-lg;
+    }
+
+    &:last-child {
+      border-right: 1px solid $border-color;
+      border-top-right-radius: $border-radius-lg;
+      border-bottom-right-radius: $border-radius-lg;
+    }
+  }
+
+  @media (max-width: $screen-sm) {
+
+    > a {
+      width: 100%;
+      margin-bottom: 10px;
+      float: none;
+      border: 1px solid $border-color;
+      border-radius: $border-radius-lg;
+      > .angle { display: none; }
+    }
+  }
+}

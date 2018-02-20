@@ -1,0 +1,23 @@
+
+<aside class="sidebar">
+  <div class="padding-top-2x hidden-lg-up"></div>
+  <!-- Order Summary Widget-->
+  <section class="widget widget-order-summary">
+    <h3 class="widget-title">Order Summary</h3>
+    <table class="table">
+      <tr>
+        <td>Cart Subtotal:</td>
+        <td class="text-medium">{{cartSubtotal | currency}}</td>
+      </tr>
+      <tr>
+        <td>Shipping:</td>
+        <td class="text-medium">{{shipping | currency}}</td>
+      </tr>
+      <tr>
+        <td>Order Total:</td>
+        <td class="text-lg text-medium">{{orderTotal | currency}}</td>
+      </tr>
+    </table>
+  </section>
+</aside>
+

@@ -1,0 +1,94 @@
+<h4>Billing Address</h4>
+<hr class="padding-bottom-1x">
+<form [formGroup]="formAddress">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input class="form-control" type="text" id="firstname" name="firstname" formControlName="firstname">
+        <div class="form-control-feedback" *ngIf="formAddress.get('firstname').invalid && formAddress.get('firstname').touched">Please enter your firstname!</div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input class="form-control" type="text" id="lastname" name="lastname" formControlName="lastname">
+        <div class="form-control-feedback" *ngIf="formAddress.get('lastname').invalid && formAddress.get('lastname').touched">Please enter your lastname!</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="address1">Address 1</label>
+        <input class="form-control" type="text" id="address1" name="address1" formControlName="address1">
+        <div class="form-control-feedback" *ngIf="formAddress.get('address1').invalid && formAddress.get('address1').touched">Please enter your address!</div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="address2">Address 2</label>
+        <input class="form-control" type="text" id="address2" name="address2" formControlName="address2">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="zip">ZIP Code</label>
+        <input class="form-control" type="text" name="zip" id="zip" formControlName="zip">
+        <div class="form-control-feedback" *ngIf="formAddress.get('zip').invalid && formAddress.get('zip').touched">Please enter your zip code!</div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="city">City</label>
+        <input class="form-control" type="text" name="city" id="city" formControlName="city">
+        <div class="form-control-feedback" *ngIf="formAddress.get('city').invalid && formAddress.get('city').touched">Please enter your city!</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="email">E-mail Address</label>
+        <input class="form-control" type="email" id="email" name="email" formControlName="email">
+        <div class="form-control-feedback" *ngIf="formAddress.get('email').invalid && formAddress.get('email').touched">Please enter your E-mail!</div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input class="form-control" type="text" id="phone" name="phone" formControlName="phone">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="company">Company</label>
+        <input class="form-control" type="text" id="company" name="company" formControlName="company">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="country">Country</label>
+        <select class="form-control" id="country" name="country" formControlName="country">
+          <option *ngFor="let country of countries" value="{{country}}">{{country}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <h4>Shipping Address</h4>
+  <hr class="padding-bottom-1x">
+  <div class="form-group">
+    <label class="custom-control custom-checkbox">
+      <input class="custom-control-input" type="checkbox" checked>
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Same as billing address</span>
+      <a href="" (click)="onFillForm($event)">Debug: Fill out form</a>
+    </label>
+  </div>
+</form>
+
+<app-checkout-footer [buttons]="['backToCart', 'continue']" (continue)="onContinue()" [continueEnabled]="formAddress.valid"></app-checkout-footer>

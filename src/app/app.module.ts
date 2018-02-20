@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ToastrModule } from 'ngx-toastr';
@@ -26,6 +26,13 @@ import { ProductsListItemComponent } from './products/products-list-item/product
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { PriceComponent } from './price/price.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { AddressComponent as CheckoutAddressComponent } from './checkout/address/address.component';
+import { ShippingComponent as CheckoutShippingComponent } from './checkout/shipping/shipping.component';
+import { PaymentComponent as CheckoutPaymentComponent } from './checkout/payment/payment.component';
+import { ReviewComponent as CheckoutReviewComponent } from './checkout/review/review.component';
+import { FooterComponent as CheckoutFooterComponent } from './checkout/footer/footer.component';
+import { SidebarComponent as CheckoutSidebarComponent } from './checkout/sidebar/sidebar.component';
 
 // Services
 // import { InMemoryDataService } from './model/in-memory-data.service';
@@ -34,6 +41,8 @@ import { ProductsCacheService } from './products/shared/products-cache.service';
 import { CartService } from './cart/cart.service';
 import { MessageService } from './messages/message.service';
 import { PagerService } from './pager/pager.service';
+import { OrderService } from './order.service';
+import { CheckoutService } from './checkout.service';
 
 // Pipes
 import { SortPipe } from './sort.pipe';
@@ -57,12 +66,20 @@ import { SortPipe } from './sort.pipe';
     ProductsListComponent,
     ProductsListItemComponent,
     ProductDetailComponent,
-    SortPipe
+    SortPipe,
+    CheckoutComponent,
+    CheckoutAddressComponent,
+    CheckoutShippingComponent,
+    CheckoutPaymentComponent,
+    CheckoutReviewComponent,
+    CheckoutFooterComponent,
+    CheckoutSidebarComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
@@ -74,6 +91,8 @@ import { SortPipe } from './sort.pipe';
     MessageService,
     CartService,
     PagerService,
+    OrderService,
+    CheckoutService,
     SortPipe
   ],
   bootstrap: [AppComponent]
