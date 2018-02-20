@@ -22,8 +22,6 @@ interface TokenResponse {
 export interface TokenPayload {
   email: string;
   password: string;
-  firstName: string;
-  lastName?: string;
 }
 
 @Injectable()
@@ -77,12 +75,13 @@ export class AuthenticationService {
     type: 'login' | 'register' | 'profile' | 'admin-auth',
     user?: TokenPayload
   ): Observable<any> {
+    console.log(arguments);
     let base;
 
     if (method === 'post') {
-      base = this.http.post(`/api/${type}`, user);
+      base = this.http.post(`/api/user/${type}`, user);
     } else {
-      base = this.http.get(`/api/${type}`, {
+      base = this.http.get(`/api/user/${type}`, {
         headers: { Authorization: `Bearer ${this.getToken()}` }
       });
     }
@@ -103,6 +102,7 @@ export class AuthenticationService {
   }
 
   login(user: TokenPayload): Observable<any> {
+    console.log(user);
     return this.request('post', 'login', user);
   }
 

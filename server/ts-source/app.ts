@@ -8,7 +8,11 @@ import * as helmet from 'helmet';
 import * as cors from 'cors';
 import * as queryParams from 'express-query-params';
 import * as appRootDir from 'app-root-dir';
-import * as passport from 'passport';
+
+// import * as passport from 'passport';
+// import * as passportConfig from './config/passport';
+const passport = require('passport');
+require('./config/passport');
 
 const root = appRootDir.get();
 console.log('root: ', root);
@@ -49,7 +53,7 @@ app.use('/api', api);
 
 // app.use('/api/auth', auth);
 app.use('/api/admin-auth', adminAuth);
-app.use('/api/users', users);
+app.use('/api/user', users);
 app.use('/api/products', products);
 
 app.use(errorHandlers.notFound);

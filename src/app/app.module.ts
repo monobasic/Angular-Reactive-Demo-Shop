@@ -43,6 +43,7 @@ import { AdminAuthService } from './admin-auth.service';
 import { RegisterLoginComponent } from './register-login/register-login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
+import { AuthenticationService } from './authentication.service';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { OrdersComponent } from './orders/orders.component';
     PagerService,
     SortPipe,
     AdminGuard,
-    AdminAuthService
+    AdminAuthService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

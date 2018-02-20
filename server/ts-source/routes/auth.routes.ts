@@ -12,6 +12,6 @@ const auth = jwt({
 
 
 /* GET api listing. */
-router.get('/', /* auth,*/ adminAuth);
+router.get('/', auth, adminAuth);
 
 export default router;
