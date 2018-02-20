@@ -39,7 +39,7 @@ export class ShippingComponent implements OnInit {
   }
 
   onContinue() {
-    this.checkoutService.orderInProgress.shippingMethod = this.formShipping.controls.shippingMethod.value;
+    this.checkoutService.setShippingMethod(this.formShipping.controls.shippingMethod.value);
     this.checkoutService.nextStep();
   }
 

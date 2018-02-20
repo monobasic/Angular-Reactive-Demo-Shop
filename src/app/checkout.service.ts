@@ -42,6 +42,11 @@ export class CheckoutService {
     this.orderInProgressChanged.emit(this.orderInProgress);
   }
 
+  setShippingMethod(shippingMethod: string) {
+    this.orderInProgress.shippingMethod = shippingMethod;
+    this.orderInProgressChanged.emit(this.orderInProgress);
+  }
+
   setOrderItems(items: CartItem[]) {
     this.orderInProgress.items = items;
     this.orderInProgressChanged.emit(this.orderInProgress);
