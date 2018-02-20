@@ -29,3 +29,5 @@
     </table>
   </div>
 </form>
+
+<app-checkout-footer [buttons]="['back', 'continue']" (continue)="onContinue()" [continueEnabled]="formShipping.valid"></app-checkout-footer>
