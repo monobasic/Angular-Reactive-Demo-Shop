@@ -5,7 +5,8 @@
   margin-bottom: floor($grid-vertical-step * 1.7); // ~40px
   @include clearfix;
 
-  > a {
+  > a,
+  > button {
     display: block;
     position: relative;
     padding-right: 18px;
@@ -13,6 +14,7 @@
     height: 55px;
     float: left;
     transition: color .3s;
+    border: none;
 
     border: {
       top: 1px solid $border-color;
@@ -69,10 +71,6 @@
       }
     }
 
-    &:hover {
-        color: $nav-link-hover-color;
-    }
-
     &.active {
       background-color: $nav-link-active-color;
       color: $white-color;
@@ -86,21 +84,6 @@
         > .angle { background-color: $nav-link-active-color; }
     }
 
-    &.completed > .step-indicator {
-      display: inline-block;
-      margin: {
-        top: -5px;
-        right: 7px;
-      }
-      border-radius: 50%;
-      color: $brand-success;
-      font-size: 18px;
-      line-height: 20px;
-      text-align: center;
-      vertical-align: middle;
-    }
-
-    &.completed:hover { color: $nav-link-color; }
     &:first-child {
       border-left: 1px solid $border-color;
       border-top-left-radius: $border-radius-lg;
