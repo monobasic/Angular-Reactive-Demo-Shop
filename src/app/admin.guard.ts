@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { MessageService } from './messages/message.service';
-import { AuthService } from './auth.service';
+import { AdminAuthService } from './admin-auth.service';
 import { createProduct } from '../../server/ts-source/controller/products.controller';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
-  constructor(private log: MessageService, private authService: AuthService) {}
+  constructor(private log: MessageService, private authService: AdminAuthService) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {

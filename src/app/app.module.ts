@@ -39,7 +39,7 @@ import { PagerService } from './pager/pager.service';
 // Pipes
 import { SortPipe } from './sort.pipe';
 import { AdminGuard } from './admin.guard';
-import { AuthService } from './auth.service';
+import { AdminAuthService } from './admin-auth.service';
 import { RegisterLoginComponent } from './register-login/register-login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
@@ -87,7 +87,7 @@ import { OrdersComponent } from './orders/orders.component';
     PagerService,
     SortPipe,
     AdminGuard,
-    AuthService
+    AdminAuthService
   ],
   bootstrap: [AppComponent]
 })

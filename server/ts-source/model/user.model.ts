@@ -54,7 +54,7 @@ userSchema.methods.generateJwt = function() {
       name: this.name,
       exp: expiry.getTime() / 1000
     },
-    'MY_SECRET'
+    process.env.SECRET /*'MY_SECRET'*/
   ); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };
 

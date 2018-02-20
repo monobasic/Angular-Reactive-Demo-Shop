@@ -6,7 +6,7 @@ const router = Router();
 
 /* GET api listing. */
 router.get('/', (req, res) => {
-  res.send('user works');
+  res.json({'message': 'user works'});
 });
 
 router.post('/register', register);
