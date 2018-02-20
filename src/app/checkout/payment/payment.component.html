@@ -26,7 +26,7 @@
           <div class="col-12">
             <div class="d-flex flex-wrap justify-content-between align-items-center">
               <a class="navi-link" href="#">Forgot password?</a>
-              <button class="btn btn-outline-primary margin-top-none" type="submit">Log In</button>
+              <button class="btn btn-outline-primary margin-top-none" type="submit" (click)="onPaypalLogin($event)">Log In</button>
             </div>
           </div>
         </form>
@@ -34,3 +34,5 @@
     </div>
   </div>
 </div>
+
+<app-checkout-footer [buttons]="['back', 'continue']" (continue)="onContinue()" [continueEnabled]="paymentMethodChoosen"></app-checkout-footer>

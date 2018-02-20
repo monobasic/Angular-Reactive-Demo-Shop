@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CheckoutService } from '../../checkout.service';
 
 @Component({
   selector: 'app-checkout-payment',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentComponent implements OnInit {
 
-  constructor() { }
+  paymentMethodChoosen: boolean;
+
+  constructor(private checkoutService: CheckoutService) { }
 
   ngOnInit() {
+    this.paymentMethodChoosen = false;
+  }
+
+  onPaypalLogin(event: Event) {
+    this.paymentMethodChoosen = true;
+  }
+
+  onContinue() {
+    this.checkoutService.nextStep();
   }
 
 }
