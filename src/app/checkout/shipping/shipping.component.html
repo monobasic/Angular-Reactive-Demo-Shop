@@ -30,4 +30,4 @@
   </div>
 </form>
 
-<app-checkout-footer [buttons]="['back', 'continue']" (continue)="onContinue()" [continueEnabled]="formShipping.valid"></app-checkout-footer>
+<app-checkout-footer [buttons]="['back', 'continue']" (back)="onBack()" (continue)="onContinue()" [continueEnabled]="formShipping.valid"></app-checkout-footer>
