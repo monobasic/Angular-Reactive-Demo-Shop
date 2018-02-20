@@ -39,7 +39,7 @@ export class ShippingComponent implements OnInit {
     console.log(this.checkoutService.orderInProgress);
 
     // Goto next step...
-    this.checkoutService.changeStep(2);
+    this.checkoutService.nextStep();
   }
 
 }

@@ -12,8 +12,13 @@ export class CheckoutService {
     this.activeStep = 0;
   }
 
-  changeStep(number) {
+  gotoStep(number) {
     this.activeStep = number;
+    this.stepChanged.emit(this.activeStep);
+  }
+
+  nextStep() {
+    this.activeStep++;
     this.stepChanged.emit(this.activeStep);
   }
 }

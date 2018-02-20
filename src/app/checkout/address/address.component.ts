@@ -37,6 +37,6 @@ export class AddressComponent implements OnInit {
     console.log(this.checkoutService.orderInProgress);
 
     // Goto next step...
-    this.checkoutService.changeStep(1);
+    this.checkoutService.nextStep();
   }
 }
