@@ -1,0 +1,37 @@
+<!-- Page Title-->
+<div class="page-title">
+  <div class="container">
+    <div class="column">
+      <h1>Checkout</h1>
+    </div>
+    <div class="column">
+      <ul class="breadcrumbs">
+        <li>
+          <a routerLink="/home" href="">Home</a>
+        </li>
+        <li class="separator">&nbsp;</li>
+        <li>Checkout</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container padding-bottom-3x mb-2">
+  <div class="row">
+    <div class="col-xl-9 col-lg-8">
+
+      <div class="checkout-steps">
+        <button [ngClass]="{'active': i === activeStep, 'active-sibling': i === activeStep-1}" *ngFor="let step of steps; let i = index"><span class="angle" *ngIf="i < steps.length-1"></span>{{step}}</button>
+      </div>
+
+      <app-checkout-address [ngClass]="{'d-none': activeStep !== 0}"></app-checkout-address>
+      <app-checkout-shipping [ngClass]="{'d-none': activeStep !== 1}"></app-checkout-shipping>
+      <app-checkout-payment [ngClass]="{'d-none': activeStep !== 2}"></app-checkout-payment>
+      <app-checkout-review [ngClass]="{'d-none': activeStep !== 3}"></app-checkout-review>
+
+    </div>
+    <div class="col-xl-3 col-lg-4">
+      <app-checkout-sidebar></app-checkout-sidebar>
+    </div>
+  </div>
+</div>

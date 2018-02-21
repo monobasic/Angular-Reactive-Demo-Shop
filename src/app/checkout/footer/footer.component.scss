@@ -1,0 +1,25 @@
+@import '~scss/helpers/variables';
+@import '~scss/helpers/mixins';
+
+.checkout-footer {
+  display: table;
+  width: 100%;
+  margin-top: floor($grid-vertical-step * 1.2);
+  padding: {
+    top: 5px;
+    bottom: 5px;
+  }
+  border: 1px solid $border-color;
+  border-radius: $border-radius-lg;
+  table-layout: fixed;
+
+  > .column {
+    display: table-cell;
+    padding: 10px 15px;
+    vertical-align: middle;
+    &:last-child { text-align: right; }
+    &:first-child { text-align: left; }
+  }
+
+  .btn { margin: 0; }
+}

@@ -72,9 +72,7 @@ export class CartService {
   }
 
   removeItem(item: CartItem) {
-    const indexToRemove = this.cartItems.findIndex((element) => {
-      return element === item;
-    });
+    const indexToRemove = this.cartItems.findIndex(element => element === item);
     this.cartItems.splice(indexToRemove, 1);
     this.itemsChanged.emit(this.cartItems.slice());
     this.messageService.add('Deleted from cart: ' + item.product.name);

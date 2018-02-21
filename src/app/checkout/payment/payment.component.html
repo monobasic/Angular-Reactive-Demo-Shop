@@ -1,0 +1,30 @@
+<h4>
+  Choose Payment Method</h4>
+<hr class="padding-bottom-1x">
+<form [formGroup]="formPayment">
+<div class="table-responsive">
+  <table class="table">
+    <thead class="thead-default">
+      <tr>
+        <th>Payment method</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paymentMethod of paymentMethods">
+        <td class="align-middle">
+          <img src="img/paypal.svg" alt="{{paymentMethod}}" *ngIf="paymentMethod === 'Paypal'" /><span *ngIf="paymentMethod !== 'Paypal'" class="text-medium">{{paymentMethod}}</span>
+        </td>
+        <td class="align-middle">
+          <label class="custom-control custom-radio">
+            <input class="form-control-radio" type="radio" name="paymentMethod" value="{{paymentMethod}}" formControlName="paymentMethod">
+            <span class="custom-control-indicator"></span>
+          </label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</form>
+
+<app-checkout-footer [buttons]="['back', 'continue']" (back)="onBack()" (continue)="onContinue()" [continueEnabled]="formPayment.valid"></app-checkout-footer>

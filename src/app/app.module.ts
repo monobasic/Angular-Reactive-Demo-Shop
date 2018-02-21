@@ -27,6 +27,13 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
 import { MessagesComponent } from './messages/messages.component';
 import { PriceComponent } from './price/price.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { AddressComponent as CheckoutAddressComponent } from './checkout/address/address.component';
+import { ShippingComponent as CheckoutShippingComponent } from './checkout/shipping/shipping.component';
+import { PaymentComponent as CheckoutPaymentComponent } from './checkout/payment/payment.component';
+import { ReviewComponent as CheckoutReviewComponent } from './checkout/review/review.component';
+import { FooterComponent as CheckoutFooterComponent } from './checkout/footer/footer.component';
+import { SidebarComponent as CheckoutSidebarComponent } from './checkout/sidebar/sidebar.component';
 
 // Services
 // import { InMemoryDataService } from './model/in-memory-data.service';
@@ -35,6 +42,8 @@ import { ProductsCacheService } from './products/shared/products-cache.service';
 import { CartService } from './cart/cart.service';
 import { MessageService } from './messages/message.service';
 import { PagerService } from './pager/pager.service';
+import { OrderService } from './order.service';
+import { CheckoutService } from './checkout.service';
 
 // Pipes
 import { SortPipe } from './sort.pipe';
@@ -61,7 +70,14 @@ import { AuthService } from './auth.service';
     ProductsListItemComponent,
     ProductDetailComponent,
     SortPipe,
-    AddEditComponent
+    AddEditComponent,
+    CheckoutComponent,
+    CheckoutAddressComponent,
+    CheckoutShippingComponent,
+    CheckoutPaymentComponent,
+    CheckoutReviewComponent,
+    CheckoutFooterComponent,
+    CheckoutSidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +97,10 @@ import { AuthService } from './auth.service';
     PagerService,
     SortPipe,
     AdminGuard,
-    AuthService
+    AuthService,
+    OrderService,
+    CheckoutService,
+    SortPipe
   ],
   bootstrap: [AppComponent]
 })
