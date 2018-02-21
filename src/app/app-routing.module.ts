@@ -18,8 +18,8 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'admin/add', component: AddEditComponent, canActivate: [AdminGuard] },
   { path: 'admin/edit/:id', component: AddEditComponent, canActivate: [AdminGuard] },
+  { path: 'checkout', component: CheckoutComponent },
   { path: '**', component: PageNotFoundComponent },
-  { path: 'checkout', component: CheckoutComponent }
 ];
 
 @NgModule({
