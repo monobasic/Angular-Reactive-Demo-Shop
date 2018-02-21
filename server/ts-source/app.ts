@@ -9,8 +9,6 @@ import * as cors from 'cors';
 import * as queryParams from 'express-query-params';
 import * as appRootDir from 'app-root-dir';
 
-// import * as passport from 'passport';
-// import * as passportConfig from './config/passport';
 const passport = require('passport');
 require('./config/passport');
 
