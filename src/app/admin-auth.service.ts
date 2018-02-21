@@ -12,8 +12,8 @@ const httpOptions = {
 };
 
 @Injectable()
-export class AuthService {
-  private authUrl = 'api/auth'; // URL to web api
+export class AdminAuthService {
+  private authUrl = 'api/admin-auth'; // URL to web api
 
   constructor(
     private http: HttpClient,

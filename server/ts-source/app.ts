@@ -9,6 +9,9 @@ import * as cors from 'cors';
 import * as queryParams from 'express-query-params';
 import * as appRootDir from 'app-root-dir';
 
+const passport = require('passport');
+require('./config/passport');
+
 const root = appRootDir.get();
 console.log('root: ', root);
 
@@ -18,7 +21,7 @@ appRootDir.set(root);
 import api from './routes/api.routes';
 import users from './routes/user.routes';
 import products from './routes/products.routes';
-import auth from './routes/auth.routes';
+import adminAuth from './routes/admin-auth.routes';
 
 import errorHandlers from './errorHandlers';
 
@@ -41,10 +44,14 @@ app.use(bodyParser.json());
 // parse query params
 app.use(queryParams());
 
+app.use(passport.initialize());
+
 // api routes.
 app.use('/api', api);
-app.use('/api/auth', auth);
-app.use('/api/users', users);
+
+// app.use('/api/auth', auth);
+app.use('/api/user/admin-auth', adminAuth);
+app.use('/api/user', users);
 app.use('/api/products', products);
 
 app.use(errorHandlers.notFound);

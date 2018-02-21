@@ -48,7 +48,11 @@ import { CheckoutService } from './checkout.service';
 // Pipes
 import { SortPipe } from './sort.pipe';
 import { AdminGuard } from './admin.guard';
-import { AuthService } from './auth.service';
+import { AdminAuthService } from './admin-auth.service';
+import { RegisterLoginComponent } from './register-login/register-login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { OrdersComponent } from './orders/orders.component';
+import { AuthenticationService } from './authentication.service';
 
 @NgModule({
   declarations: [
@@ -77,7 +81,10 @@ import { AuthService } from './auth.service';
     CheckoutPaymentComponent,
     CheckoutReviewComponent,
     CheckoutFooterComponent,
-    CheckoutSidebarComponent
+    CheckoutSidebarComponent,
+    RegisterLoginComponent,
+    ProfileComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -97,10 +104,11 @@ import { AuthService } from './auth.service';
     PagerService,
     SortPipe,
     AdminGuard,
-    AuthService,
     OrderService,
     CheckoutService,
-    SortPipe
+    SortPipe,
+    AdminAuthService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
