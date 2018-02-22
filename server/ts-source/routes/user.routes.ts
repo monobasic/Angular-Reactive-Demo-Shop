@@ -6,20 +6,17 @@ import { register, login } from '../controller/authentication.controller';
 
 const router = Router();
 
-/* GET api listing. */
-// router.get('/', (req, res) => {
-//   res.json({ message: 'user works' });
-// });
-
-const auth = jwt({
-  secret: process.env.SECRET,
-  userProperty: 'payload'
-});
+router.use('/admin-auth', adminAuth);
 
 router.post('/register', register);
 router.post('/login', login);
+router.get('/profile', function getProfile(req, res, next) { res.json({message: 'get profile'}); res.end(); });
+
+router.get('/order', function getOrders(req, res, next) {res.json({message: 'getOrders'}); res.end(); });
+router.get('/order/:id', function getOrder(req, res, next) {res.json({message: 'get order'}); res.end(); });
+router.post('/order', function createOrder(req, res, next) {res.json({message: 'createOrder'}); res.end(); });
 
 /* GET api listing. */
-router.get('/', auth, adminAuth);
+router.get('/', adminAuth);
 
 export default router;

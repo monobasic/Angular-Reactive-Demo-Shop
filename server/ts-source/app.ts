@@ -9,6 +9,8 @@ import * as cors from 'cors';
 import * as queryParams from 'express-query-params';
 import * as appRootDir from 'app-root-dir';
 
+import routes from './routes/routes';
+
 const passport = require('passport');
 require('./config/passport');
 
@@ -46,13 +48,7 @@ app.use(queryParams());
 
 app.use(passport.initialize());
 
-// api routes.
-app.use('/api', api);
-
-// app.use('/api/auth', auth);
-app.use('/api/user/admin-auth', adminAuth);
-app.use('/api/user', users);
-app.use('/api/products', products);
+app.use(routes);
 
 app.use(errorHandlers.notFound);
 
