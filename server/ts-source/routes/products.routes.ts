@@ -20,7 +20,6 @@ const router = Router();
 router.get('/', getProducts);
 router.post('/',
   uploadImages,
-  // log,
   resizeImages,
   createProduct,
   addProduct
