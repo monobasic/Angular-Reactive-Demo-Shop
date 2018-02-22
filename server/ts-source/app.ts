@@ -10,22 +10,14 @@ import * as queryParams from 'express-query-params';
 import * as appRootDir from 'app-root-dir';
 
 import routes from './routes/routes';
+import errorHandlers from './errorHandlers';
 
 const passport = require('passport');
 require('./config/passport');
 
 const root = appRootDir.get();
 console.log('root: ', root);
-
 appRootDir.set(root);
-
-// Get our API routes
-import api from './routes/api.routes';
-import users from './routes/user.routes';
-import products from './routes/products.routes';
-import adminAuth from './routes/admin-auth.routes';
-
-import errorHandlers from './errorHandlers';
 
 // create app
 const app = express();

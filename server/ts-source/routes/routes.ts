@@ -5,7 +5,7 @@ import * as jwt from 'express-jwt';
 import api from './api.routes';
 import users from './user.routes';
 import products from './/products.routes';
-import adminAuth from './/admin-auth.routes';
+import adminAuth from './admin-auth.routes';
 
 const router = Router();
 
