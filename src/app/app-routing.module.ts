@@ -23,8 +23,8 @@ const routes: Routes = [
   { path: 'admin/edit/:id', component: AddEditComponent, canActivate: [AdminGuard] },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'register-login', component: RegisterLoginComponent },
-  { path: 'users/:id/orders', component: OrdersComponent},
-  { path: 'users/:id/profile', component: ProfileComponent},
+  { path: 'orders', component: OrdersComponent},
+  { path: 'profile', component: ProfileComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 
