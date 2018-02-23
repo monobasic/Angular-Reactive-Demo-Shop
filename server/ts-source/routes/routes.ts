@@ -7,7 +7,7 @@ import * as Guard from 'express-jwt-permissions';
 import api from '../routes/api.routes';
 
 import { registerUser, loginUser, getProfile, updateUser, deleteUser } from '../controller/users.controller';
-import { getOrders, getOrder, createOrder, deleteOrder } from '../controller/orders.controller';
+import { getOrders, getOrder, createOrder, deleteOrder, getAllOrders } from '../controller/orders.controller';
 import {
   getProducts,
   getProduct,
@@ -49,6 +49,7 @@ router.delete('/api/user/:id', auth, guard.check('admin'), deleteUser);
  * ORDER ROUTES
  */
 router.get('/api/orders', auth, getOrders);
+router.get('/api/orders/all', auth, guard.check('admin'), getAllOrders);
 router.get('/api/orders/:id', auth, getOrder);
 
 router.post('/api/orders', auth, createOrder);

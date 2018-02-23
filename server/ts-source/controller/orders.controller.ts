@@ -17,6 +17,10 @@ export const getOrder = (req, res, next) => {
   res.end();
 };
 
+export const getAllOrders = (req, res, next) => {
+  res.json({ message: 'get all orders', payload: req.payload });
+};
+
 export const createOrder = (req, res, next) => {
   res.json({ message: 'create Order', payload: req.payload });
   res.end();

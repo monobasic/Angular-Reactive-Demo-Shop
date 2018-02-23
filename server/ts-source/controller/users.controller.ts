@@ -51,9 +51,29 @@ export const loginUser = (req, res, next) => {
   })(req, res, next);
 };
 
-export const getProfile = (req, res, next) => {
-  res.json({ message: 'get profile', payload: req.payload });
-  res.end();
+export const getProfile = async (req, res, next) => {
+  // If no user ID exists in the JWT return a 401
+  if (!req.user._id) {
+    res.status(401).json({
+      message: 'UnauthorizedError: private profile'
+    });
+  } else {
+    // Otherwise continue
+    const user = await UserModel.findById(req.user._id).exec();
+    if (user) {
+      res.status(200).json({
+        auth: true,
+        user: {
+          _id: user.id,
+          adresses: user.adresses,
+          orders: user.orders,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email
+        }
+      });
+    }
+  }
 };
 
 export const updateUser = (req, res, next) => {

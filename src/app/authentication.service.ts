@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
+import { MessageService } from './messages/message.service';
 
 export interface UserDetails {
   _id: string;
@@ -28,7 +29,11 @@ export interface TokenPayload {
 export class AuthenticationService {
   private token: string;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private logger: MessageService
+  ) {}
 
   saveToken(token: string) {
     localStorage.setItem('unishop-token', token);
@@ -87,12 +92,15 @@ export class AuthenticationService {
     }
 
     const request = base.pipe(
-      map((data: TokenResponse) => {
-        if (data.token) {
-          this.saveToken(data.token);
+      map(
+        (data) => this.logger.add(`auth-service: ${JSON.stringify(data)}`),
+        (data: TokenResponse) => {
+          if (data.token) {
+            this.saveToken(data.token);
+          }
+          return data;
         }
-        return data;
-      })
+      )
     );
     return request;
   }
@@ -101,8 +109,9 @@ export class AuthenticationService {
     return this.request('post', 'register', user);
   }
 
+  
+
   login(user: TokenPayload): Observable<any> {
-    console.log(user);
     return this.request('post', 'login', user);
   }
 
