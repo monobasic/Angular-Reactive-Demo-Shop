@@ -1,7 +1,8 @@
 import * as express from 'express';
+import { Router } from 'express';
+
 import * as jwt from 'express-jwt';
 import * as Guard from 'express-jwt-permissions';
-import { Router } from 'express';
 
 import api from '../routes/api.routes';
 
@@ -28,7 +29,7 @@ const auth = jwt({
 
 const guard = Guard();
 
-// api route, just check if server is up
+// api route, just send a sign of life
 router.use('/api', api);
 
 /**
@@ -40,7 +41,7 @@ router.get('/api/user/profile', auth, getProfile);
 router.post('/api/user/register', registerUser);
 router.post('/api/user/login', loginUser);
 
-router.put('/api/user/update/:id', auth, updateUser);
+router.put('/api/user/:id', auth, updateUser);
 
 router.delete('/api/user/:id', auth, guard.check('admin'), deleteUser);
 
@@ -60,8 +61,7 @@ router.delete('/api/orders/:id', auth, guard.check('admin'), deleteOrder);
 router.get('/api/products', getProducts);
 router.get('/api/products/:id', getProduct);
 
-router.post(
-  '/api/products',
+router.post('/api/products',
   auth,
   guard.check('admin'),
   uploadImages,
@@ -70,8 +70,7 @@ router.post(
   addProduct
 );
 
-router.put(
-  'api/products/:id',
+router.put('/api/products/:id',
   auth,
   guard.check('admin'),
   uploadImages,
