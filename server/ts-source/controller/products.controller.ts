@@ -160,7 +160,7 @@ export const updateProduct = async (req, res, next) => {
 };
 
 export const deleteProduct = (req, res, next) => {
-  res.send(req.params.id + ' to delete...');
+  res.json({message: req.params.id + ' to delete...'});
 };
 
 export default {

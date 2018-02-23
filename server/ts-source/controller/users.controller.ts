@@ -3,12 +3,13 @@ import * as mongoose from 'mongoose';
 import { UserModel } from '../model/user.model';
 import { save } from '../services/user.service';
 
-export const register = async (req, res, next) => {
+export const registerUser = async (req, res, next) => {
   try {
     const user = new UserModel({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      email: req.body.email
+      email: req.body.email,
+      permissions: req.body.permissions
     });
     user.setPassword(req.body.password);
 
@@ -25,10 +26,10 @@ export const register = async (req, res, next) => {
   }
 };
 
-export const login = (req, res, next) => {
+export const loginUser = (req, res, next) => {
   passport.authenticate('local', function(err, user, info) {
     let token;
-
+    console.log(user);
     // If Passport throws/catches an error
     if (err) {
       console.log('error in authentication');
@@ -48,4 +49,19 @@ export const login = (req, res, next) => {
       res.status(401).json(info);
     }
   })(req, res, next);
+};
+
+export const getProfile = (req, res, next) => {
+  res.json({ message: 'get profile', payload: req.payload });
+  res.end();
+};
+
+export const updateUser = (req, res, next) => {
+  res.json({ message: 'update User', payload: req.payload });
+  res.end();
+};
+
+export const deleteUser = (req, res, next) => {
+  res.json({ message: 'delete User', payload: req.payload });
+  res.end();
 };

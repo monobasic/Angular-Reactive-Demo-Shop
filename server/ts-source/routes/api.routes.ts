@@ -3,9 +3,9 @@ import { Router } from 'express';
 
 const router = Router();
 
-/* GET api listing. */
 router.get('/', (req, res) => {
-  res.send('api works');
+  res.status(200).json('server is up and running');
+  res.end();
 });
 
 export default router;

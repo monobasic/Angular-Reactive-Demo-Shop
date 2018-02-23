@@ -25,6 +25,9 @@ const userSchema = new mongoose.Schema({
   adresses: {
     type: Array
   },
+  permissions: {
+    type: Array
+  },
   hash: String,
   salt: String
 });
@@ -52,10 +55,11 @@ userSchema.methods.generateJwt = function() {
       _id: this._id,
       email: this.email,
       name: this.name,
-      exp: expiry.getTime() / 1000
+      exp: expiry.getTime() / 1000,
+      permissions: this.permissions
     },
-    process.env.SECRET /*'MY_SECRET'*/
-  ); // DO NOT KEEP YOUR SECRET IN THE CODE!
+    process.env.SECRET
+  );
 };
 
 export const UserModel = mongoose.model('User', userSchema);
