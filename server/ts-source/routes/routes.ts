@@ -71,9 +71,17 @@ router.get('/api/orders/:id', auth, getOrder);
 
 router.post(
   '/api/orders',
+  // check for auth token, skip auth if none present:
   auth.unless({
     custom: (req) => {
-      return req.headers.authorization.length > 'Bearer'.length + 1 ? false : true;
+      const headerToCheck = req.headers.authorization;
+      if (headerToCheck) {
+        // token present, run auth-middleware
+        return false;
+      } else {
+        // no token, skip auth-middleware
+        return true;
+      }
     }
   }),
   createOrder
