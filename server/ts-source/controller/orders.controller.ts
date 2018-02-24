@@ -2,7 +2,7 @@ import * as orderService from '../services/orders.service';
 import * as userService from '../services/user.service';
 
 export const getOrders = async (req, res, next) => {
-  const user = await userService.findOne({_id: req.user._id});
+  const user = await userService.findOne({ _id: req.user._id });
 
   const orders = await orderService.findForUser(user);
   console.log(orders);
@@ -36,19 +36,18 @@ export const createOrder = async (req, res, next) => {
   const order = req.body;
   let orderToSave;
 
-  const user = await userService.findOne({ _id: req.user._id });
-  if (user) {
+  if (req.user) {
+    const user = await userService.findOne({ _id: req.user._id });
     orderToSave = saveWithUser(order, user, orderToSave, res);
     return;
   } else {
-
-  order.user = {};
-  order.user.id = 'unregistred';
-  order.user.email = 'unregistred';
-  orderToSave = await orderService.save(order);
-  res.json({ message: 'created Order', order: orderToSave, user: req.user });
-  res.end();
-}
+    order.user = {};
+    order.user.id = 'unregistred';
+    order.user.email = 'unregistred';
+    orderToSave = await orderService.save(order);
+    res.json({ message: 'created Order', order: orderToSave, user: req.user });
+    res.end();
+  }
 };
 
 export const deleteOrder = (req, res, next) => {
@@ -67,7 +66,9 @@ async function saveWithUser(order, user, orderToSave, res) {
 
   orderService.saveOrderOnUser(user);
 
-  res.json({ message: 'created order for user ' + orderToSave.user.id, order: orderToSave });
+  res.json({
+    message: 'created order for user ' + orderToSave.user.id,
+    order: orderToSave
+  });
   res.end();
 }
-

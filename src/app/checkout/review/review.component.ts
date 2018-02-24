@@ -47,5 +47,4 @@ export class ReviewComponent implements OnInit {
     console.log('Create "real" order via Order Service');
     console.log('Goto final confirmation screen..');
   }
-
 }
