@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Product } from '../products/shared/product.model';
+import { Product } from '../model/product.model';
 import { CartItem } from './shared/cart-item.model';
 import { MessageService } from '../messages/message.service';
 

@@ -1,5 +1,5 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Product } from '../products/shared/product.model';
+import { Product } from './product.model';
 import { Rating } from './rating.model';
 import { Review } from './review.model';
 
