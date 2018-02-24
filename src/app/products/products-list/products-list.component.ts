@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 
-import { Product } from '../shared/product.model';
+import { Product } from '../../model/product.model';
 
 import { ProductService } from '../shared/product.service';
 import { PagerService } from '../../pager/pager.service';

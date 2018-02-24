@@ -2,6 +2,8 @@ import * as mongoose from 'mongoose';
 import * as crypto from 'crypto';
 import * as jwt from 'jsonwebtoken';
 
+import { orderSchema } from './order.model';
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -17,7 +19,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   orders: {
-    type: Array
+    type: [Number]
   },
   phoneNumber: {
     type: Number

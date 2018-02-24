@@ -6,6 +6,7 @@ import * as Guard from 'express-jwt-permissions';
 
 import api from '../routes/api.routes';
 
+import { adminAuth } from '../controller/admin-auth.controller';
 import { registerUser, loginUser, getProfile, updateUser, deleteUser } from '../controller/users.controller';
 import { getOrders, getOrder, createOrder, deleteOrder, getAllOrders } from '../controller/orders.controller';
 import {
@@ -32,6 +33,11 @@ const guard = Guard();
 // api route, just send a sign of life
 router.use('/api', api);
 
+
+/**
+ * ADMIN ROUTES
+ */
+router.get('/api/admin-auth', auth, guard.check('admin'), adminAuth);
 /**
  * USER ROUTES
  */

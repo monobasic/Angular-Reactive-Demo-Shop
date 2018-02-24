@@ -83,9 +83,13 @@ export class AuthenticationService {
     console.log(arguments);
     let base;
 
-    if (method === 'post') {
+    if (type === 'admin-auth') {
+      base = this.http.get(`/api/admin-auth`, {
+        headers: { Authorization: `Bearer ${this.getToken()}` }
+      });
+    } else if (method === 'post') {
       base = this.http.post(`/api/user/${type}`, user);
-    } else {
+    } else if (method === 'get') {
       base = this.http.get(`/api/user/${type}`, {
         headers: { Authorization: `Bearer ${this.getToken()}` }
       });
@@ -108,8 +112,6 @@ export class AuthenticationService {
   register(user: TokenPayload): Observable<any> {
     return this.request('post', 'register', user);
   }
-
-  
 
   login(user: TokenPayload): Observable<any> {
     return this.request('post', 'login', user);
