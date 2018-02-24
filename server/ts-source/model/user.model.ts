@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   orders: {
-    type: [Number]
+    type: [String]
   },
   phoneNumber: {
     type: Number

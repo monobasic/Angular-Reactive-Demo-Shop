@@ -7,3 +7,8 @@ export const save = (user) => {
 export const findOne = (id) => {
   return UserModel.findOne(id).exec();
 };
+
+export default {
+  save,
+  findOne,
+};

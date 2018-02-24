@@ -24,3 +24,12 @@ export const update = (product) => {
 export const remove = (id, callback) => {
   const query = { _id: id };
 };
+
+export default {
+  find,
+  findOne,
+  save,
+  update,
+  remove
+};
+
