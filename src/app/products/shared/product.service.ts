@@ -79,14 +79,6 @@ export class ProductService {
       );
   }
   /** POST: add a new Product to the server */
-  // TODO: CHANGE SIGNATURE!
-  // addProduct(product: Product): Observable<Product> {
-  //   console.log(product);
-  //   return this.http.post<Product>(this.productsUrl, product, httpOptions).pipe(
-  //     tap((newProduct: Product) => this.log(`added Product w/ id=${newProduct.id}`)),
-  //     catchError(this.handleError<Product>('addProduct'))
-  //   );
-  // }
   addProduct(data: FormData): Observable<any> {
     console.log('will upload this photos: ', data.getAll('photos'));
     return this.http

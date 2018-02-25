@@ -36,8 +36,8 @@ export class ProductsListComponent implements OnInit {
   getProducts() {
     this.productsCacheService
       .get('product', this.productService.getProducts())
-      .subscribe((products) => {
-        this.products = products;
+      .subscribe((response) => {
+        this.products = response.products;
         this.sortPipe.transform(this.products, 'date', true);
         this.setPage(1);
       });

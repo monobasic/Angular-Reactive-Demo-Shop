@@ -55,9 +55,10 @@ export class ProductsCacheService {
   }
 
   getProductsById(id: number, fallback?: Observable<any>, maxAge?: number) {
+    console.log(this.cache.get('product'));
     const product =
       this.cache.size > 0 &&
-      this.cache.get('product').value.find((el) => el.id === id);
+      this.cache.get('product').value.products.find((el) => el.id === id);
 
     if (product) {
       return of(product);
@@ -78,7 +79,7 @@ export class ProductsCacheService {
 
       console.log(this.cache);
 
-      return of(this.cache.get(key).value);
+      return of(this.cache.get(key).value.products);
     }
 
     if (!maxAge) {

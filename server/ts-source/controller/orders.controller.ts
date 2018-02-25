@@ -2,73 +2,114 @@ import * as orderService from '../services/orders.service';
 import * as userService from '../services/user.service';
 
 export const getOrders = async (req, res, next) => {
-  const user = await userService.findOne({ _id: req.user._id });
+  try {
+    const user = await userService.findOne({ _id: req.user._id });
 
-  const orders = await orderService.findForUser(user);
-  console.log(orders);
+    const orders = await orderService.findForUser(user);
 
-  res.json({
-    message: 'getOrders',
-    user: 'user ' + user.id,
-    orders: orders
-  });
-  res.end();
+    res.json({
+      message: 'getOrders',
+      user: 'user ' + user.id,
+      orders: orders
+    });
+    res.end();
+  } catch (error) {
+    handleOrderError(error, res);
+  }
 };
 
 export const getOrder = (req, res, next) => {
-  req.payload = {};
-  req.payload._id = req.params.id;
+  try {
+    req.payload = {};
+    req.payload._id = req.params.id;
 
-  res.json({
-    message: `get order ${req.params.id} for ${req.payload._id}`
-  });
-  res.end();
+    res.json({
+      message: `get order ${req.params.id} for ${req.payload._id}`
+    });
+    res.end();
+  } catch (error) {
+    handleOrderError(error, res);
+  }
 };
 
 export const getAllOrders = async (req, res, next) => {
-  const orders = await orderService.findAll();
+  try {
+    const orders = await orderService.findAll();
 
-  res.json({ message: 'get all orders', payload: req.payload, orders: orders });
-  res.end();
+    res.json({
+      sucess: true,
+      orders: orders
+    });
+    res.end();
+  } catch (error) {
+    handleOrderError(error, res);
+  }
 };
 
 export const createOrder = async (req, res, next) => {
-  const order = req.body;
-  let orderToSave;
+  try {
+    const order = req.body;
+    let orderToSave;
 
-  if (req.user) {
-    const user = await userService.findOne({ _id: req.user._id });
-    orderToSave = saveWithUser(order, user, orderToSave, res);
-    return;
-  } else {
-    order.user = {};
-    order.user.id = 'unregistred';
-    order.user.email = 'unregistred';
-    orderToSave = await orderService.save(order);
-    res.json({ message: 'created Order', order: orderToSave, user: req.user });
-    res.end();
+    if (req.user) {
+      const user = await userService.findOne({ _id: req.user._id });
+      saveWithUser(order, user, res);
+      return;
+    } else {
+      order.user = {};
+      order.user.id = 'unregistred';
+      order.user.email = 'unregistred';
+      orderToSave = await orderService.save(order);
+      res.json({
+        message: 'created Order',
+        order: orderToSave,
+        user: req.user
+      });
+      res.end();
+    }
+  } catch (error) {
+    handleOrderError(error, res);
   }
 };
 
 export const deleteOrder = (req, res, next) => {
-  res.json({ message: 'delete Order', payload: req.payload });
-  res.end();
+  try {
+    res.json({ message: 'delete Order', payload: req.payload });
+    res.end();
+  } catch (error) {
+    handleOrderError(error, res);
+  }
 };
 
-async function saveWithUser(order, user, orderToSave, res) {
-  order.user = {};
-  order.user.id = user.id;
-  order.user.email = user.email;
+async function saveWithUser(order, user, res) {
+  try {
+    order.user = {};
+    order.user.id = user._id;
+    order.user.email = user.email;
 
-  orderToSave = await orderService.save(order);
+    const orderToSave = await orderService.save(order);
 
-  user.orders.push(orderToSave._id);
+    user.orders.push(orderToSave._id);
 
-  orderService.saveOrderOnUser(user);
+    orderService.saveOrderOnUser(user);
 
-  res.json({
-    message: 'created order for user ' + orderToSave.user.id,
-    order: orderToSave
+    res.json({
+      user: orderToSave.user,
+      order: orderToSave,
+      success: true
+    });
+    res.end();
+  } catch (error) {
+    handleOrderError(error, res);
+  }
+}
+
+const handleOrderError = (error, res) => {
+  res.status(503).json({
+    message:
+      'Could not connect to the database. This is likely a temporary problem. Try again.',
+    error: JSON.stringify(error.message),
+    succsess: false
   });
   res.end();
-}
+};

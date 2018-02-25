@@ -17,49 +17,61 @@ export const registerUser = async (req, res, next) => {
 
     const token = savedUser.generateJwt();
 
-    res.status(200);
-    res.json({ token });
+    res.status(200).json({
+      success: true,
+      token
+    });
     res.end();
   } catch (error) {
-    res.json(error);
+    res.status(502).json({
+      error,
+      success: false
+    });
     res.end();
   }
 };
 
 export const loginUser = (req, res, next) => {
-  passport.authenticate('local', function(err, user, info) {
-    let token;
-    console.log(user);
-    // If Passport throws/catches an error
-    if (err) {
-      console.log('error in authentication');
-      res.status(404).json(err);
-      return;
-    }
+  try {
+    passport.authenticate('local', function(err, user, info) {
+      let token;
+      console.log(user);
+      // If Passport throws/catches an error
+      if (err) {
+        throw new Error('Error in Authentication');
+      }
 
-    // If a user is found
-    if (user) {
-      token = user.generateJwt();
-      res.status(200);
-      res.json({
-        token: token
-      });
-    } else {
-      // If user is not found
-      res.status(401).json(info);
-    }
-  })(req, res, next);
+      // If a user is found
+      if (user) {
+        token = user.generateJwt();
+        res.status(200).json({
+          success: true,
+          token: token,
+          message: 'login successful'
+        });
+      } else {
+        // If user is not found
+        res.status(401).json(info);
+      }
+    })(req, res, next);
+  } catch (error) {
+    res.status(502).json({
+      error,
+      success: false,
+      message: 'Could not login User'
+    });
+  }
 };
 
 export const getProfile = async (req, res, next) => {
-  // If no user ID exists in the JWT return a 401
-  if (!req.user._id) {
-    res.status(401).json({
-      message: 'UnauthorizedError: private profile'
-    });
-  } else {
-    // Otherwise continue
+  try {
+    // If no user ID exists in the JWT return a 401
+    if (!req.user._id) {
+      throw new Error('UnauthorizedError: private profile');
+    }
+
     const user = await UserModel.findById(req.user._id).exec();
+
     if (user) {
       res.status(200).json({
         auth: true,
@@ -73,15 +85,29 @@ export const getProfile = async (req, res, next) => {
         }
       });
     }
+  } catch (error) {
+    res.status(401).json({
+      error,
+      success: false,
+      message: error.message
+    });
   }
 };
 
 export const updateUser = (req, res, next) => {
-  res.json({ message: 'update User', payload: req.payload });
+  res.status(501).json({
+    success: false,
+    message: 'update user not implemented',
+    payload: req.payload
+  });
   res.end();
 };
 
 export const deleteUser = (req, res, next) => {
-  res.json({ message: 'delete User', payload: req.payload });
+  res.status(501).json({
+    success: false,
+    message: 'delete user not implemented',
+    payload: req.payload
+  });
   res.end();
 };

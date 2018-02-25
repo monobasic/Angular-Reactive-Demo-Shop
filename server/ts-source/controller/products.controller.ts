@@ -31,14 +31,18 @@ export const getProducts = async (req, res, next) => {
   console.log('getting products remotely');
   try {
     const products = await find();
-    res.write(JSON.stringify(products, null, 2));
+    res.json({
+      success: true,
+      products: products
+    });
+    // res.write(JSON.stringify(products, null, 2));
     res.end();
   } catch (error) {
-    const response = {
+    res.status(502).json({
+      error,
       success: false,
-      message: `Failed to load products. Error: ${error}`
-    };
-    res.json(JSON.stringify(response));
+      message: 'Failed to load products'
+    });
     res.end();
   }
 };
@@ -128,12 +132,11 @@ export const addProduct = async (req, res, next) => {
     res.json(answer);
     res.end();
   } catch (error) {
-    const answer = {
+    res.status(502).json({
+      error,
       success: false,
-      message: `Failed to create a new product. This may be a temporary error. Try again. Error: ${error}`
-    };
-    res.status(500);
-    res.json(answer);
+      message: `Failed to create a new product. This may be a temporary error. Try again.`,
+    });
     res.end();
   }
 };
@@ -149,18 +152,20 @@ export const updateProduct = async (req, res, next) => {
     res.json(answer);
     res.end();
   } catch (error) {
-    const answer = {
+    res.status(502).json({
+      error,
       success: false,
-      message: `Failed to update product. This may be a temporary error. Try again. Error: ${error}`
-    };
-    res.status(500);
-    res.json(answer);
+      message: 'Failed to update product. This may be a temporary error. Try again.'
+    });
     res.end();
   }
 };
 
 export const deleteProduct = (req, res, next) => {
-  res.json({message: req.params.id + ' to delete...'});
+  res.status(501).json({
+    message: req.params.id + ' to delete...',
+    success: false
+  });
 };
 
 export default {
