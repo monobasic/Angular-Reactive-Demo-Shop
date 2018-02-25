@@ -49,13 +49,14 @@ router.use('/api', api);
  * ADMIN ROUTES
  */
 router.get('/api/admin-auth', auth, guard.check('admin'), adminAuth);
+
 /**
  * USER ROUTES
  */
 router.get('/api/user', (req, res) => res.redirect('/api/user/profile'));
 router.get('/api/user/profile', auth, getProfile);
 
-router.post('/api/user/register', registerUser);
+router.post('/api/user', registerUser);
 router.post('/api/user/login', loginUser);
 
 router.put('/api/user/:id', auth, updateUser);
