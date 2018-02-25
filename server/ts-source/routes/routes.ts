@@ -50,7 +50,7 @@ router.use('/api', api);
  */
 
 // server-side of angular route-guard
-router.get('/api/admin-auth', auth, guard.check('admin'), adminAuth);
+router.get('/api/admin-auth', auth, guard.check(process.env.ADMIN), adminAuth);
 
 /**
  * USER ROUTES
@@ -62,13 +62,13 @@ router.post('/api/user/login', loginUser);
 
 router.put('/api/user/:id', auth, updateUser);
 
-router.delete('/api/user/:id', auth, guard.check('admin'), deleteUser);
+router.delete('/api/user/:id', auth, guard.check(process.env.ADMIN), deleteUser);
 
 /**
  * ORDER ROUTES
  */
 router.get('/api/orders', auth, getOrders);
-router.get('/api/orders/all', auth, guard.check('admin'), getAllOrders);
+router.get('/api/orders/all', auth, guard.check(process.env.ADMIN), getAllOrders);
 router.get('/api/orders/:id', auth, getOrder);
 
 router.post(
@@ -89,7 +89,7 @@ router.post(
   createOrder
 );
 
-router.delete('/api/orders/:id', auth, guard.check('admin'), deleteOrder);
+router.delete('/api/orders/:id', auth, guard.check(process.env.ADMIN), deleteOrder);
 
 /**
  * PRODUCT ROUTES
@@ -100,7 +100,7 @@ router.get('/api/products/:id', getProduct);
 router.post(
   '/api/products',
   auth,
-  guard.check('admin'),
+  guard.check(process.env.ADMIN),
   uploadImages,
   resizeImages,
   createProduct,
@@ -110,7 +110,7 @@ router.post(
 router.put(
   '/api/products/:id',
   auth,
-  guard.check('admin'),
+  guard.check(process.env.ADMIN),
   uploadImages,
   log,
   resizeImages,
@@ -118,6 +118,6 @@ router.put(
   updateProduct
 );
 
-router.delete('/api/products/:id', auth, guard.check('admin'), deleteProduct);
+router.delete('/api/products/:id', auth, guard.check(process.env.ADMIN), deleteProduct);
 
 export default router;

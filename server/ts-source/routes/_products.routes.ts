@@ -38,7 +38,7 @@ router.get('/:id', getProduct);
 router.post(
   '/',
   // auth,
-  // guard.check('admin'),
+  // guard.check(process.env.ADMIN),
   uploadImages,
   resizeImages,
   createProduct,
@@ -48,14 +48,14 @@ router.post(
 router.delete(
   '/:id',
   // auth,
-  // guard.check('admin'),
+  // guard.check(process.env.ADMIN),
   deleteProduct
 );
 
 router.put(
   '/:id',
   // auth,
-  // guard.check('admin'),
+  // guard.check(process.env.ADMIN),
   uploadImages,
   log,
   resizeImages,
