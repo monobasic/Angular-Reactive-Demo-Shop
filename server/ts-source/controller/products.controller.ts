@@ -163,7 +163,7 @@ export const updateProduct = async (req, res, next) => {
 
 export const deleteProduct = (req, res, next) => {
   res.status(501).json({
-    message: req.params.id + ' to delete...',
+    message: req.params.id + ' to delete. delete product not implemented.',
     success: false
   });
 };

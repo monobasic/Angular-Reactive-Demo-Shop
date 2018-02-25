@@ -48,13 +48,14 @@ router.use('/api', api);
 /**
  * ADMIN ROUTES
  */
+
+// server-side of angular route-guard
 router.get('/api/admin-auth', auth, guard.check('admin'), adminAuth);
 
 /**
  * USER ROUTES
  */
-router.get('/api/user', (req, res) => res.redirect('/api/user/profile'));
-router.get('/api/user/profile', auth, getProfile);
+router.get('/api/user', auth, getProfile);
 
 router.post('/api/user', registerUser);
 router.post('/api/user/login', loginUser);
@@ -117,6 +118,6 @@ router.put(
   updateProduct
 );
 
-router.delete('/api/products/:id', deleteProduct);
+router.delete('/api/products/:id', auth, guard.check('admin'), deleteProduct);
 
 export default router;

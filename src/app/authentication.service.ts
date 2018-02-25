@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { MessageService } from './messages/message.service';
 
 export interface UserDetails {
@@ -87,8 +87,10 @@ export class AuthenticationService {
       base = this.http.get(`/api/admin-auth`, {
         headers: { Authorization: `Bearer ${this.getToken()}` }
       });
-    } else if (method === 'post') {
-      base = this.http.post(`/api/user/${type}`, user);
+    } else if (type === 'register') {
+      base = this.http.post(`/api/user/`, user);
+    } else if (type === 'login') {
+      base = this.http.post(`/api/user/login`, user);
     } else if (method === 'get') {
       base = this.http.get(`/api/user/${type}`, {
         headers: { Authorization: `Bearer ${this.getToken()}` }
@@ -96,15 +98,16 @@ export class AuthenticationService {
     }
 
     const request = base.pipe(
-      map(
-        (data) => this.logger.add(`auth-service: ${JSON.stringify(data)}`),
-        (data: TokenResponse) => {
-          if (data.token) {
-            this.saveToken(data.token);
-          }
-          return data;
+      tap((data) => {
+        this.logger.add(`auth-service: ${JSON.stringify(data)}`);
+        return data;
+      }),
+      tap((data: TokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token);
         }
-      )
+        return data;
+      })
     );
     return request;
   }
