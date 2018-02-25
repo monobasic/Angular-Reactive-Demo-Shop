@@ -74,6 +74,7 @@ export const getProfile = async (req, res, next) => {
 
     if (user) {
       res.status(200).json({
+        success: true,
         auth: true,
         user: {
           _id: user.id,

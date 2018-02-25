@@ -36,9 +36,10 @@ export class ProductsListComponent implements OnInit {
   getProducts() {
     this.productsCacheService
       .get('product', this.productService.getProducts())
-      .subscribe((response) => {
-        this.products = response.products;
-        this.sortPipe.transform(this.products, 'date', true);
+      .subscribe((products) => {
+        this.products =
+          products.products || products;
+          this.sortPipe.transform(this.products, 'date', true);
         this.setPage(1);
       });
   }
@@ -60,7 +61,11 @@ export class ProductsListComponent implements OnInit {
   }
 
   onSort(sortBy: string) {
-    this.sortPipe.transform(this.products, sortBy.replace(':reverse', ''), sortBy.endsWith(':reverse'));
+    this.sortPipe.transform(
+      this.products,
+      sortBy.replace(':reverse', ''),
+      sortBy.endsWith(':reverse')
+    );
     this.setPage(this.pager.currentPage);
   }
 }

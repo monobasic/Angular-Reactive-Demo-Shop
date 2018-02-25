@@ -4,7 +4,6 @@ import { UserModel } from '../model/user.model';
 import { OrderModel } from '../model/order.model';
 
 export const findForUser = async (user) => {
-  console.log(user.email);
   return OrderModel.find({'user.email': user.email}).exec();
 };
 
@@ -12,7 +11,9 @@ export const findAll = async () => {
   return OrderModel.find({});
 };
 
-export const findOne = (id) => {};
+export const findOne = (id) => {
+  return OrderModel.findById(id);
+};
 
 export const save = async (order) => {
   const orderToSave = new OrderModel(order);

@@ -8,8 +8,9 @@ export const getOrders = async (req, res, next) => {
     const orders = await orderService.findForUser(user);
 
     res.json({
-      message: 'getOrders',
-      user: 'user ' + user.id,
+      success: true,
+      message: 'successfully fetched orders',
+      user: user._id,
       orders: orders
     });
     res.end();
@@ -18,13 +19,14 @@ export const getOrders = async (req, res, next) => {
   }
 };
 
-export const getOrder = (req, res, next) => {
+export const getOrder = async (req, res, next) => {
   try {
-    req.payload = {};
-    req.payload._id = req.params.id;
+    const order = await orderService.findOne(req.params.id);
 
     res.json({
-      message: `get order ${req.params.id} for ${req.payload._id}`
+      success: true,
+      order: order,
+      message: `got order ${req.params.id}`
     });
     res.end();
   } catch (error) {
