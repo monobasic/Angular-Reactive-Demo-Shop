@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 
-import { UserModel } from '../model/user.model';
-import { OrderModel } from '../model/order.model';
+import { UserModel } from '../models/user.model';
+import { OrderModel } from '../models/order.model';
 
 export const findForUser = async (user) => {
   return OrderModel.find({'user.email': user.email}).exec();

@@ -1,6 +1,6 @@
 import * as passport from 'passport';
 import * as mongoose from 'mongoose';
-import { UserModel } from '../model/user.model';
+import { UserModel } from '../models/user.model';
 import { save } from '../services/user.service';
 
 export const registerUser = async (req, res, next) => {

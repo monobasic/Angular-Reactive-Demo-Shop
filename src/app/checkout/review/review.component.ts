@@ -2,8 +2,8 @@ import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { CartService } from '../../cart/cart.service';
 import { CartItem } from '../../cart/shared/cart-item.model';
 import { CheckoutService } from '../../checkout.service';
-import { Customer } from '../../model/customer.model';
-import { Order } from '../../model/order.model';
+import { Customer } from '../../models/customer.model';
+import { Order } from '../../models/order.model';
 
 @Component({
   selector: 'app-checkout-review',

@@ -2,7 +2,7 @@ import * as passport from 'passport';
 import * as passportLocal from 'passport-local';
 import * as mongoose from 'mongoose';
 import { findOne } from '../services/user.service';
-import { UserModel } from '../model/user.model';
+import { UserModel } from '../models/user.model';
 
 export const passportConfig = passport.use(
   new passportLocal.Strategy(

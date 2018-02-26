@@ -1,4 +1,4 @@
-import { UserModel } from '../model/user.model';
+import { UserModel } from '../models/user.model';
 
 export const save = (user) => {
   return user.save();

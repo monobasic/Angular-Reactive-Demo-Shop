@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CheckoutService } from '../../checkout.service';
-import { Customer } from '../../model/customer.model';
+import { Customer } from '../../models/customer.model';
 
 @Component({
   selector: 'app-checkout-shipping',

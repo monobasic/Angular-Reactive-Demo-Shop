@@ -10,7 +10,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from '../products/shared/product.service';
 import { ProductsCacheService } from '../products/shared/products-cache.service';
 
-import { Product } from '../model/product.model';
+import { Product } from '../models/product.model';
 import { placeholderProduct } from './placeholderProduct';
 
 @Component({

@@ -1,4 +1,4 @@
-import ProductModel from '../model/product.model';
+import ProductModel from '../models/product.model';
 
 export const find = () => {
   return ProductModel.find().exec();

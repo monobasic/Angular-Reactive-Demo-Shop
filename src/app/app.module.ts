@@ -36,7 +36,7 @@ import { FooterComponent as CheckoutFooterComponent } from './checkout/footer/fo
 import { SidebarComponent as CheckoutSidebarComponent } from './checkout/sidebar/sidebar.component';
 
 // Services
-// import { InMemoryDataService } from './model/in-memory-data.service';
+// import { InMemoryDataService } from './models/in-memory-data.service';
 import { ProductService } from './products/shared/product.service';
 import { ProductsCacheService } from './products/shared/products-cache.service';
 import { CartService } from './cart/cart.service';

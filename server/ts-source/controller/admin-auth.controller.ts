@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { UserModel } from '../model/user.model';
+import { UserModel } from '../models/user.model';
 
 export const adminAuth = async (req, res) => {
   // If no user ID exists in the JWT return a 401

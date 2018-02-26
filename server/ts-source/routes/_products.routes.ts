@@ -9,7 +9,7 @@ import {
   deleteProduct,
   log
 } from '../controller/products.controller';
-import ProductModel from '../model/product.model';
+import ProductModel from '../models/product.model';
 
 import * as express from 'express';
 import { Router } from 'express';
