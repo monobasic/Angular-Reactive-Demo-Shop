@@ -12,7 +12,6 @@ import { AuthenticationService } from '../authentication.service';
 export class CheckoutComponent implements OnInit {
   steps: string[];
   activeStep: number;
-  user$;
 
   constructor(
     private checkoutService: CheckoutService,
@@ -20,16 +19,10 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getUser();
     this.steps = ['1. Address', '2. Shipping', '3. Payment', '4. Review'];
     this.activeStep = this.checkoutService.activeStep;
     this.checkoutService.stepChanged.subscribe((step: number) => {
       this.activeStep = step;
     });
-  }
-  getUser() {
-    if (this.auth.isLoggedIn()) {
-      this.user$ = this.auth.profile();
-    }
   }
 }
