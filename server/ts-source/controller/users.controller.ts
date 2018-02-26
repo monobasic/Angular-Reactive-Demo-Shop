@@ -9,7 +9,8 @@ export const registerUser = async (req, res, next) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      permissions: req.body.permissions
+      permissions: req.body.permissions,
+      adresses: req.body.adresses || {}
     });
     user.setPassword(req.body.password);
 

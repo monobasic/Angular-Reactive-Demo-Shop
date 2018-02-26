@@ -24,7 +24,7 @@
         <button [ngClass]="{'active': i === activeStep, 'active-sibling': i === activeStep-1}" *ngFor="let step of steps; let i = index"><span class="angle" *ngIf="i < steps.length-1"></span>{{step}}</button>
       </div>
 
-      <app-checkout-address [ngClass]="{'d-none': activeStep !== 0}"></app-checkout-address>
+      <app-checkout-address [user]="user$" [ngClass]="{'d-none': activeStep !== 0}"></app-checkout-address>
       <app-checkout-shipping [ngClass]="{'d-none': activeStep !== 1}"></app-checkout-shipping>
       <app-checkout-payment [ngClass]="{'d-none': activeStep !== 2}"></app-checkout-payment>
       <app-checkout-review [ngClass]="{'d-none': activeStep !== 3}"></app-checkout-review>

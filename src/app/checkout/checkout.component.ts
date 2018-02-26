@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckoutService } from '../checkout.service';
 
+import { UserDetails } from '../models/user.model';
+import { AuthenticationService } from '../authentication.service';
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -9,17 +12,24 @@ import { CheckoutService } from '../checkout.service';
 export class CheckoutComponent implements OnInit {
   steps: string[];
   activeStep: number;
+  user$;
 
-  constructor(private checkoutService: CheckoutService) { }
+  constructor(
+    private checkoutService: CheckoutService,
+    private auth: AuthenticationService
+  ) {}
 
   ngOnInit() {
+    this.getUser();
     this.steps = ['1. Address', '2. Shipping', '3. Payment', '4. Review'];
     this.activeStep = this.checkoutService.activeStep;
-    this.checkoutService.stepChanged.subscribe(
-      (step: number) => {
-        this.activeStep = step;
-      }
-    );
+    this.checkoutService.stepChanged.subscribe((step: number) => {
+      this.activeStep = step;
+    });
   }
-
+  getUser() {
+    if (this.auth.isLoggedIn()) {
+      this.user$ = this.auth.profile();
+    }
+  }
 }

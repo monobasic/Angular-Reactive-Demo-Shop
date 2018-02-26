@@ -5,16 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { map, tap } from 'rxjs/operators';
 import { MessageService } from './messages/message.service';
 
-export interface UserDetails {
-  _id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  adresses: string[];
-  oders: number[];
-  exp: number;
-  iat: number;
-}
+import { UserDetails } from './models/user.model';
 
 interface TokenResponse {
   token: string;
@@ -80,7 +71,6 @@ export class AuthenticationService {
     type: 'login' | 'register' | 'profile' | 'admin-auth',
     user?: TokenPayload
   ): Observable<any> {
-    console.log(arguments);
     let base;
 
     if (type === 'admin-auth') {
@@ -92,7 +82,7 @@ export class AuthenticationService {
     } else if (type === 'login') {
       base = this.http.post(`/api/user/login`, user);
     } else if (method === 'get') {
-      base = this.http.get(`/api/user/${type}`, {
+      base = this.http.get(`/api/user/`, {
         headers: { Authorization: `Bearer ${this.getToken()}` }
       });
     }

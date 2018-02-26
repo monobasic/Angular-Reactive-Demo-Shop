@@ -30,11 +30,6 @@ export class ProductsCacheService {
 
   readonly DEFAULT_MAX_AGE: number = 300000;
 
-  /** Log a ProductService message with the MessageService */
-  private log(message: string) {
-    // this.messageService.add('ProductCacheService: ' + message);
-  }
-
   constructor(/* private messageService: MessageService */) {}
 
   /**
