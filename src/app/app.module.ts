@@ -53,6 +53,7 @@ import { RegisterLoginComponent } from './register-login/register-login.componen
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AuthenticationService } from './authentication.service';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { AuthenticationService } from './authentication.service';
     CheckoutSidebarComponent,
     RegisterLoginComponent,
     ProfileComponent,
-    OrdersComponent
+    OrdersComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

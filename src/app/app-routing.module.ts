@@ -12,6 +12,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { RegisterLoginComponent } from './register-login/register-login.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,11 +21,22 @@ const routes: Routes = [
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartComponent },
   { path: 'admin/add', component: AddEditComponent, canActivate: [AdminGuard] },
-  { path: 'admin/edit/:id', component: AddEditComponent, canActivate: [AdminGuard] },
+  {
+    path: 'admin/edit/:id',
+    component: AddEditComponent,
+    canActivate: [AdminGuard]
+  },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'register-login', component: RegisterLoginComponent },
-  { path: 'orders', component: OrdersComponent},
-  { path: 'profile', component: ProfileComponent},
+  {
+    path: 'account',
+    component: AccountComponent,
+    children: [
+      { path: '', redirectTo: 'account', pathMatch: 'full' },
+      { path: 'orders', component: OrdersComponent },
+      { path: 'profile', component: ProfileComponent }
+    ]
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 
