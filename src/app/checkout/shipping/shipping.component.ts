@@ -28,7 +28,7 @@ export class ShippingComponent implements OnInit {
         fee: 9,
         value: 'economy'
       }
-    ]
+    ];
     this.formShipping = new FormGroup({
       'shippingMethod': new FormControl(this.shippingMethods[1].value, Validators.required)
     });
