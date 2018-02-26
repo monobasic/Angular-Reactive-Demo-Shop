@@ -11,20 +11,10 @@ import { ProductsCacheService } from '../products/shared/products-cache.service'
 export class HomeComponent implements OnInit {
   products: any;
   constructor(
-    private messageService: MessageService,
-    private productService: ProductService,
-    private productsCacheService: ProductsCacheService
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
     this.messageService.add('MessageService: App ready!');
-    this.getProducts();
-  }
-  getProducts() {
-    this.productsCacheService
-      .get('product', this.productService.getProducts())
-      .subscribe((products) => {
-        this.products = products.products || products;
-      });
   }
 }
