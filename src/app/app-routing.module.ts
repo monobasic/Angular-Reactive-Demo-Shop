@@ -32,7 +32,7 @@ const routes: Routes = [
     path: 'account',
     component: AccountComponent,
     children: [
-      { path: '', redirectTo: 'account', pathMatch: 'full' },
+      { path: '', redirectTo: 'account/profile', pathMatch: 'full' },
       { path: 'orders', component: OrdersComponent },
       { path: 'profile', component: ProfileComponent }
     ]
