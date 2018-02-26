@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../messages/message.service';
+import { ProductService } from '../products/shared/product.service';
+import { ProductsCacheService } from '../products/shared/products-cache.service';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +9,22 @@ import { MessageService } from '../messages/message.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  title = 'Hey ho, the Shopify Killer is near!';
-
-  constructor(private messageService: MessageService) { }
+  products: any;
+  constructor(
+    private messageService: MessageService,
+    private productService: ProductService,
+    private productsCacheService: ProductsCacheService
+  ) {}
 
   ngOnInit() {
     this.messageService.add('MessageService: App ready!');
+    this.getProducts();
   }
-
+  getProducts() {
+    this.productsCacheService
+      .get('product', this.productService.getProducts())
+      .subscribe((products) => {
+        this.products = products.products || products;
+      });
+  }
 }
