@@ -4,35 +4,38 @@ import * as jwt from 'jsonwebtoken';
 
 import { orderSchema } from './order.model';
 
-const userSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    unique: true,
-    required: true
+const userSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      unique: true,
+      required: true
+    },
+    firstName: {
+      type: String,
+      required: true
+    },
+    lastName: {
+      type: String,
+      required: true
+    },
+    orders: {
+      type: [String]
+    },
+    phoneNumber: {
+      type: Number
+    },
+    adresses: {
+      type: Array
+    },
+    permissions: {
+      type: Array
+    },
+    hash: String,
+    salt: String
   },
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
-    type: String,
-    required: true
-  },
-  orders: {
-    type: [String]
-  },
-  phoneNumber: {
-    type: Number
-  },
-  adresses: {
-    type: Array
-  },
-  permissions: {
-    type: Array
-  },
-  hash: String,
-  salt: String
-});
+  { timestamps: true }
+);
 
 userSchema.methods.setPassword = function(password) {
   this.salt = crypto.randomBytes(16).toString('hex');
