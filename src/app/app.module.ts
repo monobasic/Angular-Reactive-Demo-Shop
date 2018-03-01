@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ToastrModule } from 'ngx-toastr';
-import { AppRoutingModule } from './app-routing.module';
 import { ProductsModule } from './products/products.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
@@ -47,9 +46,9 @@ import { AdminGuard } from './admin.guard';
     BrowserAnimationsModule,
     HttpClientModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
+    SharedModule,
     ToastrModule.forRoot(),
     CoreModule,
-    SharedModule,
     ProductsModule,
     CheckoutModule,
     AccountModule,

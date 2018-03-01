@@ -13,8 +13,8 @@ import { AppRoutingModule } from '../app-routing.module';
         AppRoutingModule
     ],
     exports: [
-        CommonModule,
         PriceComponent,
+        CommonModule,
         AppRoutingModule
     ]
 })
