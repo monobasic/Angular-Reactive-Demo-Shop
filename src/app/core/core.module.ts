@@ -45,15 +45,10 @@ import { AuthenticationService } from '../authentication.service';
         AppRoutingModule,
         CommonModule,
         SharedModule,
-        HeaderComponent,
         NavigationOffCanvasComponent,
         TopBarComponent,
-        ContentComponent,
-        FooterComponent,
-        NavigationMainComponent,
-        ToolbarCartComponent,
-        HomeComponent,
-        MainSliderComponent
+        HeaderComponent,
+        ContentComponent
     ],
     providers: [
         ProductService,
