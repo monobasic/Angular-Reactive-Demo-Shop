@@ -7,7 +7,7 @@ import { ProductsListItemComponent } from './products-list-item/products-list-it
 
 import { SortPipe } from '../sort.pipe';
 import { SharedModule } from '../shared/shared.module';
-import { AppRoutingModule } from '../app-routing.module';
+
 
 @NgModule({
     declarations: [
@@ -17,15 +17,13 @@ import { AppRoutingModule } from '../app-routing.module';
         SortPipe
     ],
     imports: [
-        SharedModule,
-        AppRoutingModule
+        SharedModule
     ],
     exports: [
         ProductDetailComponent,
         ProductsListComponent,
         ProductsListItemComponent,
-        SortPipe,
-        AppRoutingModule
+        SortPipe
     ],
     providers: [
         SortPipe
