@@ -1,4 +1,4 @@
-import { Product } from '../models/product.model';
+import { Product } from '../../models/product.model';
 
 export const placeholderProduct: Product = {
   id: 1,
