@@ -19,7 +19,7 @@ import { CartService } from '../cart/cart.service';
 import { PagerService } from '../pager/pager.service';
 import { OrderService } from '../orders/order.service';
 import { CheckoutService } from '../checkout/checkout.service';
-import { AdminAuthService } from '../admin/admin-auth.service';
+import { AdminAuthService } from '../admin/shared/admin-auth.service';
 import { AuthenticationService } from '../account/shared/authentication.service';
 
 @NgModule({
