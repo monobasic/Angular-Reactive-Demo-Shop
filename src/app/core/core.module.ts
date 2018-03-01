@@ -17,7 +17,7 @@ import { ProductsCacheService } from '../products/shared/products-cache.service'
 import { MessageService } from '../messages/message.service';
 import { CartService } from '../cart/cart.service';
 import { PagerService } from '../pager/pager.service';
-import { OrderService } from '../order.service';
+import { OrderService } from '../orders/order.service';
 import { CheckoutService } from '../checkout/checkout.service';
 import { AdminAuthService } from '../admin-auth.service';
 import { AuthenticationService } from '../authentication.service';
