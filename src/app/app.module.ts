@@ -12,14 +12,13 @@ import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
 import { CheckoutModule } from './checkout/checkout.module';
 import { AccountModule } from './account/account.module';
+import { AdminModule } from './admin/admin.module';
 
 // Components
 import { AppComponent } from './app.component';
 import { CartComponent } from './cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AddEditComponent } from './add-edit/add-edit.component';
 import { OrdersComponent } from './orders/orders.component';
-import { AccountComponent } from './account/account.component';
 
 // Services
 // import { InMemoryDataService } from './models/in-memory-data.service';
@@ -41,9 +40,7 @@ import { AdminGuard } from './admin.guard';
     AppComponent,
     CartComponent,
     PageNotFoundComponent,
-    AddEditComponent,
     OrdersComponent,
-    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +52,8 @@ import { AdminGuard } from './admin.guard';
     SharedModule,
     ProductsModule,
     CheckoutModule,
-    AccountModule
+    AccountModule,
+    AdminModule
   ],
   providers: [
     ProductService,
