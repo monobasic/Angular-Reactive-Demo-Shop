@@ -2,7 +2,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ToastrModule } from 'ngx-toastr';
@@ -17,13 +16,6 @@ import { MainSliderComponent } from './main-slider/main-slider.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { AddressComponent as CheckoutAddressComponent } from './checkout/address/address.component';
-import { ShippingComponent as CheckoutShippingComponent } from './checkout/shipping/shipping.component';
-import { PaymentComponent as CheckoutPaymentComponent } from './checkout/payment/payment.component';
-import { ReviewComponent as CheckoutReviewComponent } from './checkout/review/review.component';
-import { FooterComponent as CheckoutFooterComponent } from './checkout/footer/footer.component';
-import { SidebarComponent as CheckoutSidebarComponent } from './checkout/sidebar/sidebar.component';
 import { RegisterLoginComponent } from './register-login/register-login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
@@ -46,6 +38,7 @@ import { AdminGuard } from './admin.guard';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
+import { CheckoutModule } from './checkout/checkout.module';
 
 @NgModule({
   declarations: [
@@ -56,13 +49,6 @@ import { RouterModule } from '@angular/router';
     PageNotFoundComponent,
     MessagesComponent,
     AddEditComponent,
-    CheckoutComponent,
-    CheckoutAddressComponent,
-    CheckoutShippingComponent,
-    CheckoutPaymentComponent,
-    CheckoutReviewComponent,
-    CheckoutFooterComponent,
-    CheckoutSidebarComponent,
     RegisterLoginComponent,
     ProfileComponent,
     OrdersComponent,
@@ -71,14 +57,13 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     ToastrModule.forRoot(),
     CoreModule,
     SharedModule,
-    ProductsModule
+    ProductsModule,
+    CheckoutModule
   ],
   providers: [
     ProductService,
