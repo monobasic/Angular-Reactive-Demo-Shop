@@ -39,7 +39,6 @@ import { OrdersComponent } from './orders/orders.component';
     AccountModule,
     AdminModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
