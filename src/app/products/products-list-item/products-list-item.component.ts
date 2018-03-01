@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../models/product.model';
-import { CartService } from '../../cart/cart.service';
+import { CartService } from '../../cart/shared/cart.service';
 import { CartItem } from '../../cart/shared/cart-item.model';
 
 @Component({

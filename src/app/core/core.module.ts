@@ -15,7 +15,7 @@ import { MainSliderComponent } from './home/main-slider/main-slider.component';
 import { ProductService } from '../products/shared/product.service';
 import { ProductsCacheService } from '../products/shared/products-cache.service';
 import { MessageService } from '../messages/message.service';
-import { CartService } from '../cart/cart.service';
+import { CartService } from '../cart/shared/cart.service';
 import { PagerService } from '../pager/pager.service';
 import { OrderService } from '../orders/order.service';
 import { CheckoutService } from '../checkout/checkout.service';

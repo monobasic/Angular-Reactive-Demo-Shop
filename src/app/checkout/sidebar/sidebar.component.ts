@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../cart/cart.service';
+import { CartService } from '../../cart/shared/cart.service';
 
 @Component({
   selector: 'app-checkout-sidebar',
