@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from '../app-routing.module';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 
@@ -18,7 +17,6 @@ import { ProductsCacheService } from '../products/shared/products-cache.service'
 import { MessageService } from '../messages/message.service';
 import { CartService } from '../cart/cart.service';
 import { PagerService } from '../pager/pager.service';
-import { AdminGuard } from '../admin.guard';
 import { OrderService } from '../order.service';
 import { CheckoutService } from '../checkout.service';
 import { AdminAuthService } from '../admin-auth.service';
@@ -37,12 +35,10 @@ import { AuthenticationService } from '../authentication.service';
         MainSliderComponent
     ],
     imports: [
-        AppRoutingModule,
         CommonModule,
         SharedModule
     ],
     exports: [
-        AppRoutingModule,
         CommonModule,
         SharedModule,
         NavigationOffCanvasComponent,
@@ -56,7 +52,6 @@ import { AuthenticationService } from '../authentication.service';
         MessageService,
         CartService,
         PagerService,
-        AdminGuard,
         OrderService,
         CheckoutService,
         AdminAuthService,
