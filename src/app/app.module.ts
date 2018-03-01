@@ -14,7 +14,6 @@ import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import { MainSliderComponent } from './home/main-slider/main-slider.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { MessagesComponent } from './messages/messages.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { RegisterLoginComponent } from './register-login/register-login.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -47,7 +46,6 @@ import { CheckoutModule } from './checkout/checkout.module';
     CartComponent,
     MainSliderComponent,
     PageNotFoundComponent,
-    MessagesComponent,
     AddEditComponent,
     RegisterLoginComponent,
     ProfileComponent,
