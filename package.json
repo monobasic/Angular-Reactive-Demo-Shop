@@ -4,12 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start":
-      "ng serve | tsc -p tsconfig.server.json -watch | nodemon server/compiled/server.js",
-    "start:remote":
-      "ng serve --proxy-config proxy.config.json | tsc -p tsconfig.server.json -watch | nodemon server/compiled/server.js",
-    "db-restore":
-      "node -r dotenv/config server/ts-source/mockdata/restoreDatabase.js",
+    "start": "ng serve | tsc -p tsconfig.server.json -watch | nodemon server/compiled/server.js",
+    "start:remote": "ng serve --proxy-config proxy.config.json | tsc -p tsconfig.server.json -watch | nodemon server/compiled/server.js",
+    "db-restore": "node -r dotenv/config server/ts-source/mockdata/restoreDatabase.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
