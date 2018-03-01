@@ -19,21 +19,6 @@ import { CartComponent } from './cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { OrdersComponent } from './orders/orders.component';
 
-// Services
-// import { InMemoryDataService } from './models/in-memory-data.service';
-import { ProductService } from './products/shared/product.service';
-import { ProductsCacheService } from './products/shared/products-cache.service';
-import { CartService } from './cart/cart.service';
-import { MessageService } from './messages/message.service';
-import { PagerService } from './pager/pager.service';
-import { OrderService } from './order.service';
-import { CheckoutService } from './checkout.service';
-import { AuthenticationService } from './authentication.service';
-import { AdminAuthService } from './admin-auth.service';
-
-// Guards
-import { AdminGuard } from './admin.guard';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,18 +39,7 @@ import { AdminGuard } from './admin.guard';
     AccountModule,
     AdminModule
   ],
-  providers: [
-    ProductService,
-    ProductsCacheService,
-    MessageService,
-    CartService,
-    PagerService,
-    AdminGuard,
-    OrderService,
-    CheckoutService,
-    AdminAuthService,
-    AuthenticationService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
