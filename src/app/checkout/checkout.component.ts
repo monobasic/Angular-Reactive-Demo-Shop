@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CheckoutService } from './checkout.service';
 
 import { UserDetails } from '../models/user.model';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../account/authentication.service';
 
 @Component({
   selector: 'app-checkout',

@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { map, tap } from 'rxjs/operators';
-import { MessageService } from './messages/message.service';
+import { MessageService } from '../messages/message.service';
 
-import { UserDetails } from './models/user.model';
+import { UserDetails } from '../models/user.model';
 
 interface TokenResponse {
   token: string;

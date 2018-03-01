@@ -20,7 +20,7 @@ import { PagerService } from '../pager/pager.service';
 import { OrderService } from '../orders/order.service';
 import { CheckoutService } from '../checkout/checkout.service';
 import { AdminAuthService } from '../admin-auth.service';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../account/authentication.service';
 
 @NgModule({
     declarations: [
