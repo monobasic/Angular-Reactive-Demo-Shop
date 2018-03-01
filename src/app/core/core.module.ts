@@ -18,7 +18,7 @@ import { MessageService } from '../messages/message.service';
 import { CartService } from '../cart/cart.service';
 import { PagerService } from '../pager/pager.service';
 import { OrderService } from '../order.service';
-import { CheckoutService } from '../checkout.service';
+import { CheckoutService } from '../checkout/checkout.service';
 import { AdminAuthService } from '../admin-auth.service';
 import { AuthenticationService } from '../authentication.service';
 

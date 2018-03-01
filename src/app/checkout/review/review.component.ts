@@ -1,7 +1,7 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { CartService } from '../../cart/cart.service';
 import { CartItem } from '../../cart/shared/cart-item.model';
-import { CheckoutService } from '../../checkout.service';
+import { CheckoutService } from '../checkout.service';
 import { Customer } from '../../models/customer.model';
 import { Order } from '../../models/order.model';
 
