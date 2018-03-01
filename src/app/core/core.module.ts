@@ -9,6 +9,8 @@ import { NavigationMainComponent } from './header/navigation-main/navigation-mai
 import { ToolbarCartComponent } from './header/toolbar/cart/cart.component';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
+import { HomeComponent } from './home/home.component';
+import { MainSliderComponent } from './home/main-slider/main-slider.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +20,9 @@ import { SharedModule } from '../shared/shared.module';
         TopBarComponent,
         FooterComponent,
         NavigationMainComponent,
-        ToolbarCartComponent
+        ToolbarCartComponent,
+        HomeComponent,
+        MainSliderComponent
     ],
     imports: [
         AppRoutingModule,
@@ -35,7 +39,9 @@ import { SharedModule } from '../shared/shared.module';
         ContentComponent,
         FooterComponent,
         NavigationMainComponent,
-        ToolbarCartComponent
+        ToolbarCartComponent,
+        HomeComponent,
+        MainSliderComponent
     ]
 })
 export class CoreModule {}

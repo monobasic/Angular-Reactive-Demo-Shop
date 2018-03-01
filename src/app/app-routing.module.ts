@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './core/home/home.component';
 import { CartComponent } from './cart/cart.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminGuard } from './admin.guard';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { RegisterLoginComponent } from './register-login/register-login.component';
+import { RegisterLoginComponent } from './account/register-login/register-login.component';
 import { OrdersComponent } from './orders/orders.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './account/profile/profile.component';
 import { AccountComponent } from './account/account.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';

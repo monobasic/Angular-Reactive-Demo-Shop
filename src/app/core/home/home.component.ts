@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from '../messages/message.service';
-import { ProductService } from '../products/shared/product.service';
-import { ProductsCacheService } from '../products/shared/products-cache.service';
+import { MessageService } from '../../messages/message.service';
 
 @Component({
   selector: 'app-home',

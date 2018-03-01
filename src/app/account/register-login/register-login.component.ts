@@ -6,7 +6,7 @@ import {
   Validators
 } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../../authentication.service';
 @Component({
   selector: 'app-register-login',
   templateUrl: './register-login.component.html',

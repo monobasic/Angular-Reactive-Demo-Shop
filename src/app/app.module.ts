@@ -7,16 +7,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductsModule } from './products/products.module';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
+import { RouterModule } from '@angular/router';
+import { CheckoutModule } from './checkout/checkout.module';
+import { AccountModule } from './account/account.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
-import { MainSliderComponent } from './home/main-slider/main-slider.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
-import { RegisterLoginComponent } from './register-login/register-login.component';
-import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AccountComponent } from './account/account.component';
 
@@ -34,21 +35,13 @@ import { AdminAuthService } from './admin-auth.service';
 
 // Guards
 import { AdminGuard } from './admin.guard';
-import { SharedModule } from './shared/shared.module';
-import { CoreModule } from './core/core.module';
-import { RouterModule } from '@angular/router';
-import { CheckoutModule } from './checkout/checkout.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     CartComponent,
-    MainSliderComponent,
     PageNotFoundComponent,
     AddEditComponent,
-    RegisterLoginComponent,
-    ProfileComponent,
     OrdersComponent,
     AccountComponent
   ],
@@ -61,7 +54,8 @@ import { CheckoutModule } from './checkout/checkout.module';
     CoreModule,
     SharedModule,
     ProductsModule,
-    CheckoutModule
+    CheckoutModule,
+    AccountModule
   ],
   providers: [
     ProductService,
