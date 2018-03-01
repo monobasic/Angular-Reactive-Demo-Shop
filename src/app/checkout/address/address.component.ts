@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
-import { CheckoutService } from '../checkout.service';
+import { CheckoutService } from '../shared/checkout.service';
 
 import { UserDetails } from '../../models/user.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

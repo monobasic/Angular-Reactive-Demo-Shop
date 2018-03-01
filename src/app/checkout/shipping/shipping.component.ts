@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CheckoutService } from '../checkout.service';
+import { CheckoutService } from '../shared/checkout.service';
 import { Customer } from '../../models/customer.model';
 
 @Component({

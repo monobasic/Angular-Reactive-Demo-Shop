@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CheckoutService } from './checkout.service';
+import { CheckoutService } from './shared/checkout.service';
 
 import { UserDetails } from '../models/user.model';
 import { AuthenticationService } from '../account/shared/authentication.service';
