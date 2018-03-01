@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
+import { ProductsModule } from './products/products.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -21,9 +22,6 @@ import { MainSliderComponent } from './main-slider/main-slider.component';
 import { FooterComponent } from './footer/footer.component';
 import { ToolbarCartComponent } from './toolbar/cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ProductsListComponent } from './products/products-list/products-list.component';
-import { ProductsListItemComponent } from './products/products-list-item/products-list-item.component';
-import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { PriceComponent } from './price/price.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
@@ -51,9 +49,6 @@ import { CheckoutService } from './checkout.service';
 import { AuthenticationService } from './authentication.service';
 import { AdminAuthService } from './admin-auth.service';
 
-// Pipes
-import { SortPipe } from './sort.pipe';
-
 // Guards
 import { AdminGuard } from './admin.guard';
 
@@ -73,10 +68,6 @@ import { AdminGuard } from './admin.guard';
     PageNotFoundComponent,
     MessagesComponent,
     PriceComponent,
-    ProductsListComponent,
-    ProductsListItemComponent,
-    ProductDetailComponent,
-    SortPipe,
     AddEditComponent,
     CheckoutComponent,
     CheckoutAddressComponent,
@@ -98,7 +89,8 @@ import { AdminGuard } from './admin.guard';
     HttpClientModule,
     AppRoutingModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ProductsModule
   ],
   providers: [
     ProductService,
@@ -106,11 +98,9 @@ import { AdminGuard } from './admin.guard';
     MessageService,
     CartService,
     PagerService,
-    SortPipe,
     AdminGuard,
     OrderService,
     CheckoutService,
-    SortPipe,
     AdminAuthService,
     AuthenticationService
   ],
