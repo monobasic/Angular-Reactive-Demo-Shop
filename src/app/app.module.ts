@@ -23,7 +23,6 @@ import { FooterComponent } from './footer/footer.component';
 import { ToolbarCartComponent } from './toolbar/cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MessagesComponent } from './messages/messages.component';
-import { PriceComponent } from './price/price.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AddressComponent as CheckoutAddressComponent } from './checkout/address/address.component';
@@ -51,6 +50,7 @@ import { AdminAuthService } from './admin-auth.service';
 
 // Guards
 import { AdminGuard } from './admin.guard';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -67,7 +67,6 @@ import { AdminGuard } from './admin.guard';
     ToolbarCartComponent,
     PageNotFoundComponent,
     MessagesComponent,
-    PriceComponent,
     AddEditComponent,
     CheckoutComponent,
     CheckoutAddressComponent,
@@ -90,6 +89,7 @@ import { AdminGuard } from './admin.guard';
     AppRoutingModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     ToastrModule.forRoot(),
+    SharedModule,
     ProductsModule
   ],
   providers: [

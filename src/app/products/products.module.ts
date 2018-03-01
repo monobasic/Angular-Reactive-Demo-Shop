@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductsRoutingModule } from './products-routing.module';
 
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsListItemComponent } from './products-list-item/products-list-item.component';
 
 import { SortPipe } from '../sort.pipe';
+import { SharedModule } from '../shared/shared.module';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
     declarations: [
@@ -16,8 +17,15 @@ import { SortPipe } from '../sort.pipe';
         SortPipe
     ],
     imports: [
-        CommonModule,
-        ProductsRoutingModule
+        SharedModule,
+        AppRoutingModule
+    ],
+    exports: [
+        ProductDetailComponent,
+        ProductsListComponent,
+        ProductsListItemComponent,
+        SortPipe,
+        AppRoutingModule
     ],
     providers: [
         SortPipe

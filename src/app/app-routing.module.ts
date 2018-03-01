@@ -11,10 +11,14 @@ import { RegisterLoginComponent } from './register-login/register-login.componen
 import { OrdersComponent } from './orders/orders.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AccountComponent } from './account/account.component';
+import { ProductsListComponent } from './products/products-list/products-list.component';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'products', component: ProductsListComponent },
+  { path: 'products/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartComponent },
   { path: 'admin/add', component: AddEditComponent, canActivate: [AdminGuard] },
   {
