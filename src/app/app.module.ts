@@ -13,14 +13,7 @@ import { ProductsModule } from './products/products.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
-import { NavigationMainComponent } from './navigation-main/navigation-main.component';
-import { NavigationOffCanvasComponent } from './navigation-off-canvas/navigation-off-canvas.component';
-import { HeaderComponent } from './header/header.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { ContentComponent } from './content/content.component';
 import { MainSliderComponent } from './main-slider/main-slider.component';
-import { FooterComponent } from './footer/footer.component';
-import { ToolbarCartComponent } from './toolbar/cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
@@ -51,20 +44,14 @@ import { AdminAuthService } from './admin-auth.service';
 // Guards
 import { AdminGuard } from './admin.guard';
 import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CartComponent,
-    NavigationMainComponent,
-    HeaderComponent,
-    NavigationOffCanvasComponent,
-    TopBarComponent,
-    ContentComponent,
     MainSliderComponent,
-    FooterComponent,
-    ToolbarCartComponent,
     PageNotFoundComponent,
     MessagesComponent,
     AddEditComponent,
@@ -89,6 +76,7 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     ToastrModule.forRoot(),
+    CoreModule,
     SharedModule,
     ProductsModule
   ],

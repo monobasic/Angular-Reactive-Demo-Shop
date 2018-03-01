@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../cart/cart.service';
-import { CartItem } from '../../cart/shared/cart-item.model';
+import { CartService } from '../../../../cart/cart.service';
+import { CartItem } from '../../../../cart/shared/cart-item.model';
 
 @Component({
   selector: 'app-toolbar-cart',
