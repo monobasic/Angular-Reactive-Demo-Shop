@@ -5,7 +5,7 @@ import { Product } from '../../models/product.model';
 
 import { ProductService } from '../shared/product.service';
 import { PagerService } from '../../pager/pager.service';
-import { SortPipe } from '../../sort.pipe';
+import { SortPipe } from '../shared/sort.pipe';
 import { ProductsCacheService } from '../shared/products-cache.service';
 
 @Component({

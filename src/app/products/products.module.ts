@@ -5,7 +5,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsListItemComponent } from './products-list-item/products-list-item.component';
 
-import { SortPipe } from '../sort.pipe';
+import { SortPipe } from './shared/sort.pipe';
 import { SharedModule } from '../shared/shared.module';
 
 
