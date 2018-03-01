@@ -8,7 +8,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProductsModule } from './products/products.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import { RouterModule } from '@angular/router';
 import { CheckoutModule } from './checkout/checkout.module';
 import { AccountModule } from './account/account.module';
 import { AdminModule } from './admin/admin.module';
