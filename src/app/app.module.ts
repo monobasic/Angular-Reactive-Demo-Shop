@@ -12,7 +12,7 @@ import { ProductsModule } from './products/products.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
-import { MainSliderComponent } from './main-slider/main-slider.component';
+import { MainSliderComponent } from './home/main-slider/main-slider.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
