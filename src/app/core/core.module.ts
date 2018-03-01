@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 
@@ -21,6 +21,7 @@ import { OrderService } from '../orders/shared/order.service';
 import { CheckoutService } from '../checkout/shared/checkout.service';
 import { AdminAuthService } from '../admin/shared/admin-auth.service';
 import { AuthenticationService } from '../account/shared/authentication.service';
+import { throwIfAlreadyLoaded } from './module-import-guard';
 
 @NgModule({
     declarations: [
@@ -58,4 +59,8 @@ import { AuthenticationService } from '../account/shared/authentication.service'
         AuthenticationService
     ]
 })
-export class CoreModule {}
+export class CoreModule {
+    constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+        throwIfAlreadyLoaded(parentModule, 'CoreModule');
+    }
+}
