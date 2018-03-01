@@ -45,6 +45,7 @@ import { AdminAuthService } from './admin-auth.service';
 import { AdminGuard } from './admin.guard';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,6 @@ import { CoreModule } from './core/core.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     ToastrModule.forRoot(),
     CoreModule,
