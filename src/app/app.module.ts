@@ -34,6 +34,10 @@ import { PaymentComponent as CheckoutPaymentComponent } from './checkout/payment
 import { ReviewComponent as CheckoutReviewComponent } from './checkout/review/review.component';
 import { FooterComponent as CheckoutFooterComponent } from './checkout/footer/footer.component';
 import { SidebarComponent as CheckoutSidebarComponent } from './checkout/sidebar/sidebar.component';
+import { RegisterLoginComponent } from './register-login/register-login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { OrdersComponent } from './orders/orders.component';
+import { AccountComponent } from './account/account.component';
 
 // Services
 // import { InMemoryDataService } from './models/in-memory-data.service';
@@ -44,16 +48,14 @@ import { MessageService } from './messages/message.service';
 import { PagerService } from './pager/pager.service';
 import { OrderService } from './order.service';
 import { CheckoutService } from './checkout.service';
+import { AuthenticationService } from './authentication.service';
+import { AdminAuthService } from './admin-auth.service';
 
 // Pipes
 import { SortPipe } from './sort.pipe';
+
+// Guards
 import { AdminGuard } from './admin.guard';
-import { AdminAuthService } from './admin-auth.service';
-import { RegisterLoginComponent } from './register-login/register-login.component';
-import { ProfileComponent } from './profile/profile.component';
-import { OrdersComponent } from './orders/orders.component';
-import { AuthenticationService } from './authentication.service';
-import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
