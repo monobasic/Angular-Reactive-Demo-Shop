@@ -20,7 +20,7 @@ import { PagerService } from '../pager/pager.service';
 import { OrderService } from '../orders/shared/order.service';
 import { CheckoutService } from '../checkout/shared/checkout.service';
 import { AdminAuthService } from '../admin/shared/admin-auth.service';
-import { AuthenticationService } from '../account/shared/authentication.service';
+import { UserService } from '../account/shared/user.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
 @NgModule({
@@ -56,7 +56,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
         OrderService,
         CheckoutService,
         AdminAuthService,
-        AuthenticationService
+        UserService
     ]
 })
 export class CoreModule {

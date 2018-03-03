@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../account/shared/authentication.service';
+import { UserService } from '../../account/shared/user.service';
 
 @Component({
   selector: 'app-header',
@@ -9,16 +9,17 @@ import { AuthenticationService } from '../../account/shared/authentication.servi
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
 
-  constructor(private auth: AuthenticationService) { }
+  constructor(private auth: UserService) { }
 
   ngOnInit() {
     this.getUserState();
   }
 
   getUserState() {
-    const authSubscribtion = this.auth.isLoggedIn()
-      .subscribe(response => {
-        this.isLoggedIn = response;
+    const authSubscribtion = this.auth.isLoggedIn
+      .subscribe(userState => {
+        this.isLoggedIn = userState;
+        console.log(userState);
       });
   }
 }

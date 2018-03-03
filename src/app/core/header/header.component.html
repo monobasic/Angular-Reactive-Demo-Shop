@@ -34,9 +34,14 @@
           <i class="icon-search"></i>
         </div>
         <div class="account">
-          <a routerLink="/register-login"></a>
+          <a *ngIf="!isLoggedIn else whenLoggedIn" routerLink="/register-login"></a>
+
+          <ng-template #whenLoggedIn>
+            <a routerLink="/account"></a>
+          </ng-template>
+
           <i class="icon-head"></i>
-          <ul class="toolbar-dropdown">
+          <ul *ngIf="isLoggedIn" class="toolbar-dropdown">
             <li class="sub-menu-user">
               <div class="user-ava">
                 <img src="img/account/user-ava-sm.jpg" alt="Daniel Adams">

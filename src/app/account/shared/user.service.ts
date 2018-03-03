@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import User from '../../models/user.model';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -7,6 +8,8 @@ import { MessageService } from '../../messages/message.service';
 
 import { UserDetails } from '../../models/user.model';
 import { of } from 'rxjs/observable/of';
+import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 interface TokenResponse {
   token: string;
@@ -18,14 +21,24 @@ export interface TokenPayload {
 }
 
 @Injectable()
-export class AuthenticationService {
+export class UserService implements OnInit {
   private token: string;
+  private _isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public isLoggedIn = this._isLoggedIn.asObservable();
+
+  private _user: BehaviorSubject<any> = new BehaviorSubject({});
+  public user = this._user.asObservable();
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private logger: MessageService
-  ) {}
+  ) {
+    this._user.next(this.getUserDetails());
+    this._isLoggedIn.next(this.getLoginState());
+  }
+
+  ngOnInit() {}
 
   saveToken(token: string) {
     localStorage.setItem('unishop-token', token);
@@ -57,13 +70,12 @@ export class AuthenticationService {
     }
   }
 
-  isLoggedIn(): Observable<boolean> {
+  getLoginState(): boolean {
     const user = this.getUserDetails();
-
     if (user) {
-      return of(user.exp > Date.now() / 1000);
+      return user.exp > Date.now() / 1000;
     } else {
-      return of(false);
+      return false;
     }
   }
 
@@ -110,7 +122,17 @@ export class AuthenticationService {
   }
 
   login(user: TokenPayload): Observable<any> {
-    return this.request('post', 'login', user);
+    return this.request('post', 'login', user).pipe(
+      tap((response) => {
+        console.log(response);
+        console.log(this.isLoggedIn);
+        if (response.success) {
+          this._isLoggedIn.next(true);
+        } else {
+          this._isLoggedIn.next(false);
+        }
+      })
+    );
   }
 
   profile(): Observable<any> {

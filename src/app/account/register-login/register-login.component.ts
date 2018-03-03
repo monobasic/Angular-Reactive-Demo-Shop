@@ -6,8 +6,10 @@ import {
   Validators
 } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { AuthenticationService } from '../shared/authentication.service';
+
+import { UserService } from '../shared/user.service';
 import { MessageService } from '../../messages/message.service';
+
 @Component({
   selector: 'app-register-login',
   templateUrl: './register-login.component.html',
@@ -18,7 +20,7 @@ export class RegisterLoginComponent implements OnInit {
   registerForm: FormGroup;
 
   constructor(
-    private authenticationService: AuthenticationService,
+    private authenticationService: UserService,
     private router: Router,
     private logger: MessageService
   ) {}
@@ -47,14 +49,17 @@ export class RegisterLoginComponent implements OnInit {
   }
 
   onRegister() {
-    this.authenticationService.register(this.registerForm.value)
-      .subscribe((val) => {
+    this.authenticationService.register(this.registerForm.value).subscribe(
+      (val) => {
         this.router.navigate(['/home']);
-      }, (error) => console.log(error));
+      },
+      (error) => console.log(error)
+    );
   }
 
   onLogin() {
-    this.authenticationService.login(this.loginForm.value)
+    this.authenticationService
+      .login(this.loginForm.value)
       .subscribe((response) => {
         if (response.success) {
           this.logger.add(`Authentication successful`);
@@ -64,10 +69,10 @@ export class RegisterLoginComponent implements OnInit {
           this.logger.addError('Authentication failed');
 
           this.loginForm.setErrors({
-            'email': true,
-            'password': true
+            email: true,
+            password: true
           });
         }
-      }, (error) => error.subscribe(res => console.log(res)));
-    }
+      });
   }
+}

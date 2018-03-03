@@ -4,14 +4,14 @@ import { Observable } from 'rxjs/Observable';
 import { MessageService } from '../../messages/message.service';
 import { AdminAuthService } from './admin-auth.service';
 import { createProduct } from '../../../../server/ts-source/controller/products.controller';
-import { AuthenticationService } from '../../account/shared/authentication.service';
+import { UserService } from '../../account/shared/user.service';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
   constructor(
     private log: MessageService,
     private adminAuthService: AdminAuthService,
-    private authenticationService: AuthenticationService
+    private authenticationService: UserService
   ) {}
 
   canActivate(
