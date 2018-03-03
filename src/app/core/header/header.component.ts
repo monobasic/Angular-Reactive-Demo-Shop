@@ -7,7 +7,7 @@ import { AuthenticationService } from '../../account/shared/authentication.servi
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  userState: boolean;
+  isLoggedIn: boolean;
 
   constructor(private auth: AuthenticationService) { }
 
@@ -18,8 +18,7 @@ export class HeaderComponent implements OnInit {
   getUserState() {
     const authSubscribtion = this.auth.isLoggedIn()
       .subscribe(response => {
-        this.userState = response;
+        this.isLoggedIn = response;
       });
   }
-
 }

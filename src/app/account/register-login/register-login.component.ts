@@ -48,6 +48,7 @@ export class RegisterLoginComponent implements OnInit {
     this.authenticationService.register(this.registerForm.value)
       .subscribe((val) => {
         console.log(val);
+        this.router.navigate(['/home']);
       }, (error) => console.log(error));
   }
 
@@ -55,6 +56,7 @@ export class RegisterLoginComponent implements OnInit {
     this.authenticationService.login(this.loginForm.value)
       .subscribe((val) => {
         console.log(val);
+        this.router.navigate(['/home']);
       }, (error) => console.log(error));
   }
 }
