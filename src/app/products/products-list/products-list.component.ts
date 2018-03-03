@@ -34,6 +34,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   getProducts() {
+    // Show spinner
     this.productsCacheService
       .get('product', this.productService.getProducts())
       .subscribe((products) => {
@@ -41,6 +42,7 @@ export class ProductsListComponent implements OnInit {
           products.products || products;
           this.sortPipe.transform(this.products, 'date', true);
         this.setPage(1);
+        // Hide Spinner
       });
   }
 
