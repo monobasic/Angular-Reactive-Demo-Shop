@@ -22,4 +22,7 @@ export class HeaderComponent implements OnInit {
         console.log(userState);
       });
   }
+  onLogOut() {
+    this.auth.logout();
+  }
 }

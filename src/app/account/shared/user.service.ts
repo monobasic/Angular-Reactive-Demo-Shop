@@ -55,6 +55,8 @@ export class UserService implements OnInit {
   logout(): void {
     this.token = '';
     window.localStorage.removeItem('unishop-token');
+    this._isLoggedIn.next(false);
+
     this.router.navigateByUrl('/');
   }
 
