@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 import { MessageService } from '../../messages/message.service';
 
 import { UserDetails } from '../../models/user.model';
+import { of } from 'rxjs/observable/of';
 
 interface TokenResponse {
   token: string;
@@ -56,13 +57,13 @@ export class AuthenticationService {
     }
   }
 
-  isLoggedIn(): boolean {
+  isLoggedIn(): Observable<boolean> {
     const user = this.getUserDetails();
 
     if (user) {
-      return user.exp > Date.now() / 1000;
+      return of(user.exp > Date.now() / 1000);
     } else {
-      return false;
+      return of(false);
     }
   }
 
