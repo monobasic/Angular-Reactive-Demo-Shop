@@ -50,7 +50,6 @@ export class ProductsCacheService {
   }
 
   getProductsById(id: number, fallback?: Observable<any>, maxAge?: number) {
-    console.log(this.cache.get('product'));
     const product =
       this.cache.size > 0 &&
       this.cache.get('product').value.products.find((el) => el.id === id);
@@ -71,9 +70,6 @@ export class ProductsCacheService {
     if (this.hasValidCachedValue(key)) {
       // this.log(`%cGetting from cache ${key}`);
       console.log(`%cGetting from cache ${key}`, 'color: green');
-
-      console.log(this.cache);
-
       return of(this.cache.get(key).value.products);
     }
 

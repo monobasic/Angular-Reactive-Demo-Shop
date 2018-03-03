@@ -31,13 +31,13 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getProduct();
     this.selectedQuantity = 1;
 
     this.route.params.subscribe((params: Params) => {
       this.getProduct();
     });
   }
+
   getProduct(): void {
     // Show loading spinner
     const id = +this.route.snapshot.paramMap.get('id');
@@ -50,6 +50,7 @@ export class ProductDetailComponent implements OnInit {
         // Hide loading spinner
       });
   }
+
   onSelectThumbnail(event, index) {
     event.preventDefault();
     this.activeImageUrl = this.product.imageURLs[index];
