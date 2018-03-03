@@ -42,6 +42,9 @@
           <h4 class="margin-bottom-1x">Or using form below</h4>
           <div class="form-group input-group">
             <input class="form-control" formControlName="email" type="email" placeholder="Email" required="">
+            <div *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched" class="form-control-feedback">
+              Shucks, enter a name for your product.
+            </div>
             <span class="input-group-addon">
               <i class="icon-mail"></i>
             </span>
@@ -53,10 +56,6 @@
             </span>
           </div>
           <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
-            <div class="custom-control custom-checkbox">
-              <input class="custom-control-input" type="checkbox" id="remember_me" checked="">
-              <label class="custom-control-label" for="remember_me">Remember me</label>
-            </div>
             <a class="navi-link" href="account-password-recovery.html">Forgot password?</a>
           </div>
           <div class="text-center text-sm-right">

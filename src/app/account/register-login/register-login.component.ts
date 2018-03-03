@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../shared/authentication.service';
+import { MessageService } from '../../messages/message.service';
 @Component({
   selector: 'app-register-login',
   templateUrl: './register-login.component.html',
@@ -18,7 +19,8 @@ export class RegisterLoginComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private logger: MessageService
   ) {}
 
   ngOnInit() {
@@ -47,16 +49,25 @@ export class RegisterLoginComponent implements OnInit {
   onRegister() {
     this.authenticationService.register(this.registerForm.value)
       .subscribe((val) => {
-        console.log(val);
         this.router.navigate(['/home']);
       }, (error) => console.log(error));
   }
 
   onLogin() {
     this.authenticationService.login(this.loginForm.value)
-      .subscribe((val) => {
-        console.log(val);
-        this.router.navigate(['/home']);
-      }, (error) => console.log(error));
+      .subscribe((response) => {
+        if (response.success) {
+          this.logger.add(`Authentication successful`);
+          this.router.navigate(['/home']);
+        } else {
+          console.log(response);
+          this.logger.addError('Authentication failed');
+
+          this.loginForm.setErrors({
+            'email': true,
+            'password': true
+          });
+        }
+      }, (error) => error.subscribe(res => console.log(res)));
+    }
   }
-}

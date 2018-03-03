@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 import { MessageService } from '../../messages/message.service';
 
 import { UserDetails } from '../../models/user.model';
@@ -90,14 +90,16 @@ export class AuthenticationService {
 
     const request = base.pipe(
       tap((data) => {
-        this.logger.add(`auth-service: ${JSON.stringify(data)}`);
-        return data;
+        return of(data);
       }),
       tap((data: TokenResponse) => {
         if (data.token) {
           this.saveToken(data.token);
         }
-        return data;
+        return of(data);
+      }),
+      catchError((error, result) => {
+        return of(error);
       })
     );
     return request;
