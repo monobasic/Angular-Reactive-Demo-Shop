@@ -34,7 +34,7 @@ export class UserService implements OnInit {
     private logger: MessageService
   ) {
     this._user.next(this.getUserDetails());
-    this._isLoggedIn.next(this.getLoginState());
+    this.getLoginState();
   }
 
   ngOnInit() {}
@@ -56,28 +56,31 @@ export class UserService implements OnInit {
     window.localStorage.removeItem('unishop-token');
 
     this._isLoggedIn.next(false);
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/register-login');
   }
 
-  getUserDetails(): UserDetails {
+  getUserDetails() {
     const token = this.getToken();
     let payload;
     if (token) {
       payload = token.split('.')[1];
       payload = window.atob(payload);
-      return JSON.parse(payload);
+      return of(JSON.parse(payload));
     } else {
-      return null;
+      return of(null);
     }
   }
 
-  getLoginState(): boolean {
-    const user = this.getUserDetails();
-    if (user) {
-      return user.exp > Date.now() / 1000;
-    } else {
-      return false;
-    }
+  getLoginState() {
+    const sub = this.getUserDetails().subscribe(user => {
+      if (user) {
+        this._isLoggedIn.next(user.exp > Date.now() / 1000);
+        // return user.exp > Date.now() / 1000;
+      } else {
+        this._isLoggedIn.next(false);
+        // return false;
+      }
+    });
   }
 
   request(

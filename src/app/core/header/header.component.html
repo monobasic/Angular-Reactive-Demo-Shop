@@ -43,12 +43,11 @@
           <i class="icon-head"></i>
           <ul *ngIf="isLoggedIn" class="toolbar-dropdown">
             <li class="sub-menu-user">
-              <div class="user-ava">
-                <img src="img/account/user-ava-sm.jpg" alt="Daniel Adams">
-              </div>
+              <!-- <div class="user-ava">
+                <img src="img/account/user-ava-sm.jpg" alt={{userInfo.email}}>
+              </div> -->
               <div class="user-info">
-                <h6 class="user-name">Daniel Adams</h6>
-                <span class="text-xs text-muted">290 Reward points</span>
+                <h6 class="user-name">{{(userInfo | async)?.email}}</h6>
               </div>
             </li>
             <li>
