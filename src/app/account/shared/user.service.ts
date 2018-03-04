@@ -72,7 +72,7 @@ export class UserService implements OnInit {
   }
 
   getLoginState() {
-    const sub = this.getUserDetails().subscribe(user => {
+    const sub = this.getUserDetails().subscribe((user) => {
       if (user) {
         this._isLoggedIn.next(user.exp > Date.now() / 1000);
         // return user.exp > Date.now() / 1000;
@@ -105,9 +105,6 @@ export class UserService implements OnInit {
     }
 
     const request = base.pipe(
-      tap((data) => {
-        return of(data);
-      }),
       tap((data: TokenResponse) => {
         if (data.token) {
           this.saveToken(data.token);
@@ -126,8 +123,11 @@ export class UserService implements OnInit {
       tap((response) => {
         if (response.success) {
           this._isLoggedIn.next(true);
+          this._user.next(this.getUserDetails());
         } else {
           this._isLoggedIn.next(false);
+          this.logout();
+          this._user.next(this.getUserDetails());
         }
       })
     );
@@ -138,6 +138,7 @@ export class UserService implements OnInit {
       tap((response) => {
         if (response.success) {
           this._isLoggedIn.next(true);
+          this._user.next(this.getUserDetails());
         } else {
           this._isLoggedIn.next(false);
         }
