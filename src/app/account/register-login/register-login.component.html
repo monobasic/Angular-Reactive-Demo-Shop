@@ -63,10 +63,11 @@
           </div> -->
 
           <div class="text-center text-sm-right">
-            <button class="btn btn-primary margin-bottom-none" type="submit">Login</button>
+            <button [disabled]="!loginForm.valid"class="btn btn-primary margin-bottom-none" type="submit">Login</button>
           </div>
         </form>
       </div>
+
       <div class="col-md-6">
         <div class="padding-top-3x hidden-md-up"></div>
         <h3 class="margin-bottom-1x">No Account? Register</h3>
@@ -115,7 +116,7 @@
             </div>
 
           <div class="col-12 text-center text-sm-right">
-            <button class="btn btn-primary margin-bottom-none" type="submit">Register</button>
+            <button [disabled]="!registerForm.valid" class="btn btn-primary margin-bottom-none" type="submit">Register</button>
           </div>
         </form>
       </div>
