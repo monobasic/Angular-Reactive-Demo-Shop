@@ -39,16 +39,31 @@ export class RegisterLoginComponent implements OnInit {
 
   initRegisterForm() {
     this.registerForm = new FormGroup({
-      firstName: new FormControl(null, Validators.required),
-      lastName: new FormControl(null, Validators.required),
+      // firstName: new FormControl(null, Validators.required),
+      // lastName: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      phoneNumber: new FormControl(null),
       password: new FormControl(null, Validators.required),
       confirmPassword: new FormControl(null, Validators.required)
+      // phoneNumber: new FormControl(null),
+      // passwords: new FormGroup({
+      //   password: new FormControl(null, Validators.required),
+      //   confirmPassword: new FormControl(null, Validators.required)
+      // }, this.checkPasswords)
     });
   }
 
+  // checkPasswords() {
+  //   console.log(this.registerForm);
+  //   const pass = this.registerForm.value.passwords.password;
+  //   const confirmPass = this.registerForm.value.passwords.confirmPassword;
+  //   this.logger.addError("Passwords don't match!")
+  //   return pass === confirmPass ? null : { notSame: true };
+  // }
+
   onRegister() {
+    // console.log(this.registerForm);
+    // this.registerForm.value.password = this.registerForm.value.passwords.password;
+
     this.authenticationService.register(this.registerForm.value).subscribe(
       (val) => {
         this.router.navigate(['/home']);

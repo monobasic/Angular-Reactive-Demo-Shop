@@ -1,4 +1,3 @@
-import User from '../../models/user.model';
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -55,8 +54,8 @@ export class UserService implements OnInit {
   logout(): void {
     this.token = '';
     window.localStorage.removeItem('unishop-token');
-    this._isLoggedIn.next(false);
 
+    this._isLoggedIn.next(false);
     this.router.navigateByUrl('/');
   }
 
@@ -120,14 +119,20 @@ export class UserService implements OnInit {
   }
 
   register(user: TokenPayload): Observable<any> {
-    return this.request('post', 'register', user);
+    return this.request('post', 'register', user).pipe(
+      tap((response) => {
+        if (response.success) {
+          this._isLoggedIn.next(true);
+        } else {
+          this._isLoggedIn.next(false);
+        }
+      })
+    );
   }
 
   login(user: TokenPayload): Observable<any> {
     return this.request('post', 'login', user).pipe(
       tap((response) => {
-        console.log(response);
-        console.log(this.isLoggedIn);
         if (response.success) {
           this._isLoggedIn.next(true);
         } else {
