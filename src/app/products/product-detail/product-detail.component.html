@@ -43,6 +43,14 @@
       <!-- Product Info-->
       <div class="col-md-6">
         <div class="padding-top-2x mt-2 hidden-md-up"></div>
+          <div class="rating-stars">
+            <i class="icon-star filled"></i>
+            <i class="icon-star filled"></i>
+            <i class="icon-star filled"></i>
+            <i class="icon-star filled"></i>
+            <i class="icon-star"></i>
+          </div>
+        <span class="text-muted align-middle">&nbsp;&nbsp;4.2 | 3 customer reviews</span>
         <h2 class="padding-top-1x text-normal">{{ product.name }}</h2>
         <span class="h2 d-block">
           <app-price [product]="product"></app-price>
@@ -124,6 +132,20 @@
             </button>
           </div>
         </div>
+
+        <form>
+          <div class="form-group">
+            <label for="review_rating">Your Rating</label>
+            <select class="form-control form-control-rounded" id="review_rating">
+              <option>5 Stars</option>
+              <option>4 Stars</option>
+              <option>3 Stars</option>
+              <option>2 Stars</option>
+              <option>1 Star</option>
+            </select>
+          </div>
+        </form>
+
       </div>
     </div>
 
