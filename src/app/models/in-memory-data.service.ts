@@ -15,7 +15,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 70,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/01.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Shoes']
+        categories: ['Shoes'],
+        ratings: [
+          { userId: 1, rating: 1},
+          { userId: 2, rating: 2},
+          { userId: 3, rating: 1}
+        ]
       },
       {
         id: 12,
@@ -26,7 +31,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/02.jpg', 'img/shop/products/02.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Bags']
+        categories: ['Bags'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 13,
@@ -37,7 +47,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 10,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/03.jpg', 'img/shop/products/03.jpg', 'img/shop/products/03.jpg', 'img/shop/products/03.jpg'],
-        categories: ['Shades']
+        categories: ['Shades'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 14,
@@ -48,7 +63,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/04.jpg', 'img/shop/products/04.jpg'],
-        categories: ['Jewelry']
+        categories: ['Jewelry'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 15,
@@ -59,7 +79,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/05.jpg', 'img/shop/products/05.jpg', 'img/shop/products/05.jpg'],
-        categories: ['Clothes']
+        categories: ['Clothes'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 16,
@@ -70,7 +95,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/06.jpg'],
-        categories: ['Clothes']
+        categories: ['Clothes'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 17,
@@ -81,7 +111,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/07.jpg', 'img/shop/products/07.jpg', 'img/shop/products/07.jpg'],
-        categories: ['Clothes']
+        categories: ['Clothes'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 18,
@@ -92,7 +127,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/08.jpg', 'img/shop/products/08.jpg'],
-        categories: ['Clothes']
+        categories: ['Clothes'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 19,
@@ -103,62 +143,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/09.jpg', 'img/shop/products/09.jpg', 'img/shop/products/09.jpg', 'img/shop/products/09.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 20,
-        name: 'Baseball Hat',
-        date: '2017-06-01',
-        price: 20,
-        priceNormal: 25,
-        reduction: 20,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/10.jpg', 'img/shop/products/10.jpg'],
-        categories: ['Caps']
-      },
-      {
-        id: 21,
-        name: 'Shoes',
-        date: '2017-08-03',
-        price: 69.3,
-        priceNormal: 99,
-        reduction: 70,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/01.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Shoes']
-      },
-      {
-        id: 22,
-        name: 'Bag',
-        date: '2017-09-24',
-        price: 49,
-        priceNormal: 49,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/02.jpg', 'img/shop/products/02.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Bags']
-      },
-      {
-        id: 23,
-        name: 'Shades',
-        date: '2017-11-22',
-        price: 35.1,
-        priceNormal: 39,
-        reduction: 10,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/03.jpg', 'img/shop/products/03.jpg', 'img/shop/products/03.jpg', 'img/shop/products/03.jpg'],
-        categories: ['Shades']
-      },
-      {
-        id: 24,
-        name: 'Bracelet',
-        date: '2018-01-23',
-        price: 19,
-        priceNormal: 19,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/04.jpg', 'img/shop/products/04.jpg'],
-        categories: ['Jewelry']
+        categories: ['Clothes'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 25,
@@ -169,7 +159,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/05.jpg', 'img/shop/products/05.jpg', 'img/shop/products/05.jpg'],
-        categories: ['Clothes']
+        categories: ['Clothes'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 26,
@@ -180,7 +175,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/06.jpg'],
-        categories: ['Clothes']
+        categories: ['Clothes'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 27,
@@ -191,7 +191,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/07.jpg', 'img/shop/products/07.jpg', 'img/shop/products/07.jpg'],
-        categories: ['Clothes']
+        categories: ['Clothes'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 28,
@@ -202,7 +207,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/08.jpg', 'img/shop/products/08.jpg'],
-        categories: ['Clothes']
+        categories: ['Clothes'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 29,
@@ -213,7 +223,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/09.jpg', 'img/shop/products/09.jpg', 'img/shop/products/09.jpg', 'img/shop/products/09.jpg'],
-        categories: ['Clothes']
+        categories: ['Clothes'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 30,
@@ -224,7 +239,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 20,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/10.jpg', 'img/shop/products/10.jpg'],
-        categories: ['Caps']
+        categories: ['Caps'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 31,
@@ -235,7 +255,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 70,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/01.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Shoes']
+        categories: ['Shoes'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 32,
@@ -246,7 +271,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/02.jpg', 'img/shop/products/02.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Bags']
+        categories: ['Bags'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 33,
@@ -257,7 +287,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 10,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/03.jpg', 'img/shop/products/03.jpg', 'img/shop/products/03.jpg', 'img/shop/products/03.jpg'],
-        categories: ['Shades']
+        categories: ['Shades'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       },
       {
         id: 34,
@@ -268,183 +303,12 @@ export class InMemoryDataService implements InMemoryDbService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/04.jpg', 'img/shop/products/04.jpg'],
-        categories: ['Jewelry']
-      },
-      {
-        id: 35,
-        name: 'Sweater',
-        date: '2018-03-04',
-        price: 69,
-        priceNormal: 69,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/05.jpg', 'img/shop/products/05.jpg', 'img/shop/products/05.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 36,
-        name: 'Trainer',
-        date: '2016-12-11',
-        price: 65,
-        priceNormal: 65,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/06.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 37,
-        name: 'Sweatpants',
-        date: '2015-12-29',
-        price: 45,
-        priceNormal: 45,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/07.jpg', 'img/shop/products/07.jpg', 'img/shop/products/07.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 38,
-        name: 'Bluse',
-        date: '2018-07-11',
-        price: 68,
-        priceNormal: 68,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/08.jpg', 'img/shop/products/08.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 39,
-        name: 'Ballerinas',
-        date: '2017-10-10',
-        price: 89,
-        priceNormal: 89,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/09.jpg', 'img/shop/products/09.jpg', 'img/shop/products/09.jpg', 'img/shop/products/09.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 40,
-        name: 'Baseball Hat',
-        date: '2017-10-10',
-        price: 20,
-        priceNormal: 25,
-        reduction: 20,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/10.jpg', 'img/shop/products/10.jpg'],
-        categories: ['Caps']
-      },
-      {
-        id: 41,
-        name: 'Shoes',
-        date: '2017-10-09',
-        price: 69.3,
-        priceNormal: 99,
-        reduction: 70,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/01.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Shoes']
-      },
-      {
-        id: 42,
-        name: 'Bag',
-        date: '2017-11-12',
-        price: 49,
-        priceNormal: 49,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/02.jpg', 'img/shop/products/02.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Bags']
-      },
-      {
-        id: 43,
-        name: 'Shades',
-        date: '2017-09-05',
-        price: 35.1,
-        priceNormal: 39,
-        reduction: 10,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/03.jpg', 'img/shop/products/03.jpg', 'img/shop/products/03.jpg', 'img/shop/products/03.jpg'],
-        categories: ['Shades']
-      },
-      {
-        id: 44,
-        name: 'Bracelet',
-        date: '2017-05-04',
-        price: 19,
-        priceNormal: 19,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/04.jpg', 'img/shop/products/04.jpg'],
-        categories: ['Jewelry']
-      },
-      {
-        id: 45,
-        name: 'Sweater',
-        date: '2017-01-02',
-        price: 69,
-        priceNormal: 69,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/05.jpg', 'img/shop/products/05.jpg', 'img/shop/products/05.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 46,
-        name: 'Trainer',
-        date: '2017-02-03',
-        price: 65,
-        priceNormal: 65,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/06.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 47,
-        name: 'Sweatpants',
-        date: '2017-02-03',
-        price: 45,
-        priceNormal: 45,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/07.jpg', 'img/shop/products/07.jpg', 'img/shop/products/07.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 48,
-        name: 'Bluse',
-        date: '2017-03-04',
-        price: 68,
-        priceNormal: 68,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/08.jpg', 'img/shop/products/08.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 49,
-        name: 'Ballerinas',
-        date: '2017-03-05',
-        price: 89,
-        priceNormal: 89,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/09.jpg', 'img/shop/products/09.jpg', 'img/shop/products/09.jpg', 'img/shop/products/09.jpg'],
-        categories: ['Clothes']
-      },
-      {
-        id: 50,
-        name: 'Baseball Hat',
-        date: '2017-04-04',
-        price: 20,
-        priceNormal: 25,
-        reduction: 20,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/10.jpg', 'img/shop/products/10.jpg'],
-        categories: ['Caps']
+        categories: ['Jewelry'],
+        ratings: [
+          { userId: 1, rating: 1 },
+          { userId: 2, rating: 2 },
+          { userId: 3, rating: 1 }
+        ]
       }
     ];
 

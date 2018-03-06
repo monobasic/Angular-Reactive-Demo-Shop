@@ -17,7 +17,8 @@ export class CartService {
         reduction: 70,
         description: 'Hello world',
         imageURLs: ['img/shop/products/01.jpg'],
-        categories: ['Shoes']
+        categories: ['Bags'],
+        ratings: [{ userId: 1, rating: 5}]
       }, 1
     ),
     new CartItem(
@@ -30,7 +31,8 @@ export class CartService {
         reduction: 0,
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         imageURLs: ['img/shop/products/02.jpg', 'img/shop/products/02.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Bags']
+        categories: ['Bags'],
+        ratings: [{ userId: 1, rating: 1 }, { userId: 2, rating: 3 }, { userId: 3, rating: 2 }]
       }, 2
     )
   ];
