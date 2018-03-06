@@ -10,7 +10,8 @@ const productsSchema = new mongoose.Schema(
     priceNormal: { type: String },
     reduction: { type: Number },
     imageURLs: { type: Array },
-    categories: Array
+    categories: Array,
+    ratings: Array
   },
   { timestamps: true }
 );
