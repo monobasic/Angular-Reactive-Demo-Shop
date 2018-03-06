@@ -8,4 +8,5 @@ export class Product {
     reduction?: number;
     imageURLs: string[];
     categories: string[];
+    ratings: { userId: number, rating: number }[];
 }
