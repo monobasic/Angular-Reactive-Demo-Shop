@@ -7,7 +7,21 @@
     "reduction": 70,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/01.jpg", "img/shop/products/02.jpg"],
-    "categories": ["'Shoes'"]
+    "categories": ["'Shoes'"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 12,
@@ -21,7 +35,21 @@
       "img/shop/products/02.jpg",
       "img/shop/products/02.jpg"
     ],
-    "categories": ["Bags"]
+    "categories": ["Bags"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 13,
@@ -36,7 +64,21 @@
       "img/shop/products/03.jpg",
       "img/shop/products/03.jpg"
     ],
-    "categories": ["Shades"]
+    "categories": ["Shades"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 14,
@@ -46,7 +88,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/04.jpg", "img/shop/products/04.jpg"],
-    "categories": ["Jewelry"]
+    "categories": ["Jewelry"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 15,
@@ -60,7 +116,21 @@
       "img/shop/products/05.jpg",
       "img/shop/products/05.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 16,
@@ -70,7 +140,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/06.jpg"],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 17,
@@ -84,7 +168,21 @@
       "img/shop/products/07.jpg",
       "img/shop/products/07.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 18,
@@ -94,7 +192,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/08.jpg", "img/shop/products/08.jpg"],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 19,
@@ -109,7 +221,21 @@
       "img/shop/products/09.jpg",
       "img/shop/products/09.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 20,
@@ -129,7 +255,21 @@
     "reduction": 70,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/01.jpg", "img/shop/products/02.jpg"],
-    "categories": ["'Shoes'"]
+    "categories": ["'Shoes'"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 22,
@@ -143,7 +283,21 @@
       "img/shop/products/02.jpg",
       "img/shop/products/02.jpg"
     ],
-    "categories": ["Bags"]
+    "categories": ["Bags"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 23,
@@ -158,7 +312,21 @@
       "img/shop/products/03.jpg",
       "img/shop/products/03.jpg"
     ],
-    "categories": ["Shades"]
+    "categories": ["Shades"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 24,
@@ -168,7 +336,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/04.jpg", "img/shop/products/04.jpg"],
-    "categories": ["Jewelry"]
+    "categories": ["Jewelry"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 25,
@@ -182,7 +364,21 @@
       "img/shop/products/05.jpg",
       "img/shop/products/05.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 26,
@@ -192,7 +388,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/06.jpg"],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 27,
@@ -206,7 +416,21 @@
       "img/shop/products/07.jpg",
       "img/shop/products/07.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 28,
@@ -231,7 +455,21 @@
       "img/shop/products/09.jpg",
       "img/shop/products/09.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 30,
@@ -241,7 +479,21 @@
     "reduction": 20,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/10.jpg", "img/shop/products/10.jpg"],
-    "categories": ["Caps"]
+    "categories": ["Caps"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 31,
@@ -251,7 +503,21 @@
     "reduction": 70,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/01.jpg", "img/shop/products/02.jpg"],
-    "categories": ["'Shoes'"]
+    "categories": ["'Shoes'"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 32,
@@ -265,7 +531,21 @@
       "img/shop/products/02.jpg",
       "img/shop/products/02.jpg"
     ],
-    "categories": ["Bags"]
+    "categories": ["Bags"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 33,
@@ -280,7 +560,21 @@
       "img/shop/products/03.jpg",
       "img/shop/products/03.jpg"
     ],
-    "categories": ["Shades"]
+    "categories": ["Shades"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 34,
@@ -304,7 +598,21 @@
       "img/shop/products/05.jpg",
       "img/shop/products/05.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 36,
@@ -314,7 +622,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/06.jpg"],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 37,
@@ -328,7 +650,21 @@
       "img/shop/products/07.jpg",
       "img/shop/products/07.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 38,
@@ -338,7 +674,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/08.jpg", "img/shop/products/08.jpg"],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 39,
@@ -353,7 +703,21 @@
       "img/shop/products/09.jpg",
       "img/shop/products/09.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 40,
@@ -363,7 +727,21 @@
     "reduction": 20,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/10.jpg", "img/shop/products/10.jpg"],
-    "categories": ["Caps"]
+    "categories": ["Caps"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 41,
@@ -373,7 +751,21 @@
     "reduction": 70,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/01.jpg", "img/shop/products/02.jpg"],
-    "categories": ["'Shoes'"]
+    "categories": ["'Shoes'"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 42,
@@ -387,7 +779,21 @@
       "img/shop/products/02.jpg",
       "img/shop/products/02.jpg"
     ],
-    "categories": ["Bags"]
+    "categories": ["Bags"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 43,
@@ -402,7 +808,21 @@
       "img/shop/products/03.jpg",
       "img/shop/products/03.jpg"
     ],
-    "categories": ["Shades"]
+    "categories": ["Shades"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 44,
@@ -412,7 +832,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/04.jpg", "img/shop/products/04.jpg"],
-    "categories": ["Jewelry"]
+    "categories": ["Jewelry"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 45,
@@ -426,7 +860,21 @@
       "img/shop/products/05.jpg",
       "img/shop/products/05.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 46,
@@ -450,7 +898,21 @@
       "img/shop/products/07.jpg",
       "img/shop/products/07.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 48,
@@ -460,7 +922,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/08.jpg", "img/shop/products/08.jpg"],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 49,
@@ -475,7 +951,21 @@
       "img/shop/products/09.jpg",
       "img/shop/products/09.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 50,
@@ -485,7 +975,21 @@
     "reduction": 20,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/10.jpg", "img/shop/products/10.jpg"],
-    "categories": ["Caps"]
+    "categories": ["Caps"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 51,
@@ -495,7 +999,8 @@
     "reduction": 70,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/01.jpg", "img/shop/products/02.jpg"],
-    "categories": ["'Shoes'"]
+    "categories": ["'Shoes'"],
+    "ratings": []
   },
   {
     "id": 52,
@@ -509,7 +1014,21 @@
       "img/shop/products/02.jpg",
       "img/shop/products/02.jpg"
     ],
-    "categories": ["Bags"]
+    "categories": ["Bags"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 53,
@@ -524,7 +1043,21 @@
       "img/shop/products/03.jpg",
       "img/shop/products/03.jpg"
     ],
-    "categories": ["Shades"]
+    "categories": ["Shades"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 54,
@@ -534,7 +1067,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/04.jpg", "img/shop/products/04.jpg"],
-    "categories": ["Jewelry"]
+    "categories": ["Jewelry"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 55,
@@ -548,7 +1095,21 @@
       "img/shop/products/05.jpg",
       "img/shop/products/05.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 56,
@@ -558,7 +1119,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/06.jpg"],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 57,
@@ -572,7 +1147,21 @@
       "img/shop/products/07.jpg",
       "img/shop/products/07.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 58,
@@ -582,7 +1171,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/08.jpg", "img/shop/products/08.jpg"],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 59,
@@ -597,7 +1200,21 @@
       "img/shop/products/09.jpg",
       "img/shop/products/09.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 60,
@@ -607,7 +1224,21 @@
     "reduction": 20,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/10.jpg", "img/shop/products/10.jpg"],
-    "categories": ["Caps"]
+    "categories": ["Caps"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 61,
@@ -617,7 +1248,21 @@
     "reduction": 70,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/01.jpg", "img/shop/products/02.jpg"],
-    "categories": ["'Shoes'"]
+    "categories": ["'Shoes'"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 62,
@@ -631,7 +1276,21 @@
       "img/shop/products/02.jpg",
       "img/shop/products/02.jpg"
     ],
-    "categories": ["Bags"]
+    "categories": ["Bags"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 63,
@@ -646,7 +1305,21 @@
       "img/shop/products/03.jpg",
       "img/shop/products/03.jpg"
     ],
-    "categories": ["Shades"]
+    "categories": ["Shades"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 64,
@@ -656,7 +1329,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/04.jpg", "img/shop/products/04.jpg"],
-    "categories": ["Jewelry"]
+    "categories": ["Jewelry"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 65,
@@ -670,7 +1357,21 @@
       "img/shop/products/05.jpg",
       "img/shop/products/05.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 66,
@@ -680,7 +1381,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/06.jpg"],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 67,
@@ -694,7 +1409,21 @@
       "img/shop/products/07.jpg",
       "img/shop/products/07.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 68,
@@ -704,7 +1433,21 @@
     "reduction": 0,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/08.jpg", "img/shop/products/08.jpg"],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 69,
@@ -719,7 +1462,21 @@
       "img/shop/products/09.jpg",
       "img/shop/products/09.jpg"
     ],
-    "categories": ["Clothes"]
+    "categories": ["Clothes"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   },
   {
     "id": 70,
@@ -729,6 +1486,20 @@
     "reduction": 20,
     "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "imageURLs": ["img/shop/products/10.jpg", "img/shop/products/10.jpg"],
-    "categories": ["Caps"]
+    "categories": ["Caps"],
+    "ratings": [
+      {
+        "userId": 1,
+        "rating": 1
+      },
+      {
+        "userId": 2,
+        "rating": 2
+      },
+      {
+        "userId": 3,
+        "rating": 1
+      }
+    ]
   }
 ]
