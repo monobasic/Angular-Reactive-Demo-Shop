@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../account/shared/user.service';
+import { AuthService } from '../../account/shared/auth.service';
+import { Observable } from '@firebase/util';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-header',
@@ -8,30 +10,25 @@ import { UserService } from '../../account/shared/user.service';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
-  userInfo;
+  userEmail: string;
+
   //  = this.auth.user.subscribe((user) => {
   //   console.log(user);
   //   this.userInfo = user;
   // });
 
-  constructor(private auth: UserService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.getUserState();
-    this.getUserInfo();
+    this.authService.currentUserObservable.subscribe((authState) => {
+      this.isLoggedIn = authState !== null;
+      this.userEmail = authState !== null ? authState.email : 'Anonymous';
+      console.log(`isLoggedIn: ${this.isLoggedIn}`);
+      console.log(authState);
+    });
   }
 
-  getUserState() {
-    const authSubscribtion = this.auth.isLoggedIn.subscribe((userState) => {
-      this.isLoggedIn = userState;
-    });
-  }
-  getUserInfo() {
-    return this.auth.user.subscribe((user) => {
-      this.userInfo = user;
-    });
-  }
   onLogOut() {
-    this.auth.logout();
+    this.authService.signOut();
   }
 }
