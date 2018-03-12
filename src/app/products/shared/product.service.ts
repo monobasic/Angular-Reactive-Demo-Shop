@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -20,17 +20,14 @@ const multipartHeader = {
 multipartHeader.headers.delete('Content-Type');
 
 @Injectable()
-export class ProductService implements OnInit {
-  private productsUrl = 'api/products'; // URL to web api
+export class ProductService {
+  private productsUrl = 'products'; // URL to web api
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    private db: AngularFireDatabase
+    private angularFireDatabase: AngularFireDatabase
   ) {}
-
-  ngOnInit() {
-  }
 
   /** Log a ProductService message with the MessageService */
   private log(message: string) {
@@ -58,17 +55,18 @@ export class ProductService implements OnInit {
 
   /** GET products from the server */
   getProducts(): Observable<Product[]> {
-    return this.db.list<Product>('products').valueChanges();
+    return this.angularFireDatabase.list<Product>('products').valueChanges();
   }
   /** GET product by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
-    return this.http
-      .get<Product>(url)
-      .pipe(
-        tap((_) => this.log(`fetched Product id=${id}`)),
-        catchError(this.handleError<Product>(`getProduct id=${id}`))
-      );
+    // return this.http
+    //   .get<Product>(url)
+    //   .pipe(
+    //     tap((_) => this.log(`fetched Product id=${id}`)),
+    //     catchError(this.handleError<Product>(`getProduct id=${id}`))
+    //   );
+    return this.angularFireDatabase.object<Product>(url).valueChanges();
   }
   /** PUT: update the Product on the server */
   updateProduct(product: Product): Observable<any> {
