@@ -6,40 +6,12 @@ import { MessageService } from '../../messages/message.service';
 @Injectable()
 export class CartService {
   // Init and generate some fixtures
-  private cartItems: CartItem[] = [
-    new CartItem(
-      {
-        id: 11,
-        name: 'Shoes',
-        date: '2017-01-07',
-        price: 29.7,
-        priceNormal: 99,
-        reduction: 70,
-        description: 'Hello world',
-        imageURLs: ['img/shop/products/01.jpg'],
-        categories: ['Bags'],
-        ratings: [{ userId: 1, rating: 5}]
-      }, 1
-    ),
-    new CartItem(
-      {
-        id: 12,
-        name: 'Bag',
-        date: '2017-04-08',
-        price: 49,
-        priceNormal: 49,
-        reduction: 0,
-        description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-        imageURLs: ['img/shop/products/02.jpg', 'img/shop/products/02.jpg', 'img/shop/products/02.jpg'],
-        categories: ['Bags'],
-        ratings: [{ userId: 1, rating: 1 }, { userId: 2, rating: 3 }, { userId: 3, rating: 2 }]
-      }, 2
-    )
-  ];
-
+  private cartItems: CartItem[];
   public itemsChanged: EventEmitter<CartItem[]> = new EventEmitter<CartItem[]>();
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService) {
+    this.cartItems = [];
+  }
 
   getItems() {
     return this.cartItems.slice();
