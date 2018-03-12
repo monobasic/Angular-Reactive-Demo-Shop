@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
-import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -11,8 +10,7 @@ export class AuthService {
     authState: any = null;
 
     constructor(private afAuth: AngularFireAuth,
-        private db: AngularFireDatabase,
-        private router: Router) {
+        private db: AngularFireDatabase) {
 
         this.afAuth.authState.subscribe((auth) => {
             this.authState = auth;
@@ -128,7 +126,6 @@ export class AuthService {
     //// Sign Out ////
     signOut(): void {
         this.afAuth.auth.signOut();
-        this.router.navigate(['/']);
     }
 
 
