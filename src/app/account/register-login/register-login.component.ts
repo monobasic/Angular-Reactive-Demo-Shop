@@ -62,8 +62,7 @@ export class RegisterLoginComponent implements OnInit {
   onRegister() {
     // console.log(this.registerForm);
     // this.registerForm.value.password = this.registerForm.value.passwords.password;
-
-    this.authenticationService.emailSignUp(this.loginForm.value.email, this.loginForm.value.password)
+    this.authenticationService.emailSignUp(this.registerForm.value.email, this.registerForm.value.password)
     .then(
       (val) => {
         console.log(val);
