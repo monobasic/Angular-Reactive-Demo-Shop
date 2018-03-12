@@ -21,6 +21,7 @@ import { OrderService } from '../orders/shared/order.service';
 import { CheckoutService } from '../checkout/shared/checkout.service';
 import { AdminAuthService } from '../admin/shared/admin-auth.service';
 import { UserService } from '../account/shared/user.service';
+import { AuthService } from '../account/shared/auth.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
 @NgModule({
@@ -56,7 +57,8 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
         OrderService,
         CheckoutService,
         AdminAuthService,
-        UserService
+        UserService,
+        AuthService
     ]
 })
 export class CoreModule {
