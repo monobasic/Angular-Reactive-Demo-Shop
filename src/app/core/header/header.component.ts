@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../account/shared/auth.service';
 import { Observable } from '@firebase/util';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit {
   //   this.userInfo = user;
   // });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+  private router: Router) {}
 
   ngOnInit() {
     this.authService.currentUserObservable.subscribe((authState) => {
@@ -28,7 +30,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  onLogOut() {
+  onLogOut(e: Event) {
     this.authService.signOut();
+    this.router.navigate(['/register-login']);
+    e.preventDefault();
   }
 }
