@@ -1,0 +1,1712 @@
+{
+    "products": [
+        {
+            "id": 11,
+            "name": "'Shoes'",
+            "price": 69.3,
+            "priceNormal": 99,
+            "reduction": 70,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/01.jpg",
+                "img/shop/products/02.jpg"
+            ],
+            "categories": [
+                "'Shoes'"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "name": "Bag",
+            "price": 49,
+            "priceNormal": 49,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/02.jpg",
+                "img/shop/products/02.jpg",
+                "img/shop/products/02.jpg"
+            ],
+            "categories": [
+                "Bags"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "name": "Shades",
+            "price": 35.1,
+            "priceNormal": 39,
+            "reduction": 10,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg"
+            ],
+            "categories": [
+                "Shades"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "name": "Bracelet",
+            "price": 19,
+            "priceNormal": 19,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/04.jpg",
+                "img/shop/products/04.jpg"
+            ],
+            "categories": [
+                "Jewelry"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "name": "Sweater",
+            "price": 69,
+            "priceNormal": 69,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/05.jpg",
+                "img/shop/products/05.jpg",
+                "img/shop/products/05.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "name": "Trainer",
+            "price": 65,
+            "priceNormal": 65,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/06.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "name": "Sweatpants",
+            "price": 45,
+            "priceNormal": 45,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/07.jpg",
+                "img/shop/products/07.jpg",
+                "img/shop/products/07.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "name": "Bluse",
+            "price": 68,
+            "priceNormal": 68,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/08.jpg",
+                "img/shop/products/08.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "name": "Ballerinas",
+            "price": 89,
+            "priceNormal": 89,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "name": "Baseball Hat",
+            "price": 20,
+            "priceNormal": 25,
+            "reduction": 20,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/10.jpg",
+                "img/shop/products/10.jpg"
+            ],
+            "categories": [
+                "Caps"
+            ]
+        },
+        {
+            "id": 21,
+            "name": "'Shoes'",
+            "price": 69.3,
+            "priceNormal": 99,
+            "reduction": 70,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/01.jpg",
+                "img/shop/products/02.jpg"
+            ],
+            "categories": [
+                "'Shoes'"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "name": "Bag",
+            "price": 49,
+            "priceNormal": 49,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/02.jpg",
+                "img/shop/products/02.jpg",
+                "img/shop/products/02.jpg"
+            ],
+            "categories": [
+                "Bags"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "name": "Shades",
+            "price": 35.1,
+            "priceNormal": 39,
+            "reduction": 10,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg"
+            ],
+            "categories": [
+                "Shades"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 24,
+            "name": "Bracelet",
+            "price": 19,
+            "priceNormal": 19,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/04.jpg",
+                "img/shop/products/04.jpg"
+            ],
+            "categories": [
+                "Jewelry"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 25,
+            "name": "Sweater",
+            "price": 69,
+            "priceNormal": 69,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/05.jpg",
+                "img/shop/products/05.jpg",
+                "img/shop/products/05.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 26,
+            "name": "Trainer",
+            "price": 65,
+            "priceNormal": 65,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/06.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 27,
+            "name": "Sweatpants",
+            "price": 45,
+            "priceNormal": 45,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/07.jpg",
+                "img/shop/products/07.jpg",
+                "img/shop/products/07.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 28,
+            "name": "Bluse",
+            "price": 68,
+            "priceNormal": 68,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/08.jpg",
+                "img/shop/products/08.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ]
+        },
+        {
+            "id": 29,
+            "name": "Ballerinas",
+            "price": 89,
+            "priceNormal": 89,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 30,
+            "name": "Baseball Hat",
+            "price": 20,
+            "priceNormal": 25,
+            "reduction": 20,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/10.jpg",
+                "img/shop/products/10.jpg"
+            ],
+            "categories": [
+                "Caps"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 31,
+            "name": "'Shoes'",
+            "price": 69.3,
+            "priceNormal": 99,
+            "reduction": 70,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/01.jpg",
+                "img/shop/products/02.jpg"
+            ],
+            "categories": [
+                "'Shoes'"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 32,
+            "name": "Bag",
+            "price": 49,
+            "priceNormal": 49,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/02.jpg",
+                "img/shop/products/02.jpg",
+                "img/shop/products/02.jpg"
+            ],
+            "categories": [
+                "Bags"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 33,
+            "name": "Shades",
+            "price": 35.1,
+            "priceNormal": 39,
+            "reduction": 10,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg"
+            ],
+            "categories": [
+                "Shades"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 34,
+            "name": "Bracelet",
+            "price": 19,
+            "priceNormal": 19,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/04.jpg",
+                "img/shop/products/04.jpg"
+            ],
+            "categories": [
+                "Jewelry"
+            ]
+        },
+        {
+            "id": 35,
+            "name": "Sweater",
+            "price": 69,
+            "priceNormal": 69,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/05.jpg",
+                "img/shop/products/05.jpg",
+                "img/shop/products/05.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 36,
+            "name": "Trainer",
+            "price": 65,
+            "priceNormal": 65,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/06.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 37,
+            "name": "Sweatpants",
+            "price": 45,
+            "priceNormal": 45,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/07.jpg",
+                "img/shop/products/07.jpg",
+                "img/shop/products/07.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 38,
+            "name": "Bluse",
+            "price": 68,
+            "priceNormal": 68,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/08.jpg",
+                "img/shop/products/08.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 39,
+            "name": "Ballerinas",
+            "price": 89,
+            "priceNormal": 89,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 40,
+            "name": "Baseball Hat",
+            "price": 20,
+            "priceNormal": 25,
+            "reduction": 20,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/10.jpg",
+                "img/shop/products/10.jpg"
+            ],
+            "categories": [
+                "Caps"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "name": "'Shoes'",
+            "price": 69.3,
+            "priceNormal": 99,
+            "reduction": 70,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/01.jpg",
+                "img/shop/products/02.jpg"
+            ],
+            "categories": [
+                "'Shoes'"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "name": "Bag",
+            "price": 49,
+            "priceNormal": 49,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/02.jpg",
+                "img/shop/products/02.jpg",
+                "img/shop/products/02.jpg"
+            ],
+            "categories": [
+                "Bags"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 43,
+            "name": "Shades",
+            "price": 35.1,
+            "priceNormal": 39,
+            "reduction": 10,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg"
+            ],
+            "categories": [
+                "Shades"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 44,
+            "name": "Bracelet",
+            "price": 19,
+            "priceNormal": 19,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/04.jpg",
+                "img/shop/products/04.jpg"
+            ],
+            "categories": [
+                "Jewelry"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 45,
+            "name": "Sweater",
+            "price": 69,
+            "priceNormal": 69,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/05.jpg",
+                "img/shop/products/05.jpg",
+                "img/shop/products/05.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 46,
+            "name": "Trainer",
+            "price": 65,
+            "priceNormal": 65,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/06.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ]
+        },
+        {
+            "id": 47,
+            "name": "Sweatpants",
+            "price": 45,
+            "priceNormal": 45,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/07.jpg",
+                "img/shop/products/07.jpg",
+                "img/shop/products/07.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 48,
+            "name": "Bluse",
+            "price": 68,
+            "priceNormal": 68,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/08.jpg",
+                "img/shop/products/08.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 49,
+            "name": "Ballerinas",
+            "price": 89,
+            "priceNormal": 89,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 50,
+            "name": "Baseball Hat",
+            "price": 20,
+            "priceNormal": 25,
+            "reduction": 20,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/10.jpg",
+                "img/shop/products/10.jpg"
+            ],
+            "categories": [
+                "Caps"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 51,
+            "name": "'Shoes'",
+            "price": 69.3,
+            "priceNormal": 99,
+            "reduction": 70,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/01.jpg",
+                "img/shop/products/02.jpg"
+            ],
+            "categories": [
+                "'Shoes'"
+            ],
+            "ratings": []
+        },
+        {
+            "id": 52,
+            "name": "Bag",
+            "price": 49,
+            "priceNormal": 49,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/02.jpg",
+                "img/shop/products/02.jpg",
+                "img/shop/products/02.jpg"
+            ],
+            "categories": [
+                "Bags"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 53,
+            "name": "Shades",
+            "price": 35.1,
+            "priceNormal": 39,
+            "reduction": 10,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg"
+            ],
+            "categories": [
+                "Shades"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 54,
+            "name": "Bracelet",
+            "price": 19,
+            "priceNormal": 19,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/04.jpg",
+                "img/shop/products/04.jpg"
+            ],
+            "categories": [
+                "Jewelry"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 55,
+            "name": "Sweater",
+            "price": 69,
+            "priceNormal": 69,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/05.jpg",
+                "img/shop/products/05.jpg",
+                "img/shop/products/05.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 56,
+            "name": "Trainer",
+            "price": 65,
+            "priceNormal": 65,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/06.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 57,
+            "name": "Sweatpants",
+            "price": 45,
+            "priceNormal": 45,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/07.jpg",
+                "img/shop/products/07.jpg",
+                "img/shop/products/07.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 58,
+            "name": "Bluse",
+            "price": 68,
+            "priceNormal": 68,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/08.jpg",
+                "img/shop/products/08.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 59,
+            "name": "Ballerinas",
+            "price": 89,
+            "priceNormal": 89,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 60,
+            "name": "Baseball Hat",
+            "price": 20,
+            "priceNormal": 25,
+            "reduction": 20,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/10.jpg",
+                "img/shop/products/10.jpg"
+            ],
+            "categories": [
+                "Caps"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 61,
+            "name": "'Shoes'",
+            "price": 69.3,
+            "priceNormal": 99,
+            "reduction": 70,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/01.jpg",
+                "img/shop/products/02.jpg"
+            ],
+            "categories": [
+                "'Shoes'"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 62,
+            "name": "Bag",
+            "price": 49,
+            "priceNormal": 49,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/02.jpg",
+                "img/shop/products/02.jpg",
+                "img/shop/products/02.jpg"
+            ],
+            "categories": [
+                "Bags"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 63,
+            "name": "Shades",
+            "price": 35.1,
+            "priceNormal": 39,
+            "reduction": 10,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg",
+                "img/shop/products/03.jpg"
+            ],
+            "categories": [
+                "Shades"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 64,
+            "name": "Bracelet",
+            "price": 19,
+            "priceNormal": 19,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/04.jpg",
+                "img/shop/products/04.jpg"
+            ],
+            "categories": [
+                "Jewelry"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 65,
+            "name": "Sweater",
+            "price": 69,
+            "priceNormal": 69,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/05.jpg",
+                "img/shop/products/05.jpg",
+                "img/shop/products/05.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 66,
+            "name": "Trainer",
+            "price": 65,
+            "priceNormal": 65,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/06.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 67,
+            "name": "Sweatpants",
+            "price": 45,
+            "priceNormal": 45,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/07.jpg",
+                "img/shop/products/07.jpg",
+                "img/shop/products/07.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 68,
+            "name": "Bluse",
+            "price": 68,
+            "priceNormal": 68,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/08.jpg",
+                "img/shop/products/08.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 69,
+            "name": "Ballerinas",
+            "price": 89,
+            "priceNormal": 89,
+            "reduction": 0,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg",
+                "img/shop/products/09.jpg"
+            ],
+            "categories": [
+                "Clothes"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        },
+        {
+            "id": 70,
+            "name": "Baseball Hat",
+            "price": 20,
+            "priceNormal": 25,
+            "reduction": 20,
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imageURLs": [
+                "img/shop/products/10.jpg",
+                "img/shop/products/10.jpg"
+            ],
+            "categories": [
+                "Caps"
+            ],
+            "ratings": [
+                {
+                    "userId": 1,
+                    "rating": 1
+                },
+                {
+                    "userId": 2,
+                    "rating": 2
+                },
+                {
+                    "userId": 3,
+                    "rating": 1
+                }
+            ]
+        }
+    ]
+}
+
