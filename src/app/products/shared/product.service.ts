@@ -21,7 +21,7 @@ multipartHeader.headers.delete('Content-Type');
 
 @Injectable()
 export class ProductService {
-  private productsUrl = 'products'; // URL to web api
+  private productsUrl = '/products'; // URL to web api
 
   constructor(
     private http: HttpClient,
@@ -55,18 +55,18 @@ export class ProductService {
 
   /** GET products from the server */
   getProducts(): Observable<Product[]> {
-    return this.angularFireDatabase.list<Product>('products').valueChanges();
+    return this.angularFireDatabase.list<Product>('products').valueChanges().pipe(
+      tap((_) => this.log(`fetched Products`)),
+      catchError(this.handleError<Product[]>(`getProducts`))
+    );
   }
   /** GET product by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
-    // return this.http
-    //   .get<Product>(url)
-    //   .pipe(
-    //     tap((_) => this.log(`fetched Product id=${id}`)),
-    //     catchError(this.handleError<Product>(`getProduct id=${id}`))
-    //   );
-    return this.angularFireDatabase.object<Product>(url).valueChanges();
+    return this.angularFireDatabase.object<Product>(url).valueChanges().pipe(
+      tap((_) => this.log(`fetched Product id=${id}`)),
+      catchError(this.handleError<Product>(`getProduct id=${id}`))
+    );
   }
   /** PUT: update the Product on the server */
   updateProduct(product: Product): Observable<any> {
