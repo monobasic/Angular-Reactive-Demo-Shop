@@ -35,15 +35,25 @@ export class ProductsListComponent implements OnInit {
 
   getProducts() {
     // Show spinner
-    this.productsCacheService
-      .get('product', this.productService.getProducts())
+    this.productService.getProducts()
       .subscribe((products) => {
         this.products =
-          products.products || products;
+          products;
           this.sortPipe.transform(this.products, 'date', true);
         this.setPage(1);
         // Hide Spinner
       });
+    // TODO: fix cached variant
+    // // Show spinner
+    // this.productsCacheService
+    //   .get('product', this.productService.getProducts())
+    //   .subscribe((products) => {
+    //     this.products =
+    //       products.products || products;
+    //       this.sortPipe.transform(this.products, 'date', true);
+    //     this.setPage(1);
+    //     // Hide Spinner
+    //   });
   }
 
   onDisplayModeChange(mode: string, e: Event) {

@@ -34,7 +34,7 @@
           <i class="icon-search"></i>
         </div>
         <div class="account">
-          <a *ngIf="!isLoggedIn else whenLoggedIn" routerLink="/register-login"></a>
+          <a *ngIf="!isLoggedIn; else whenLoggedIn" routerLink="/register-login"></a>
 
           <ng-template #whenLoggedIn>
             <a routerLink="/account"></a>
@@ -47,7 +47,7 @@
                 <img src="img/account/user-ava-sm.jpg" alt={{userInfo.email}}>
               </div> -->
               <div class="user-info">
-                <h6 class="user-name">{{(userInfo | async)?.email}}</h6>
+                <h6 class="user-name">{{ userEmail }}</h6>
               </div>
             </li>
             <li>
@@ -61,7 +61,7 @@
             </li>
             <li class="sub-menu-separator"></li>
             <li>
-              <a (click)="onLogOut()">
+              <a href="" (click)="onLogOut($event)">
                 <i class="icon-unlock"></i>Logout</a>
             </li>
           </ul>

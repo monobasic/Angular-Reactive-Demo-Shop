@@ -8,6 +8,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from '../../messages/message.service';
 import { Product } from '../../models/product.model';
 
+import { AngularFireDatabase } from 'angularfire2/database';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -19,11 +21,12 @@ multipartHeader.headers.delete('Content-Type');
 
 @Injectable()
 export class ProductService {
-  private productsUrl = 'api/products'; // URL to web api
+  private productsUrl = '/products'; // URL to web api
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private angularFireDatabase: AngularFireDatabase
   ) {}
 
   /** Log a ProductService message with the MessageService */
@@ -52,22 +55,18 @@ export class ProductService {
 
   /** GET products from the server */
   getProducts(): Observable<Product[]> {
-    return this.http
-      .get<Product[]>(this.productsUrl)
-      .pipe(
-        tap((products) => this.log(`fetched products`)),
-        catchError(this.handleError('getProducts', []))
-      );
+    return this.angularFireDatabase.list<Product>('products').valueChanges().pipe(
+      tap((_) => this.log(`fetched Products`)),
+      catchError(this.handleError<Product[]>(`getProducts`))
+    );
   }
   /** GET product by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
-    return this.http
-      .get<Product>(url)
-      .pipe(
-        tap((_) => this.log(`fetched Product id=${id}`)),
-        catchError(this.handleError<Product>(`getProduct id=${id}`))
-      );
+    return this.angularFireDatabase.object<Product>(url).valueChanges().pipe(
+      tap((_) => this.log(`fetched Product id=${id}`)),
+      catchError(this.handleError<Product>(`getProduct id=${id}`))
+    );
   }
   /** PUT: update the Product on the server */
   updateProduct(product: Product): Observable<any> {
