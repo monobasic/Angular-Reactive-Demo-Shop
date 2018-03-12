@@ -63,7 +63,8 @@ export class RegisterLoginComponent implements OnInit {
     // console.log(this.registerForm);
     // this.registerForm.value.password = this.registerForm.value.passwords.password;
 
-    this.authenticationService.register(this.registerForm.value).subscribe(
+    this.authenticationService.emailSignUp(this.loginForm.value.email, this.loginForm.value.password)
+    .then(
       (val) => {
         console.log(val);
         this.router.navigate(['/home']);
