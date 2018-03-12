@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -7,6 +7,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from '../../messages/message.service';
 import { Product } from '../../models/product.model';
+
+import { AngularFireDatabase } from 'angularfire2/database';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,13 +20,17 @@ const multipartHeader = {
 multipartHeader.headers.delete('Content-Type');
 
 @Injectable()
-export class ProductService {
+export class ProductService implements OnInit {
   private productsUrl = 'api/products'; // URL to web api
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private db: AngularFireDatabase
   ) {}
+
+  ngOnInit() {
+  }
 
   /** Log a ProductService message with the MessageService */
   private log(message: string) {
@@ -51,13 +57,8 @@ export class ProductService {
   }
 
   /** GET products from the server */
-  getProducts(): Observable<Product[]> {
-    return this.http
-      .get<Product[]>(this.productsUrl)
-      .pipe(
-        tap((products) => this.log(`fetched products`)),
-        catchError(this.handleError('getProducts', []))
-      );
+  getProducts(): Observable<{}[]> {
+    return this.db.list('products').valueChanges();
   }
   /** GET product by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
