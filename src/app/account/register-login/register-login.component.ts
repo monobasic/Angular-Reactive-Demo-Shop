@@ -6,9 +6,8 @@ import {
   Validators
 } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
-import { UserService } from '../shared/user.service';
 import { MessageService } from '../../messages/message.service';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-register-login',
@@ -20,7 +19,7 @@ export class RegisterLoginComponent implements OnInit {
   registerForm: FormGroup;
 
   constructor(
-    private authenticationService: UserService,
+    private authenticationService: AuthService,
     private router: Router,
     private logger: MessageService
   ) {}
@@ -75,20 +74,26 @@ export class RegisterLoginComponent implements OnInit {
 
   onLogin() {
     this.authenticationService
-      .login(this.loginForm.value)
-      .subscribe((response) => {
-        if (response.success) {
+      .emailLogin(this.loginForm.value.email, this.loginForm.value.password)
+      .then(() => {
+          console.log(this.authenticationService.authState);
+          console.log(this.authenticationService.authenticated);
+          console.log(this.authenticationService.currentUser);
+        if (this.authenticationService.authenticated) {
           this.logger.add(`Authentication successful`);
           this.router.navigate(['/home']);
         } else {
-          console.log(response);
           this.logger.addError('Authentication failed');
-
           this.loginForm.setErrors({
             email: true,
             password: true
           });
         }
+
+        }
+      ).catch((error) => {
+          console.log('error: ');
+          console.log(error);
       });
   }
 }
