@@ -57,8 +57,8 @@ export class ProductService implements OnInit {
   }
 
   /** GET products from the server */
-  getProducts(): Observable<{}[]> {
-    return this.db.list('products').valueChanges();
+  getProducts(): Observable<Product[]> {
+    return this.db.list<Product>('products').valueChanges();
   }
   /** GET product by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
