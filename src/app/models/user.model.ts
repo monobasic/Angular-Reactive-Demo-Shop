@@ -4,7 +4,7 @@ export class UserDetails {
   firstName: string;
   lastName: string;
   adresses: string[];
-  oders: number[];
+  orders: number[];
   exp: number;
   iat: number;
 }

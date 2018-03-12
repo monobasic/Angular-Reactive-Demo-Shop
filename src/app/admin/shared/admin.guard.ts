@@ -3,7 +3,6 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import { Observable } from 'rxjs/Observable';
 import { MessageService } from '../../messages/message.service';
 import { AdminAuthService } from './admin-auth.service';
-import { createProduct } from '../../../../server/ts-source/controller/products.controller';
 import { UserService } from '../../account/shared/user.service';
 
 @Injectable()

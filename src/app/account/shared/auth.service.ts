@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
+import { UserDetails } from '../../models/user.model';
 
 
 @Injectable()
@@ -136,12 +137,18 @@ export class AuthService {
         const path = `users/${this.currentUserId}`; // Endpoint on firebase
         const data = {
             email: this.authState.email,
-            name: this.authState.displayName
+            name: this.authState.displayName,
+            admin: false
         };
 
         this.db.object(path).update(data)
             .catch(error => console.log(error));
 
+    }
+
+    public getUserDetails(id) {
+        const url = `users/${id}`;
+        return this.db.object<UserDetails>(url).valueChanges();
     }
 
 }
