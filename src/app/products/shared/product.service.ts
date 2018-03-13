@@ -10,6 +10,7 @@ import { Product } from '../../models/product.model';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Rating } from '../../models/rating.model';
+import { AuthService } from '../../account/shared/auth.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -27,7 +28,8 @@ export class ProductService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    private angularFireDatabase: AngularFireDatabase
+    private angularFireDatabase: AngularFireDatabase,
+    private authService: AuthService
   ) {}
 
   /** Log a ProductService message with the MessageService */
@@ -74,11 +76,10 @@ export class ProductService {
     console.log('rate product:');
     console.log(product);
     console.log(rating);
-    const newRatings: Rating[] = [...product.ratings, rating];
     const url = `${this.productsUrl}/${product.id}`;
-    return this.angularFireDatabase.object<Product>(url).update({
-      ratings: newRatings
-    });
+    const updates = {};
+    updates['/ratings/' + this.authService.getUserUid() + '/'] = rating.rating;
+    return this.angularFireDatabase.object<Product>(url).update(updates);
   }
 
   // TODO: rewrite for Firebase

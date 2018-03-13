@@ -8,14 +8,15 @@ import { Rating } from '../../../models/rating.model';
 })
 export class RatingStarsComponent implements OnInit {
   @Input()
-  ratings: Rating[];
+  ratings: {};
   ratingResult: number;
 
   constructor() { }
 
   ngOnInit() {
     if (this.ratings) {
-      this.ratingResult = Math.ceil(this.ratings.map((a) => a.rating).reduce((a, b) => a + b) / this.ratings.length);
+      this.ratingResult = <number>Object.values(this.ratings)
+      .reduce((a: number, b: number) => a + b, 0) / Object.values(this.ratings).length;
     }
   }
 

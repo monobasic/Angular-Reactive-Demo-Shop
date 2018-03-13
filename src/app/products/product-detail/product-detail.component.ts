@@ -24,6 +24,7 @@ export class ProductDetailComponent implements OnInit {
   activeImageIndex: number;
   selectedQuantity: number;
   @ViewChild('rating') rating: ElementRef;
+  ratingCount: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,6 +52,7 @@ export class ProductDetailComponent implements OnInit {
         this.product = product;
         this.activeImageUrl = this.product.imageURLs[0];
         this.activeImageIndex = 0;
+        this.ratingCount = product.ratings ? Object.keys(product.ratings).length : 0;
         // Hide loading spinner
       });
     // TODO: fix cached variant

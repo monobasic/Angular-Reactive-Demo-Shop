@@ -1,5 +1,3 @@
-import { Rating } from "./rating.model";
-
 export class Product {
     id: number;
     date: string;
@@ -10,5 +8,5 @@ export class Product {
     reduction?: number;
     imageURLs: string[];
     categories: string[];
-    ratings: Rating[];
+    ratings?: {};
 }
