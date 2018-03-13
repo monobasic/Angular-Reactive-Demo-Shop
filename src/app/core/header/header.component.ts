@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     this.user = this.authService.user;
     this.isAdmin = false;
     this.authService.user.subscribe(user => {
-      this.isAdmin = user && user.roles.admin;
+      this.isAdmin = user && user.roles.admin ? true : false;
     });
   }
 
