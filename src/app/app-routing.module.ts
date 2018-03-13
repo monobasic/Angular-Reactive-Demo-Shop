@@ -3,7 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './core/home/home.component';
 import { CartComponent } from './cart/cart.component';
+import { AddEditComponent } from './admin/add-edit/add-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AdminGuard } from './admin/shared/admin.guard';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { RegisterLoginComponent } from './account/register-login/register-login.component';
 import { OrdersComponent } from './orders/orders.component';
@@ -18,6 +20,12 @@ const routes: Routes = [
   { path: 'products', component: ProductsListComponent },
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'admin/add', component: AddEditComponent, canActivate: [AdminGuard] },
+  {
+    path: 'admin/edit/:id',
+    component: AddEditComponent,
+    canActivate: [AdminGuard]
+  },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'register-login', component: RegisterLoginComponent },
   {
@@ -35,6 +43,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: []
+  providers: [AdminGuard]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
