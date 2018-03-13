@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { User } from '../../models/user.model';
-
+import { User, Roles } from '../../models/user.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -16,10 +15,7 @@ export class AuthService {
 
     user: BehaviorSubject<User> = new BehaviorSubject(null);
 
-    constructor(private afAuth: AngularFireAuth,
-        private db: AngularFireDatabase) {
-
-
+    constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
         this.afAuth.authState
             .switchMap(auth => {
                 if (auth) {
@@ -32,11 +28,11 @@ export class AuthService {
             })
             .subscribe(user => {
                 this.user.next(user);
+                console.log('authState changed, user is now: ');
+                console.log(user);
             });
     }
 
-
-    ///// SignIn - SignOut Process /////
 
     googleLogin() {
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -46,7 +42,6 @@ export class AuthService {
             });
     }
 
-    //// Email/Password Auth ////
     emailSignUp(email: string, password: string) {
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             .then((user) => {
@@ -67,18 +62,15 @@ export class AuthService {
         this.afAuth.auth.signOut();
     }
 
-    //// Update user data ////
-
-    /// updates database with user info after login
-    /// only runs if user role is not already defined in database
+    /// Updates database with user info after login (for first time login only)
     private updateUser(authData) {
         const userData = new User(authData);
         const ref = this.db.object('users/' + authData.uid);
         ref.valueChanges().take(1)
             .subscribe(user => {
-                // if (!user.roles) {
+                if (!user.roles) {
                     ref.update(userData);
-                // }
+                }
             });
 
     }
