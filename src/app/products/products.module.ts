@@ -7,6 +7,7 @@ import { ProductsListItemComponent } from './products-list-item/products-list-it
 
 import { SortPipe } from './shared/sort.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { RatingStarsComponent } from './shared/rating-stars/rating-stars.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SharedModule } from '../shared/shared.module';
         ProductDetailComponent,
         ProductsListComponent,
         ProductsListItemComponent,
-        SortPipe
+        SortPipe,
+        RatingStarsComponent
     ],
     imports: [
         SharedModule
@@ -23,7 +25,8 @@ import { SharedModule } from '../shared/shared.module';
         ProductDetailComponent,
         ProductsListComponent,
         ProductsListItemComponent,
-        SortPipe
+        SortPipe,
+        RatingStarsComponent
     ],
     providers: [
         SortPipe
