@@ -1,6 +1,12 @@
 <div class="product-card" [ngClass]="{'product-list': displayMode === 'list'}">
-  <app-rating-stars [ratings]="product.ratings"></app-rating-stars>
-  <div *ngIf="product.reduction" class="product-badge text-danger">{{ product.reduction }}% Off</div>
+  <div class="row">
+    <div class="col">
+      <div *ngIf="product.reduction" class="product-badge text-danger">{{ product.reduction }}% Off</div>
+    </div>
+    <div class="col">
+      <app-rating-stars [ratings]="product.ratings"></app-rating-stars>
+    </div>
+  </div>
   <a class="product-thumb" routerLink="/products/{{product.id}}">
     <img src="{{product.imageURLs[0]}}" alt="{{product.name}}">
   </a>
