@@ -72,13 +72,13 @@ export class ProductService {
     );
   }
 
-  rateProduct(product: Product, rating: Rating) {
+  rateProduct(product: Product, rating: number) {
     console.log('rate product:');
     console.log(product);
     console.log(rating);
     const url = `${this.productsUrl}/${product.id}`;
     const updates = {};
-    updates['/ratings/' + this.authService.getUserUid() + '/'] = rating.rating;
+    updates['/ratings/' + this.authService.getUserUid() + '/'] = rating;
     return this.angularFireDatabase.object<Product>(url).update(updates);
   }
 

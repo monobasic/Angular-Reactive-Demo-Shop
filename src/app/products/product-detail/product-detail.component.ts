@@ -25,6 +25,8 @@ export class ProductDetailComponent implements OnInit {
   selectedQuantity: number;
   @ViewChild('rating') rating: ElementRef;
   ratingCount: number;
+  ratingValues: number[];
+  selectedRating: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +38,7 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.ratingValues = [1, 2, 3, 4, 5];
     this.selectedQuantity = 1;
 
     this.route.params.subscribe((params: Params) => {
@@ -80,17 +83,11 @@ export class ProductDetailComponent implements OnInit {
     this.selectedQuantity = <number>+event.target.value;
   }
 
-  onRate(e: Event) {
-    e.preventDefault();
+  onRate() {
     if (!this.authService.user) {
       return;
     }
-
-    const rating: Rating = {
-      userUid: this.authService.getUserUid(),
-      rating: 5
-    };
-
+    const rating = parseInt(this.selectedRating, 10);
     this.productService.rateProduct(this.product, rating);
   }
 }

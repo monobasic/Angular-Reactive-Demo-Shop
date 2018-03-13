@@ -3,6 +3,7 @@ import { PriceComponent } from './price/price.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -10,12 +11,14 @@ import { AppRoutingModule } from '../app-routing.module';
     ],
     imports: [
         CommonModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule
     ],
     exports: [
         PriceComponent,
         CommonModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule
     ]
 })
 export class SharedModule {}

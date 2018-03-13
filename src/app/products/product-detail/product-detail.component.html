@@ -98,6 +98,12 @@
           <a class="navi-link" href="#"> Snickers,</a>
           <a class="navi-link" href="#"> Sport shoes</a>
         </div>
+          <div class="form-group">
+            <label for="review_rating">Your Rating</label>
+              <select class="form-control form-control-rounded" name="rating" [(ngModel)]="selectedRating" (change)="onRate()">
+                <option *ngFor="let value of ratingValues" [value]="value">{{ value }} Stars</option>
+              </select>
+          </div>
         <hr class="mb-3">
         <div class="d-flex flex-wrap justify-content-between">
           <div class="entry-share mt-2 mb-2">
@@ -126,20 +132,6 @@
             </button>
           </div>
         </div>
-
-        <form>
-          <div class="form-group">
-            <label for="review_rating">Your Rating</label>
-            <select class="form-control form-control-rounded" #rating>
-              <option>5 Stars</option>
-              <option>4 Stars</option>
-              <option>3 Stars</option>
-              <option>2 Stars</option>
-              <option>1 Star</option>
-            </select>
-            <button class="btn btn-outline-secondary" (click)="onRate($event)">Rate it!</button>
-          </div>
-        </form>
 
       </div>
     </div>
