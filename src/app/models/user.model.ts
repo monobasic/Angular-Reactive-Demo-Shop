@@ -1,7 +1,5 @@
 export interface Roles {
-  reader: boolean;
-  author?: boolean;
-  admin?: boolean;
+  admin: boolean;
 }
 
 export class User {
@@ -12,6 +10,8 @@ export class User {
   constructor(authData) {
     this.email = authData.email;
     this.photoURL = authData.photoURL;
-    this.roles = { reader: true };
+    this.roles = {
+      admin: false
+    };
   }
 }
