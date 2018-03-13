@@ -16,7 +16,7 @@ export class NavigationMainComponent implements OnInit {
   ngOnInit() {
     this.isAdmin = false;
     this.authService.user.subscribe(user => {
-        this.isAdmin = user ? user.roles.admin : false;
+        this.isAdmin = user && user.roles.admin;
     });
   }
 }
