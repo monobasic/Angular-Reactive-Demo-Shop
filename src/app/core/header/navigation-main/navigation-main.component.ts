@@ -9,11 +9,14 @@ import { AuthService } from '../../../account/shared/auth.service';
     styleUrls: ['./navigation-main.component.scss']
 })
 export class NavigationMainComponent implements OnInit {
-    user: BehaviorSubject<User>;
+    isAdmin: boolean;
 
     constructor(public authService: AuthService) {}
 
   ngOnInit() {
-    this.user = this.authService.user;
+    this.isAdmin = false;
+    this.authService.user.subscribe(user => {
+        this.isAdmin = user ? user.roles.admin : false;
+    });
   }
 }

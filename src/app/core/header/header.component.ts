@@ -12,12 +12,17 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 })
 export class HeaderComponent implements OnInit {
   user: BehaviorSubject<User>;
+  isAdmin: boolean;
 
   constructor(private authService: AuthService,
   private router: Router) {}
 
   ngOnInit() {
     this.user = this.authService.user;
+    this.isAdmin = false;
+    this.authService.user.subscribe(user => {
+      this.isAdmin = user ? user.roles.admin : false;
+    });
   }
 
   onLogOut(e: Event) {
