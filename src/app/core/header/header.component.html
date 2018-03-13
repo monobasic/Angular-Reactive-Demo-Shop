@@ -47,7 +47,7 @@
                 <img src="img/account/user-ava-sm.jpg" alt={{userInfo.email}}>
               </div> -->
               <div class="user-info">
-                <h6 class="user-name">{{ user.email }}</h6><span *ngIf="user.roles.admin"> (Admin)</span>
+                <h6 class="user-name">{{ user.email }}<span *ngIf="user.roles.admin"> (Admin)</span></h6>
               </div>
             </li>
             <li>
