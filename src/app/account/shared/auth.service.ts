@@ -29,7 +29,7 @@ export class AuthService {
             .subscribe(user => {
                 this.user.next(user);
                 console.log('authState changed, user is now: ');
-                console.log(user);
+                console.log(this.user.getValue());
             });
     }
 
