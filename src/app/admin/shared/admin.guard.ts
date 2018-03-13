@@ -15,10 +15,9 @@ export class AdminGuard implements CanActivate {
     private authService: AuthService
   ) {}
 
-  canActivate(
+  canActivate (
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-
 
     return this.authService.user
       .take(1)
@@ -28,6 +27,5 @@ export class AdminGuard implements CanActivate {
           console.log('route prevented!');
         }
       });
-
   }
 }
