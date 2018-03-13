@@ -68,7 +68,7 @@ export class AuthService {
         const ref = this.db.object('users/' + authData.uid);
         ref.valueChanges().take(1)
             .subscribe(user => {
-                if (!user.roles) {
+                if (!user) {
                     ref.update(userData);
                 }
             });
