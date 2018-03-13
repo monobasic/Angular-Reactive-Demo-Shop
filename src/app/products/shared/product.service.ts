@@ -9,6 +9,7 @@ import { MessageService } from '../../messages/message.service';
 import { Product } from '../../models/product.model';
 
 import { AngularFireDatabase } from 'angularfire2/database';
+import { Rating } from '../../models/rating.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -68,6 +69,19 @@ export class ProductService {
       catchError(this.handleError<Product>(`getProduct id=${id}`))
     );
   }
+
+  rateProduct(product: Product, rating: Rating) {
+    console.log('rate product:');
+    console.log(product);
+    console.log(rating);
+    const newRatings: Rating[] = [...product.ratings, rating];
+    const url = `${this.productsUrl}/${product.id}`;
+    return this.angularFireDatabase.object<Product>(url).update({
+      ratings: newRatings
+    });
+  }
+
+  // TODO: rewrite for Firebase
   /** PUT: update the Product on the server */
   updateProduct(product: Product): Observable<any> {
     return this.http

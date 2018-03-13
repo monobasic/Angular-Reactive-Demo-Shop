@@ -130,13 +130,14 @@
         <form>
           <div class="form-group">
             <label for="review_rating">Your Rating</label>
-            <select class="form-control form-control-rounded" id="review_rating">
+            <select class="form-control form-control-rounded" #rating>
               <option>5 Stars</option>
               <option>4 Stars</option>
               <option>3 Stars</option>
               <option>2 Stars</option>
               <option>1 Star</option>
             </select>
+            <button class="btn btn-outline-secondary" (click)="onRate($event)">Rate it!</button>
           </div>
         </form>
 

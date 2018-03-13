@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -10,6 +10,8 @@ import { Product } from '../../models/product.model';
 import { CartService } from '../../cart/shared/cart.service';
 import { CartItem } from '../../cart/shared/cart-item.model';
 import { Params } from '@angular/router/src/shared';
+import { Rating } from '../../models/rating.model';
+import { AuthService } from '../../account/shared/auth.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -21,13 +23,15 @@ export class ProductDetailComponent implements OnInit {
   activeImageUrl: string;
   activeImageIndex: number;
   selectedQuantity: number;
+  @ViewChild('rating') rating: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private productsCacheService: ProductsCacheService,
     private location: Location,
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -72,5 +76,19 @@ export class ProductDetailComponent implements OnInit {
 
   onSelectQuantity(event) {
     this.selectedQuantity = <number>+event.target.value;
+  }
+
+  onRate(e: Event) {
+    e.preventDefault();
+    if (!this.authService.user) {
+      return;
+    }
+
+    const rating: Rating = {
+      userUid: this.authService.getUserUid(),
+      rating: 5
+    };
+
+    this.productService.rateProduct(this.product, rating);
   }
 }
