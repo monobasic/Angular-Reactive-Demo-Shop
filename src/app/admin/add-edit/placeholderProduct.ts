@@ -12,7 +12,7 @@ export const placeholderProduct: Product = {
   reduction: 50,
   ratings: [
     {
-      userId: 1,
+      userUid: 1,
       rating: 2
     }
   ]
