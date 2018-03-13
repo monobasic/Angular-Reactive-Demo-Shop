@@ -61,6 +61,12 @@ export class ProductDetailComponent implements OnInit {
         this.activeImageUrl = this.product.imageURLs[0];
         this.activeImageIndex = 0;
         this.ratingCount = product.ratings ? Object.keys(product.ratings).length : 0;
+
+        // check for existing rating
+        if (product.ratings && Object.keys(product.ratings).includes(this.authService.getUserUid())) {
+          this.selectedRating = product.ratings[this.authService.getUserUid()];
+        }
+
         // Hide loading spinner
       });
     // TODO: fix cached variant
