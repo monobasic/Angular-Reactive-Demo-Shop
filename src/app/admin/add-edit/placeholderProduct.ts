@@ -9,5 +9,11 @@ export const placeholderProduct: Product = {
   priceNormal: 2000,
   imageURLs: ['img/shop/products/13.jpg'],
   categories: ['Some', 'Example', 'Categories'],
-  reduction: 50
+  reduction: 50,
+  ratings: [
+    {
+      userId: 1,
+      rating: 2
+    }
+  ]
 };
