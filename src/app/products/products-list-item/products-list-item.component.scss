@@ -80,17 +80,6 @@
     }
   }
 
-  .product-badge {
-    top: 15px;
-    left: 18px;
-  }
-
-  .rating-stars {
-    position: absolute;
-    top: 15px;
-    right: 18px;
-  }
-
   &.product-list {
     margin-bottom: 30px;
   }
@@ -146,7 +135,7 @@
 }
 
 .product-badge {
-  position: absolute;
+  //position: absolute;
   z-index: 1;
 
   font: {
