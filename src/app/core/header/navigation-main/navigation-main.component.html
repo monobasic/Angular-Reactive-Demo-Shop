@@ -16,7 +16,7 @@
                 <span>Cart</span>
             </a>
         </li>
-        <li *ngIf="isAdmin" routerLinkActive="active">
+        <li *ngIf="user.roles.admin" routerLinkActive="active">
             <a routerLink="/admin/add" href="">
                 <span>Admin</span>
             </a>
