@@ -14,6 +14,7 @@
   .product-thumb {
     display: block;
     width: 100%;
+    margin-top: 10px;
     margin-bottom: 10px;
 
     > img {
@@ -80,6 +81,13 @@
     }
   }
 
+  .product-rating {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 1;
+  }
+
   &.product-list {
     margin-bottom: 30px;
   }
@@ -135,8 +143,10 @@
 }
 
 .product-badge {
-  //position: absolute;
+  position: absolute;
   z-index: 1;
+  top: 10px;
+  left: 10px;
 
   font: {
     size: $font-size-sm;
