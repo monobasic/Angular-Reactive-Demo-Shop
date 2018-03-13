@@ -76,10 +76,7 @@ export class RegisterLoginComponent implements OnInit {
     this.authenticationService
       .emailLogin(this.loginForm.value.email, this.loginForm.value.password)
       .then(() => {
-          console.log(this.authenticationService.authState);
-          console.log(this.authenticationService.authenticated);
-          console.log(this.authenticationService.currentUser);
-        if (this.authenticationService.authenticated) {
+        if (this.authenticationService.user) {
           this.logger.add(`Authentication successful`);
           this.router.navigate(['/home']);
         } else {

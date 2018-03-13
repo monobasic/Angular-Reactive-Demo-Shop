@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckoutService } from './shared/checkout.service';
 
-import { UserDetails } from '../models/user.model';
-import { UserService } from '../account/shared/user.service';
 
 @Component({
   selector: 'app-checkout',
@@ -14,8 +12,7 @@ export class CheckoutComponent implements OnInit {
   activeStep: number;
 
   constructor(
-    private checkoutService: CheckoutService,
-    private auth: UserService
+    private checkoutService: CheckoutService
   ) {}
 
   ngOnInit() {

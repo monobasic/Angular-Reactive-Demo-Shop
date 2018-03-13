@@ -9,7 +9,6 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { CheckoutModule } from './checkout/checkout.module';
 import { AccountModule } from './account/account.module';
-import { AdminModule } from './admin/admin.module';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
@@ -42,8 +41,7 @@ import { OrdersComponent } from './orders/orders.component';
     CoreModule,
     ProductsModule,
     CheckoutModule,
-    AccountModule,
-    AdminModule
+    AccountModule
   ],
   bootstrap: [AppComponent]
 })

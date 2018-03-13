@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CheckoutService } from '../shared/checkout.service';
-
-import { UserDetails } from '../../models/user.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Component({
   selector: 'app-checkout-address',
@@ -11,7 +9,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 })
 export class AddressComponent implements OnInit {
   @Input() user;
-  userData: UserDetails;
   formAddress: FormGroup;
   countries: string[];
 

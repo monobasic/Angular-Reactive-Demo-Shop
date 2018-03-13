@@ -1,10 +1,17 @@
-export class UserDetails {
-  _id: string;
+export interface Roles {
+  reader: boolean;
+  author?: boolean;
+  admin?: boolean;
+}
+
+export class User {
   email: string;
-  firstName: string;
-  lastName: string;
-  adresses: string[];
-  orders: number[];
-  exp: number;
-  iat: number;
+  photoURL: string;
+  roles: Roles;
+
+  constructor(authData) {
+    this.email = authData.email;
+    this.photoURL = authData.photoURL;
+    this.roles = { reader: true };
+  }
 }

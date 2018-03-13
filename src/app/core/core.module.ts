@@ -19,8 +19,6 @@ import { CartService } from '../cart/shared/cart.service';
 import { PagerService } from '../pager/pager.service';
 import { OrderService } from '../orders/shared/order.service';
 import { CheckoutService } from '../checkout/shared/checkout.service';
-import { AdminAuthService } from '../admin/shared/admin-auth.service';
-import { UserService } from '../account/shared/user.service';
 import { AuthService } from '../account/shared/auth.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
@@ -56,8 +54,6 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
         PagerService,
         OrderService,
         CheckoutService,
-        AdminAuthService,
-        UserService,
         AuthService
     ]
 })
