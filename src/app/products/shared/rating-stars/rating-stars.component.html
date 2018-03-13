@@ -1,0 +1,9 @@
+{{ ratingResult }}
+
+<div class="rating-stars">
+  <i [ngClass]="{'filled': ratingResult > 0}" class="icon-star"></i>
+  <i [ngClass]="{'filled': ratingResult > 1}" class="icon-star"></i>
+  <i [ngClass]="{'filled': ratingResult > 2}" class="icon-star"></i>
+  <i [ngClass]="{'filled': ratingResult > 3}" class="icon-star"></i>
+  <i [ngClass]="{'filled': ratingResult > 4}" class="icon-star"></i>
+</div>
