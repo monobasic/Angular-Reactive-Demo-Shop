@@ -14,15 +14,18 @@ import 'rxjs/add/operator/take';
 export class AuthService {
 
     user: BehaviorSubject<User> = new BehaviorSubject(null);
+    private userUid: string;
 
     constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
         this.afAuth.authState
             .switchMap(auth => {
                 if (auth) {
                     /// signed in
+                    this.userUid = auth.uid;
                     return this.db.object('users/' + auth.uid).valueChanges();
                 } else {
                     /// not signed in
+                    this.userUid = null;
                     return Observable.of(null);
                 }
             })
@@ -30,7 +33,12 @@ export class AuthService {
                 this.user.next(user);
                 console.log('authState changed, user is now: ');
                 console.log(this.user.getValue());
+                console.log(this.userUid);
             });
+    }
+
+    getUserUid() {
+        return this.userUid;
     }
 
 
@@ -72,6 +80,5 @@ export class AuthService {
                     ref.update(userData);
                 }
             });
-
     }
 }
