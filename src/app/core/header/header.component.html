@@ -34,7 +34,7 @@
           <i class="icon-search"></i>
         </div>
         <div class="account">
-          <a *ngIf="!user | async; else whenLoggedIn" routerLink="/register-login"></a>
+          <a *ngIf="!(user | async); else whenLoggedIn" routerLink="/register-login"></a>
 
           <ng-template #whenLoggedIn>
             <a routerLink="/account"></a>
