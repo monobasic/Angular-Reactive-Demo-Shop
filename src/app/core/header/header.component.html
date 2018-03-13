@@ -34,20 +34,20 @@
           <i class="icon-search"></i>
         </div>
         <div class="account">
-          <a *ngIf="!isLoggedIn; else whenLoggedIn" routerLink="/register-login"></a>
+          <a *ngIf="!user | async; else whenLoggedIn" routerLink="/register-login"></a>
 
           <ng-template #whenLoggedIn>
             <a routerLink="/account"></a>
           </ng-template>
 
           <i class="icon-head"></i>
-          <ul *ngIf="isLoggedIn" class="toolbar-dropdown">
+          <ul *ngIf="user | async" class="toolbar-dropdown">
             <li class="sub-menu-user">
               <!-- <div class="user-ava">
                 <img src="img/account/user-ava-sm.jpg" alt={{userInfo.email}}>
               </div> -->
               <div class="user-info">
-                <h6 class="user-name">{{ userEmail }}</h6><span *ngIf="isAdmin"> (Admin)</span>
+                <h6 class="user-name">{{ (user | async).email }}</h6><span *ngIf="(user | async).roles.admin"> (Admin)</span>
               </div>
             </li>
             <li>
