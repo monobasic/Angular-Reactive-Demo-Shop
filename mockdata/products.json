@@ -1,9 +1,9 @@
 [ {
-  "categories" : [ "'Shoes'" ],
+  "categories" : [ "Shoes" ],
   "description" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
   "id" : 0,
   "imageURLs" : [ "img/shop/products/01.jpg", "img/shop/products/02.jpg" ],
-  "name" : "'Shoes'",
+  "name" : "Shoes",
   "price" : 69.3,
   "priceNormal" : 99,
   "ratings" : {
@@ -96,11 +96,11 @@
   "priceNormal" : 25,
   "reduction" : 20
 }, {
-  "categories" : [ "'Shoes'" ],
+  "categories" : [ "Shoes" ],
   "description" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
   "id" : 10,
   "imageURLs" : [ "img/shop/products/01.jpg", "img/shop/products/02.jpg" ],
-  "name" : "'Shoes'",
+  "name" : "Shoes",
   "price" : 69.3,
   "priceNormal" : 99,
   "reduction" : 70
@@ -186,11 +186,11 @@
   "priceNormal" : 25,
   "reduction" : 20
 }, {
-  "categories" : [ "'Shoes'" ],
+  "categories" : [ "Shoes" ],
   "description" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
   "id" : 20,
   "imageURLs" : [ "img/shop/products/01.jpg", "img/shop/products/02.jpg" ],
-  "name" : "'Shoes'",
+  "name" : "Shoes",
   "price" : 69.3,
   "priceNormal" : 99,
   "reduction" : 70
