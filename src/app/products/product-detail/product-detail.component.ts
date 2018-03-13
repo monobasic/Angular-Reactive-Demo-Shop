@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -12,6 +12,7 @@ import { CartItem } from '../../cart/shared/cart-item.model';
 import { Params } from '@angular/router/src/shared';
 import { Rating } from '../../models/rating.model';
 import { AuthService } from '../../account/shared/auth.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -23,10 +24,10 @@ export class ProductDetailComponent implements OnInit {
   activeImageUrl: string;
   activeImageIndex: number;
   selectedQuantity: number;
-  @ViewChild('rating') rating: ElementRef;
   ratingCount: number;
   ratingValues: number[];
   selectedRating: any;
+  user: User;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,6 +44,10 @@ export class ProductDetailComponent implements OnInit {
 
     this.route.params.subscribe((params: Params) => {
       this.getProduct();
+    });
+
+    this.authService.user.subscribe(user => {
+      this.user = user;
     });
   }
 
@@ -84,9 +89,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onRate() {
-    if (!this.authService.user) {
-      return;
-    }
     const rating = parseInt(this.selectedRating, 10);
     this.productService.rateProduct(this.product, rating);
   }
