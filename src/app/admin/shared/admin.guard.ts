@@ -21,7 +21,7 @@ export class AdminGuard implements CanActivate {
 
     return this.authService.user
       .take(1)
-      .map(user => user.roles.admin ? user.roles.admin : false)
+      .map(user => user && user.roles.admin)
       .do(authorized => {
         if (!authorized) {
           console.log('route prevented!');
