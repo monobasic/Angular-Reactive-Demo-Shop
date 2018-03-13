@@ -9,15 +9,17 @@ import { AuthService } from '../../account/shared/auth.service';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
+  isAdmin: boolean;
   userEmail: string;
 
   constructor(private authService: AuthService,
   private router: Router) {}
 
   ngOnInit() {
-    this.authService.user.subscribe((authState) => {
-      this.isLoggedIn = authState !== null;
-      this.userEmail = authState !== null ? authState.email : 'Anonymous';
+    this.authService.user.subscribe((user) => {
+      this.isLoggedIn = user !== null;
+      this.userEmail = user !== null ? user.email : 'Anonymous';
+      this.isAdmin = user !== null ? user.roles.admin : false;
     });
   }
 
