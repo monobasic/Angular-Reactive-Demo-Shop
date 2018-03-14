@@ -7,6 +7,8 @@ import { ProductService } from '../shared/product.service';
 import { PagerService } from '../../pager/pager.service';
 import { SortPipe } from '../shared/sort.pipe';
 import { ProductsCacheService } from '../shared/products-cache.service';
+import { AuthService } from '../../account/shared/auth.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-products',
@@ -19,15 +21,20 @@ export class ProductsListComponent implements OnInit {
   displayMode: string;
   pager: any = {};
   sortBy: string;
+  user: User;
 
   constructor(
     private productService: ProductService,
     private productsCacheService: ProductsCacheService,
     private pagerService: PagerService,
-    private sortPipe: SortPipe
+    private sortPipe: SortPipe,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.authService.user.subscribe(user => {
+      this.user = user;
+    });
     this.displayMode = 'grid';
     this.sortBy = 'name';
     this.getProducts();

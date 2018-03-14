@@ -34,6 +34,11 @@
                 <span>1 - 12 items</span>
             </div>
         </div>
+        <div class="column" *ngIf="user && user.roles.admin" routerLinkActive="active">
+            <a class="btn btn-primary" routerLink="/admin/add" href="">
+                <i class="icon-plus"></i><span> Add Product</span>
+            </a>
+        </div>
         <div class="column">
             <div class="shop-view">
                 <a href="" class="grid-view" [ngClass]="{active: displayMode === 'grid'}" (click)="onDisplayModeChange('grid', $event)">
