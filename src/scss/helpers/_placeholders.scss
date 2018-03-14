@@ -16,7 +16,7 @@
   background-color: $white-color;
   line-height: $line-height-base;
   box-shadow: $sub-menu-shadow;
-  
+
   > li {
     display: block;
     position: relative;
@@ -156,10 +156,12 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
+
     &.menu {
       position: relative;
       transform: translate3d(0, 0, 0);
@@ -167,8 +169,10 @@
       &.off-view { transform: translate3d(-100%, 0, 0); }
       &.in-view { transform: translate3d(0, 0, 0); }
     }
+
     li {
       display: block;
+
       a {
         display: block;
         padding: 15px 20px;
@@ -186,6 +190,7 @@
         }
         &:hover { color: $nav-link-hover-color; }
       }
+
       &.back-btn > a {
         background-color: darken($gray-darker, 3%);
         color: $white-color;
@@ -201,7 +206,10 @@
           opacity: .75;
         }
       }
-      &.active > a { color: $nav-link-active-color; }
+
+      &.active a {
+        color: $nav-link-active-color;
+      }
       &.has-children {
         > span {
           display: block;
