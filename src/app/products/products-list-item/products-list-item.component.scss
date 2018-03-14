@@ -81,13 +81,6 @@
     }
   }
 
-  .product-rating {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    z-index: 1;
-  }
-
   &.product-list {
     margin-bottom: 30px;
   }
@@ -140,19 +133,4 @@
       }
     }
   }
-}
-
-.product-badge {
-  position: absolute;
-  z-index: 1;
-  top: 10px;
-  left: 10px;
-
-  font: {
-    size: $font-size-sm;
-    weight: 500;
-  }
-
-  letter-spacing: .07em;
-  text-transform: uppercase;
 }
