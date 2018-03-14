@@ -25,4 +25,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/register-login']);
     e.preventDefault();
   }
+
+  onMenuToggle(e: Event) {
+    console.log('menu toggle');
+  }
 }
