@@ -21,7 +21,7 @@
       </button> -->
       <button class="btn btn-outline-primary btn-sm" (click)="onAddToCart()">Add to Cart</button>
 
-      <button *ngIf="user && user.roles.admin" class="btn btn-primary btn-sm">
+      <button *ngIf="user && user.roles.admin" class="btn btn-primary btn-sm" routerLink="/admin/edit/{{product.id}}">
         Edit
       </button>
     </div>
