@@ -22,7 +22,9 @@
       "styles": [
         "scss/styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "./assets/js/modernizr.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
