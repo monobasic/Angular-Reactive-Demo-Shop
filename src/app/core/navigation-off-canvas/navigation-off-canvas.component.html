@@ -172,7 +172,7 @@
 
 <!-- Off-Canvas Mobile Menu-->
 <div class="offcanvas-container" id="mobile-menu" [ngClass]="{'active': offcanvasService.offcanvasNavigationOpen | async}">
-  <a *ngIf="user" class="account-link" routerLink="/account">
+  <a *ngIf="user" class="account-link" routerLink="/account" (click)="onNavigationClick()">
     <div class="user-ava">
       <img src="img/account/user-ava-md.jpg" alt="Daniel Adams">
     </div>
@@ -185,34 +185,34 @@
     <ul class="menu">
       <li *ngIf="!user" routerLinkActive="active">
         <span>
-          <a routerLink="/register-login">
+          <a routerLink="/register-login" (click)="onNavigationClick()">
             <span>Register/Login</span>
           </a>
         </span>
       </li>
       <li routerLinkActive="active">
         <span>
-          <a routerLink="/home">
+          <a routerLink="/home" (click)="onNavigationClick()">
             <span>Home</span>
           </a>
         </span>
       </li>
       <li routerLinkActive="active">
         <span>
-          <a routerLink="/products">
+          <a routerLink="/products" (click)="onNavigationClick()">
             <span>Products</span>
           </a>
         </span>
       </li>
       <li routerLinkActive="active">
         <span>
-          <a routerLink="/cart">
+          <a routerLink="/cart" (click)="onNavigationClick()">
             <span>Cart</span>
           </a>
         </span>
       </li>
       <li *ngIf="user && user.roles.admin" routerLinkActive="active">
-        <a routerLink="/admin/add" href="">
+        <a routerLink="/admin/add" (click)="onNavigationClick()">
           <span>Add Product</span>
         </a>
       </li>
