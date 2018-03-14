@@ -292,7 +292,7 @@
   .count-input {
     display: inline-block;
     width: 100%;
-    width: 86px;
+    width: 170px;
   }
   .product-item {
     display: table;
@@ -305,7 +305,7 @@
     .product-thumb,
     .product-info {
       display: table-cell;
-      vertical-align: top;
+      vertical-align: middle;
     }
     .product-thumb {
       width: ($cart-thumb-size + 20);
@@ -381,6 +381,7 @@
     }
   }
 }
+
 
 
 // Checkout
