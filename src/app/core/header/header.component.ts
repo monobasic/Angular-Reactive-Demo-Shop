@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../account/shared/auth.service';
 import { User } from '../../models/user.model';
+import { OffcanvasService } from '../shared/offcanvas.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,8 @@ export class HeaderComponent implements OnInit {
   user: User;
 
   constructor(private authService: AuthService,
-  private router: Router) {}
+  private router: Router,
+  private offcanvasService: OffcanvasService) {}
 
   ngOnInit() {
     this.authService.user.subscribe(user => {
@@ -27,6 +29,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onMenuToggle(e: Event) {
-    console.log('menu toggle');
+    this.offcanvasService.openOffcanvasNavigation();
+    e.preventDefault();
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OffcanvasService } from '../shared/offcanvas.service';
 
 
 @Component({
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private offcanvasService: OffcanvasService) { }
 
   ngOnInit() {
+  }
+
+  onMenuClose(e: Event) {
+    this.offcanvasService.closeOffcanvasNavigation();
   }
 
 }

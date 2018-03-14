@@ -21,6 +21,7 @@ import { OrderService } from '../orders/shared/order.service';
 import { CheckoutService } from '../checkout/shared/checkout.service';
 import { AuthService } from '../account/shared/auth.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
+import { OffcanvasService } from './shared/offcanvas.service';
 
 @NgModule({
     declarations: [
@@ -54,7 +55,8 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
         PagerService,
         OrderService,
         CheckoutService,
-        AuthService
+        AuthService,
+        OffcanvasService
     ]
 })
 export class CoreModule {
