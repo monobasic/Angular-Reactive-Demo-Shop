@@ -23,7 +23,7 @@ export class NavigationOffCanvasComponent implements OnInit {
   }
 
 
-  onLogOut(e: Event) {
+  onLogout(e: Event) {
     this.authService.signOut();
     this.router.navigate(['/register-login']);
     e.preventDefault();

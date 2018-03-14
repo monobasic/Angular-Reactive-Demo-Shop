@@ -172,7 +172,7 @@
 
 <!-- Off-Canvas Mobile Menu-->
 <div class="offcanvas-container" id="mobile-menu" [ngClass]="{'active': offcanvasService.offcanvasNavigationOpen | async}">
-  <a *ngIf="user; else loggedOut" class="account-link" routerLink="/account">
+  <a *ngIf="user" class="account-link" routerLink="/account">
     <div class="user-ava">
       <img src="img/account/user-ava-md.jpg" alt="Daniel Adams">
     </div>
@@ -183,15 +183,13 @@
   </a>
   <nav class="offcanvas-menu">
     <ul class="menu">
-      <ng-template #loggedOut>
-        <li routerLinkActive="active" #signIn>
-          <span>
-            <a routerLink="/register-login">
-              <span>Register/Login</span>
-            </a>
-          </span>
-        </li>
-      </ng-template>
+      <li *ngIf="!user" routerLinkActive="active">
+        <span>
+          <a routerLink="/register-login">
+            <span>Register/Login</span>
+          </a>
+        </span>
+      </li>
       <li routerLinkActive="active">
         <span>
           <a routerLink="/home">
@@ -219,7 +217,7 @@
         </a>
       </li>
       <li *ngIf="user">
-        <a href="" (click)="onLogout()">
+        <a href="" (click)="onLogout($event)">
           <span>Logout</span>
         </a>
       </li>
