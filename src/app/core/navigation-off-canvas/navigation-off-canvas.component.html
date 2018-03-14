@@ -170,7 +170,7 @@
   </nav>
 </div>
 <!-- Off-Canvas Mobile Menu-->
-<div class="offcanvas-container" id="mobile-menu">
+<div class="offcanvas-container" id="mobile-menu" [ngClass]="{'active': offcanvasService.offcanvasNavigationOpen | async}">
   <a class="account-link" href="account-orders.html">
     <div class="user-ava">
       <img src="img/account/user-ava-md.jpg" alt="Daniel Adams">

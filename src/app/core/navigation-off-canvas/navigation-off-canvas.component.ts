@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OffcanvasService } from '../shared/offcanvas.service';
 
 @Component({
   selector: 'app-navigation-off-canvas',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationOffCanvasComponent implements OnInit {
 
-  constructor() { }
+  constructor(public offcanvasService: OffcanvasService) { }
 
   ngOnInit() {
   }

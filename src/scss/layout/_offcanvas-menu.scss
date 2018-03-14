@@ -15,10 +15,15 @@
   height: 100%;
   background-color: $gray-darker;
   box-shadow: inset -4px 0 17px 0 rgba(0, 0, 0, .35);
-  visibility: hidden;
+  //visibility: hidden;
+  opacity: 0;
   z-index: 1;
   overflow-y: auto;
-  &.active { visibility: visible; }
+  transition: opacity 0.4s ease-out;
+  &.active {
+    //visibility: visible;
+    opacity: 1;
+  }
 }
 .offcanvas-header {
   padding: 28px 20px;
