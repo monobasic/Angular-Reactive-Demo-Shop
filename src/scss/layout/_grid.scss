@@ -1,0 +1,174 @@
+//
+// Isotope based Grid
+// --------------------------------------------------
+
+.isotope-grid {
+  position: relative;
+  overflow: hidden;
+  &:not(.filter-grid) {
+    min-height: 180px;
+    background: {
+      position: center;
+      image: url(../img/loading.gif);
+      repeat: no-repeat;
+      size: 74px;
+    }
+    > .grid-item { display: none; }
+    &[style] {
+      background: none;
+      > .grid-item {
+        display: inline-block;
+        animation: showGrid .6s;
+      }
+    }
+  }
+
+  // Gap Width
+  .gutter-sizer { width: 30px; }
+
+  // Items
+  .grid-item {
+    margin-bottom: 30px;
+    .post-tile,
+    .portfolio-tile { margin-bottom: 0; }
+  }
+
+  // 1 Column
+  &.cols-1 {
+    .gutter-sizer { width: 0; }
+    .grid-sizer,
+    .grid-item { width: 100%; }
+  }
+
+  // 2 Columns
+  &.cols-2 {
+    .grid-sizer,
+    .grid-item { width: calc((100% / 2) - 15px); }
+  }
+
+  // 3 Columns
+  &.cols-3 {
+    .grid-sizer,
+    .grid-item { width: calc((100% / 3) - 20px); }
+  }
+
+  // 4 Columns
+  &.cols-4 {
+    .grid-sizer,
+    .grid-item { width: calc((100% / 4) - 22.5px); }
+  }
+
+  // 5 Columns
+  &.cols-5 {
+    .grid-sizer,
+    .grid-item { width: calc((100% / 5) - 24px); }
+  }
+
+  // 6 Columns
+  &.cols-6 {
+    .grid-sizer,
+    .grid-item { width: calc((100% / 6) - 25px); }
+  }
+
+  // Media Queries
+  @media (max-width: $screen-xl) {
+    &.cols-6,
+    &.cols-5,
+    &.cols-4,
+    &.cols-3 {
+      .grid-sizer,
+      .grid-item { width: calc((100% / 3) - 22.5px); }
+    }
+  }
+  @media (max-width: $screen-md) {
+    &.cols-6,
+    &.cols-5,
+    &.cols-4,
+    &.cols-3 {
+      .grid-sizer,
+      .grid-item { width: calc((100% / 2) - 15px); }
+    }
+  }
+  @media (max-width: $screen-sm) {
+    &.cols-6,
+    &.cols-5,
+    &.cols-4,
+    &.cols-3,
+    &.cols-2 {
+      .gutter-sizer { width: 0; }
+      .grid-sizer,
+      .grid-item { width: 100%; }
+    }
+  }
+
+  // No Gap Version
+  &.grid-no-gap {
+    .gutter-sizer { width: 0; }
+    .grid-item { margin-bottom: 0; }
+    &.cols-2 {
+      .grid-sizer,
+      .grid-item { width: (100% / 2); }
+    }
+    &.cols-3 {
+      .grid-sizer,
+      .grid-item { width: (100% / 3); }
+    }
+    &.cols-4 {
+      .grid-sizer,
+      .grid-item { width: (100% / 4); }
+    }
+    &.cols-5 {
+      .grid-sizer,
+      .grid-item { width: (100% / 5); }
+    }
+    &.cols-6 {
+      .grid-sizer,
+      .grid-item { width: (100% / 6); }
+    }
+    @media (max-width: $screen-xl) {
+      &.cols-6,
+      &.cols-5,
+      &.cols-4,
+      &.cols-3 {
+        .grid-sizer,
+        .grid-item { width: (100% / 3); }
+      }
+    }
+    @media (max-width: $screen-md) {
+      &.cols-6,
+      &.cols-5,
+      &.cols-4,
+      &.cols-3 {
+        .grid-sizer,
+        .grid-item { width: (100% / 2); }
+      }
+    }
+    @media (max-width: $screen-sm) {
+      &.cols-6,
+      &.cols-5,
+      &.cols-4,
+      &.cols-3,
+      &.cols-2 {
+        .grid-sizer,
+        .grid-item { width: 100%; }
+      }
+    }
+  }
+}
+
+@keyframes showGrid {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Microsoft Edge specific styles
+@supports (-ms-ime-align: auto) {
+  .isotope-grid:not(.filter-grid) {
+    min-height: auto;
+    background: none;
+    > .grid-item { display: inline-block; }
+    &[style] {
+      > .grid-item { animation: none; }
+    }
+  }
+}

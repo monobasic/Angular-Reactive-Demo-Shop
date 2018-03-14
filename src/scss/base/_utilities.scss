@@ -275,3 +275,6 @@
 .hidden-xl-down {
   display: none !important;
 }
+
+// IE11 fix
+.d-inline-block img { width: 100%; }

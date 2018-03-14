@@ -23,6 +23,7 @@
     border-color: $brand-primary;
     outline: none;
     color: $gray-dark;
+    box-shadow: none !important;
   }
   &[type='color'] { padding-bottom: 0 !important; }
 
@@ -57,7 +58,7 @@ select.form-control {
 
 // Form group
 .form-group {
-  margin-bottom: floor($grid-vertical-step / 1.2); //~20px
+  margin-bottom: floor($grid-vertical-step / 1.2) !important; //~20px
   label {
     margin-bottom: 8px;
     padding-left: 18px;
@@ -104,25 +105,28 @@ select.form-control.form-control-sm {
 
 // Checkboxes & Radio buttons
 .custom-control {
-  margin-bottom: 5px !important;
+  margin-bottom: 6px !important;
   padding-left: 1.5rem !important;
-  font: {
-    size: $font-size-sm !important;
-    weight: normal !important;
-  }
   &:focus { outline: 0; }
-  .custom-control-indicator {
-    background-color: darken($gray-lighter, 6%);
-    box-shadow: none !important;
+  .custom-control-label {
+    margin: 0;
+    padding-left: 0;
+    font: {
+      size: $font-size-sm !important;
+      weight: normal !important;
+    }
+    text-transform: none;
+    &::before { box-shadow: none !important; }
   }
-  .custom-control-input:checked ~ .custom-control-indicator {
+  .custom-control-input:checked ~ .custom-control-label::before {
     background-color: $brand-primary;
   }
-  .custom-control-input:disabled ~ .custom-control-description {
+  .custom-control-input:disabled ~ .custom-control-label {
     color: $gray;
     cursor: not-allowed;
   }
 }
+.custom-control-inline { align-items: center; }
 
 // File input
 .custom-file,
@@ -130,20 +134,23 @@ select.form-control.form-control-sm {
   height: $input-height;
   border-radius: ceil($input-height / 2);
   cursor: pointer;
-  &:focus ~ .custom-file-control { box-shadow: none; }
+  &:focus ~ .custom-file-label { box-shadow: none; }
 }
-.custom-file-control,
-.custom-file-control::before {
+.custom-file-label { font-weight: normal !important; }
+.custom-file-label,
+.custom-file-label::after {
   height: $input-height;
   border-radius: ceil($input-height / 2);
   border-color: darken($border-color, 2%);
   color: $gray-dark;
-  line-height: 1.7;
+  line-height: 2.2;
 }
-.custom-file-control::before {
+.custom-file-label::after {
+  height: ($input-height - 2);
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
   background-color: $gray-lighter;
+  font-weight: 500 !important;
 }
 
 // Input shapes

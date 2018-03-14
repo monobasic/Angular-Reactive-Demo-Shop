@@ -7,6 +7,51 @@
   width: 100%;
   max-width: $sidebar-max-width;
 }
+.sidebar-toggle { display: none; }
+
+// Sidebar Off-Canvas
+@media (max-width: $screen-lg) {
+  .sidebar-offcanvas { display: none; }
+  .sidebar-toggle {
+    display: block;
+    position: fixed;
+    top: 50%;
+    width: 48px;
+    height: 48px;
+    margin-top: -24px;
+    border: 1px solid $border-color;
+    background-color: $white-color;
+    color: $body-color !important;
+    font-size: 20px;
+    box-shadow: 0 3px 10px 0 rgba($gray-darker, .2);
+    cursor: pointer;
+    z-index: 9900;
+    text: {
+      decoration: none;
+      align: center;
+    }
+    > i { margin-top: -8px; }
+    &.position-right {
+      right: 0;
+      transition: right .3s ease-in-out;
+      border: {
+        top-left-radius: 24px;
+        bottom-left-radius: 24px;
+      }
+      &.sidebar-open { right: -48px; }
+    }
+    &.position-left {
+      left: 0;
+      transition: left .3s ease-in-out;
+      border: {
+        top-right-radius: 24px;
+        bottom-right-radius: 24px;
+      }
+      &.sidebar-open { left: -48px; }
+    }
+  }
+  .offcanvas-open .sidebar-toggle { display: none; }
+}
 
 // Widget Title
 .widget-title {
