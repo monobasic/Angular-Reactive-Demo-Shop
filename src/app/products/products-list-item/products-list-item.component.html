@@ -20,6 +20,10 @@
         <i class="icon-heart"></i>
       </button> -->
       <button class="btn btn-outline-primary btn-sm" (click)="onAddToCart()">Add to Cart</button>
+
+      <button *ngIf="user && user.roles.admin" class="btn btn-primary btn-sm">
+        Edit
+      </button>
     </div>
   </div>
 </div>
