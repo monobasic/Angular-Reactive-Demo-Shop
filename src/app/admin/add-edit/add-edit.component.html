@@ -1,12 +1,25 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-9 col-md-8 order-md-2">
-      <h6 class="text-muted text-normal text-uppercase">Product Preview</h6>
-      <hr class="margin-bottom-1x">
-      <app-products-list-item [product]="product" [displayMode]="'list'"></app-products-list-item>
-      <h6 class="text-muted text-normal text-uppercase">Add or Edit Product</h6>
-      <hr class="margin-bottom-1x">
+<!-- Page Title-->
+<div class="page-title">
+  <div class="container">
+    <div class="column">
+      <h1>Add/Edit Product</h1>
+    </div>
+    <div class="column">
+      <ul class="breadcrumbs">
+        <li>
+          <a routerLink="/home" href="">Home</a>
+        </li>
+        <li class="separator">&nbsp;</li>
+        <li>Add/Edit Product</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-lg-6">
+      <h2 class="margin-bottom-1x">Add/Edit Product</h2>
       <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="form-group row">
           <label class="col-2 col-form-label" for="name">Product Name</label>
@@ -87,14 +100,19 @@
           </div>
 
 
-        <div class="form-group row">
-          <div class="col-10"></div>
-          <div class="col-2">
-            <button class="btn btn-primary btn-square margin-top-none" type="submit">Submit</button>
+        <div class="row mb-5">
+          <div class="col">
+            <button class="btn btn-danger" type="button">Delete Product</button>
+            <button class="btn btn-primary" type="submit">Save Changes</button>
           </div>
         </div>
+
       </form>
 
+    </div>
+    <div class="col-lg-6">
+      <h2 class="margin-bottom-1x">Product Preview</h2>
+      <app-products-list-item [product]="product" [displayMode]="'list'"></app-products-list-item>
     </div>
 
   </div>
