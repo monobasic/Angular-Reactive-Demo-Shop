@@ -73,13 +73,14 @@ export class ProductService {
   }
 
   rateProduct(product: Product, rating: number) {
-    console.log('rate product:');
-    console.log(product);
-    console.log(rating);
     const url = `${this.productsUrl}/${product.id}`;
     const updates = {};
     updates['/ratings/' + this.authService.getUserUid() + '/'] = rating;
-    return this.angularFireDatabase.object<Product>(url).update(updates);
+    return this.angularFireDatabase.object<Product>(url)
+      .update(updates)
+      .then((_) => this.log(`Rated Product ${product.name} width: ${rating}`))
+      .catch(error => { this.handleError<any>(error); }
+    );
   }
 
   // TODO: rewrite for Firebase
