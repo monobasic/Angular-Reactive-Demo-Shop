@@ -105,14 +105,16 @@ export class ProductService {
   }
   /** POST: add a new Product to the server */
   addProduct(data) /*: Observable<any>*/ {
-    return this.angularFireDatabase
-      .list<Product>('products')
-      // .push(data)
-      .set(data.id.toString(), data)
-      .then((response) => {
-        console.log('uploaded', data);
-        return response;
-      });
+    return (
+      this.angularFireDatabase
+        .list<Product>('products')
+        // .push(data)
+        .set(data.id.toString(), data)
+        .then((response) => {
+          console.log('uploaded', data);
+          return response;
+        })
+    );
   }
   searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
@@ -126,15 +128,10 @@ export class ProductService {
         catchError(this.handleError<Product[]>('searchProducts', []))
       );
   }
-  /*
-      deleteProduct(product: Product | number): Observable<Product> {
-        const id = typeof Product === 'number' ? product : product.id;
-        const url = `${this.productsUrl}/${id}`;
 
-        return this.http.delete<Product>(url, httpOptions).pipe(
-          tap(_ => this.log(`deleted Product id=${id}`)),
-          catchError(this.handleError<Product>('deleteProduct'))
-        );
-      }
-    */
+  deleteProduct(id: number): Observable<Product> {
+    const url = `${this.productsUrl}/${id}`;
+    console.log('to delete: ', id);
+    return of(null);
+  }
 }

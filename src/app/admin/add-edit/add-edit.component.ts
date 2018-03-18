@@ -33,13 +33,16 @@ export class AddEditComponent implements OnInit, OnChanges {
     private productsCacheService: ProductsCacheService,
     private messageService: MessageService
   ) {}
+
   ngOnChanges() {
     // this.product = placeholderProduct;
   }
+
   ngOnInit(): void {
     this.setProduct();
     this.initForm();
   }
+
   initForm() {
     this.productForm = new FormGroup({
       name: new FormControl(this.product.name, Validators.required),
@@ -63,19 +66,22 @@ export class AddEditComponent implements OnInit, OnChanges {
     });
     this.onFormChanges();
   }
+
   onFormChanges() {
     this.productForm.valueChanges.subscribe((val) => {
       const product = { ...this.product, ...val };
       this.syncProduct(product);
     });
   }
+
   syncProduct(val) {
     // product changed
     // calculate reduction
     // add new date
     // tslint:disable-next-line:no-console
     const randomId = Math.floor(Math.random() * new Date().getTime());
-    const id = val.id === 1 ? randomId : val.id;
+    let id = val.id || randomId;
+    if (id === 1) { id = randomId; }
 
     const priceNormal = val.priceNormal;
     const price = val.price;
@@ -100,7 +106,6 @@ export class AddEditComponent implements OnInit, OnChanges {
   setProduct() {
     this.route.params.subscribe((params: Params) => {
       this.id = +this.route.snapshot.paramMap.get('id');
-      console.log(this.id);
       // if we're in edit mode, we have an id
       if (this.id) {
         this.mode = 'edit';
@@ -117,6 +122,8 @@ export class AddEditComponent implements OnInit, OnChanges {
   getProduct(id): void {
     this.productService.getProduct(id).subscribe((product) => {
       if (product) {
+        // console.log('product id: ', product.id);
+        console.log('product: ', product);
         this.syncProduct(product);
         this.initForm();
       }
@@ -155,9 +162,11 @@ export class AddEditComponent implements OnInit, OnChanges {
     //   this.router.navigateByUrl(`/products/${response.product.id}`);
     // });
   }
+
   onDelete() {
     if (this.mode === 'edit') {
       console.log('delete ', this.product.id);
+      this.productService.deleteProduct(this.id);
     } else {
       this.messageService.addError(`Cannot delete new product`);
     }
