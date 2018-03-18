@@ -63,6 +63,7 @@ export class ProductService {
         catchError(this.handleError<Product[]>(`getProducts`))
       );
   }
+
   /** GET product by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
@@ -91,6 +92,7 @@ export class ProductService {
   /** PUT: update the Product on the server */
   updateProduct(data: { product: Product; files: FileList }) {
     const url = `${this.productsUrl}/${data.product.id}`;
+
     return this.angularFireDatabase
       .object<Product>(url)
       .update(data.product)
@@ -102,18 +104,22 @@ export class ProductService {
 
   /** POST: add a new Product to the server */
   addProduct(data: { product: Product; files: FileList }) {
-    const fileUrl = this.uploadService.startUpload(data.files);
+    this.uploadService.startUpload(data.files);
 
-    fileUrl.subscribe((url) => {
+    this.uploadService.snapshot.subscribe(sn => console.log(sn));
+    console.log(this.uploadService.task);
+    this.uploadService.task.downloadURL().subscribe((url) => {
       if (url) {
         console.log(url);
         data.product.imageURLs.push(url);
 
-        return this.angularFireDatabase
+        this.angularFireDatabase
           .list<Product>('products')
           .set(data.product.id.toString(), data.product);
       }
     });
+
+    return this.uploadService.downloadURL;
   }
 
   searchProducts(term: string): Observable<Product[]> {
@@ -129,13 +135,15 @@ export class ProductService {
       );
   }
 
-  deleteProduct(id: number) {
-    const url = `${this.productsUrl}/${id}`;
+  deleteProduct(product: Product) {
+    const url = `${this.productsUrl}/${product.id}`;
+
+    // this.uploadService.deleteFile(product.id);
 
     return this.angularFireDatabase
       .object<Product>(url)
       .remove()
-      .then(() => this.log('success deleting' + id))
+      .then(() => this.log('success deleting' + product.id))
       .catch((error) => this.handleError('delete product'));
   }
 }

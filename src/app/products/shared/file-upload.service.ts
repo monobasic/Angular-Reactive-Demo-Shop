@@ -10,11 +10,16 @@ import { of } from 'rxjs/observable/of';
 export class FileUploadService {
   // Main task
   task: AngularFireUploadTask;
-  downloadURL;
 
-  constructor(
-    private storage: AngularFireStorage,
-  ) {}
+  // Progress monitoring
+  percentage: Observable<number>;
+
+  snapshot: Observable<any>;
+
+  // Download URL
+  downloadURL: Observable<string>;
+
+  constructor(private storage: AngularFireStorage) {}
 
   startUpload(files: FileList) {
     // The File object
@@ -35,9 +40,23 @@ export class FileUploadService {
     // The file's download URL
     this.downloadURL = this.task.downloadURL();
 
-    return this.downloadURL;
+    // Progress monitoring
+    this.percentage = this.task.percentageChanges();
+    this.snapshot = this.task.snapshotChanges();
+
+    // The file's download URL
+    this.downloadURL = this.task.downloadURL();
+
+    return this.task;
   }
 
+  deleteFile(key) {
+    const path = `product-images/${key}`;
+    this.storage
+      .ref(path)
+      .delete()
+      .subscribe((res) => console.log(res));
+  }
   // Determines if the upload task is active
   isActive(snapshot) {
     return (

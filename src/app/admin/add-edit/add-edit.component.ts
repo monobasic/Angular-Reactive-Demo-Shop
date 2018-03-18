@@ -122,8 +122,6 @@ export class AddEditComponent implements OnInit {
   getProduct(id): void {
     this.productService.getProduct(id).subscribe((product) => {
       if (product) {
-        // console.log('product id: ', product.id);
-        console.log('product: ', product);
         this.syncProduct(product);
         this.initForm();
       }
@@ -148,17 +146,11 @@ export class AddEditComponent implements OnInit {
       .addProduct({
         product,
         files
+      })
+      .subscribe(() => {
+        this.log.add('success updating ' + product.id);
+        this.router.navigate(['/products/' + product.id]);
       });
-      // .subscribe((response) => {
-      //   console.log(response);
-      //   this.log.add('success adding ' + product.id);
-      //   this.router.navigate(['/products/' + product.id]);
-      // });
-    // .then(() => {
-    //   this.log.add('success adding ' + product.id);
-    //   this.router.navigate(['/products/' + product.id]);
-    // })
-    // .catch((error) => this.log.add(error.message));
   }
 
   updateProduct(product: Product, files: FileList) {
@@ -177,7 +169,7 @@ export class AddEditComponent implements OnInit {
   onDelete() {
     if (this.mode === 'edit') {
       this.productService
-        .deleteProduct(this.id)
+        .deleteProduct(this.product)
         .then(() => this.router.navigate(['/products']));
     } else {
       this.log.addError(`Cannot delete new product`);
