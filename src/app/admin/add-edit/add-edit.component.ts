@@ -115,8 +115,7 @@ export class AddEditComponent implements OnInit, OnChanges {
     });
   }
   getProduct(id): void {
-    this.productsCacheService
-      .get(id, this.productService.getProduct(id))
+    this.productService.getProduct(id)
       .subscribe((product) => {
         this.syncProduct(product);
         this.initForm();
@@ -137,10 +136,12 @@ export class AddEditComponent implements OnInit, OnChanges {
         formData.append('photos', file, file.name);
       }
     }
+    this.productService.addProduct({...this.product, ...this.productForm.value});
+    // this.productService.addProduct(formData);
+    // .subscribe((response) => {
+    //   console.log('val: ', response);
+    //   this.router.navigateByUrl(`/products/${response.product.id}`);
+    // });
 
-    this.productService.addProduct(formData).subscribe((response) => {
-      console.log('val: ', response);
-      this.router.navigateByUrl(`/products/${response.product.id}`);
-    });
   }
 }
