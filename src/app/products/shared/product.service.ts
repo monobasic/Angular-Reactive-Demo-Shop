@@ -16,11 +16,6 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-// const multipartHeader = {
-//   headers: new HttpHeaders({ 'Content-Type': '' })
-// };
-// multipartHeader.headers.delete('Content-Type');
-
 @Injectable()
 export class ProductService {
   private productsUrl = '/products'; // URL to web api
@@ -105,7 +100,7 @@ export class ProductService {
   }
 
   /** POST: add a new Product to the server */
-  addProduct(data: {product: Product, files: FileList}) /*: Observable<any>*/ {
+  addProduct(data: {product: Product, files: FileList}) {
     return this.angularFireDatabase
       .list<Product>('products')
       .set(data.product.id.toString(), data.product)
@@ -134,6 +129,7 @@ export class ProductService {
     return this.angularFireDatabase
       .object<Product>(url)
       .remove()
-      .then(() => this.log('success deleting' + id));
+      .then(() => this.log('success deleting' + id))
+      .catch(error => this.handleError('delete product'));
   }
 }
