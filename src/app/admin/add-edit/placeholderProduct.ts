@@ -1,7 +1,7 @@
 import { Product } from '../../models/product.model';
 
 export const placeholderProduct: Product = {
-  id: 1,
+  id: null,
   date: new Date().toString(),
   name: 'Placeholder Product Name',
   description: 'Come up with something descriptive',
