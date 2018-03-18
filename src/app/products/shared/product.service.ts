@@ -16,10 +16,10 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const multipartHeader = {
-  headers: new HttpHeaders({ 'Content-Type': '' })
-};
-multipartHeader.headers.delete('Content-Type');
+// const multipartHeader = {
+//   headers: new HttpHeaders({ 'Content-Type': '' })
+// };
+// multipartHeader.headers.delete('Content-Type');
 
 @Injectable()
 export class ProductService {
@@ -58,29 +58,37 @@ export class ProductService {
 
   /** GET products from the server */
   getProducts(): Observable<Product[]> {
-    return this.angularFireDatabase.list<Product>('products').valueChanges().pipe(
-      tap((_) => this.log(`fetched Products`)),
-      catchError(this.handleError<Product[]>(`getProducts`))
-    );
+    return this.angularFireDatabase
+      .list<Product>('products')
+      .valueChanges()
+      .pipe(
+        tap((_) => this.log(`fetched Products`)),
+        catchError(this.handleError<Product[]>(`getProducts`))
+      );
   }
   /** GET product by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
-    return this.angularFireDatabase.object<Product>(url).valueChanges().pipe(
-      tap((_) => this.log(`fetched Product id=${id}`)),
-      catchError(this.handleError<Product>(`getProduct id=${id}`))
-    );
+    return this.angularFireDatabase
+      .object<Product>(url)
+      .valueChanges()
+      .pipe(
+        tap((_) => this.log(`fetched Product id=${id}`)),
+        catchError(this.handleError<Product>(`getProduct id=${id}`))
+      );
   }
 
   rateProduct(product: Product, rating: number) {
     const url = `${this.productsUrl}/${product.id}`;
     const updates = {};
     updates['/ratings/' + this.authService.getUserUid() + '/'] = rating;
-    return this.angularFireDatabase.object<Product>(url)
+    return this.angularFireDatabase
+      .object<Product>(url)
       .update(updates)
       .then((_) => this.log(`Rated Product ${product.name} width: ${rating}`))
-      .catch(error => { this.handleError<any>(error); }
-    );
+      .catch((error) => {
+        this.handleError<any>(error);
+      });
   }
 
   // TODO: rewrite for Firebase
@@ -94,16 +102,21 @@ export class ProductService {
       );
   }
   /** POST: add a new Product to the server */
-  addProduct(data: FormData): Observable<any> {
-    console.log('will upload this photos: ', data.getAll('photos'));
-    return this.http
-      .post<any>(this.productsUrl, data)
-      .pipe(
-        tap((dbResponse: any) =>
-          this.log(`added Product w/ id=${dbResponse.product.id}`)
-        ),
-        catchError(this.handleError<Product>('addProduct'))
-      );
+  addProduct(data) /*: Observable<any>*/ {
+    console.log(data);
+    return this.angularFireDatabase.list<Product>('products')
+      .push(data)
+      .then(() => console.log('uploaded'));
+
+      // console.log('will upload this photos: ', data.getAll('photos'));
+    // return this.http
+    //   .post<any>(this.productsUrl, data)
+    //   .pipe(
+    //     tap((dbResponse: any) =>
+    //       this.log(`added Product w/ id=${dbResponse.product.id}`)
+    //     ),
+    //     catchError(this.handleError<Product>('addProduct'))
+    //   );
   }
   searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
