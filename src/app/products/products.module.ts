@@ -8,6 +8,7 @@ import { ProductsListItemComponent } from './products-list-item/products-list-it
 import { SortPipe } from './shared/sort.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { RatingStarsComponent } from './shared/rating-stars/rating-stars.component';
+import { FileUploadService } from './shared/file-upload.service';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { RatingStarsComponent } from './shared/rating-stars/rating-stars.compone
         RatingStarsComponent
     ],
     providers: [
-        SortPipe
+        SortPipe,
+        FileUploadService
     ]
 })
 export class ProductsModule {}

@@ -1,0 +1,51 @@
+import { Component, OnInit, Injectable } from '@angular/core';
+import {
+  AngularFireStorage,
+  AngularFireUploadTask
+} from 'angularfire2/storage';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+
+@Injectable()
+export class FileUploadService {
+  // Main task
+  task: AngularFireUploadTask;
+  downloadURL;
+
+  constructor(
+    private storage: AngularFireStorage,
+  ) {}
+
+  startUpload(files: FileList) {
+    // The File object
+    const file = files.item(0);
+
+    // Client-side validation example
+    if (file.type.split('/')[0] !== 'image') {
+      console.error('unsupported file type :( ');
+      return;
+    }
+
+    // // The storage path
+    // const path = `test/${new Date().getTime()}_${file.name}`;
+
+    // // Totally optional metadata
+    // const customMetadata = { app: 'My AngularFire-powered PWA!' };
+
+    // // The main task
+    // this.task = this.storage.upload(path, file, { customMetadata });
+
+    // // The file's download URL
+    // this.downloadURL = this.task.downloadURL();
+
+    // return of(this.downloadURL);
+  }
+
+  // Determines if the upload task is active
+  isActive(snapshot) {
+    return (
+      snapshot.state === 'running' &&
+      snapshot.bytesTransferred < snapshot.totalBytes
+    );
+  }
+}

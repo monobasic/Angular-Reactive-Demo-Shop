@@ -11,6 +11,7 @@ import { Product } from '../../models/product.model';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Rating } from '../../models/rating.model';
 import { AuthService } from '../../account/shared/auth.service';
+import { FileUploadService } from './file-upload.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,7 +25,8 @@ export class ProductService {
     private http: HttpClient,
     private messageService: MessageService,
     private angularFireDatabase: AngularFireDatabase,
-    private authService: AuthService
+    private authService: AuthService,
+    private uploadService: FileUploadService
   ) {}
 
   /** Log a ProductService message with the MessageService */
@@ -100,6 +102,8 @@ export class ProductService {
 
   /** POST: add a new Product to the server */
   addProduct(data: {product: Product, files: FileList}) {
+    this.uploadService.startUpload(data.files);
+
     return this.angularFireDatabase
       .list<Product>('products')
       .set(data.product.id.toString(), data.product)
