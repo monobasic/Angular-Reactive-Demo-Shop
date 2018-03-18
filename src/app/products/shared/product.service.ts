@@ -107,7 +107,8 @@ export class ProductService {
   addProduct(data) /*: Observable<any>*/ {
     return this.angularFireDatabase
       .list<Product>('products')
-      .push(data)
+      // .push(data)
+      .set(data.id.toString(), data)
       .then((response) => {
         console.log('uploaded', data);
         return response;
