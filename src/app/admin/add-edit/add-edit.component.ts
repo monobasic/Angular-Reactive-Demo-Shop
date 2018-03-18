@@ -12,6 +12,7 @@ import { ProductsCacheService } from '../../products/shared/products-cache.servi
 
 import { Product } from '../../models/product.model';
 import { placeholderProduct } from './placeholderProduct';
+import { MessageService } from '../../messages/message.service';
 
 @Component({
   selector: 'app-add-edit',
@@ -29,7 +30,8 @@ export class AddEditComponent implements OnInit, OnChanges {
     private router: Router,
     private route: ActivatedRoute,
     private productService: ProductService,
-    private productsCacheService: ProductsCacheService
+    private productsCacheService: ProductsCacheService,
+    private messageService: MessageService
   ) {}
   ngOnChanges() {
     // this.product = placeholderProduct;
@@ -156,6 +158,8 @@ export class AddEditComponent implements OnInit, OnChanges {
   onDelete() {
     if (this.mode === 'edit') {
       console.log('delete ', this.product.id);
+    } else {
+      this.messageService.addError(`Cannot delete new product`);
     }
   }
 }
