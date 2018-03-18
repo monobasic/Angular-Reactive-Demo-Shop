@@ -93,28 +93,26 @@ export class ProductService {
 
   // TODO: rewrite for Firebase
   /** PUT: update the Product on the server */
-  updateProduct(product: Product) {
-    const url = `${this.productsUrl}/${product.id}`;
+  updateProduct(data: {product: Product, files: FileList}) {
+    const url = `${this.productsUrl}/${data.product.id}`;
     return this.angularFireDatabase
       .object<Product>(url)
-      .update(product)
-      .then((_) => this.log(`Updated Product ${product.name}`))
+      .update(data.product)
+      .then((_) => this.log(`Updated Product ${data.product.name}`))
       .catch((error) => {
         this.handleError<any>(error);
       });
   }
 
   /** POST: add a new Product to the server */
-  addProduct(data) /*: Observable<any>*/ {
-    return (
-      this.angularFireDatabase
-        .list<Product>('products')
-        .set(data.id.toString(), data)
-        .then((response) => {
-          console.log('uploaded', data);
-          return response;
-        })
-    );
+  addProduct(data: {product: Product, files: FileList}) /*: Observable<any>*/ {
+    return this.angularFireDatabase
+      .list<Product>('products')
+      .set(data.product.id.toString(), data.product)
+      .then((response) => {
+        console.log('uploaded', data.product);
+        return response;
+      });
   }
 
   searchProducts(term: string): Observable<Product[]> {
@@ -134,10 +132,8 @@ export class ProductService {
     const url = `${this.productsUrl}/${id}`;
 
     return this.angularFireDatabase
-      .object<Product>(url).remove()
+      .object<Product>(url)
+      .remove()
       .then(() => this.log('success deleting' + id));
-      // .catch((error) => {
-      //   this.handleError<any>(error);
-      // });
   }
 }

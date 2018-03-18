@@ -132,35 +132,26 @@ export class AddEditComponent implements OnInit, OnChanges {
 
   onSubmit() {
     this.syncProduct({ ...this.product, ...this.productForm.value });
-    const formData = new FormData();
 
-    const product = this.product;
-    for (const [key, value] of Object.entries(this.product)) {
-      formData.append(key, value);
-    }
+    const files: FileList = this.photos.nativeElement.files;
+    console.log(files);
 
-    // const files: FileList = this.photos.nativeElement.files;
-    // if (files.length > 0) {
-    //   for (const file of Object.values(files)) {
-    //     formData.append('photos', file, file.name);
-    //   }
-    // }
-    const newProduct = {
+    const product = {
       ...this.product,
       ...this.productForm.value
     };
 
     if (this.mode === 'add') {
-      this.productService.addProduct(newProduct);
+      this.productService.addProduct({
+        product,
+        files
+      });
     } else {
-      this.productService.updateProduct(newProduct);
+      this.productService.updateProduct({
+        product,
+        files
+      });
     }
-
-    // this.productService.addProduct(formData);
-    // .subscribe((response) => {
-    //   console.log('val: ', response);
-    //   this.router.navigateByUrl(`/products/${response.product.id}`);
-    // });
   }
 
   onDelete() {
