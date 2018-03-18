@@ -98,7 +98,7 @@
 
         <div class="row mb-5">
           <div class="col">
-            <button class="btn btn-danger" type="button" (click)="onDelete()">Delete Product</button>
+            <button [disabled]="(mode === 'add')" class="btn btn-danger" type="button" (click)="onDelete()">Delete Product</button>
             <button class="btn btn-primary" type="submit">Save Changes</button>
           </div>
         </div>
