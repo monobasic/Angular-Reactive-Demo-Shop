@@ -19,7 +19,7 @@ import { MessageService } from '../../messages/message.service';
   templateUrl: './add-edit.component.html',
   styleUrls: ['./add-edit.component.scss']
 })
-export class AddEditComponent implements OnInit, OnChanges {
+export class AddEditComponent implements OnInit {
   @ViewChild('photos') photos;
   productForm: FormGroup;
   product: Product = placeholderProduct;
@@ -33,10 +33,6 @@ export class AddEditComponent implements OnInit, OnChanges {
     private productsCacheService: ProductsCacheService,
     private log: MessageService
   ) {}
-
-  ngOnChanges() {
-    // this.product = placeholderProduct;
-  }
 
   ngOnInit(): void {
     this.setProduct();
@@ -136,39 +132,43 @@ export class AddEditComponent implements OnInit, OnChanges {
     this.syncProduct({ ...this.product, ...this.productForm.value });
 
     const files: FileList = this.photos.nativeElement.files;
-    console.log(files);
-
-    const product = {
-      ...this.product,
-      ...this.productForm.value
-    };
+    const product = { ...this.product, ...this.productForm.value };
 
     if (this.mode === 'add') {
-      this.productService
-        .addProduct({
-          product,
-          files
-        })
-        .then(() => {
-          this.log.add('success adding ' + product.id);
-          this.router.navigate(['/products/' + product.id]);
-        });
+      this.addProduct(product, files);
     } else {
-      this.productService
-        .updateProduct({
-          product,
-          files
-        })
-        .then(() => {
-          this.log.add('success updating ' + product.id);
-          this.router.navigate(['/products/' + product.id]);
-        });
+      this.updateProduct(product, files);
     }
+  }
+
+  addProduct(product: Product, files: FileList) {
+    this.productService
+      .addProduct({
+        product,
+        files
+      })
+      .then(() => {
+        this.log.add('success adding ' + product.id);
+        this.router.navigate(['/products/' + product.id]);
+      })
+      .catch((error) => this.log.add(error.message));
+  }
+
+  updateProduct(product: Product, files: FileList) {
+    this.productService
+      .updateProduct({
+        product,
+        files
+      })
+      .then(() => {
+        this.log.add('success updating ' + product.id);
+        this.router.navigate(['/products/' + product.id]);
+      })
+      .catch((error) => this.log.add(error.message));
   }
 
   onDelete() {
     if (this.mode === 'edit') {
-      console.log('delete ', this.product.id);
       this.productService
         .deleteProduct(this.id)
         .then(() => this.router.navigate(['/products']));

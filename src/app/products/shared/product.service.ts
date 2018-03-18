@@ -57,7 +57,7 @@ export class ProductService {
       .list<Product>('products')
       .valueChanges()
       .pipe(
-        tap((_) => this.log(`fetched Products`)),
+        tap(() => this.log(`fetched Products`)),
         catchError(this.handleError<Product[]>(`getProducts`))
       );
   }
@@ -68,7 +68,7 @@ export class ProductService {
       .object<Product>(url)
       .valueChanges()
       .pipe(
-        tap((_) => this.log(`fetched Product id=${id}`)),
+        tap(() => this.log(`fetched Product id=${id}`)),
         catchError(this.handleError<Product>(`getProduct id=${id}`))
       );
   }
@@ -80,20 +80,19 @@ export class ProductService {
     return this.angularFireDatabase
       .object<Product>(url)
       .update(updates)
-      .then((_) => this.log(`Rated Product ${product.name} width: ${rating}`))
+      .then(() => this.log(`Rated Product ${product.name} width: ${rating}`))
       .catch((error) => {
         this.handleError<any>(error);
       });
   }
 
-  // TODO: rewrite for Firebase
   /** PUT: update the Product on the server */
   updateProduct(data: {product: Product, files: FileList}) {
     const url = `${this.productsUrl}/${data.product.id}`;
     return this.angularFireDatabase
       .object<Product>(url)
       .update(data.product)
-      .then((_) => this.log(`Updated Product ${data.product.name}`))
+      .then(() => this.log(`Updated Product ${data.product.name}`))
       .catch((error) => {
         this.handleError<any>(error);
       });
@@ -118,7 +117,7 @@ export class ProductService {
     return this.http
       .get<Product[]>(`api/products/?name=${term}`)
       .pipe(
-        tap((_) => this.log(`found Productes matching "${term}"`)),
+        tap(() => this.log(`found Productes matching "${term}"`)),
         catchError(this.handleError<Product[]>('searchProducts', []))
       );
   }
