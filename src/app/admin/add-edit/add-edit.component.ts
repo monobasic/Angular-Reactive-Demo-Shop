@@ -22,7 +22,7 @@ export class AddEditComponent implements OnInit, OnChanges {
   @ViewChild('photos') photos;
   productForm: FormGroup;
   product: Product = placeholderProduct;
-  mode: string;
+  mode: 'edit' | 'add';
   id;
 
   constructor(
@@ -81,11 +81,7 @@ export class AddEditComponent implements OnInit, OnChanges {
     const calcReduction = Math.round((priceNormal - price) / priceNormal * 100);
     const reduction = calcReduction > 0 ? calcReduction : undefined;
 
-    const categories =
-      Array.isArray(val.categories)
-        ? val.categories.join(',') :
-          val.categories;
-    categories.split(',');
+    const categories = val.categories || '';
 
     const date = new Date().toString();
 
@@ -95,13 +91,14 @@ export class AddEditComponent implements OnInit, OnChanges {
       id,
       categories,
       date,
-      imageURLs: this.product.imageURLs || [],
+      imageURLs: this.product.imageURLs || []
     };
   }
+
   setProduct() {
     this.route.params.subscribe((params: Params) => {
       this.id = +this.route.snapshot.paramMap.get('id');
-
+      console.log(this.id);
       // if we're in edit mode, we have an id
       if (this.id) {
         this.mode = 'edit';
@@ -114,13 +111,16 @@ export class AddEditComponent implements OnInit, OnChanges {
       }
     });
   }
+
   getProduct(id): void {
-    this.productService.getProduct(id)
-      .subscribe((product) => {
+    this.productService.getProduct(id).subscribe((product) => {
+      if (product) {
         this.syncProduct(product);
         this.initForm();
-      });
+      }
+    });
   }
+
   onSubmit() {
     this.syncProduct({ ...this.product, ...this.productForm.value });
     const formData = new FormData();
@@ -130,18 +130,21 @@ export class AddEditComponent implements OnInit, OnChanges {
       formData.append(key, value);
     }
 
-    const files: FileList = this.photos.nativeElement.files;
-    if (files.length > 0) {
-      for (const file of Object.values(files)) {
-        formData.append('photos', file, file.name);
-      }
-    }
-    this.productService.addProduct({...this.product, ...this.productForm.value});
+    // const files: FileList = this.photos.nativeElement.files;
+    // if (files.length > 0) {
+    //   for (const file of Object.values(files)) {
+    //     formData.append('photos', file, file.name);
+    //   }
+    // }
+
+    this.productService.addProduct({
+      ...this.product,
+      ...this.productForm.value
+    });
     // this.productService.addProduct(formData);
     // .subscribe((response) => {
     //   console.log('val: ', response);
     //   this.router.navigateByUrl(`/products/${response.product.id}`);
     // });
-
   }
 }
