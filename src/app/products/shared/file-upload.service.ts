@@ -26,19 +26,16 @@ export class FileUploadService {
       return;
     }
 
-    // // The storage path
-    // const path = `test/${new Date().getTime()}_${file.name}`;
+    // The storage path
+    const path = `product-images/${new Date().getTime()}_${file.name}`;
 
-    // // Totally optional metadata
-    // const customMetadata = { app: 'My AngularFire-powered PWA!' };
+    // The main task
+    this.task = this.storage.upload(path, file);
 
-    // // The main task
-    // this.task = this.storage.upload(path, file, { customMetadata });
+    // The file's download URL
+    this.downloadURL = this.task.downloadURL();
 
-    // // The file's download URL
-    // this.downloadURL = this.task.downloadURL();
-
-    // return of(this.downloadURL);
+    return this.downloadURL;
   }
 
   // Determines if the upload task is active

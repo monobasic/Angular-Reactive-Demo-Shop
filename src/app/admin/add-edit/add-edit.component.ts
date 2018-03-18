@@ -13,6 +13,8 @@ import { ProductsCacheService } from '../../products/shared/products-cache.servi
 import { Product } from '../../models/product.model';
 import { placeholderProduct } from './placeholderProduct';
 import { MessageService } from '../../messages/message.service';
+import { tap, catchError } from 'rxjs/operators';
+import { map } from 'rxjs/operator/map';
 
 @Component({
   selector: 'app-add-edit',
@@ -146,12 +148,17 @@ export class AddEditComponent implements OnInit {
       .addProduct({
         product,
         files
-      })
-      .then(() => {
-        this.log.add('success adding ' + product.id);
-        this.router.navigate(['/products/' + product.id]);
-      })
-      .catch((error) => this.log.add(error.message));
+      });
+      // .subscribe((response) => {
+      //   console.log(response);
+      //   this.log.add('success adding ' + product.id);
+      //   this.router.navigate(['/products/' + product.id]);
+      // });
+    // .then(() => {
+    //   this.log.add('success adding ' + product.id);
+    //   this.router.navigate(['/products/' + product.id]);
+    // })
+    // .catch((error) => this.log.add(error.message));
   }
 
   updateProduct(product: Product, files: FileList) {

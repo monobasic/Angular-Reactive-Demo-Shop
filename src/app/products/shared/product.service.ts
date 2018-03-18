@@ -89,7 +89,7 @@ export class ProductService {
   }
 
   /** PUT: update the Product on the server */
-  updateProduct(data: {product: Product, files: FileList}) {
+  updateProduct(data: { product: Product; files: FileList }) {
     const url = `${this.productsUrl}/${data.product.id}`;
     return this.angularFireDatabase
       .object<Product>(url)
@@ -101,16 +101,19 @@ export class ProductService {
   }
 
   /** POST: add a new Product to the server */
-  addProduct(data: {product: Product, files: FileList}) {
-    this.uploadService.startUpload(data.files);
+  addProduct(data: { product: Product; files: FileList }) {
+    const fileUrl = this.uploadService.startUpload(data.files);
 
-    return this.angularFireDatabase
-      .list<Product>('products')
-      .set(data.product.id.toString(), data.product)
-      .then((response) => {
-        console.log('uploaded', data.product);
-        return response;
-      });
+    fileUrl.subscribe((url) => {
+      if (url) {
+        console.log(url);
+        data.product.imageURLs.push(url);
+
+        return this.angularFireDatabase
+          .list<Product>('products')
+          .set(data.product.id.toString(), data.product);
+      }
+    });
   }
 
   searchProducts(term: string): Observable<Product[]> {
@@ -133,6 +136,6 @@ export class ProductService {
       .object<Product>(url)
       .remove()
       .then(() => this.log('success deleting' + id))
-      .catch(error => this.handleError('delete product'));
+      .catch((error) => this.handleError('delete product'));
   }
 }

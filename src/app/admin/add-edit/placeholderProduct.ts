@@ -7,7 +7,7 @@ export const placeholderProduct: Product = {
   description: '',
   price: 1000,
   priceNormal: 2000,
-  imageURLs: ['img/shop/products/13.jpg'],
+  imageURLs: [],
   categories: ['Some', 'Example', 'Categories'],
   reduction: 50
 };
