@@ -31,7 +31,7 @@ export class AddEditComponent implements OnInit, OnChanges {
     private route: ActivatedRoute,
     private productService: ProductService,
     private productsCacheService: ProductsCacheService,
-    private messageService: MessageService
+    private log: MessageService
   ) {}
 
   ngOnChanges() {
@@ -81,7 +81,9 @@ export class AddEditComponent implements OnInit, OnChanges {
     // tslint:disable-next-line:no-console
     const randomId = Math.floor(Math.random() * new Date().getTime());
     let id = val.id || randomId;
-    if (id === 1) { id = randomId; }
+    if (id === 1) {
+      id = randomId;
+    }
 
     const priceNormal = val.priceNormal;
     const price = val.price;
@@ -142,26 +144,36 @@ export class AddEditComponent implements OnInit, OnChanges {
     };
 
     if (this.mode === 'add') {
-      this.productService.addProduct({
-        product,
-        files
-      });
+      this.productService
+        .addProduct({
+          product,
+          files
+        })
+        .then(() => {
+          this.log.add('success adding ' + product.id);
+          this.router.navigate(['/products/' + product.id]);
+        });
     } else {
-      this.productService.updateProduct({
-        product,
-        files
-      });
+      this.productService
+        .updateProduct({
+          product,
+          files
+        })
+        .then(() => {
+          this.log.add('success updating ' + product.id);
+          this.router.navigate(['/products/' + product.id]);
+        });
     }
   }
 
   onDelete() {
     if (this.mode === 'edit') {
       console.log('delete ', this.product.id);
-      this.productService.deleteProduct(this.id).then(
-        () => this.router.navigate(['/products'])
-      );
+      this.productService
+        .deleteProduct(this.id)
+        .then(() => this.router.navigate(['/products']));
     } else {
-      this.messageService.addError(`Cannot delete new product`);
+      this.log.addError(`Cannot delete new product`);
     }
   }
 }
