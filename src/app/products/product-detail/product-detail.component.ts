@@ -46,7 +46,7 @@ export class ProductDetailComponent implements OnInit {
       this.getProduct();
     });
 
-    this.authService.user.subscribe(user => {
+    this.authService.user.subscribe((user) => {
       this.user = user;
     });
   }
@@ -54,21 +54,25 @@ export class ProductDetailComponent implements OnInit {
   getProduct(): void {
     // Show loading spinner
     const id = +this.route.snapshot.paramMap.get('id');
-    this.productService.getProduct(id)
-      .subscribe((product) => {
+    this.productService.getProduct(id).subscribe((product) => {
+      if (product) {
         console.log(product);
         this.product = product;
         this.activeImageUrl = this.product.imageURLs[0];
         this.activeImageIndex = 0;
-        this.ratingCount = product.ratings ? Object.keys(product.ratings).length : 0;
+        this.ratingCount = product.ratings
+          ? Object.keys(product.ratings).length
+          : 0;
 
         // check for existing rating
-        if (product.ratings && Object.keys(product.ratings).includes(this.authService.getUserUid())) {
+        if (
+          product.ratings &&
+          Object.keys(product.ratings).includes(this.authService.getUserUid())
+        ) {
           this.selectedRating = product.ratings[this.authService.getUserUid()];
         }
-
-        // Hide loading spinner
-      });
+      } // Hide loading spinner
+    });
     // TODO: fix cached variant
     // this.productsCacheService
     //   .get(id, this.productService.getProduct(id))
