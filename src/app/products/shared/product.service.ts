@@ -103,12 +103,12 @@ export class ProductService {
         this.handleError<any>(error);
       });
   }
+
   /** POST: add a new Product to the server */
   addProduct(data) /*: Observable<any>*/ {
     return (
       this.angularFireDatabase
         .list<Product>('products')
-        // .push(data)
         .set(data.id.toString(), data)
         .then((response) => {
           console.log('uploaded', data);
@@ -116,6 +116,7 @@ export class ProductService {
         })
     );
   }
+
   searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
       // if not search term, return empty Product array.
@@ -129,9 +130,14 @@ export class ProductService {
       );
   }
 
-  deleteProduct(id: number): Observable<Product> {
+  deleteProduct(id: number) {
     const url = `${this.productsUrl}/${id}`;
-    console.log('to delete: ', id);
-    return of(null);
+
+    return this.angularFireDatabase
+      .object<Product>(url).remove()
+      .then(() => this.log('success deleting' + id));
+      // .catch((error) => {
+      //   this.handleError<any>(error);
+      // });
   }
 }
