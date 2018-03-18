@@ -103,21 +103,14 @@ export class ProductService {
   }
   /** POST: add a new Product to the server */
   addProduct(data) /*: Observable<any>*/ {
-    console.log(data);
-    return this.angularFireDatabase.list<Product>('products')
+    return this.angularFireDatabase
+      .list<Product>('products')
       .push(data)
-      .then(() => console.log('uploaded'));
-
-      // console.log('will upload this photos: ', data.getAll('photos'));
-    // return this.http
-    //   .post<any>(this.productsUrl, data)
-    //   .pipe(
-    //     tap((dbResponse: any) =>
-    //       this.log(`added Product w/ id=${dbResponse.product.id}`)
-    //     ),
-    //     catchError(this.handleError<Product>('addProduct'))
-    //   );
-  }
+      .then(response => {
+        console.log('uploaded', data);
+        return response;
+      });
+    }
   searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
       // if not search term, return empty Product array.
