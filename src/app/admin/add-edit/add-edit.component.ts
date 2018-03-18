@@ -143,10 +143,10 @@ export class AddEditComponent implements OnInit, OnChanges {
 
     if (this.mode === 'add') {
       this.productService.addProduct(newProduct);
+    } else {
+      this.productService.updateProduct(newProduct);
     }
-    // else {
-    //   this.productService.updateProduct(newProduct);
-    // }
+
     // this.productService.addProduct(formData);
     // .subscribe((response) => {
     //   console.log('val: ', response);

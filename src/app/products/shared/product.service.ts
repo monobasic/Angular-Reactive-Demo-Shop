@@ -93,24 +93,26 @@ export class ProductService {
 
   // TODO: rewrite for Firebase
   /** PUT: update the Product on the server */
-  updateProduct(product: Product): Observable<any> {
-    return this.http
-      .put(this.productsUrl, product, httpOptions)
-      .pipe(
-        tap((_) => this.log(`updated Product id=${product.id}`)),
-        catchError(this.handleError<any>('updateProduct'))
-      );
+  updateProduct(product: Product) {
+    const url = `${this.productsUrl}/${product.id}`;
+    return this.angularFireDatabase
+      .object<Product>(url)
+      .update(product)
+      .then((_) => this.log(`Updated Product ${product.name}`))
+      .catch((error) => {
+        this.handleError<any>(error);
+      });
   }
   /** POST: add a new Product to the server */
   addProduct(data) /*: Observable<any>*/ {
     return this.angularFireDatabase
       .list<Product>('products')
       .push(data)
-      .then(response => {
+      .then((response) => {
         console.log('uploaded', data);
         return response;
       });
-    }
+  }
   searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
       // if not search term, return empty Product array.
