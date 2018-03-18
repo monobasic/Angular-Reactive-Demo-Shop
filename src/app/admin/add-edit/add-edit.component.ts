@@ -153,4 +153,9 @@ export class AddEditComponent implements OnInit, OnChanges {
     //   this.router.navigateByUrl(`/products/${response.product.id}`);
     // });
   }
+  onDelete() {
+    if (this.mode === 'edit') {
+      console.log('delete ', this.product.id);
+    }
+  }
 }
