@@ -157,7 +157,9 @@ export class AddEditComponent implements OnInit, OnChanges {
   onDelete() {
     if (this.mode === 'edit') {
       console.log('delete ', this.product.id);
-      this.productService.deleteProduct(this.id);
+      this.productService.deleteProduct(this.id).then(
+        () => this.router.navigate(['/products'])
+      );
     } else {
       this.messageService.addError(`Cannot delete new product`);
     }
