@@ -136,11 +136,17 @@ export class AddEditComponent implements OnInit, OnChanges {
     //     formData.append('photos', file, file.name);
     //   }
     // }
-
-    this.productService.addProduct({
+    const newProduct = {
       ...this.product,
       ...this.productForm.value
-    });
+    };
+
+    if (this.mode === 'add') {
+      this.productService.addProduct(newProduct);
+    }
+    // else {
+    //   this.productService.updateProduct(newProduct);
+    // }
     // this.productService.addProduct(formData);
     // .subscribe((response) => {
     //   console.log('val: ', response);
