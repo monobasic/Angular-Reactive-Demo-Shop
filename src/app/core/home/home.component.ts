@@ -18,8 +18,6 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.messageService.add('MessageService: App ready!');
-
     this.productService.getProducts()
       .subscribe(products => {
         this.products = products;

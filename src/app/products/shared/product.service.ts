@@ -57,7 +57,7 @@ export class ProductService {
       .list<Product>('products')
       .valueChanges()
       .pipe(
-        tap(() => this.log(`fetched Products`)),
+        //tap(() => this.log(`fetched Products`)),
         catchError(this.handleError<Product[]>(`getProducts`))
       );
   }
@@ -68,7 +68,7 @@ export class ProductService {
       .object<Product>(url)
       .valueChanges()
       .pipe(
-        tap(() => this.log(`fetched Product id=${id}`)),
+        //tap(() => this.log(`fetched Product id=${id}`)),
         catchError(this.handleError<Product>(`getProduct id=${id}`))
       );
   }
