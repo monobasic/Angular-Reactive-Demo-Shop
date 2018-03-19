@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
+import 'rxjs/add/observable/combineLatest';
+import 'rxjs/add/operator/switchMap';
 
 import { MessageService } from '../../messages/message.service';
 import { Product } from '../../models/product.model';
@@ -61,6 +63,49 @@ export class ProductService {
         catchError(this.handleError<Product[]>(`getProducts`))
       );
   }
+
+  getFeaturedProducts(): Observable<Product[]> {
+    return this.angularFireDatabase
+      .list<Product>('featured')
+      .valueChanges()
+      .pipe(
+        // tap(() => this.log(`fetched Products`)),
+        catchError(this.handleError<Product[]>(`getFeaturedProducts`))
+      );
+
+
+    // // Compose an observable based on the projectList:
+
+    // this.projectWithUserList = this.projectList
+
+    //   // Each time the projectList emits, switch to unsubscribe/ignore
+    //   // any pending user queries:
+
+    //   .switchMap(projects => {
+
+    //     // Map the projects to the array of observables that are to be
+    //     // combined.
+
+    //     let userObservables = projects.map(project => this.af.database
+    //       .object(`users/${project.uId}`)
+    //     );
+
+    //     // Combine the user observables, and match up the users with the
+    //     // projects, etc.
+
+    //     return userObservables.length === 0 ?
+    //       Observable.of(projects) :
+    //       Observable.combineLatest(...userObservables, (...users) => {
+    //         projects.forEach((project, index) => {
+    //           project.userName = users[index].userName;
+    //           project.avatar = users[index].avatar;
+    //         });
+    //         return projects;
+    //       });
+    //   });
+  }
+
+
   /** GET product by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
@@ -68,7 +113,7 @@ export class ProductService {
       .object<Product>(url)
       .valueChanges()
       .pipe(
-        //tap(() => this.log(`fetched Product id=${id}`)),
+        // tap(() => this.log(`fetched Product id=${id}`)),
         catchError(this.handleError<Product>(`getProduct id=${id}`))
       );
   }
