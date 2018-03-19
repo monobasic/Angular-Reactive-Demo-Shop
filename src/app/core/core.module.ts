@@ -11,6 +11,7 @@ import { NavigationMainComponent } from './header/navigation-main/navigation-mai
 import { ToolbarCartComponent } from './header/toolbar/cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { MainSliderComponent } from './home/main-slider/main-slider.component';
+import { UICarouselModule } from 'ui-carousel';
 
 import { ProductService } from '../products/shared/product.service';
 import { ProductsCacheService } from '../products/shared/products-cache.service';
@@ -37,7 +38,8 @@ import { OffcanvasService } from './shared/offcanvas.service';
     ],
     imports: [
         CommonModule,
-        SharedModule
+        SharedModule,
+        UICarouselModule
     ],
     exports: [
         CommonModule,
