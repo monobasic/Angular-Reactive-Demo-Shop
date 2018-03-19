@@ -45,34 +45,44 @@ export class AuthService {
     googleLogin() {
         const provider = new firebase.auth.GoogleAuthProvider();
         return this.afAuth.auth.signInWithPopup(provider)
-            .then(credential => {
-                this.updateUser(credential.user);
-            }).catch(error => {
-                throw error;
-            });
+            .then(
+                credential => {
+                    console.log('update user!');
+                    this.updateUser(credential.user);
+                },
+                error => {
+                    console.log('auth service googleLogin error');
+                    throw error;
+                }
+            );
     }
 
     emailSignUp(email: string, password: string) {
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-            .then((user) => {
-                this.updateUser(user);
-            })
-            .catch(error => {
-                console.log('auth service emailSignUp error');
-                throw error;
-            });
+                .then(
+                    user => {
+                        console.log('update user!');
+                        this.updateUser(user);
+                    },
+                    error => {
+                        console.log('auth service emailSignUp error');
+                        throw error;
+                }
+            );
     }
 
     emailLogin(email: string, password: string) {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-            .then((user) => {
-                console.log('update user!');
-                this.updateUser(user);
-            })
-            .catch(error => {
-                console.log('auth service emailLogin error');
-                throw error;
-            });
+            .then(
+                user => {
+                    console.log('update user!');
+                    this.updateUser(user);
+                },
+                error => {
+                    console.log('auth service emailLogin error');
+                    throw error;
+                }
+            );
     }
 
     signOut() {
