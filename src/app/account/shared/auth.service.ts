@@ -47,6 +47,8 @@ export class AuthService {
         return this.afAuth.auth.signInWithPopup(provider)
             .then(credential => {
                 this.updateUser(credential.user);
+            }).catch(error => {
+                throw error;
             });
     }
 
@@ -55,15 +57,20 @@ export class AuthService {
             .then((user) => {
                 this.updateUser(user);
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                throw error;
+            });
     }
 
     emailLogin(email: string, password: string) {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
+                console.log('update user!');
                 this.updateUser(user);
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                throw error;
+            });
     }
 
     signOut() {
