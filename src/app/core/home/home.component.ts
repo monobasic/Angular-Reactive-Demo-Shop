@@ -10,12 +10,12 @@ import { ProductService } from '../../products/shared/product.service';
 })
 export class HomeComponent implements OnInit {
   products: any;
+  productsFeatured: any;
 
   constructor(
     private messageService: MessageService,
     private productsCache: ProductsCacheService,
     private productService: ProductService
-
   ) {}
 
   ngOnInit() {
@@ -23,6 +23,11 @@ export class HomeComponent implements OnInit {
       .subscribe(products => {
         this.products = products;
     });
+
+    this.productService.getFeaturedProducts()
+      .subscribe(products => {
+        this.productsFeatured = products;
+      });
   }
 
 
