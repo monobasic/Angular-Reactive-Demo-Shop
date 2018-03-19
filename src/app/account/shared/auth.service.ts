@@ -58,6 +58,7 @@ export class AuthService {
                 this.updateUser(user);
             })
             .catch(error => {
+                console.log('auth service emailSignUp error');
                 throw error;
             });
     }
@@ -69,6 +70,7 @@ export class AuthService {
                 this.updateUser(user);
             })
             .catch(error => {
+                console.log('auth service emailLogin error');
                 throw error;
             });
     }
