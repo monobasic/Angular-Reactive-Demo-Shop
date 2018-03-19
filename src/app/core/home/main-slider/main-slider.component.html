@@ -25,5 +25,13 @@
   <button type="button" class="hero-slider-prev" (click)="prev()"></button>
   <button type="button" class="hero-slider-next" (click)="next()"></button>
 
+  <div class="hero-slider-dots">
+    <div *ngFor="let item of items; let i = index" class="hero-slider-dot" (click)="goTo(i)" [ngClass]="{active: currentSlide === i}">
+      <span></span>
+    </div>
+  </div>
+
+
 </section>
 
+CurrentSlide {{ currentSlide }}

@@ -9,6 +9,7 @@ import { NgxSiemaOptions, NgxSiemaService } from 'ngx-siema';
 export class MainSliderComponent implements OnInit, OnChanges {
   @Input()
   items: any[];
+  currentSlide: number;
 
   options: NgxSiemaOptions = {
     selector: '.siema',
@@ -33,22 +34,32 @@ export class MainSliderComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-
+    this.ngxSiemaService.prev(1)
+      .subscribe((data: any) => {
+        this.currentSlide = data && data.currentSlide ? data.currentSlide : 0;
+      });
   }
 
   prev() {
     this.ngxSiemaService.prev(1)
-      .subscribe((data: any) => console.log(data));
-  }
+      .subscribe((data: any) => {
+        this.currentSlide = data && data.currentSlide ? data.currentSlide : 0;
+      });
+    }
 
   next() {
     this.ngxSiemaService.next(1)
-      .subscribe((data: any) => console.log(data));
+      .subscribe((data: any) => {
+        this.currentSlide = data && data.currentSlide ? data.currentSlide : 0;
+      });
   }
 
   goTo(index: number) {
     this.ngxSiemaService.goTo(index)
-      .subscribe((data: any) => console.log(data));
+      .subscribe((data: any) => {
+        this.currentSlide = data && data.currentSlide ? data.currentSlide : 0;
+      });
   }
+
 
 }

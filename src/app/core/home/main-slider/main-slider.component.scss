@@ -75,3 +75,34 @@
         content: '\e095';
     }
 }
+
+.hero-slider-dots {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    text-align: center;
+    transform: translateX(-50%);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    background-color: #606975;
+    display: inline-block;
+    left: 50%;
+    width: auto;
+    padding: 10px 22px 14px;
+}
+
+.hero-slider-dot {
+    cursor: pointer;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 6px;
+    transition: opacity .25s;
+    border-radius: 50%;
+    background-color: #ffffff;
+    opacity: 0.5;
+
+    &.active {
+        opacity: 1;
+    }
+}
