@@ -43,20 +43,23 @@
           </div> -->
 
           <h3 class="margin-bottom-1x">Login</h3>
-          <div class="form-group input-group">
+          <div class="form-group input-group" [ngClass]="{'has-danger': !loginForm.get('email').valid && loginForm.get('email').touched}">
             <input class="form-control" formControlName="email" type="email" placeholder="Email" required="">
-            <div *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched" class="form-control-feedback">
-              Shucks, enter a name for your product.
-            </div>
             <span class="input-group-addon">
               <i class="icon-mail"></i>
             </span>
+            <div *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched" class="form-control-feedback">
+              Please enter a valid Email.
+            </div>
           </div>
-          <div class="form-group input-group">
+          <div class="form-group input-group" [ngClass]="{'has-danger': !loginForm.get('email').valid && loginForm.get('email').touched}">
             <input class="form-control" formControlName="password" type="password" placeholder="Password" required="">
             <span class="input-group-addon">
               <i class="icon-lock"></i>
             </span>
+            <div *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched" class="form-control-feedback">
+              There was a problem with your entered password.
+            </div>
           </div>
 
           <!-- <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
