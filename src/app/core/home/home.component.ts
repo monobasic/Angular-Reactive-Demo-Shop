@@ -10,6 +10,7 @@ import { ProductService } from '../../products/shared/product.service';
 })
 export class HomeComponent implements OnInit {
   products: any;
+
   constructor(
     private messageService: MessageService,
     private productsCache: ProductsCacheService,
@@ -21,8 +22,10 @@ export class HomeComponent implements OnInit {
     this.productService.getProducts()
       .subscribe(products => {
         this.products = products;
-      });
-    }
+    });
+  }
+
+
 
     // TODO: fix cache
     // this.productsCache.get('products', this.productService.getProducts())
@@ -30,4 +33,5 @@ export class HomeComponent implements OnInit {
     //     this.products = result.products;
     //   });
     // }
+
 }
