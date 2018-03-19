@@ -3,14 +3,14 @@
 <form [formGroup]="formAddress">
   <div class="row">
     <div class="col-sm-6">
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-danger': formAddress.get('firstname').invalid && formAddress.get('firstname').touched}">
         <label for="firstname">First Name</label>
         <input class="form-control" type="text" id="firstname" name="firstname" formControlName="firstname">
         <div class="form-control-feedback" *ngIf="formAddress.get('firstname').invalid && formAddress.get('firstname').touched">Please enter your firstname!</div>
       </div>
     </div>
     <div class="col-sm-6">
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-danger': formAddress.get('lastname').invalid && formAddress.get('lastname').touched}">
         <label for="lastname">Last Name</label>
         <input class="form-control" type="text" id="lastname" name="lastname" formControlName="lastname">
         <div class="form-control-feedback" *ngIf="formAddress.get('lastname').invalid && formAddress.get('lastname').touched">Please enter your lastname!</div>
@@ -19,7 +19,7 @@
   </div>
   <div class="row">
     <div class="col-sm-6">
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-danger': formAddress.get('address1').invalid && formAddress.get('address1').touched}">
         <label for="address1">Address 1</label>
         <input class="form-control" type="text" id="address1" name="address1" formControlName="address1">
         <div class="form-control-feedback" *ngIf="formAddress.get('address1').invalid && formAddress.get('address1').touched">Please enter your address!</div>
@@ -34,14 +34,14 @@
   </div>
   <div class="row">
     <div class="col-sm-6">
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-danger': formAddress.get('zip').invalid && formAddress.get('zip').touched}">
         <label for="zip">ZIP Code</label>
         <input class="form-control" type="text" name="zip" id="zip" formControlName="zip">
         <div class="form-control-feedback" *ngIf="formAddress.get('zip').invalid && formAddress.get('zip').touched">Please enter your zip code!</div>
       </div>
     </div>
     <div class="col-sm-6">
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-danger': formAddress.get('city').invalid && formAddress.get('city').touched}">
         <label for="city">City</label>
         <input class="form-control" type="text" name="city" id="city" formControlName="city">
         <div class="form-control-feedback" *ngIf="formAddress.get('city').invalid && formAddress.get('city').touched">Please enter your city!</div>
@@ -50,7 +50,7 @@
   </div>
   <div class="row">
     <div class="col-sm-6">
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-danger': formAddress.get('email').invalid && formAddress.get('email').touched}">
         <label for="email">E-mail Address</label>
         <input class="form-control" type="email" id="email" name="email" formControlName="email">
         <div class="form-control-feedback" *ngIf="formAddress.get('email').invalid && formAddress.get('email').touched">Please enter your E-mail!</div>
@@ -91,4 +91,4 @@
   </div>
 </form>
 
-<app-checkout-footer [buttons]="['backToCart', 'continue']" (continue)="onContinue()" [continueEnabled]="formAddress.valid"></app-checkout-footer>
+<app-checkout-footer [buttons]="['backToCart', 'continue']"  (continue)="onContinue()" [continueEnabled]="formAddress.valid"></app-checkout-footer>
