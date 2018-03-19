@@ -72,16 +72,13 @@ export class RegisterLoginComponent implements OnInit {
         console.log('onRegister() error: ');
         console.log(error);
         this.registerErrors = error.message;
-
         if (error.code === 'auth/weak-password') {
           this.registerForm.controls.password.setErrors({ password: true });
           this.registerForm.controls.confirmPassword.setErrors({ confirmPassword: true });
         }
-
         if (error.code === 'auth/email-already-in-use') {
           this.registerForm.controls.email.setErrors({ email: true });
         }
-
       }
     );
   }
