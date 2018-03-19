@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgxSiemaOptions, NgxSiemaService } from 'ngx-siema';
 
 @Component({
@@ -6,7 +6,7 @@ import { NgxSiemaOptions, NgxSiemaService } from 'ngx-siema';
   templateUrl: './main-slider.component.html',
   styleUrls: ['./main-slider.component.scss']
 })
-export class MainSliderComponent implements OnInit, OnChanges {
+export class MainSliderComponent implements OnInit {
   @Input()
   items: any[];
   currentSlide: number;
@@ -31,13 +31,6 @@ export class MainSliderComponent implements OnInit, OnChanges {
   constructor(private ngxSiemaService: NgxSiemaService) { }
 
   ngOnInit() {
-  }
-
-  ngOnChanges() {
-    this.ngxSiemaService.prev(1)
-      .subscribe((data: any) => {
-        this.currentSlide = data && data.currentSlide ? data.currentSlide : 0;
-      });
   }
 
   prev() {
