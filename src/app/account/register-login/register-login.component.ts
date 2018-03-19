@@ -22,7 +22,7 @@ export class RegisterLoginComponent implements OnInit {
   constructor(
     private authenticationService: AuthService,
     private router: Router,
-    private logger: MessageService
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -56,7 +56,7 @@ export class RegisterLoginComponent implements OnInit {
   //   console.log(this.registerForm);
   //   const pass = this.registerForm.value.passwords.password;
   //   const confirmPass = this.registerForm.value.passwords.confirmPassword;
-  //   this.logger.addError("Passwords don't match!")
+  //   this.messageService.addError("Passwords don't match!")
   //   return pass === confirmPass ? null : { notSame: true };
   // }
 
@@ -65,7 +65,7 @@ export class RegisterLoginComponent implements OnInit {
     this.authenticationService.emailSignUp(this.registerForm.value.email, this.registerForm.value.password)
     .then(
       () => {
-        this.logger.add('Registration successful!');
+        this.messageService.add('Registration successful!');
         this.router.navigate(['/home']);
       },
       (error) => {
@@ -89,7 +89,7 @@ export class RegisterLoginComponent implements OnInit {
       .emailLogin(this.loginForm.value.email, this.loginForm.value.password)
       .then(
         () => {
-          this.logger.add('Login successful!');
+          this.messageService.add('Login successful!');
           this.router.navigate(['/home']);
         },
         (error) => {
