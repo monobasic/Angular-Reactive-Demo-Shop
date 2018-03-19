@@ -69,28 +69,27 @@ export class RegisterLoginComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       (error) => console.log(error)
+    ).catch(
+      (error) => {
+        console.log(error);
+      }
     );
   }
 
   onLogin() {
+    console.log('onLogin called');
     this.authenticationService
       .emailLogin(this.loginForm.value.email, this.loginForm.value.password)
       .then(() => {
-        if (this.authenticationService.user) {
-          this.logger.add(`Authentication successful`);
           this.router.navigate(['/home']);
-        } else {
-          this.logger.addError('Authentication failed');
-          this.loginForm.setErrors({
-            email: true,
-            password: true
-          });
-        }
-
         }
       ).catch((error) => {
-          console.log('error: ');
+          console.log('login problem!');
           console.log(error);
+          this.loginForm.controls.email.setErrors({ email: true });
+          this.loginForm.controls.password.setErrors({ password: true });
       });
+
+    console.log(this.loginForm);
   }
 }
