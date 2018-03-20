@@ -7,16 +7,19 @@
   display: table;
   width: 100%;
   border-top: 1px solid $border-color;
+
   > .column {
     display: table-cell;
     padding-top: ceil($grid-vertical-step / 1.5); //~16px
     vertical-align: middle;
   }
+
   .pages {
     display: block;
     margin: 0;
     padding: 0;
     list-style: none;
+
     > li {
       display: inline-block;
       width: $pagination-link-size;
@@ -27,6 +30,7 @@
       }
       line-height: $pagination-link-size - 2;
       text-align: center;
+
       > a {
         display: block;
         width: $pagination-link-size;
@@ -37,11 +41,14 @@
         color: $pagination-link-color;
         line-height: $pagination-link-size - 2;
         text-decoration: none;
+        cursor: pointer;
+
         &:hover {
           border-color: $border-color;
           background-color: $pagination-link-hover-bg;
         }
       }
+
       &.active > a {
         border-color: $pagination-link-active-bg;
         background-color: $pagination-link-active-bg;
@@ -49,6 +56,7 @@
       }
     }
   }
+
   .btn > i { margin-top: -5px; }
 }
 
