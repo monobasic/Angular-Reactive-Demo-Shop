@@ -23,11 +23,14 @@ export class HomeComponent implements OnInit {
       .subscribe(products => {
         this.products = products;
     });
-
     this.productService.getFeaturedProducts()
-      .subscribe(products => {
-        this.productsFeatured = products;
-      });
+      .subscribe(
+        products => {
+          console.log(products);
+          this.productsFeatured = products;
+        },
+        err => console.error(err)
+      );
   }
 
 
