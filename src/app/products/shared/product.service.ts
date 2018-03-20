@@ -5,7 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/observable/combineLatest';
+import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/observable/interval';
 
 import { MessageService } from '../../messages/message.service';
 import { Product } from '../../models/product.model';
@@ -32,6 +35,14 @@ export class ProductService {
   /** Log a ProductService message with the MessageService */
   private log(message: string) {
     this.messageService.add('ProductService: ' + message);
+  }
+
+  private simulateHttp(val: any, delay: number) {
+    return Observable.of(val).delay(delay);
+  }
+
+  private simulateFirebase(val: any, delay: number) {
+    return Observable.interval(delay).map(index => val + ' ' + index);
   }
 
   /**
@@ -64,50 +75,26 @@ export class ProductService {
       );
   }
 
-  getFeaturedProducts(): Observable<Product[]> {
-    return this.angularFireDatabase
-      .list<Product>('featured')
-      .valueChanges()
-      .pipe(
-        // tap(() => this.log(`fetched Products`)),
-        catchError(this.handleError<Product[]>(`getFeaturedProducts`))
+  getFeaturedProducts(): Observable<any[]> {
+    return this.angularFireDatabase.list<Product>('featured')
+      .snapshotChanges()
+      .switchMap(
+        actions => {
+          return Observable.combineLatest(actions.map(action => this.getProduct(action.key)));
+        },
+        (actionsFromSource, resolvedProducts) => {
+          const combinedProducts = resolvedProducts.map((product, i) => {
+            product['imageFeaturedUrl'] = actionsFromSource[i].payload.val().imageUrl;
+            return product;
+          });
+          return resolvedProducts;
+        }
       );
-
-
-    // // Compose an observable based on the projectList:
-
-    // this.projectWithUserList = this.projectList
-
-    //   // Each time the projectList emits, switch to unsubscribe/ignore
-    //   // any pending user queries:
-
-    //   .switchMap(projects => {
-
-    //     // Map the projects to the array of observables that are to be
-    //     // combined.
-
-    //     let userObservables = projects.map(project => this.af.database
-    //       .object(`users/${project.uId}`)
-    //     );
-
-    //     // Combine the user observables, and match up the users with the
-    //     // projects, etc.
-
-    //     return userObservables.length === 0 ?
-    //       Observable.of(projects) :
-    //       Observable.combineLatest(...userObservables, (...users) => {
-    //         projects.forEach((project, index) => {
-    //           project.userName = users[index].userName;
-    //           project.avatar = users[index].avatar;
-    //         });
-    //         return projects;
-    //       });
-    //   });
   }
 
 
   /** GET product by id. Will 404 if id not found */
-  getProduct(id: number): Observable<Product> {
+  getProduct(id: any): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
     return this.angularFireDatabase
       .object<Product>(url)
