@@ -23,6 +23,7 @@ import { CheckoutService } from '../checkout/shared/checkout.service';
 import { AuthService } from '../account/shared/auth.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { OffcanvasService } from './shared/offcanvas.service';
+import { ProductWidgetComponent } from './home/product-widget/product-widget.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { OffcanvasService } from './shared/offcanvas.service';
         NavigationMainComponent,
         ToolbarCartComponent,
         HomeComponent,
-        MainSliderComponent
+        MainSliderComponent,
+        ProductWidgetComponent
     ],
     imports: [
         CommonModule,

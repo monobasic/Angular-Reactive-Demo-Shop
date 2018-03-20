@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../messages/message.service';
 import { ProductsCacheService } from '../../products/shared/products-cache.service';
 import { ProductService } from '../../products/shared/product.service';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,9 @@ import { ProductService } from '../../products/shared/product.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  products: any;
+  products: Product[];
   productsFeatured: any;
+  productsNewArrivals: Product[];
 
   constructor(
     private messageService: MessageService,
