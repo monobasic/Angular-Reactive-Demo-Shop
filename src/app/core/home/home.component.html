@@ -15,7 +15,7 @@
         </div>
     </section>
 
-    <app-promo [promo]=""></app-promo>
+    <app-promo *ngIf="promos" [promo]="promos[0]"></app-promo>
 
     <!-- Services-->
     <section class="container padding-top-3x padding-bottom-2x">
