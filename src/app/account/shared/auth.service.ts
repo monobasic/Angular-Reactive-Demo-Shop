@@ -89,6 +89,22 @@ export class AuthService {
         this.afAuth.auth.signOut();
     }
 
+    updateProfile(userData: {}) {
+        const user = this.afAuth.auth.currentUser;
+
+        // user.updateEmail("user@example.com").then(function () {
+        //     // Update successful.
+        // }).catch(function (error) {
+        //     // An error happened.
+        // });
+
+        // user.updatePassword(newPassword).then(function () {
+        //     // Update successful.
+        // }).catch(function (error) {
+        //     // An error happened.
+        // });
+    }
+
     /// Updates database with user info after login (for first time login only)
     private updateUser(authData) {
         const userData = new User(authData);

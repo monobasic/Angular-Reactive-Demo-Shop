@@ -33,10 +33,14 @@ export class ProfileComponent implements OnInit {
     this.formProfile = new FormGroup({
       firstname: new FormControl(null, Validators.required),
       lastname: new FormControl(null, Validators.required),
-      email: new FormControl({ value: '', disabled: true }, Validators.email),
+      email: new FormControl(null, Validators.email),
       password: new FormControl(null),
       confirmPassword: new FormControl(null),
     });
+  }
+
+  onSubmit() {
+    console.log('submit!');
   }
 
 }

@@ -1,6 +1,13 @@
 <div class="padding-top-2x mt-2 hidden-lg-up">
 </div>
-<form class="row" [formGroup]="formProfile">
+<form class="row" [formGroup]="formProfile" (ngSubmit)="onSubmit()">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="account-email">E-mail Address</label>
+      <input class="form-control" type="email" id="account-email" formControlName="email">
+    </div>
+  </div>
+  <div class="col-md-6"></div>
   <div class="col-md-6">
     <div class="form-group" [ngClass]="{'has-danger': formProfile.get('firstname').invalid && formProfile.get('firstname').touched}">
       <label for="account-fn">First Name</label>
@@ -14,15 +21,6 @@
       <input class="form-control" type="text" id="account-ln" formControlName="lastname">
       <div class="form-control-feedback" *ngIf="formProfile.get('lastname').invalid && formProfile.get('lastname').touched">Please enter your lastname!</div>
     </div>
-  </div>
-  <div class="col-md-6">
-    <div class="form-group">
-      <label for="account-email">E-mail Address</label>
-      <input class="form-control" type="email" id="account-email" formControlName="email">
-    </div>
-  </div>
-  <div class="col-md-6">
-
   </div>
   <div class="col-md-6">
     <div class="form-group">
@@ -45,3 +43,4 @@
     </div>
   </div>
 </form>
+<p>Form value: {{ formProfile.value | json }}</p>
