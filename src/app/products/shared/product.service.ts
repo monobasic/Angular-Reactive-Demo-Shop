@@ -75,6 +75,11 @@ export class ProductService {
       );
   }
 
+  getProductsQuery(byChild: string, equalTo: string | boolean, limitToFirst: number): Observable<Product[]> {
+    return this.angularFireDatabase.list<Product>('products', ref => ref.orderByChild(byChild).equalTo(equalTo).limitToFirst(limitToFirst))
+      .valueChanges();
+  }
+
   getFeaturedProducts(): Observable<any[]> {
     return this.angularFireDatabase.list<Product>('featured')
       .snapshotChanges()
