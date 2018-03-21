@@ -1,22 +1,24 @@
 <div class="padding-top-2x mt-2 hidden-lg-up">
 </div>
-<form class="row">
+<form class="row" [formGroup]="formProfile">
   <div class="col-md-6">
-    <div class="form-group">
+    <div class="form-group" [ngClass]="{'has-danger': formProfile.get('firstname').invalid && formProfile.get('firstname').touched}">
       <label for="account-fn">First Name</label>
-      <input class="form-control" type="text" id="account-fn" value="Daniel" required="">
+      <input class="form-control" type="text" id="account-fn" formControlName="firstname" required>
+      <div class="form-control-feedback" *ngIf="formProfile.get('firstname').invalid && formProfile.get('firstname').touched">Please enter your firstname!</div>
     </div>
   </div>
   <div class="col-md-6">
-    <div class="form-group">
+    <div class="form-group" [ngClass]="{'has-danger': formProfile.get('lastname').invalid && formProfile.get('lastname').touched}">
       <label for="account-ln">Last Name</label>
-      <input class="form-control" type="text" id="account-ln" value="Adams" required="">
+      <input class="form-control" type="text" id="account-ln" formControlName="lastname" required>
+      <div class="form-control-feedback" *ngIf="formProfile.get('lastname').invalid && formProfile.get('lastname').touched">Please enter your lastname!</div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group">
       <label for="account-email">E-mail Address</label>
-      <input class="form-control" type="email" id="account-email" value="daniel.adams@mail.com" disabled="">
+      <input *ngIf="user" class="form-control" type="email" id="account-email" disabled value="{{ user.email }}">
     </div>
   </div>
   <div class="col-md-6">
