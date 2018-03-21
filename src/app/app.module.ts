@@ -20,14 +20,12 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { CartComponent } from './cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CartComponent,
-    PageNotFoundComponent,
-    OrdersComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
