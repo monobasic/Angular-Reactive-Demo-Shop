@@ -9,4 +9,5 @@ export class Product {
     imageURLs: string[];
     categories: string[];
     ratings?: {};
+    onSale?: boolean;
 }
