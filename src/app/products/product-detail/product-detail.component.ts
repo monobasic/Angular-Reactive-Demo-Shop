@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -19,7 +19,7 @@ import { User } from '../../models/user.model';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnChanges {
   @Input() product: Product;
   activeImageUrl: string;
   activeImageIndex: number;
@@ -50,6 +50,15 @@ export class ProductDetailComponent implements OnInit {
       this.user = user;
     });
   }
+
+  // ngOnChanges(): void {
+  //   if (this.product.currentRating) {
+  //     this.currentRating = this.product.currentRating;
+  //   } else if (this.product.ratings) {
+  //     this.currentRating = <number>Object.values(this.product.ratings)
+  //       .reduce((a: number, b: number) => a + b, 0) / Object.values(this.product.ratings).length;
+  //   }
+  // }
 
   getProduct(): void {
     // Show loading spinner

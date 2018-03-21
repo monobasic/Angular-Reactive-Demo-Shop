@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   productsFeatured: any;
   productsNewArrivals: Product[];
   productsOnSale: Product[];
+  productsBestRated: Product[];
 
   constructor(
     private messageService: MessageService,
@@ -42,6 +43,16 @@ export class HomeComponent implements OnInit {
           console.log('products by date:');
           console.log(products);
           this.productsNewArrivals = products;
+        },
+        err => console.error(err)
+      );
+
+    this.productService.getProductsByRating(3)
+      .subscribe(
+        products => {
+          console.log('products by rating:');
+          console.log(products);
+          this.productsBestRated = products;
         },
         err => console.error(err)
       );

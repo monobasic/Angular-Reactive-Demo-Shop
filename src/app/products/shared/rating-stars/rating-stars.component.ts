@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Rating } from '../../../models/rating.model';
 
 @Component({
@@ -6,20 +6,12 @@ import { Rating } from '../../../models/rating.model';
   templateUrl: './rating-stars.component.html',
   styleUrls: ['./rating-stars.component.scss']
 })
-export class RatingStarsComponent implements OnInit, OnChanges {
+export class RatingStarsComponent implements OnInit {
   @Input()
-  ratings: {};
-  ratingResult: number;
+  rating: number;
 
   constructor() { }
 
   ngOnInit() {}
-
-  ngOnChanges() {
-    if (this.ratings) {
-      this.ratingResult = <number>Object.values(this.ratings)
-      .reduce((a: number, b: number) => a + b, 0) / Object.values(this.ratings).length;
-    }
-  }
 
 }

@@ -113,7 +113,7 @@
         <div *ngIf="product.reduction" class="product-badge text-danger">{{ product.reduction }}% Off</div>
 
         <div class="product-rating">
-          <app-rating-stars [ratings]="product.ratings"></app-rating-stars>
+          <app-rating-stars [rating]="product.currentRating"></app-rating-stars>
         </div>
 
         <a class="product-thumb" routerLink="/products/{{product.id}}">
