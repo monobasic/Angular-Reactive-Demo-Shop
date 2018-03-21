@@ -5,7 +5,9 @@ export interface Roles {
 export class User {
   email: string;
   photoURL: string;
-  roles: Roles;
+  roles?: Roles;
+  firstName?: string;
+  lastName?: string;
 
   constructor(authData) {
     this.email = authData.email;
