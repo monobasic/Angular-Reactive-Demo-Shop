@@ -172,7 +172,7 @@
 
 <!-- Off-Canvas Mobile Menu-->
 <div class="offcanvas-container" id="mobile-menu" [ngClass]="{'active': offcanvasService.offcanvasNavigationOpen | async}">
-  <a *ngIf="user" class="account-link" routerLink="/account" (click)="onNavigationClick()">
+  <a *ngIf="user" class="account-link" routerLink="/account/profile" (click)="onNavigationClick()">
     <!-- <div class="user-ava">
       <img src="img/account/user-ava-md.jpg" alt="Daniel Adams">
     </div> -->
@@ -188,6 +188,20 @@
         <span>
           <a routerLink="/register-login" (click)="onNavigationClick()">
             <span>Register/Login</span>
+          </a>
+        </span>
+      </li>
+      <li *ngIf="user" routerLinkActive="active">
+        <span>
+          <a routerLink="/account/profile" (click)="onNavigationClick()">
+            <span>My Profile</span>
+          </a>
+        </span>
+      </li>
+      <li *ngIf="user" routerLinkActive="active">
+        <span>
+          <a routerLink="/account/orders" (click)="onNavigationClick()">
+            <span>My Orders</span>
           </a>
         </span>
       </li>
