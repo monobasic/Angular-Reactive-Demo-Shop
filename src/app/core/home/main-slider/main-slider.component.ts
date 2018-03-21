@@ -31,6 +31,7 @@ export class MainSliderComponent implements OnInit {
   constructor(private ngxSiemaService: NgxSiemaService) { }
 
   ngOnInit() {
+    this.currentSlide = 0;
   }
 
   prev() {

@@ -70,7 +70,7 @@ export class ProductService {
       .list<Product>('products')
       .valueChanges()
       .pipe(
-        //tap(() => this.log(`fetched Products`)),
+        // tap(() => this.log(`fetched Products`)),
         catchError(this.handleError<Product[]>(`getProducts`))
       );
   }
