@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/take';
+import { MessageService } from '../../messages/message.service';
 
 
 @Injectable()
@@ -16,7 +17,10 @@ export class AuthService {
     user: BehaviorSubject<User> = new BehaviorSubject(null);
     private userUid: string;
 
-    constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
+    constructor(private afAuth: AngularFireAuth,
+        private db: AngularFireDatabase,
+        private messageService: MessageService
+    ) {
         this.afAuth.authState
             .switchMap(auth => {
                 if (auth) {
@@ -47,8 +51,7 @@ export class AuthService {
         return this.afAuth.auth.signInWithPopup(provider)
             .then(
                 credential => {
-                    console.log('update user!');
-                    this.updateUser(credential.user);
+                    this.updateNewUser(credential.user);
                 },
                 error => {
                     console.log('auth service googleLogin error');
@@ -61,8 +64,7 @@ export class AuthService {
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
                 .then(
                     user => {
-                        console.log('update user!');
-                        this.updateUser(user);
+                        this.updateNewUser(user);
                     },
                     error => {
                         console.log('auth service emailSignUp error');
@@ -75,8 +77,7 @@ export class AuthService {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then(
                 user => {
-                    console.log('update user!');
-                    this.updateUser(user);
+                    this.updateNewUser(user);
                 },
                 error => {
                     console.log('auth service emailLogin error');
@@ -89,24 +90,36 @@ export class AuthService {
         this.afAuth.auth.signOut();
     }
 
-    updateProfile(userData: {}) {
-        const user = this.afAuth.auth.currentUser;
-
-        // user.updateEmail("user@example.com").then(function () {
-        //     // Update successful.
-        // }).catch(function (error) {
-        //     // An error happened.
-        // });
-
-        // user.updatePassword(newPassword).then(function () {
-        //     // Update successful.
-        // }).catch(function (error) {
-        //     // An error happened.
-        // });
+    updateProfile(userData: User) {
+        this.updateExistingUser(userData);
+        this.messageService.add('User profile has been updated!');
     }
 
-    /// Updates database with user info after login (for first time login only)
-    private updateUser(authData) {
+    updatePassword(password: string) {
+        return this.afAuth.auth.currentUser.updatePassword(password)
+            .then(() => {
+                this.messageService.add('Password has been updated!');
+            })
+            .catch(function (error) {
+                console.log('auth service updatePassword error');
+                throw error;
+            });
+    }
+
+    updateEmail(email: string) {
+        return this.afAuth.auth.currentUser.updateEmail(email)
+            .then(() => {
+                this.updateExistingUser({ email: email });
+                this.messageService.add('User email have been updated!');
+            })
+            .catch(function (error) {
+                console.log('auth service updateEmail error');
+                throw error;
+            });
+    }
+
+
+    private updateNewUser(authData) {
         const userData = new User(authData);
         const ref = this.db.object('users/' + authData.uid);
         ref.valueChanges().take(1)
@@ -114,6 +127,15 @@ export class AuthService {
                 if (!user) {
                     ref.update(userData);
                 }
+            });
+    }
+
+    private updateExistingUser(userData) {
+        const currentUser = this.afAuth.auth.currentUser;
+        const ref = this.db.object('users/' + currentUser.uid);
+        ref.valueChanges().take(1)
+            .subscribe(user => {
+                ref.update(userData);
             });
     }
 }

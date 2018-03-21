@@ -11,6 +11,8 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   formProfile: FormGroup;
+  profileErrors: string;
+  user: User;
 
   constructor(private authService: AuthService) { }
 
@@ -20,10 +22,11 @@ export class ProfileComponent implements OnInit {
       user => {
         if (user) {
           this.formProfile.patchValue({
-            firstname: user.firstName,
-            lastname: user.lastName,
+            firstName: user.firstName,
+            lastName: user.lastName,
             email: user.email
           });
+          this.user = user;
         }
       }
     );
@@ -31,8 +34,8 @@ export class ProfileComponent implements OnInit {
 
   private initFormGroup() {
     this.formProfile = new FormGroup({
-      firstname: new FormControl(null, Validators.required),
-      lastname: new FormControl(null, Validators.required),
+      firstName: new FormControl(null, Validators.required),
+      lastName: new FormControl(null, Validators.required),
       email: new FormControl(null, Validators.email),
       password: new FormControl(null),
       confirmPassword: new FormControl(null),
@@ -40,7 +43,35 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('submit!');
+
+    // Update Email
+    if (this.user.email !== this.formProfile.value.email) {
+      this.authService.updateEmail(this.formProfile.value.email)
+      .catch(
+        error => {
+          console.log(error);
+          this.profileErrors = error.message;
+          this.formProfile.patchValue({ email: this.user.email });
+        }
+      );
+    }
+
+    // Update Profile (Firstname, Lastname)
+    if (this.user.firstName !== this.formProfile.value.firstName || this.user.lastName !== this.formProfile.value.lastName) {
+      this.authService.updateProfile(this.formProfile.value);
+    }
+
+    // Update password
+    if (this.formProfile.value.password && this.formProfile.value.confirmPassword
+      && (this.formProfile.value.password === this.formProfile.value.confirmPassword)) {
+      this.authService.updatePassword(this.formProfile.value.password)
+      .catch(
+        error => {
+          console.log(error);
+          this.profileErrors = error.message;
+        }
+      );
+    }
   }
 
 }
