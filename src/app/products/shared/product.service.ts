@@ -80,6 +80,13 @@ export class ProductService {
       .valueChanges();
   }
 
+  getProductsByDate(limitToLast: number): Observable<Product[]> {
+    return this.angularFireDatabase.list<Product>('products', ref => ref.orderByChild('date')
+      .limitToLast(limitToLast))
+      .valueChanges()
+      .map((arr) => arr.reverse());
+  }
+
   getFeaturedProducts(): Observable<any[]> {
     return this.angularFireDatabase.list<Product>('featured')
       .snapshotChanges()

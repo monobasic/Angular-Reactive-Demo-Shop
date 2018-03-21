@@ -36,6 +36,16 @@ export class HomeComponent implements OnInit {
         err => console.error(err)
       );
 
+    this.productService.getProductsByDate(3)
+      .subscribe(
+        products => {
+          console.log('products by date:');
+          console.log(products);
+          this.productsNewArrivals = products;
+        },
+        err => console.error(err)
+      );
+
     this.productService.getProductsQuery('sale', true, 3)
       .subscribe(
         products => {
