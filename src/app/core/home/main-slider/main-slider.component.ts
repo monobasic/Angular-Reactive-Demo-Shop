@@ -35,23 +35,27 @@ export class MainSliderComponent implements OnInit {
   }
 
   prev() {
-    this.ngxSiemaService.prev(1)
-      .subscribe((data: any) => {
-        this.currentSlide = data && data.currentSlide ? data.currentSlide : 0;
-      });
-    }
+    if (this.currentSlide > 0) {
+      this.ngxSiemaService.prev(1)
+        .subscribe((data: any) => {
+          this.currentSlide = data.currentSlide;
+        });
+      }
+  }
 
   next() {
-    this.ngxSiemaService.next(1)
-      .subscribe((data: any) => {
-        this.currentSlide = data && data.currentSlide ? data.currentSlide : 0;
-      });
+    if (this.currentSlide < this.items.length - 1) {
+      this.ngxSiemaService.next(1)
+        .subscribe((data: any) => {
+          this.currentSlide = data.currentSlide;
+        });
+    }
   }
 
   goTo(index: number) {
     this.ngxSiemaService.goTo(index)
       .subscribe((data: any) => {
-        this.currentSlide = data && data.currentSlide ? data.currentSlide : 0;
+        this.currentSlide = data.currentSlide;
       });
   }
 
