@@ -10,22 +10,32 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user: User;
   formProfile: FormGroup;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.user.subscribe(
-      user => this.user = user
-    );
     this.initFormGroup();
+    this.authService.user.subscribe(
+      user => {
+        if (user) {
+          this.formProfile.patchValue({
+            firstname: user.firstName,
+            lastname: user.lastName,
+            email: user.email
+          });
+        }
+      }
+    );
   }
 
   private initFormGroup() {
     this.formProfile = new FormGroup({
       firstname: new FormControl(null, Validators.required),
-      lastname: new FormControl(null, Validators.required)
+      lastname: new FormControl(null, Validators.required),
+      email: new FormControl({ value: '', disabled: true }, Validators.email),
+      password: new FormControl(null),
+      confirmPassword: new FormControl(null),
     });
   }
 

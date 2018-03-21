@@ -4,21 +4,21 @@
   <div class="col-md-6">
     <div class="form-group" [ngClass]="{'has-danger': formProfile.get('firstname').invalid && formProfile.get('firstname').touched}">
       <label for="account-fn">First Name</label>
-      <input class="form-control" type="text" id="account-fn" formControlName="firstname" required>
+      <input class="form-control" type="text" id="account-fn" formControlName="firstname">
       <div class="form-control-feedback" *ngIf="formProfile.get('firstname').invalid && formProfile.get('firstname').touched">Please enter your firstname!</div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group" [ngClass]="{'has-danger': formProfile.get('lastname').invalid && formProfile.get('lastname').touched}">
       <label for="account-ln">Last Name</label>
-      <input class="form-control" type="text" id="account-ln" formControlName="lastname" required>
+      <input class="form-control" type="text" id="account-ln" formControlName="lastname">
       <div class="form-control-feedback" *ngIf="formProfile.get('lastname').invalid && formProfile.get('lastname').touched">Please enter your lastname!</div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group">
       <label for="account-email">E-mail Address</label>
-      <input *ngIf="user" class="form-control" type="email" id="account-email" disabled value="{{ user.email }}">
+      <input class="form-control" type="email" id="account-email" formControlName="email">
     </div>
   </div>
   <div class="col-md-6">
@@ -27,13 +27,13 @@
   <div class="col-md-6">
     <div class="form-group">
       <label for="account-pass">New Password</label>
-      <input class="form-control" type="password" id="account-pass">
+      <input class="form-control" type="password" formControlName="password" id="account-pass">
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group">
       <label for="account-confirm-pass">Confirm Password</label>
-      <input class="form-control" type="password" id="account-confirm-pass">
+      <input class="form-control" type="password" formControlName="confirmPassword" id="account-confirm-pass">
     </div>
   </div>
   <div class="col-12">
@@ -41,8 +41,7 @@
     <div class="d-flex flex-wrap justify-content-between align-items-center">
       <div class="custom-control custom-checkbox d-block">
       </div>
-      <button class="btn btn-primary margin-right-none" type="button" data-toast="" data-toast-position="topRight" data-toast-type="success"
-        data-toast-icon="icon-circle-check" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Update Profile</button>
+      <button class="btn btn-primary margin-right-none" type="submit" [disabled]="!formProfile.valid">Update Profile</button>
     </div>
   </div>
 </form>
