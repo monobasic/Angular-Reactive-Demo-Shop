@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   products: Product[];
   productsFeatured: any;
   productsNewArrivals: Product[];
+  productsOnSale: Product[];
 
   constructor(
     private messageService: MessageService,
@@ -31,6 +32,16 @@ export class HomeComponent implements OnInit {
         products => {
           console.log(products);
           this.productsFeatured = products;
+        },
+        err => console.error(err)
+      );
+
+    this.productService.getProductsQuery('sale', true, 3)
+      .subscribe(
+        products => {
+          console.log('products on sale:');
+          console.log(products);
+          this.productsOnSale = products;
         },
         err => console.error(err)
       );
