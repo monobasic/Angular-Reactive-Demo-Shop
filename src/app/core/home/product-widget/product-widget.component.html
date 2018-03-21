@@ -3,7 +3,7 @@
 
   <div *ngFor="let product of products" class="entry">
     <div class="entry-thumb">
-      <a href="shop-single.html">
+      <a routerLink="/products/{{ product.id }}">
         <img src="{{ product.imageURLs[0] }}" alt="{{ product.name }}">
       </a>
     </div>
