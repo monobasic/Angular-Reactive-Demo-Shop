@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
+import { NgxSiemaModule } from 'ngx-siema';
 
 import { ContentComponent } from './content/content.component';
 import { HeaderComponent } from './header/header.component';
@@ -11,7 +12,8 @@ import { NavigationMainComponent } from './header/navigation-main/navigation-mai
 import { ToolbarCartComponent } from './header/toolbar/cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { MainSliderComponent } from './home/main-slider/main-slider.component';
-import { NgxSiemaModule } from 'ngx-siema';
+import { ProductWidgetComponent } from './home/product-widget/product-widget.component';
+import { PromoComponent } from './home/promo/promo.component';
 
 import { ProductService } from '../products/shared/product.service';
 import { ProductsCacheService } from '../products/shared/products-cache.service';
@@ -23,7 +25,7 @@ import { CheckoutService } from '../checkout/shared/checkout.service';
 import { AuthService } from '../account/shared/auth.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { OffcanvasService } from './shared/offcanvas.service';
-import { ProductWidgetComponent } from './home/product-widget/product-widget.component';
+
 
 @NgModule({
     declarations: [
@@ -36,7 +38,8 @@ import { ProductWidgetComponent } from './home/product-widget/product-widget.com
         ToolbarCartComponent,
         HomeComponent,
         MainSliderComponent,
-        ProductWidgetComponent
+        ProductWidgetComponent,
+        PromoComponent
     ],
     imports: [
         CommonModule,
