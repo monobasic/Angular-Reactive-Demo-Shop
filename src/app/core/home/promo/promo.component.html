@@ -1,7 +1,7 @@
 <section class="container-fluid" *ngIf="promo">
   <div class="row justify-content-center">
     <div class="col-xl-10 col-lg-12">
-      <div class="fw-section rounded padding-top-4x padding-bottom-4x" style="background-image: url('{{ promo.imageUrl }}');">
+      <div class="fw-section rounded padding-top-4x padding-bottom-4x" [ngStyle]="{'background-image': 'url(' + promo.imageUrl + ')'}">
         <span class="overlay rounded" style="opacity: .35;"></span>
         <div class="text-center">
           <h3 class="display-4 text-normal text-white text-shadow mb-1">{{ promo.preHeading }}</h3>
