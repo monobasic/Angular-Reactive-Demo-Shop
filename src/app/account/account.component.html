@@ -10,12 +10,12 @@
           <li>
             <a routerLink="/home" href="">Home</a>
           </li>
-          <li class="separator">&nbsp;</li>
-          <li>
-            My Profile {{currentLocation}}
+          <li *ngIf="router.url === '/account/profile'" class="separator">&nbsp;</li>
+          <li *ngIf="router.url === '/account/profile'">
+            My Profile
           </li>
-          <li class="separator">&nbsp;</li>
-          <li>
+          <li *ngIf="router.url === '/account/orders'" class="separator">&nbsp;</li>
+          <li *ngIf="router.url === '/account/orders'">
             My Orders
           </li>
         </ul>
