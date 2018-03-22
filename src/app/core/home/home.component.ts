@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit {
     this.productService.getFeaturedProducts()
       .subscribe(
         products => {
-          console.log(products);
           this.productsFeatured = products;
         },
         err => console.error(err)
@@ -44,8 +43,6 @@ export class HomeComponent implements OnInit {
     this.productService.getProductsByDate(3)
       .subscribe(
         products => {
-          console.log('products by date:');
-          console.log(products);
           this.productsNewArrivals = products;
         },
         err => console.error(err)
@@ -54,8 +51,6 @@ export class HomeComponent implements OnInit {
     this.productService.getProductsByRating(3)
       .subscribe(
         products => {
-          console.log('products by rating:');
-          console.log(products);
           this.productsBestRated = products;
         },
         err => console.error(err)
@@ -64,8 +59,6 @@ export class HomeComponent implements OnInit {
     this.productService.getProductsQuery('sale', true, 3)
       .subscribe(
         products => {
-          console.log('products on sale:');
-          console.log(products);
           this.productsOnSale = products;
         },
         err => console.error(err)
@@ -74,10 +67,9 @@ export class HomeComponent implements OnInit {
       this.promoService.getPromos()
         .subscribe(
           promos => {
-            console.log('fetched promo');
             this.promos = promos;
           }
-        )
+        );
   }
 
 
