@@ -48,6 +48,7 @@ export class AddEditComponent implements OnInit {
         Validators.required,
         Validators.min(0)
       ]),
+      date: new FormControl(this.product.date, Validators.required),
       categories: new FormControl(this.product.categories, Validators.required),
       description: new FormControl(
         this.product.description,
@@ -88,17 +89,15 @@ export class AddEditComponent implements OnInit {
 
     const calcReduction = Math.round((priceNormal - price) / priceNormal * 100);
     const reduction = calcReduction > 0 ? calcReduction : 0;
-
+    const sale = calcReduction > 0 ? true : false;
     const categories = val.categories || '';
-
-    const date = new Date().toString();
 
     this.product = {
       ...val,
+      sale,
       reduction,
       id,
       categories,
-      date,
       imageURLs: this.product.imageURLs || []
     };
   }
@@ -133,7 +132,7 @@ export class AddEditComponent implements OnInit {
 
     const files: FileList = this.photos.nativeElement.files;
     const product = { ...this.product, ...this.productForm.value };
-
+    console.log(this.product);
     if (this.mode === 'add') {
       this.addProduct(product, files);
     } else {
@@ -146,12 +145,8 @@ export class AddEditComponent implements OnInit {
       .addProduct({
         product,
         files
-      })
-      .subscribe(() => {
-        this.log.add('success updating ' + product.id);
-        this.router.navigate(['/products/' + product.id]);
       });
-  }
+    }
 
   updateProduct(product: Product, files: FileList) {
     this.productService
