@@ -68,19 +68,16 @@ export class FileUploadService {
           this.angularFireDatabase
             .list('products')
             .set(data.product.id.toString(), data.product);
-          }
-          return of(data.product.id);
+        }
+        return of(data.product.id);
       })
     );
   }
 
-  deleteFile(key) {
-    console.log(key);
-    const path = key[0];
-    this.storage
-      .ref(path)
-      .delete()
-      .subscribe((res) => console.log(res));
+  deleteFile(files) {
+    files.map((filePath) => {
+      this.storage.ref(filePath).delete();
+    });
   }
 
   // Determines if the upload task is active
