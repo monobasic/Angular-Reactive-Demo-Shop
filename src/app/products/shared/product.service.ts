@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, concatMap } from 'rxjs/operators';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/switchMap';
@@ -163,22 +163,7 @@ export class ProductService {
 
   /** POST: add a new Product to the server */
   addProduct(data: { product: Product; files: FileList }) {
-    this.uploadService.startUpload(data.files);
-
-    this.uploadService.snapshot.subscribe(sn => console.log(sn));
-    console.log(this.uploadService.task);
-    this.uploadService.task.downloadURL().subscribe((url) => {
-      if (url) {
-        console.log(url);
-        data.product.imageURLs.push(url);
-
-        this.angularFireDatabase
-          .list<Product>('products')
-          .set(data.product.id.toString(), data.product);
-      }
-    });
-
-    return this.uploadService.downloadURL;
+    return this.uploadService.startUpload(data);
   }
 
   searchProducts(term: string): Observable<Product[]> {
