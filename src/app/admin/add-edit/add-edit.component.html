@@ -42,6 +42,16 @@
         </div>
 
         <div class="form-group row">
+          <label class="col-2 col-form-label" for="date-input">Creation Date</label>
+          <div class="col-10">
+            <input class="form-control" type="date" id="date-input" formControlName="date" value="">
+            <div *ngIf="!productForm.get('date').valid && productForm.get('date').touched" class="form-control-feedback">
+              Shucks, enter a date for your product.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
           <label class="col-2 col-form-label" for="categories">Categories (commma seperated)</label>
           <div class="col-10">
             <input class="form-control form-control-square form-control-sm" formControlName="categories" type="text" id="categories"
