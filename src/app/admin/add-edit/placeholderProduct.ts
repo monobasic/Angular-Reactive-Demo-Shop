@@ -8,6 +8,7 @@ export const placeholderProduct: Product = {
   price: 1000,
   priceNormal: 2000,
   imageURLs: [],
+  imageRefs: [],
   categories: ['Some', 'Example', 'Categories'],
   reduction: 50,
   sale: true
