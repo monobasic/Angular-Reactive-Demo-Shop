@@ -7,6 +7,7 @@ export class Product {
     priceNormal: number;
     reduction?: number;
     imageURLs: string[];
+    imageRefs?: string[];
     categories: string[];
     ratings?: {};
     currentRating?: number;
