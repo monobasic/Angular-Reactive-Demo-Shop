@@ -1,6 +1,6 @@
 export class Product {
     id: number;
-    date: string;
+    date?: string;
     name: string;
     description: string;
     price: number;
@@ -9,4 +9,6 @@ export class Product {
     imageURLs: string[];
     categories: string[];
     ratings?: {};
+    currentRating?: number;
+    sale?: boolean;
 }

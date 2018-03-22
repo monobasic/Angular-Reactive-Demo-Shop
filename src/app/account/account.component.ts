@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  ActivatedRoute,
-  UrlSegment,
-  ActivatedRouteSnapshot
-} from '@angular/router';
-import { Location } from '@angular/common';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { User } from '../models/user.model';
+import { AuthService } from './shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -12,15 +10,12 @@ import { Location } from '@angular/common';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-  currentLocation;
-  constructor(private route: ActivatedRoute, private location: Location) {}
+  user: User;
+
+  constructor(private authService: AuthService,
+    public router: Router) {}
 
   ngOnInit() {
-    console.log(this.route.snapshot);
-    console.log(this.route.children);
-    const loc = this.route.params.subscribe((para) => {
-      console.log(para);
-    });
+    this.authService.user.subscribe(user => this.user = user);
   }
-  getLocation() {}
 }

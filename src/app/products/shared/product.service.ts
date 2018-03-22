@@ -4,6 +4,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
+import 'rxjs/add/observable/combineLatest';
+import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/observable/interval';
 
 import { MessageService } from '../../messages/message.service';
 import { Product } from '../../models/product.model';
@@ -34,6 +39,14 @@ export class ProductService {
     this.messageService.add('ProductService: ' + message);
   }
 
+  private simulateHttp(val: any, delay: number) {
+    return Observable.of(val).delay(delay);
+  }
+
+  private simulateFirebase(val: any, delay: number) {
+    return Observable.interval(delay).map(index => val + ' ' + index);
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -59,19 +72,56 @@ export class ProductService {
       .list<Product>('products')
       .valueChanges()
       .pipe(
-        tap(() => this.log(`fetched Products`)),
+        // tap(() => this.log(`fetched Products`)),
         catchError(this.handleError<Product[]>(`getProducts`))
       );
   }
 
+  getProductsQuery(byChild: string, equalTo: string | boolean, limitToFirst: number): Observable<Product[]> {
+    return this.angularFireDatabase.list<Product>('products', ref => ref.orderByChild(byChild).equalTo(equalTo).limitToFirst(limitToFirst))
+      .valueChanges();
+  }
+
+  getProductsByDate(limitToLast: number): Observable<Product[]> {
+    return this.angularFireDatabase.list<Product>('products', ref => ref.orderByChild('date')
+      .limitToLast(limitToLast))
+      .valueChanges()
+      .map((arr) => arr.reverse());
+  }
+
+  getProductsByRating(limitToLast: number): Observable<Product[]> {
+    return this.angularFireDatabase.list<Product>('products', ref => ref.orderByChild('currentRating')
+      .limitToLast(limitToLast))
+      .valueChanges()
+      .map((arr) => arr.reverse());
+  }
+
+  getFeaturedProducts(): Observable<any[]> {
+    return this.angularFireDatabase.list<Product>('featured')
+      .snapshotChanges()
+      .switchMap(
+        actions => {
+          return Observable.combineLatest(actions.map(action => this.getProduct(action.key)));
+        },
+        (actionsFromSource, resolvedProducts) => {
+          const combinedProducts = resolvedProducts.map((product, i) => {
+            product['imageFeaturedUrl'] = actionsFromSource[i].payload.val().imageUrl;
+            return product;
+          });
+          return resolvedProducts;
+        }
+      );
+  }
+
+
   /** GET product by id. Will 404 if id not found */
-  getProduct(id: number): Observable<Product> {
+  getProduct(id: any): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
     return this.angularFireDatabase
       .object<Product>(url)
       .valueChanges()
       .pipe(
-        tap(() => this.log(`fetched Product id=${id}`)),
+        // tap(() => this.log(`fetched Product id=${id}`)),
         catchError(this.handleError<Product>(`getProduct id=${id}`))
       );
   }
@@ -79,7 +129,16 @@ export class ProductService {
   rateProduct(product: Product, rating: number) {
     const url = `${this.productsUrl}/${product.id}`;
     const updates = {};
+    // Add user rating
     updates['/ratings/' + this.authService.getUserUid() + '/'] = rating;
+
+    // Add user rating to local version of ratings
+    product.ratings[this.authService.getUserUid()] = rating;
+    // Calculate and add new overall rating
+    const currentRating = <number>Object.values(product.ratings)
+      .reduce((a: number, b: number) => a + b, 0) / Object.values(product.ratings).length;
+    updates['currentRating'] = currentRating;
+
     return this.angularFireDatabase
       .object<Product>(url)
       .update(updates)

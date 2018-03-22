@@ -43,7 +43,7 @@
       <!-- Product Info-->
       <div class="col-md-6">
         <div class="padding-top-2x mt-2 hidden-md-up"></div>
-        <app-rating-stars [ratings]="product.ratings"></app-rating-stars>
+        <app-rating-stars [rating]="product.currentRating"></app-rating-stars>
         <span *ngIf="product.ratings" class="text-muted align-middle">{{ ratingCount }} customer reviews</span>
         <h2 class="padding-top-1x text-normal">{{ product.name }}</h2>
         <span class="h2 d-block">

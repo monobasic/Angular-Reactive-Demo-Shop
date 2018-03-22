@@ -37,7 +37,7 @@
           <a *ngIf="!user; else whenLoggedIn" routerLink="/register-login"></a>
 
           <ng-template #whenLoggedIn>
-            <a routerLink="/account"></a>
+            <a routerLink="/account/profile"></a>
           </ng-template>
 
           <i class="icon-head"></i>
@@ -55,9 +55,6 @@
             </li>
             <li>
               <a routerLink="/account/orders" href="">Orders List</a>
-            </li>
-            <li>
-              <a href="account-wishlist.html">Wishlist</a>
             </li>
             <li class="sub-menu-separator"></li>
             <li>

@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Order } from '../../models/order.model';
-import { MessageService } from '../../messages/message.service';
+import { Order } from '../../../models/order.model';
+import { MessageService } from '../../../messages/message.service';
 
 @Injectable()
 export class OrderService {

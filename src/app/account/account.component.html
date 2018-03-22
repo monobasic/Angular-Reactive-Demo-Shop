@@ -1,64 +1,60 @@
-<div class="offcanvas-wrapper">
-  <!-- Page Title-->
-  <div class="page-title">  
-    <div class="container">
-      <div class="column">
-        <h1>My Profile</h1>
-      </div>
-      <div class="column">
-        <ul class="breadcrumbs">
-          <li>
-            <a routerLink="/home" href="">Home (in Account comp)</a>
-          </li>
-          <li class="separator">&nbsp;</li>
-          <li>
-            <a routerLink="/account" href="">Account</a>
-          </li>
-          <li class="separator">&nbsp;</li>
-          <li>My Profile</li>
-        </ul>
-      </div>
-    </div>
-  </div>
 
-  <!-- Page Content-->
-  <div class="container padding-bottom-3x mb-2">
-    <div class="row">
-      <div class="col-lg-4">
-        <aside class="user-info-wrapper">
-          <div class="user-cover" style="background-image: url(img/account/user-cover-img.jpg);">
-            <div class="info-label" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward Points to spend">
-              <i class="icon-medal"></i>290 points</div>
-          </div>
-          <div class="user-info">
-            <div class="user-avatar">
-              <a class="edit-avatar" href="#"></a>
-              <img src="img/account/user-ava.jpg" alt="User">
-            </div>
-            <div class="user-data">
-              <h4>Daniel Adams in account-component</h4>
-              <span>Joined February 06, 2017</span>
-            </div>
-          </div>
-        </aside>
-        <nav class="list-group">
-        
-          <a class="list-group-item with-badge" routerLinkActive="active" routerLink="/account/orders" href="">
-            <i class="icon-bag"></i>Orders
-            <span class="badge badge-primary badge-pill">6</span>
-          </a>
-        
-          <a class="list-group-item" routerLinkActive="active" routerLink="/account/profile">
-            <i class="icon-head"></i>Profile
-          </a>
-        
-            <a class="list-group-item" routerLink="/account">
-            <i class="icon-map"></i>Addresses</a>
-        </nav>
-      </div>
-      <div class="col-lg-8">
-        <router-outlet></router-outlet>
-      </div>
+<!-- Page Title-->
+<div class="page-title">
+  <div class="container">
+    <div class="column">
+      <h1>My Profile</h1>
+    </div>
+    <div class="column">
+      <ul class="breadcrumbs">
+        <li>
+          <a routerLink="/home" href="">Home</a>
+        </li>
+        <li *ngIf="router.url === '/account/profile'" class="separator">&nbsp;</li>
+        <li *ngIf="router.url === '/account/profile'">
+          My Profile
+        </li>
+        <li *ngIf="router.url === '/account/orders'" class="separator">&nbsp;</li>
+        <li *ngIf="router.url === '/account/orders'">
+          My Orders
+        </li>
+      </ul>
     </div>
   </div>
 </div>
+
+<!-- Page Content-->
+<div class="container padding-bottom-3x mb-2">
+  <div class="row">
+    <div class="col-lg-4">
+      <aside class="user-info-wrapper">
+        <div class="user-cover" style="background-image: url(img/account/user-cover-img.jpg);">
+        </div>
+        <div class="user-info">
+          <!-- <div class="user-avatar">
+            <a class="edit-avatar" href="#"></a>
+            <img src="img/account/user-ava.jpg" alt="User">
+          </div> -->
+          <div *ngIf="user" class="user-data">
+            <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+            <span>{{ user.email }} <span *ngIf="user.roles.admin">(Admin)</span></span>
+          </div>
+        </div>
+      </aside>
+      <nav class="list-group">
+        <a class="list-group-item" routerLinkActive="active" routerLink="/account/profile">
+          <i class="icon-head"></i>Profile
+        </a>
+
+        <a class="list-group-item with-badge" routerLinkActive="active" routerLink="/account/orders" href="">
+          <i class="icon-bag"></i>Orders
+          <span class="badge badge-primary badge-pill">6</span>
+        </a>
+      </nav>
+    </div>
+    <div class="col-lg-8">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

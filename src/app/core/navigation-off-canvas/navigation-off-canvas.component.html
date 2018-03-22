@@ -172,13 +172,14 @@
 
 <!-- Off-Canvas Mobile Menu-->
 <div class="offcanvas-container" id="mobile-menu" [ngClass]="{'active': offcanvasService.offcanvasNavigationOpen | async}">
-  <a *ngIf="user" class="account-link" routerLink="/account" (click)="onNavigationClick()">
-    <div class="user-ava">
+  <a *ngIf="user" class="account-link" routerLink="/account/profile" (click)="onNavigationClick()">
+    <!-- <div class="user-ava">
       <img src="img/account/user-ava-md.jpg" alt="Daniel Adams">
-    </div>
+    </div> -->
     <div class="user-info">
-      <h6 class="user-name">Daniel Adams</h6>
-      <span class="text-sm text-white opacity-60">290 Reward points</span>
+      <span class="text-sm text-white opacity-60">Logged in as:</span>
+      <h6 class="user-name">{{ user.email }}<span *ngIf="user.roles.admin"> (Admin)</span></h6>
+      <!-- <span class="text-sm text-white opacity-60">290 Reward points</span> -->
     </div>
   </a>
   <nav class="offcanvas-menu">
@@ -187,6 +188,20 @@
         <span>
           <a routerLink="/register-login" (click)="onNavigationClick()">
             <span>Register/Login</span>
+          </a>
+        </span>
+      </li>
+      <li *ngIf="user" routerLinkActive="active">
+        <span>
+          <a routerLink="/account/profile" (click)="onNavigationClick()">
+            <span>My Profile</span>
+          </a>
+        </span>
+      </li>
+      <li *ngIf="user" routerLinkActive="active">
+        <span>
+          <a routerLink="/account/orders" (click)="onNavigationClick()">
+            <span>My Orders</span>
           </a>
         </span>
       </li>

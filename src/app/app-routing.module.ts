@@ -8,7 +8,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AdminGuard } from './admin/shared/admin.guard';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { RegisterLoginComponent } from './account/register-login/register-login.component';
-import { OrdersComponent } from './orders/orders.component';
+import { OrdersComponent } from './account/orders/orders.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { AccountComponent } from './account/account.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';

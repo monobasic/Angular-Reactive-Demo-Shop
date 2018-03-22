@@ -1,49 +1,49 @@
 <div class="padding-top-2x mt-2 hidden-lg-up">
 </div>
-<form class="row">
-  <div class="col-md-6">
-    <div class="form-group">
-      <label for="account-fn">First Name</label>
-      <input class="form-control" type="text" id="account-fn" value="Daniel" required="">
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="form-group">
-      <label for="account-ln">Last Name</label>
-      <input class="form-control" type="text" id="account-ln" value="Adams" required="">
-    </div>
-  </div>
+<form class="row" [formGroup]="formProfile" (ngSubmit)="onSubmit()">
   <div class="col-md-6">
     <div class="form-group">
       <label for="account-email">E-mail Address</label>
-      <input class="form-control" type="email" id="account-email" value="daniel.adams@mail.com" disabled="">
+      <input class="form-control" type="email" id="account-email" formControlName="email">
+    </div>
+  </div>
+  <div class="col-md-6"></div>
+  <div class="col-md-6">
+    <div class="form-group" [ngClass]="{'has-danger': formProfile.get('firstName').invalid && formProfile.get('firstName').touched}">
+      <label for="account-fn">First Name</label>
+      <input class="form-control" type="text" id="account-fn" formControlName="firstName">
+      <div class="form-control-feedback" *ngIf="formProfile.get('firstName').invalid && formProfile.get('firstName').touched">Please enter your firstname!</div>
     </div>
   </div>
   <div class="col-md-6">
-    <div class="form-group">
-      <label for="account-phone">Phone Number</label>
-      <input class="form-control" type="text" id="account-phone" value="+7(805) 348 95 72" required="">
+    <div class="form-group" [ngClass]="{'has-danger': formProfile.get('lastName').invalid && formProfile.get('lastName').touched}">
+      <label for="account-ln">Last Name</label>
+      <input class="form-control" type="text" id="account-ln" formControlName="lastName">
+      <div class="form-control-feedback" *ngIf="formProfile.get('lastName').invalid && formProfile.get('lastName').touched">Please enter your lastname!</div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group">
       <label for="account-pass">New Password</label>
-      <input class="form-control" type="password" id="account-pass">
+      <input class="form-control" type="password" formControlName="password" id="account-pass">
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group">
       <label for="account-confirm-pass">Confirm Password</label>
-      <input class="form-control" type="password" id="account-confirm-pass">
+      <input class="form-control" type="password" formControlName="confirmPassword" id="account-confirm-pass">
     </div>
   </div>
   <div class="col-12">
     <hr class="mt-2 mb-3">
-    <div class="d-flex flex-wrap justify-content-between align-items-center">
-      <div class="custom-control custom-checkbox d-block">
+    <div class="form-group has-danger">
+      <div class="form-control-feedback">
+        {{ profileErrors }}
       </div>
-      <button class="btn btn-primary margin-right-none" type="button" data-toast="" data-toast-position="topRight" data-toast-type="success"
-        data-toast-icon="icon-circle-check" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Update Profile</button>
+    </div>
+    <div class="text-right">
+      <button class="btn btn-primary margin-right-none" type="submit" [disabled]="!formProfile.valid">Update Profile</button>
     </div>
   </div>
 </form>
+<!-- <p>Form value: {{ formProfile.value | json }}</p> -->

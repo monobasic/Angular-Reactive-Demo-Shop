@@ -87,7 +87,7 @@ export class AddEditComponent implements OnInit {
     const price = val.price;
 
     const calcReduction = Math.round((priceNormal - price) / priceNormal * 100);
-    const reduction = calcReduction > 0 ? calcReduction : undefined;
+    const reduction = calcReduction > 0 ? calcReduction : 0;
 
     const categories = val.categories || '';
 

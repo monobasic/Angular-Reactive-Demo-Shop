@@ -1,0 +1,18 @@
+<div *ngIf="products" class="widget widget-featured-products">
+  <h3 class="widget-title">{{ widgetTitle }}</h3>
+
+  <div *ngFor="let product of products" class="entry">
+    <div class="entry-thumb">
+      <a routerLink="/products/{{ product.id }}">
+        <img src="{{ product.imageURLs[0] }}" alt="{{ product.name }}">
+      </a>
+    </div>
+    <div class="entry-content">
+      <h4 class="entry-title">
+        <a routerLink="/products/{{ product.id }}">{{ product.name}}</a>
+      </h4>
+      <span class="entry-meta"><app-price [product]="product"></app-price></span>
+    </div>
+  </div>
+
+</div>

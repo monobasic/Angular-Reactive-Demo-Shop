@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.messageService.add('MessageService: App ready!');
     this.getProducts();
   }
 

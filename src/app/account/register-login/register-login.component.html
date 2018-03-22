@@ -43,20 +43,23 @@
           </div> -->
 
           <h3 class="margin-bottom-1x">Login</h3>
-          <div class="form-group input-group">
+          <div class="form-group input-group" [ngClass]="{'has-danger': !loginForm.get('email').valid && loginForm.get('email').touched}">
             <input class="form-control" formControlName="email" type="email" placeholder="Email" required="">
-            <div *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched" class="form-control-feedback">
-              Shucks, enter a name for your product.
-            </div>
             <span class="input-group-addon">
               <i class="icon-mail"></i>
             </span>
+            <div *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched" class="form-control-feedback">
+              Be sure to enter a valid, existing Email.
+            </div>
           </div>
-          <div class="form-group input-group">
+          <div class="form-group input-group" [ngClass]="{'has-danger': !loginForm.get('password').valid && loginForm.get('password').touched}">
             <input class="form-control" formControlName="password" type="password" placeholder="Password" required="">
             <span class="input-group-addon">
               <i class="icon-lock"></i>
             </span>
+            <div *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched" class="form-control-feedback">
+              The entered password seems to be wrong..
+            </div>
           </div>
 
           <!-- <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
@@ -90,33 +93,40 @@
           </div> -->
 
           <div class="col-sm-12">
-            <div class="form-group">
+            <div class="form-group" [ngClass]="{'has-danger': !registerForm.get('email').valid && registerForm.get('email').touched}">
               <label for="reg-email">E-mail Address</label>
-              <input class="form-control" formControlName="email" type="email" id="reg-email" required="">
+              <input class="form-control" formControlName="email" type="email" id="reg-email" required>
             </div>
           </div>
 
           <!-- <div class="col-sm-6">
             <div class="form-group">
               <label for="reg-phone">Phone Number</label>
-              <input class="form-control" formControlName="phoneNumber" type="text" id="reg-phone" required="">
+              <input class="form-control" formControlName="phoneNumber" type="text" id="reg-phone" required>
             </div>
           </div> -->
 
             <div class="col-sm-6">
-              <div class="form-group">
+              <div class="form-group" [ngClass]="{'has-danger': !registerForm.get('password').valid && registerForm.get('password').touched}">
                 <label for="reg-pass">Password</label>
-                <input class="form-control" formControlName="password" type="password" id="reg-pass" required="">
+                <input class="form-control" formControlName="password" type="password" id="reg-pass" required>
               </div>
             </div>
             <div class="col-sm-6">
-              <div class="form-group">
+              <div class="form-group" [ngClass]="{'has-danger': !registerForm.get('confirmPassword').valid && registerForm.get('confirmPassword').touched}">
                 <label for="reg-pass-confirm">Confirm Password</label>
-                <input class="form-control" formControlName="confirmPassword" type="password" id="reg-pass-confirm" required="">
+                <input class="form-control" formControlName="confirmPassword" type="password" id="reg-pass-confirm" required>
               </div>
             </div>
 
           <div class="col-12 text-center text-sm-right">
+
+            <div class="form-group has-danger">
+              <div class="form-control-feedback">
+                {{ registerErrors }}
+              </div>
+            </div>
+
             <button [disabled]="!registerForm.valid" class="btn btn-primary margin-bottom-none" type="submit">Register</button>
           </div>
         </form>
