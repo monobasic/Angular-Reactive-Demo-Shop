@@ -181,7 +181,7 @@ export class ProductService {
   deleteProduct(product: Product) {
     const url = `${this.productsUrl}/${product.id}`;
 
-    // this.uploadService.deleteFile(product.id);
+    this.uploadService.deleteFile(product.imageRefs);
 
     return this.angularFireDatabase
       .object<Product>(url)

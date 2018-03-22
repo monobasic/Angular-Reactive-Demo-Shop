@@ -75,7 +75,8 @@ export class FileUploadService {
   }
 
   deleteFile(key) {
-    const path = `product-images/${key}`;
+    console.log(key);
+    const path = key[0];
     this.storage
       .ref(path)
       .delete()
