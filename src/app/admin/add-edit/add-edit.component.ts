@@ -142,11 +142,12 @@ export class AddEditComponent implements OnInit {
 
   addProduct(product: Product, files: FileList) {
     this.productService
-      .addProduct({
-        product,
-        files
-      });
-    }
+      .addProduct({product, files}).subscribe(response => {
+        if (response) {
+          this.router.navigate(['/products/' + response]);
+        }
+    });
+  }
 
   updateProduct(product: Product, files: FileList) {
     this.productService

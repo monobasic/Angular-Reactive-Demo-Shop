@@ -113,7 +113,6 @@ export class ProductService {
       );
   }
 
-
   /** GET product by id. Will 404 if id not found */
   getProduct(id: any): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;

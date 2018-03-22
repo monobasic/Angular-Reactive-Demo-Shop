@@ -5,9 +5,17 @@ import {
 } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { by } from 'protractor';
+import { tap, concatMap } from 'rxjs/operators';
+import { Product } from '../../models/product.model';
+import { mergeMap } from 'rxjs/operator/mergeMap';
+import { fromPromise } from 'rxjs/observable/fromPromise';
+import { merge } from 'rxjs/observable/merge';
 
 @Injectable()
 export class FileUploadService {
+  products$;
   // Main task
   task: AngularFireUploadTask;
 
@@ -19,11 +27,14 @@ export class FileUploadService {
   // Download URL
   downloadURL: Observable<string>;
 
-  constructor(private storage: AngularFireStorage) {}
+  constructor(
+    private storage: AngularFireStorage,
+    private angularFireDatabase: AngularFireDatabase
+  ) {}
 
-  startUpload(files: FileList) {
+  startUpload(data) {
     // The File object
-    const file = files.item(0);
+    const file = data.files.item(0);
 
     // Client-side validation example
     if (file.type.split('/')[0] !== 'image') {
@@ -44,10 +55,23 @@ export class FileUploadService {
     this.percentage = this.task.percentageChanges();
     this.snapshot = this.task.snapshotChanges();
 
-    // The file's download URL
-    this.downloadURL = this.task.downloadURL();
+    return this.saveProduct(data);
+  }
 
-    return this.task;
+  saveProduct(data: { product: Product; files: FileList }) {
+    return this.snapshot.pipe(
+      concatMap((snap) => {
+        console.log(snap);
+        if (snap.downloadURL) {
+          data.product.imageURLs.push(snap.downloadURL);
+          data.product.imageRefs.push(snap.metadata.fullPath);
+          this.angularFireDatabase
+            .list('products')
+            .set(data.product.id.toString(), data.product);
+          }
+          return of(data.product.id);
+      })
+    );
   }
 
   deleteFile(key) {
@@ -57,6 +81,7 @@ export class FileUploadService {
       .delete()
       .subscribe((res) => console.log(res));
   }
+
   // Determines if the upload task is active
   isActive(snapshot) {
     return (
