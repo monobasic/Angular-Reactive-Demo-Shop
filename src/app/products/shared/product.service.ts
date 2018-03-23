@@ -152,14 +152,18 @@ export class ProductService {
   /** PUT: update the Product on the server */
   updateProduct(data: { product: Product; files: FileList }) {
     const url = `${this.productsUrl}/${data.product.id}`;
+    return fromPromise(this.uploadService.startUpload(data)
+    .then(
+      task => {
+        data.product.imageURLs[0] = (task.downloadURL);
+        data.product.imageRefs[0] = (task.ref.fullPath);
 
-    return this.angularFireDatabase
-      .object<Product>(url)
-      .update(data.product)
-      .then(() => this.log(`Updated Product ${data.product.name}`))
-      .catch((error) => {
-        this.handleError<any>(error);
-      });
+        return this.angularFireDatabase.object<Product>(url)
+        .update(data.product)
+        .then(() => {this.log(`Updated Product ${data.product.name}`); return data.product; })
+        .catch(error => this.handleError(error));
+      }
+    ));
   }
 
   /** POST: add a new Product to the server */
@@ -171,7 +175,12 @@ export class ProductService {
         data.product.imageRefs.push(task.ref.fullPath);
 
         return this.angularFireDatabase.list('products')
-          .set(data.product.id.toString(), data.product).then(() => data.product);
+          .set(data.product.id.toString(), data.product)
+          .then(() => {
+            this.log(`Added Product ${data.product.name}`);
+            return data.product;
+          })
+          .catch(error => this.handleError(error));
       }));
   }
 

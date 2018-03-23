@@ -38,14 +38,6 @@ export class FileUploadService {
     // The main task
     const task = this.storage.upload(path, file);
 
-    // // The file's download URL
-    // const downloadURL = this.task.downloadURL();
-
-    // // Progress monitoring
-    // const percentage = this.task.percentageChanges();
-
-    // const snapshot = this.task.snapshotChanges();
-
     return task;
   }
 

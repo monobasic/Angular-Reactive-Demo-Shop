@@ -152,15 +152,11 @@ export class AddEditComponent implements OnInit {
 
   updateProduct(product: Product, files: FileList) {
     this.productService
-      .updateProduct({
-        product,
-        files
-      })
-      .then(() => {
-        this.log.add('success updating ' + product.id);
-        this.router.navigate(['/products/' + product.id]);
-      })
-      .catch((error) => this.log.add(error.message));
+      .updateProduct({product, files}).subscribe(response => {
+        if (response) {
+          this.router.navigate(['/products/' + response.id]);
+        }
+      });
   }
 
   onDelete() {
