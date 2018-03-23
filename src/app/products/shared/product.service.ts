@@ -46,7 +46,7 @@ export class ProductService {
   }
 
   private simulateFirebase(val: any, delay: number) {
-    return Observable.interval(delay).map(index => val + ' ' + index);
+    return Observable.interval(delay).map((index) => val + ' ' + index);
   }
 
   /**
@@ -79,35 +79,54 @@ export class ProductService {
       );
   }
 
-  getProductsQuery(byChild: string, equalTo: string | boolean, limitToFirst: number): Observable<Product[]> {
-    return this.angularFireDatabase.list<Product>('products', ref => ref.orderByChild(byChild).equalTo(equalTo).limitToFirst(limitToFirst))
+  getProductsQuery(
+    byChild: string,
+    equalTo: string | boolean,
+    limitToFirst: number
+  ): Observable<Product[]> {
+    return this.angularFireDatabase
+      .list<Product>('products', (ref) =>
+        ref
+          .orderByChild(byChild)
+          .equalTo(equalTo)
+          .limitToFirst(limitToFirst)
+      )
       .valueChanges();
   }
 
   getProductsByDate(limitToLast: number): Observable<Product[]> {
-    return this.angularFireDatabase.list<Product>('products', ref => ref.orderByChild('date')
-      .limitToLast(limitToLast))
+    return this.angularFireDatabase
+      .list<Product>('products', (ref) =>
+        ref.orderByChild('date').limitToLast(limitToLast)
+      )
       .valueChanges()
       .map((arr) => arr.reverse());
   }
 
   getProductsByRating(limitToLast: number): Observable<Product[]> {
-    return this.angularFireDatabase.list<Product>('products', ref => ref.orderByChild('currentRating')
-      .limitToLast(limitToLast))
+    return this.angularFireDatabase
+      .list<Product>('products', (ref) =>
+        ref.orderByChild('currentRating').limitToLast(limitToLast)
+      )
       .valueChanges()
       .map((arr) => arr.reverse());
   }
 
   getFeaturedProducts(): Observable<any[]> {
-    return this.angularFireDatabase.list<Product>('featured')
+    return this.angularFireDatabase
+      .list<Product>('featured')
       .snapshotChanges()
       .switchMap(
-        actions => {
-          return Observable.combineLatest(actions.map(action => this.getProduct(action.key)));
+        (actions) => {
+          return Observable.combineLatest(
+            actions.map((action) => this.getProduct(action.key))
+          );
         },
         (actionsFromSource, resolvedProducts) => {
           const combinedProducts = resolvedProducts.map((product, i) => {
-            product['imageFeaturedUrl'] = actionsFromSource[i].payload.val().imageUrl;
+            product['imageFeaturedUrl'] = actionsFromSource[
+              i
+            ].payload.val().imageUrl;
             return product;
           });
           return resolvedProducts;
@@ -136,8 +155,11 @@ export class ProductService {
     // Add user rating to local version of ratings
     product.ratings[this.authService.getUserUid()] = rating;
     // Calculate and add new overall rating
-    const currentRating = <number>Object.values(product.ratings)
-      .reduce((a: number, b: number) => a + b, 0) / Object.values(product.ratings).length;
+    const currentRating =
+      <number>Object.values(product.ratings).reduce(
+        (a: number, b: number) => a + b,
+        0
+      ) / Object.values(product.ratings).length;
     updates['currentRating'] = currentRating;
 
     return this.angularFireDatabase
@@ -152,36 +174,47 @@ export class ProductService {
   /** PUT: update the Product on the server */
   updateProduct(data: { product: Product; files: FileList }) {
     const url = `${this.productsUrl}/${data.product.id}`;
-    return fromPromise(this.uploadService.startUpload(data)
-    .then(
-      task => {
-        data.product.imageURLs[0] = (task.downloadURL);
-        data.product.imageRefs[0] = (task.ref.fullPath);
+    return fromPromise(
+      this.uploadService.startUpload(data).then((task) => {
+        data.product.imageURLs[0] = task.downloadURL;
+        data.product.imageRefs[0] = task.ref.fullPath;
 
-        return this.angularFireDatabase.object<Product>(url)
-        .update(data.product)
-        .then(() => {this.log(`Updated Product ${data.product.name}`); return data.product; })
-        .catch(error => this.handleError(error));
-      }
-    ));
+        return this.angularFireDatabase
+          .object<Product>(url)
+          .update(data.product)
+          .then(() => {
+            this.log(`Updated Product ${data.product.name}`);
+            return data.product;
+          });
+      }).catch((error) => this.handleError(error))
+    );
   }
 
   /** POST: add a new Product to the server */
   addProduct(data: { product: Product; files: FileList }) {
-    return fromPromise(this.uploadService.startUpload(data)
-      .then(task => {
-        console.log(task);
-        data.product.imageURLs.push(task.downloadURL);
-        data.product.imageRefs.push(task.ref.fullPath);
+    return fromPromise(
+      this.uploadService
+        .startUpload(data)
+        .then((task) => {
+          console.log(task);
+          data.product.imageURLs.push(task.downloadURL);
+          data.product.imageRefs.push(task.ref.fullPath);
 
-        return this.angularFireDatabase.list('products')
-          .set(data.product.id.toString(), data.product)
-          .then(() => {
-            this.log(`Added Product ${data.product.name}`);
-            return data.product;
-          })
-          .catch(error => this.handleError(error));
-      }));
+          return this.angularFireDatabase
+            .list('products')
+            .set(data.product.id.toString(), data.product)
+            .then(() => {
+              this.log(`Added Product ${data.product.name}`);
+              return data.product;
+            });
+        })
+        .catch((error) => {
+          this.messageService.addError(
+            `Add Failed, Product ${data.product.name}`
+          );
+          return this.handleError(error);
+        })
+    );
   }
 
   searchProducts(term: string): Observable<Product[]> {
@@ -205,7 +238,7 @@ export class ProductService {
     return this.angularFireDatabase
       .object<Product>(url)
       .remove()
-      .then(() => this.log('success deleting' + product.id))
+      .then(() => this.log('success deleting' + product.name))
       .catch((error) => this.handleError('delete product'));
   }
 }

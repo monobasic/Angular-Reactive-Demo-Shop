@@ -36,7 +36,7 @@ export class FileUploadService {
     const path = `product-images/${new Date().getTime()}_${file.name}`;
 
     // The main task
-    const task = this.storage.upload(path, file);
+    const task = this.storage.upload(path, file).catch(error => error);
 
     return task;
   }
