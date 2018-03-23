@@ -18,9 +18,7 @@ export class FileUploadService {
   // Download URL
   downloadURL: Observable<string>;
 
-  constructor(
-    private storage: AngularFireStorage,
-  ) {}
+  constructor(private storage: AngularFireStorage) {}
 
   startUpload(data) {
     // The File object
@@ -36,15 +34,17 @@ export class FileUploadService {
     const path = `product-images/${new Date().getTime()}_${file.name}`;
 
     // The main task
-    const task = this.storage.upload(path, file).catch(error => error);
+    const task = this.storage.upload(path, file).catch((error) => error);
 
     return task;
   }
 
   deleteFile(files) {
-    files.map((filePath) => {
-      this.storage.ref(filePath).delete();
-    });
+    if (files) {
+      files.map((filePath) => {
+        return this.storage.ref(filePath).delete();
+      });
+    }
   }
 
   // Determines if the upload task is active

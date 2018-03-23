@@ -239,6 +239,9 @@ export class ProductService {
       .object<Product>(url)
       .remove()
       .then(() => this.log('success deleting' + product.name))
-      .catch((error) => this.handleError('delete product'));
+      .catch((error) => {
+        this.messageService.addError('Delete failed ' + product.name);
+        this.handleError('delete product');
+      });
   }
 }
