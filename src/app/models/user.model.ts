@@ -1,3 +1,5 @@
+import { Order } from './order.model';
+
 export interface Roles {
   admin: boolean;
 }
@@ -9,6 +11,7 @@ export class User {
   firstName?: string;
   lastName?: string;
   password?: string;
+  orders?: Order[];
   confirmPassword?: string;
 
   constructor(authData) {

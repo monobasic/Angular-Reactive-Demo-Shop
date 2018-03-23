@@ -141,7 +141,7 @@ export class ProductService {
       .object<Product>(url)
       .valueChanges()
       .pipe(
-        // tap(() => this.log(`fetched Product id=${id}`)),
+        tap(() => this.log(`fetched Product id=${id}`)),
         catchError(this.handleError<Product>(`getProduct id=${id}`))
       );
   }
