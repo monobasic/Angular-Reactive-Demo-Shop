@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CheckoutService } from '../shared/checkout.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { AuthService } from '../../account/shared/auth.service';
 @Component({
   selector: 'app-checkout-address',
   templateUrl: './address.component.html',
@@ -12,22 +13,44 @@ export class AddressComponent implements OnInit {
   formAddress: FormGroup;
   countries: string[];
 
-  constructor(private checkoutService: CheckoutService) {}
+  constructor(
+    private checkoutService: CheckoutService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-      this.initFormGroup();
+    this.authService.user.subscribe((user) => {
+      if (user) {
+        this.user = user;
+        console.log(this.user);
+        this.initFormGroup();
+      } else {
+        this.initFormGroup();
+      }
+    });
   }
   initFormGroup() {
     this.countries = ['Switzerland'];
     this.formAddress = new FormGroup({
-      firstname: new FormControl(null, Validators.required),
-      lastname: new FormControl(null, Validators.required),
+      firstname: new FormControl(
+        this.user && this.user.firstName || null,
+        Validators.required
+      ),
+      lastname: new FormControl(
+        this.user && this.user.lastName || null,
+        Validators.required
+      ),
       address1: new FormControl(null, Validators.required),
       address2: new FormControl(null),
-      zip: new FormControl( null, [Validators.required, Validators.pattern(/^\d\d\d\d$/)]
-      ),
+      zip: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(/^\d\d\d\d$/)
+      ]),
       city: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.email),
+      email: new FormControl(
+        this.user && this.user.email || null,
+        Validators.email
+      ),
       phone: new FormControl(null),
       company: new FormControl(null),
       country: new FormControl({ value: this.countries[0], disabled: false })
