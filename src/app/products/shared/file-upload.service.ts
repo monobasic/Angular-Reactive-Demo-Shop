@@ -12,7 +12,6 @@ import { Product } from '../../models/product.model';
 import { mergeMap } from 'rxjs/operator/mergeMap';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import { merge } from 'rxjs/observable/merge';
-import { UploadTaskSnapshot } from '@firebase/storage-types';
 
 @Injectable()
 export class FileUploadService {
@@ -45,26 +44,25 @@ export class FileUploadService {
 
     // The storage path
     const path = `product-images/${new Date().getTime()}_${file.name}`;
-    console.log(this.storage.upload);
 
     // The main task
-    const task = this.storage.upload(path, file);
+    this.task = this.storage.upload(path, file);
+
+    // The file's download URL
+    this.downloadURL = this.task.downloadURL();
 
     // Progress monitoring
-    const percentage = task.percentageChanges();
-    const snapshot = task.snapshotChanges();
+    this.percentage = this.task.percentageChanges();
+    this.snapshot = this.task.snapshotChanges();
 
-    return this.saveProduct(data, snapshot);
+    return this.saveProduct(data);
   }
 
-  saveProduct(
-    data: { product: Product; files: FileList },
-    snapshot: Observable<UploadTaskSnapshot>,
-  ) {
-    return snapshot.pipe(
+  saveProduct(data: { product: Product; files: FileList }) {
+    return this.snapshot.pipe(
       concatMap((snap) => {
         console.log(snap);
-        if (snap.downloadURL && snap.bytesTransferred === snap.totalBytes) {
+        if (snap.downloadURL) {
           data.product.imageURLs.push(snap.downloadURL);
           data.product.imageRefs.push(snap.metadata.fullPath);
           this.angularFireDatabase
@@ -78,9 +76,7 @@ export class FileUploadService {
 
   deleteFile(files) {
     files.map((filePath) => {
-      if (this.storage.ref(filePath)) {
-        this.storage.ref(filePath).delete();
-      }
+      this.storage.ref(filePath).delete();
     });
   }
 
