@@ -144,7 +144,8 @@ export class AddEditComponent implements OnInit {
     this.productService
       .addProduct({product, files}).subscribe(response => {
         if (response) {
-          this.router.navigate(['/products/' + response]);
+          console.log('in component: ', response);
+          this.router.navigate(['/products/' + response.id]);
         }
     });
   }

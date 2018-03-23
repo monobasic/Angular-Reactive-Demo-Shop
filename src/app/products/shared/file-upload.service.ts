@@ -4,18 +4,9 @@ import {
   AngularFireUploadTask
 } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { by } from 'protractor';
-import { tap, concatMap } from 'rxjs/operators';
-import { Product } from '../../models/product.model';
-import { mergeMap } from 'rxjs/operator/mergeMap';
-import { fromPromise } from 'rxjs/observable/fromPromise';
-import { merge } from 'rxjs/observable/merge';
 
 @Injectable()
 export class FileUploadService {
-  products$;
   // Main task
   task: AngularFireUploadTask;
 
@@ -29,7 +20,6 @@ export class FileUploadService {
 
   constructor(
     private storage: AngularFireStorage,
-    private angularFireDatabase: AngularFireDatabase
   ) {}
 
   startUpload(data) {
@@ -46,32 +36,17 @@ export class FileUploadService {
     const path = `product-images/${new Date().getTime()}_${file.name}`;
 
     // The main task
-    this.task = this.storage.upload(path, file);
+    const task = this.storage.upload(path, file);
 
-    // The file's download URL
-    this.downloadURL = this.task.downloadURL();
+    // // The file's download URL
+    // const downloadURL = this.task.downloadURL();
 
-    // Progress monitoring
-    this.percentage = this.task.percentageChanges();
-    this.snapshot = this.task.snapshotChanges();
+    // // Progress monitoring
+    // const percentage = this.task.percentageChanges();
 
-    return this.saveProduct(data);
-  }
+    // const snapshot = this.task.snapshotChanges();
 
-  saveProduct(data: { product: Product; files: FileList }) {
-    return this.snapshot.pipe(
-      concatMap((snap) => {
-        console.log(snap);
-        if (snap.downloadURL) {
-          data.product.imageURLs.push(snap.downloadURL);
-          data.product.imageRefs.push(snap.metadata.fullPath);
-          this.angularFireDatabase
-            .list('products')
-            .set(data.product.id.toString(), data.product);
-        }
-        return of(data.product.id);
-      })
-    );
+    return task;
   }
 
   deleteFile(files) {

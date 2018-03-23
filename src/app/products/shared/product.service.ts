@@ -17,6 +17,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Rating } from '../../models/rating.model';
 import { AuthService } from '../../account/shared/auth.service';
 import { FileUploadService } from './file-upload.service';
+import { fromPromise } from 'rxjs/observable/fromPromise';
+import { mergeMap } from 'rxjs/operator/mergeMap';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -162,7 +164,15 @@ export class ProductService {
 
   /** POST: add a new Product to the server */
   addProduct(data: { product: Product; files: FileList }) {
-    return this.uploadService.startUpload(data);
+    return fromPromise(this.uploadService.startUpload(data)
+      .then(task => {
+        console.log(task);
+        data.product.imageURLs.push(task.downloadURL);
+        data.product.imageRefs.push(task.ref.fullPath);
+
+        return this.angularFireDatabase.list('products')
+          .set(data.product.id.toString(), data.product).then(() => data.product);
+      }));
   }
 
   searchProducts(term: string): Observable<Product[]> {
