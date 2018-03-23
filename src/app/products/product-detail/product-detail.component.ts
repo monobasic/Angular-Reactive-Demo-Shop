@@ -54,9 +54,8 @@ export class ProductDetailComponent implements OnInit {
   getProduct(): void {
     // Show loading spinner
     const id = +this.route.snapshot.paramMap.get('id');
-    this.productService.getProduct(id).subscribe((product) => {
+    this.productsCacheService.get(id, this.productService.getProduct(id)).subscribe((product) => {
       if (product) {
-        console.log(product);
         this.product = product;
         this.activeImageUrl = this.product.imageURLs[0];
         this.activeImageIndex = 0;

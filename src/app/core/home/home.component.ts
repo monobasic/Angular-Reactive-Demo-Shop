@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.productService.getProducts()
+    this.productsCache.get('products', this.productService.getProducts())
       .subscribe(products => {
         this.products = products;
     });

@@ -32,7 +32,7 @@ export class ProductsListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.user.subscribe(user => {
+    this.authService.user.subscribe((user) => {
       this.user = user;
     });
     this.displayMode = 'grid';
@@ -42,25 +42,14 @@ export class ProductsListComponent implements OnInit {
 
   getProducts() {
     // Show spinner
-    this.productService.getProducts()
+    this.productsCacheService
+      .get('products', this.productService.getProducts())
       .subscribe((products) => {
-        this.products =
-          products;
-          this.sortPipe.transform(this.products, 'date', true);
+        this.products = products;
+        this.sortPipe.transform(this.products, 'date', true);
         this.setPage(1);
         // Hide Spinner
       });
-    // TODO: fix cached variant
-    // // Show spinner
-    // this.productsCacheService
-    //   .get('product', this.productService.getProducts())
-    //   .subscribe((products) => {
-    //     this.products =
-    //       products.products || products;
-    //       this.sortPipe.transform(this.products, 'date', true);
-    //     this.setPage(1);
-    //     // Hide Spinner
-    //   });
   }
 
   onDisplayModeChange(mode: string, e: Event) {

@@ -7,8 +7,6 @@ import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 import { tap } from 'rxjs/operators';
 
-// import { MessageService } from '../../core/messages/message.service';
-
 interface CacheContent {
   expiry: number;
   value: any;
@@ -30,7 +28,7 @@ export class ProductsCacheService {
 
   readonly DEFAULT_MAX_AGE: number = 300000;
 
-  constructor(/* private messageService: MessageService */) {}
+  constructor() {}
 
   /**
    * Gets the value from cache if the key is provided.
@@ -52,9 +50,10 @@ export class ProductsCacheService {
   getProductsById(id: number, fallback?: Observable<any>, maxAge?: number) {
     const product =
       this.cache.size > 0 &&
-      this.cache.get('product').value.products.find((el) => el.id === id);
+      this.cache.get('product').value.find((el) => el.id === id);
 
     if (product) {
+      console.log(`%cGetting from cache id ${id}`, 'color: green');
       return of(product);
     } else {
       this.getProducts('products');
@@ -68,9 +67,8 @@ export class ProductsCacheService {
     maxAge?: number
   ): Observable<any> | Subject<any> {
     if (this.hasValidCachedValue(key)) {
-      // this.log(`%cGetting from cache ${key}`);
       console.log(`%cGetting from cache ${key}`, 'color: green');
-      return of(this.cache.get(key).value.products);
+      return of(this.cache.get(key).value);
     }
 
     if (!maxAge) {
@@ -81,7 +79,6 @@ export class ProductsCacheService {
       return this.inFlightObservables.get(key);
     } else if (fallback && fallback instanceof Observable) {
       this.inFlightObservables.set(key, new Subject());
-      // this.log(`%c Calling api for ${key}`);
       console.log(`%c Calling api for ${key}`, 'color: purple');
       return fallback.pipe(
         tap((value) => {
@@ -118,11 +115,6 @@ export class ProductsCacheService {
       const inFlight = this.inFlightObservables.get(key);
       const observersCount = inFlight.observers.length;
       if (observersCount) {
-        // this.log(
-        //   `%cNotifying ${
-        //     inFlight.observers.length
-        //   } flight subscribers for ${key}`
-        // );
         console.log(
           `%cNotifying ${
             inFlight.observers.length
