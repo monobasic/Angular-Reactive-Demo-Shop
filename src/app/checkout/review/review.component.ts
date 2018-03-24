@@ -5,6 +5,8 @@ import { CheckoutService } from '../shared/checkout.service';
 import { Customer } from '../../models/customer.model';
 import { Order } from '../../models/order.model';
 import { OrderService } from '../../account/orders/shared/order.service';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-checkout-review',
@@ -20,7 +22,8 @@ export class ReviewComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private checkoutService: CheckoutService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -43,14 +46,16 @@ export class ReviewComponent implements OnInit {
 
   onCompleteOrder() {
     this.checkoutService.setOrderItems(this.cartService.getItems());
-    console.log(this.checkoutService.getOrderInProgress());
 
-    console.log('Create "real" order via Order Service:');
+    const order = this.checkoutService.getOrderInProgress();
+
     this.orderService
-      .addOrder(this.checkoutService.getOrderInProgress())
+      .addOrder(order)
       .take(1)
-      .subscribe(res => console.log(res));
-
-    console.log('Goto final confirmation screen..');
-  }
+      .subscribe((res) => {
+        console.log(res);
+        this.cartService.clearCart();
+        this.router.navigate(['/order-complete']);
+      });
+    }
 }

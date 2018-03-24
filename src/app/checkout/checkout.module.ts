@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { CheckoutComponent } from './checkout.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CompleteComponent } from './complete/complete.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         PaymentComponent,
         ReviewComponent,
         ShippingComponent,
-        SidebarComponent
+        SidebarComponent,
+        CompleteComponent
     ],
     imports: [
         SharedModule,

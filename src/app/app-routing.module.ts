@@ -13,6 +13,7 @@ import { ProfileComponent } from './account/profile/profile.component';
 import { AccountComponent } from './account/account.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
+import { CompleteComponent } from './checkout/complete/complete.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -37,6 +38,7 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent }
     ]
   },
+  { path: 'order-complete', component: CompleteComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

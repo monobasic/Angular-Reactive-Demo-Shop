@@ -74,8 +74,7 @@ export class OrderService implements OnInit {
     return this.store
       .object<User>(user)
       .valueChanges()
-      .pipe(
-        tap((userRecord) => {
+      .flatMap(userRecord => {
           userRecord.orders = userRecord.orders || [];
           userRecord.orders.push(order);
           return of(
@@ -83,12 +82,16 @@ export class OrderService implements OnInit {
               .object<User>(user)
               .set(userRecord)
               .then((res) => res)
-              .catch((error) => console.log(error))
+              .catch((error) => this.messageService.addError('could not submit your order'))
           );
-        })
+        }
       );
     } else {
-      return of(this.store.list('orders').push(order));
+      this.store.list('orders').push(order).then(
+        val => console.log(val),
+        error => this.messageService.addError('could not submit your order')
+      );
+      return of(Promise.resolve());
     }
   }
 
