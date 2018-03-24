@@ -60,7 +60,8 @@ export class OrderService implements OnInit {
   }
 
   addOrder(order: Order) {
-    const user = `/users/${this.authService.getUserUid()}`;
+    const userUid = this.authService.getUserUid();
+    const user = `/users/${userUid}`;
     order.number = (Math.random() * 10000000000).toString().split('.')[0];
     order.date = new Date().toString();
     order.status = 'In Progress';
@@ -69,6 +70,7 @@ export class OrderService implements OnInit {
       return sum;
     }, 0);
 
+    if (userUid) {
     return this.store
       .object<User>(user)
       .valueChanges()
@@ -85,6 +87,9 @@ export class OrderService implements OnInit {
           );
         })
       );
+    } else {
+      return of(this.store.list('orders').push(order));
+    }
   }
 
   removeOrder(number: number) {
