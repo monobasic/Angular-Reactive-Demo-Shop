@@ -9,6 +9,10 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/take';
 import { MessageService } from '../../messages/message.service';
+import { of } from 'rxjs/observable/of';
+import { map } from 'rxjs/operator/map';
+import { tap } from 'rxjs/operators';
+import { Subject } from 'rxjs/Subject';
 
 
 @Injectable()
@@ -16,8 +20,11 @@ export class AuthService {
 
     user: BehaviorSubject<User> = new BehaviorSubject(null);
     private userUid: string;
+    private privateUserUid$: BehaviorSubject<string> = new BehaviorSubject(null);
+    public userUid$ = this.privateUserUid$.asObservable();
 
-    constructor(private afAuth: AngularFireAuth,
+    constructor(
+        private afAuth: AngularFireAuth,
         private db: AngularFireDatabase,
         private messageService: MessageService
     ) {
@@ -25,10 +32,13 @@ export class AuthService {
             .switchMap(auth => {
                 if (auth) {
                     /// signed in
+                    console.log('signed in');
                     this.userUid = auth.uid;
+                    this.privateUserUid$.next(auth.uid);
                     return this.db.object('users/' + auth.uid).valueChanges();
                 } else {
                     /// not signed in
+                    console.log('not signed in');
                     this.userUid = null;
                     return Observable.of(null);
                 }
@@ -44,7 +54,6 @@ export class AuthService {
     getUserUid() {
         return this.userUid;
     }
-
 
     googleLogin() {
         const provider = new firebase.auth.GoogleAuthProvider();

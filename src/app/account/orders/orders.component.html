@@ -11,78 +11,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+
+      <tr *ngFor="let order of (orders$ | async)">
         <td>
-          <a class="text-medium navi-link" href="#" data-toggle="modal" data-target="#orderDetails">78A643CD409</a>
+          <a class="text-medium navi-link" href="#" data-toggle="modal" data-target="#orderDetails">{{order.number}}</a>
         </td>
-        <td>August 08, 2017</td>
+        <td>{{order.date | date:'mediumDate'}}</td>
         <td>
-          <span class="text-danger">Canceled</span>
-        </td>
-        <td>
-          <span class="text-medium">$760.50</span>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a class="text-medium navi-link" href="#" data-toggle="modal" data-target="#orderDetails">34VB5540K83</a>
-        </td>
-        <td>July 21, 2017</td>
-        <td>
-          <span class="text-info">In Progress</span>
+          <span class="text-info">{{order.status || 'In Progress'}}</span>
         </td>
         <td>
-          <span class="text-medium">$315.20</span>
+          <span class="text-medium">{{order.total | number:'1.2'}}.-</span>
         </td>
       </tr>
-      <tr>
-        <td>
-          <a class="text-medium navi-link" href="#" data-toggle="modal" data-target="#orderDetails">112P45A90V2</a>
-        </td>
-        <td>June 15, 2017</td>
-        <td>
-          <span class="text-warning">Delayed</span>
-        </td>
-        <td>
-          <span class="text-medium">$1,264.00</span>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a class="text-medium navi-link" href="#" data-toggle="modal" data-target="#orderDetails">28BA67U0981</a>
-        </td>
-        <td>May 19, 2017</td>
-        <td>
-          <span class="text-success">Delivered</span>
-        </td>
-        <td>
-          <span class="text-medium">$198.35</span>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a class="text-medium navi-link" href="#" data-toggle="modal" data-target="#orderDetails">502TR872W2</a>
-        </td>
-        <td>April 04, 2017</td>
-        <td>
-          <span class="text-success">Delivered</span>
-        </td>
-        <td>
-          <span class="text-medium">$2,133.90</span>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a class="text-medium navi-link" href="#" data-toggle="modal" data-target="#orderDetails">47H76G09F33</a>
-        </td>
-        <td>March 30, 2017</td>
-        <td>
-          <span class="text-success">Delivered</span>
-        </td>
-        <td>
-          <span class="text-medium">$86.40</span>
-        </td>
-      </tr>
+
     </tbody>
   </table>
 </div>

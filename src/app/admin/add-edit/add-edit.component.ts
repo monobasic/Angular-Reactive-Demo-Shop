@@ -144,7 +144,7 @@ export class AddEditComponent implements OnInit {
     this.productService
       .addProduct({product, files}).subscribe(response => {
         console.log(response);
-        if (response.id) {
+        if (typeof response !== 'function' && response.id) {
           console.log('in component: ', response);
           this.router.navigate(['/products/' + response.id]);
         }
@@ -154,7 +154,7 @@ export class AddEditComponent implements OnInit {
   updateProduct(product: Product, files: FileList) {
     this.productService
       .updateProduct({product, files}).subscribe(response => {
-        if (response.id) {
+        if (typeof response !== 'function' && response.id) {
           this.router.navigate(['/products/' + response.id]);
         }
       });

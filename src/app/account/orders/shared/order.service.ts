@@ -3,14 +3,18 @@ import { Order } from '../../../models/order.model';
 import { MessageService } from '../../../messages/message.service';
 import { AuthService } from '../../shared/auth.service';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { tap, take } from 'rxjs/operators';
+import { tap, take, pluck } from 'rxjs/operators';
 import { User } from '../../../models/user.model';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class OrderService implements OnInit {
   private orders: Order[];
+  private privateOrders$: Subject<Observable<Order[]>> = new Subject();
+  public orders$ = this.privateOrders$.asObservable();
+
   private userId;
   public ordersChanged: EventEmitter<Order[]> = new EventEmitter<Order[]>();
   constructor(
@@ -36,16 +40,34 @@ export class OrderService implements OnInit {
     };
   }
 
-  getOrders() {
-    return this.orders.slice();
+  getOrders(): void {
+    this.authService.userUid$.subscribe((userUid) => {
+      if (userUid) {
+        const remoteUser = `/users/${userUid}`;
+        this.store
+          .object<User>(remoteUser)
+          .valueChanges()
+          .pipe(pluck('orders'))
+          .subscribe((orders: Order[]) => {
+            this.privateOrders$.next(of(orders));
+          });
+      }
+    });
   }
 
   getOrder(number: number) {
-    return this.orders.filter((order) => order.number === number);
+    return this.orders.filter((order) => order.number === number.toString());
   }
 
   addOrder(order: Order) {
     const user = `/users/${this.authService.getUserUid()}`;
+    order.number = (Math.random() * 10000000000).toString().split('.')[0];
+    order.date = new Date().toString();
+    order.status = 'In Progress';
+    order.total = order.items.reduce((sum, item) => {
+      sum += item.product.price;
+      return sum;
+    }, 0);
 
     return this.store
       .object<User>(user)
@@ -53,9 +75,7 @@ export class OrderService implements OnInit {
       .pipe(
         tap((userRecord) => {
           userRecord.orders = userRecord.orders || [];
-          userRecord.orders[
-            (Math.random() * 10000000000).toString().split('.')[0]
-          ] = order;
+          userRecord.orders.push(order);
           return of(
             this.store
               .object<User>(user)
@@ -69,7 +89,7 @@ export class OrderService implements OnInit {
 
   removeOrder(number: number) {
     const indexToRemove = this.orders.findIndex(
-      (element) => element.number === number
+      (element) => element.number === number.toString()
     );
     this.orders.splice(indexToRemove, 1);
     this.ordersChanged.emit(this.orders.slice());

@@ -5,6 +5,7 @@ import { RegisterLoginComponent } from './register-login/register-login.componen
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountComponent } from './account.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import { AccountComponent } from './account.component';
         RegisterLoginComponent
     ],
     imports: [
+        CommonModule,
         SharedModule,
         FormsModule,
         ReactiveFormsModule

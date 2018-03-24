@@ -2,7 +2,9 @@ import { CartItem } from '../cart/shared/cart-item.model';
 import { Customer } from './customer.model';
 
 export class Order {
-    number: number;
+    total?: number;
+    status?: string;
+    number: string;
     date: string;
     shippingMethod: string;
     paymentMethod: string;
