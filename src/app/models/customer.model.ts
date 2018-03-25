@@ -1,12 +1,14 @@
 export class Customer {
-    firstname: string;
-    lastname: string;
-    address1: string;
-    address2: string;
-    zip: number;
-    city: string;
-    email: string;
-    phone: string;
-    company: string;
-    country: string;
+    constructor(
+        public firstname: string = '',
+        public lastname: string = '',
+        public address1: string = '',
+        public address2: string = '',
+        public zip: number = null,
+        public city: string = '',
+        public email: string = '',
+        public phone: string = '',
+        public company: string = '',
+        public country: string = ''
+    ) {}
 }
