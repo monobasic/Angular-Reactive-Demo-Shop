@@ -1,17 +1,17 @@
 export class Product {
     constructor(
-        public id: number,
-        public date: string,
-        public name: string,
-        public description: string,
-        public price: number,
-        public priceNormal: number,
-        public reduction: number,
-        public imageURLs: string[],
-        public imageRefs: string[],
-        public categories: string[],
-        public ratings: {},
-        public currentRating: number,
-        public sale: boolean
+        public id: number = 1,
+        public date: string = new Date().toISOString().split('T')[0],
+        public name: string = '',
+        public description: string = '',
+        public price: number = 0,
+        public priceNormal: number = 0,
+        public reduction: number = 0,
+        public imageURLs: string[] = [],
+        public imageRefs: string[] = [],
+        public categories: string[] = [],
+        public ratings: {} = {},
+        public currentRating: number = 0,
+        public sale: boolean = false
     ) {}
 }

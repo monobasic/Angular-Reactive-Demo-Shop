@@ -129,21 +129,7 @@ export class AddEditComponent implements OnInit {
     });
   }
   constructMockProduct() {
-    return new Product(
-      1,
-      new Date().toISOString().split('T')[0],
-      '',
-      '',
-      0,
-      0,
-      0,
-      [],
-      [],
-      [],
-      {},
-      0,
-      false,
-    );
+    return new Product();
   }
   getProduct(id): void {
     this.productService.getProduct(id).subscribe((product) => {
