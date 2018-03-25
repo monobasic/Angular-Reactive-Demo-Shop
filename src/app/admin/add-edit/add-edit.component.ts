@@ -11,7 +11,7 @@ import { ProductService } from '../../products/shared/product.service';
 import { ProductsCacheService } from '../../products/shared/products-cache.service';
 
 import { Product } from '../../models/product.model';
-import { placeholderProduct } from './placeholderProduct';
+import { PlaceholderProduct } from './placeholderProduct';
 import { MessageService } from '../../messages/message.service';
 import { tap, catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operator/map';
@@ -27,7 +27,7 @@ import { Subject } from 'rxjs/Subject';
 export class AddEditComponent implements OnInit {
   @ViewChild('photos') photos;
   productForm: FormGroup;
-  product: Product = placeholderProduct;
+  product: Product;
   mode: 'edit' | 'add';
   id;
   percentage: Observable<number>;
@@ -39,7 +39,9 @@ export class AddEditComponent implements OnInit {
     public fileUploadService: FileUploadService,
     private productsCacheService: ProductsCacheService,
     private log: MessageService
-  ) {}
+  ) {
+    this.product = this.constructMockProduct();
+  }
 
   ngOnInit(): void {
     this.fileUploadService.percentage.subscribe((percentage) => {
@@ -47,7 +49,6 @@ export class AddEditComponent implements OnInit {
         this.percentage = percentage;
       }
     });
-
     this.setProduct();
     this.initForm();
   }
@@ -123,12 +124,26 @@ export class AddEditComponent implements OnInit {
       } else {
         // else we are in add mode and use a placeholder
         this.mode = 'add';
-        this.syncProduct(placeholderProduct);
+        this.syncProduct(this.constructMockProduct());
         this.initForm();
       }
     });
   }
-
+  constructMockProduct() {
+    return new PlaceholderProduct(
+      1,
+      new Date().toISOString().split('T')[0],
+      '',
+      '',
+      0,
+      0,
+      [],
+      [],
+      [],
+      0,
+      false
+    );
+  }
   getProduct(id): void {
     this.productService.getProduct(id).subscribe((product) => {
       if (product) {
@@ -142,6 +157,7 @@ export class AddEditComponent implements OnInit {
     this.syncProduct({ ...this.product, ...this.productForm.value });
 
     const files: FileList = this.photos.nativeElement.files;
+    console.log(this.product);
     const product = { ...this.product, ...this.productForm.value };
     console.log(this.product);
     if (this.mode === 'add') {
@@ -156,6 +172,7 @@ export class AddEditComponent implements OnInit {
       console.log(response);
       if (typeof response !== 'function' && response.id) {
         console.log('in component: ', response);
+        this.product = null;
         this.router.navigate(['/products/' + response.id]);
       }
     });

@@ -175,18 +175,21 @@ export class ProductService {
   updateProduct(data: { product: Product; files: FileList }) {
     const url = `${this.productsUrl}/${data.product.id}`;
     return fromPromise(
-      this.uploadService.startUpload(data).then((task) => {
-        data.product.imageURLs[0] = task.downloadURL;
-        data.product.imageRefs[0] = task.ref.fullPath;
+      this.uploadService
+        .startUpload(data)
+        .then((task) => {
+          data.product.imageURLs[0] = task.downloadURL;
+          data.product.imageRefs[0] = task.ref.fullPath;
 
-        return this.angularFireDatabase
-          .object<Product>(url)
-          .update(data.product)
-          .then(() => {
-            this.log(`Updated Product ${data.product.name}`);
-            return data.product;
-          });
-      }).catch((error) => this.handleError(error))
+          return this.angularFireDatabase
+            .object<Product>(url)
+            .update(data.product)
+            .then(() => {
+              this.log(`Updated Product ${data.product.name}`);
+              return data.product;
+            });
+        })
+        .catch((error) => this.handleError(error))
     );
   }
 
@@ -197,6 +200,7 @@ export class ProductService {
         .startUpload(data)
         .then((task) => {
           console.log(task);
+          console.log(data);
           data.product.imageURLs.push(task.downloadURL);
           data.product.imageRefs.push(task.ref.fullPath);
 

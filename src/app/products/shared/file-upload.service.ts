@@ -10,7 +10,7 @@ import { Subject } from 'rxjs/Subject';
 export class FileUploadService {
   // Main task
   task: AngularFireUploadTask;
-
+  // task$: Subject<AngularFireUploadTask>;
   // Progress monitoring
   percentage: Subject<Observable<number>> = new Subject();
 
@@ -36,8 +36,8 @@ export class FileUploadService {
 
     // The main task
     const task = this.storage.upload(path, file);
-
     this.percentage.next(task.percentageChanges());
+    // this.task$.next(task);
 
     return task;
   }
