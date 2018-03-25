@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { CartService } from '../../cart/shared/cart.service';
-import { CartItem } from '../../cart/shared/cart-item.model';
+import { CartItem } from '../../models/cart-item.model';
 import { AuthService } from '../../account/shared/auth.service';
 import { User } from '../../models/user.model';
 

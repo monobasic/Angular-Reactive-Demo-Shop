@@ -8,7 +8,7 @@ import { ProductsCacheService } from '../shared/products-cache.service';
 
 import { Product } from '../../models/product.model';
 import { CartService } from '../../cart/shared/cart.service';
-import { CartItem } from '../../cart/shared/cart-item.model';
+import { CartItem } from '../../models/cart-item.model';
 import { Params } from '@angular/router/src/shared';
 import { Rating } from '../../models/rating.model';
 import { AuthService } from '../../account/shared/auth.service';

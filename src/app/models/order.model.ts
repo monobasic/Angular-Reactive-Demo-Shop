@@ -1,4 +1,4 @@
-import { CartItem } from '../cart/shared/cart-item.model';
+import { CartItem } from './cart-item.model';
 import { Customer } from './customer.model';
 
 export class Order {
