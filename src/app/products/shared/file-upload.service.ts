@@ -4,6 +4,7 @@ import {
   AngularFireUploadTask
 } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class FileUploadService {
@@ -11,7 +12,7 @@ export class FileUploadService {
   task: AngularFireUploadTask;
 
   // Progress monitoring
-  percentage: Observable<number>;
+  percentage: Subject<Observable<number>> = new Subject();
 
   snapshot: Observable<any>;
 
@@ -34,7 +35,9 @@ export class FileUploadService {
     const path = `product-images/${new Date().getTime()}_${file.name}`;
 
     // The main task
-    const task = this.storage.upload(path, file).catch((error) => error);
+    const task = this.storage.upload(path, file);
+
+    this.percentage.next(task.percentageChanges());
 
     return task;
   }

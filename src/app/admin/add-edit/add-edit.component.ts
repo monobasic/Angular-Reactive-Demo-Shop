@@ -15,6 +15,9 @@ import { placeholderProduct } from './placeholderProduct';
 import { MessageService } from '../../messages/message.service';
 import { tap, catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operator/map';
+import { FileUploadService } from '../../products/shared/file-upload.service';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-add-edit',
@@ -27,16 +30,24 @@ export class AddEditComponent implements OnInit {
   product: Product = placeholderProduct;
   mode: 'edit' | 'add';
   id;
+  percentage: Observable<number>;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private productService: ProductService,
+    public fileUploadService: FileUploadService,
     private productsCacheService: ProductsCacheService,
     private log: MessageService
   ) {}
 
   ngOnInit(): void {
+    this.fileUploadService.percentage.subscribe((percentage) => {
+      if (percentage) {
+        this.percentage = percentage;
+      }
+    });
+
     this.setProduct();
     this.initForm();
   }
@@ -141,19 +152,19 @@ export class AddEditComponent implements OnInit {
   }
 
   addProduct(product: Product, files: FileList) {
-    this.productService
-      .addProduct({product, files}).subscribe(response => {
-        console.log(response);
-        if (typeof response !== 'function' && response.id) {
-          console.log('in component: ', response);
-          this.router.navigate(['/products/' + response.id]);
-        }
+    this.productService.addProduct({ product, files }).subscribe((response) => {
+      console.log(response);
+      if (typeof response !== 'function' && response.id) {
+        console.log('in component: ', response);
+        this.router.navigate(['/products/' + response.id]);
+      }
     });
   }
 
   updateProduct(product: Product, files: FileList) {
     this.productService
-      .updateProduct({product, files}).subscribe(response => {
+      .updateProduct({ product, files })
+      .subscribe((response) => {
         if (typeof response !== 'function' && response.id) {
           this.router.navigate(['/products/' + response.id]);
         }
@@ -162,12 +173,10 @@ export class AddEditComponent implements OnInit {
 
   onDelete() {
     if (this.mode === 'edit') {
-      this.productService
-        .deleteProduct(this.product)
-        .then((res) => {
-          console.log(res);
-          this.router.navigate(['/products']);
-        });
+      this.productService.deleteProduct(this.product).then((res) => {
+        console.log(res);
+        this.router.navigate(['/products']);
+      });
     } else {
       this.log.addError(`Cannot delete new product`);
     }

@@ -105,6 +105,9 @@
           </div>
         </div>
 
+        <div *ngIf="this.percentage | async as pct" class="progress margin-bottom-1x">
+          <div class="progress-bar" role="progressbar" [style.width.%]="pct" aria-valuenow="pct | number: '1.0-0'" aria-valuemin="0" aria-valuemax="100">{{pct | number:'1.0-0'}}%</div>
+        </div>
 
         <div class="row mb-5">
           <div class="col">
