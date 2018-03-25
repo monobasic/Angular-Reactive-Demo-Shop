@@ -11,8 +11,7 @@ export class CheckoutService {
   activeStep: number;
 
   constructor() {
-    this.orderInProgress = new Order();
-    this.orderInProgress.customer = new Customer();
+    this.orderInProgress = new Order(new Customer());
     this.activeStep = 0;
   }
 
