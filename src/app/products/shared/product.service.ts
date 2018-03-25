@@ -151,14 +151,8 @@ export class ProductService {
   rateProduct(product: Product, rating: number) {
     const url = `${this.productsUrl}/${product.id}`;
     const updates = {};
-
-    // Add user rating to local version of ratings
-    if (product.ratings) {
-      product.ratings[this.authService.getUserUid()] = rating;
-    } else {
-      product['ratings'] = [];
-      product['ratings'][this.authService.getUserUid()] = rating;
-    }
+    // Add user rating to local product
+    product.ratings[this.authService.getUserUid()] = rating;
     // Calculate and add new overall rating
     const currentRating =
       <number>Object.values(product.ratings).reduce(
