@@ -75,6 +75,7 @@ export class ProductService {
         ref.orderByChild('date')
       )
       .valueChanges()
+      .map((arr) => arr.reverse())
       .pipe(
         // tap(() => this.log(`fetched Products`)),
         catchError(this.handleError<Product[]>(`getProducts`))
