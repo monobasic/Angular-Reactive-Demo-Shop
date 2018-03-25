@@ -71,7 +71,9 @@ export class ProductService {
   /** GET products from the server */
   getProducts(): Observable<Product[]> {
     return this.angularFireDatabase
-      .list<Product>('products')
+      .list<Product>('products', (ref) =>
+        ref.orderByChild('date')
+      )
       .valueChanges()
       .pipe(
         // tap(() => this.log(`fetched Products`)),
