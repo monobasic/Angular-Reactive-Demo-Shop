@@ -149,18 +149,24 @@ export class ProductService {
   rateProduct(product: Product, rating: number) {
     const url = `${this.productsUrl}/${product.id}`;
     const updates = {};
-    // Add user rating
-    updates['/ratings/' + this.authService.getUserUid() + '/'] = rating;
 
     // Add user rating to local version of ratings
-    product.ratings[this.authService.getUserUid()] = rating;
+    if (product.ratings) {
+      product.ratings[this.authService.getUserUid()] = rating;
+    } else {
+      product['ratings'] = [];
+      product['ratings'][this.authService.getUserUid()] = rating;
+    }
     // Calculate and add new overall rating
     const currentRating =
       <number>Object.values(product.ratings).reduce(
         (a: number, b: number) => a + b,
         0
       ) / Object.values(product.ratings).length;
-    updates['currentRating'] = currentRating;
+
+    // Add user rating
+    updates['/ratings/' + this.authService.getUserUid() + '/'] = rating;
+    updates['/currentRating/'] = currentRating;
 
     return this.angularFireDatabase
       .object<Product>(url)
