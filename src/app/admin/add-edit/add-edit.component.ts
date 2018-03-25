@@ -11,7 +11,6 @@ import { ProductService } from '../../products/shared/product.service';
 import { ProductsCacheService } from '../../products/shared/products-cache.service';
 
 import { Product } from '../../models/product.model';
-import { PlaceholderProduct } from './placeholderProduct';
 import { MessageService } from '../../messages/message.service';
 import { tap, catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operator/map';
@@ -130,18 +129,20 @@ export class AddEditComponent implements OnInit {
     });
   }
   constructMockProduct() {
-    return new PlaceholderProduct(
+    return new Product(
       1,
       new Date().toISOString().split('T')[0],
       '',
       '',
       0,
       0,
-      [],
-      [],
-      [],
       0,
-      false
+      [],
+      [],
+      [],
+      false,
+      0,
+      false,
     );
   }
   getProduct(id): void {
