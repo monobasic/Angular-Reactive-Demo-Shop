@@ -3,7 +3,7 @@ import { Order } from '../../../models/order.model';
 import { MessageService } from '../../../messages/message.service';
 import { AuthService } from '../../shared/auth.service';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { tap, take, pluck } from 'rxjs/operators';
+import { tap, take, pluck, flatMap } from 'rxjs/operators';
 import { User } from '../../../models/user.model';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
@@ -71,27 +71,31 @@ export class OrderService implements OnInit {
     }, 0);
 
     if (userUid) {
-    return this.store
-      .object<User>(user)
-      .valueChanges()
-      .flatMap(userRecord => {
-          userRecord.orders = userRecord.orders || [];
-          userRecord.orders.push(order);
-          return of(
-            this.store
-              .object<User>(user)
-              .set(userRecord)
-              .then((res) => res)
-              .catch((error) => this.messageService.addError('could not submit your order'))
-          );
-        }
-      );
+      return this.store
+        .object<User>(user)
+        .valueChanges()
+        .pipe(
+          flatMap((userRecord) => {
+            userRecord.orders = userRecord.orders || [];
+            userRecord.orders.push(order);
+
+            const dbPromise = this.store.object<User>(user).set(userRecord);
+
+            return dbPromise;
+          })
+        );
     } else {
-      this.store.list('orders').push(order).then(
-        val => console.log(val),
-        error => this.messageService.addError('could not submit your order')
-      );
-      return of(Promise.resolve());
+      this.store
+        .list('orders')
+        .push(order)
+        .then(
+          (val) => Promise.resolve(val),
+          (error) => {
+            this.messageService.addError('could not submit your order');
+            Promise.reject(error);
+          }
+        );
+      return of(null);
     }
   }
 

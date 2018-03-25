@@ -53,7 +53,6 @@ export class ReviewComponent implements OnInit {
       .addOrder(order)
       .take(1)
       .subscribe((res) => {
-        console.log(res);
         this.cartService.clearCart();
         this.router.navigate(['/order-complete']);
       });
