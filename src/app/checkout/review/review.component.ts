@@ -7,6 +7,8 @@ import { Order } from '../../models/order.model';
 import { OrderService } from '../../account/orders/shared/order.service';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import { AuthService } from '../../account/shared/auth.service';
+import { MessageService } from '../../messages/message.service';
 
 @Component({
   selector: 'app-checkout-review',
@@ -23,7 +25,9 @@ export class ReviewComponent implements OnInit {
     private cartService: CartService,
     private checkoutService: CheckoutService,
     private orderService: OrderService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -45,16 +49,44 @@ export class ReviewComponent implements OnInit {
   }
 
   onCompleteOrder() {
+    const userUid = this.authService.getUserUid();
+    const order = this.checkoutService.getOrderInProgress();
+    const total = this.cartService.getTotal();
+
     this.checkoutService.setOrderItems(this.cartService.getItems());
 
-    const order = this.checkoutService.getOrderInProgress();
+    if (userUid) {
+      this.submitUserOrder(order, total, userUid);
+    } else {
+      this.submitAnonOrder(order, total);
+    }
+  }
 
-    this.orderService
-      .addOrder(order)
-      .take(1)
-      .subscribe((res) => {
+  submitUserOrder(order, total, userUid) {
+    this.orderService.addUserOrder(order, total, userUid).subscribe(
+      (response) => {
+        console.log(response);
         this.cartService.clearCart();
         this.router.navigate(['/order-complete']);
-      });
-    }
+      },
+      (error) => {
+        console.log(error);
+        this.messageService.addError('Could not submit order, try again.');
+      }
+    );
+  }
+
+  submitAnonOrder(order, total) {
+    this.orderService.addAnonOrder(order, total).subscribe(
+      (response) => {
+        console.log(response);
+        this.cartService.clearCart();
+        this.router.navigate(['/order-complete']);
+      },
+      (error) => {
+        console.log(error);
+        this.messageService.addError('Could not submit order, try again.');
+      }
+    );
+  }
 }

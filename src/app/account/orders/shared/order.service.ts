@@ -8,15 +8,16 @@ import { User } from '../../../models/user.model';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { fromPromise } from 'rxjs/observable/fromPromise';
 
 @Injectable()
 export class OrderService implements OnInit {
   private orders: Order[];
-  private privateOrders$: Subject<Observable<Order[]>> = new Subject();
+  private privateOrders$: Subject<Observable<any>> = new Subject();
   public orders$ = this.privateOrders$.asObservable();
-
   private userId;
   public ordersChanged: EventEmitter<Order[]> = new EventEmitter<Order[]>();
+
   constructor(
     private messageService: MessageService,
     private authService: AuthService,
@@ -40,7 +41,7 @@ export class OrderService implements OnInit {
     };
   }
 
-  getOrders(): void {
+  public getOrders(): void {
     this.authService.userUid$.subscribe((userUid) => {
       if (userUid) {
         const remoteUser = `/users/${userUid}`;
@@ -48,65 +49,57 @@ export class OrderService implements OnInit {
           .object<User>(remoteUser)
           .valueChanges()
           .pipe(pluck('orders'))
-          .subscribe((orders: Order[]) => {
+          .subscribe((orders) => {
             this.privateOrders$.next(of(orders));
           });
       }
     });
   }
 
-  getOrder(number: number) {
+  public getOrder(number: number) {
     return this.orders.filter((order) => order.number === number.toString());
   }
 
-  addOrder(order: Order) {
-    const userUid = this.authService.getUserUid();
-    const user = `/users/${userUid}`;
-    order.number = (Math.random() * 10000000000).toString().split('.')[0];
-    order.date = new Date().toString();
-    order.status = 'In Progress';
-    order.total = order.items.reduce((sum, item) => {
-      sum += item.product.price;
-      return sum;
-    }, 0);
-
-    if (userUid) {
-      return this.store
-        .object<User>(user)
-        .snapshotChanges().take(1)
-        .pipe(
-          flatMap((userRecord) => {
-            const currentUser = userRecord.payload.val();
-            currentUser.orders = currentUser.orders || [];
-            currentUser.orders.push(order);
-
-            // TODO: USE UPDATE INSTEAD OF SET
-            const dbPromise = this.store.object<User>(user).set(currentUser);
-
-            return dbPromise;
-          })
-        );
-    } else {
-      this.store
-        .list('orders')
-        .push(order)
-        .then(
-          (val) => Promise.resolve(val),
-          (error) => {
-            this.messageService.addError('could not submit your order');
-            Promise.reject(error);
-          }
-        );
-      return of(null);
-    }
+  private constructOrderMetaData(order: Order) {
+    return {
+      number: (Math.random() * 10000000000).toString().split('.')[0],
+      date: new Date().toString(),
+      status: 'In Progress'
+    };
   }
 
-  removeOrder(number: number) {
-    const indexToRemove = this.orders.findIndex(
-      (element) => element.number === number.toString()
-    );
-    this.orders.splice(indexToRemove, 1);
-    this.ordersChanged.emit(this.orders.slice());
-    this.messageService.add('Removed order: ' + number);
+  public addUserOrder(order: Order, total: number, user: string) {
+    const orderWithMetaData = {
+      ...order,
+      ...this.constructOrderMetaData(order),
+      total
+    };
+
+    this.store
+      .list(`users/${user}/orders`)
+      .valueChanges()
+      .subscribe((val) => console.log(val));
+
+    const databaseOperation = this.store
+      .list(`users/${user}/orders`)
+      .push(orderWithMetaData)
+      .then((response) => response, (error) => error);
+
+    return fromPromise(databaseOperation);
+  }
+
+  public addAnonOrder(order: Order, total: number) {
+    const orderWithMetaData = {
+      ...order,
+      ...this.constructOrderMetaData(order),
+      total
+    };
+
+    const databaseOperation = this.store
+      .list('orders')
+      .push(orderWithMetaData)
+      .then((response) => response, (error) => error);
+
+    return fromPromise(databaseOperation);
   }
 }

@@ -11,7 +11,7 @@ export class User {
   firstName?: string;
   lastName?: string;
   password?: string;
-  orders?: Order[];
+  orders?: object;
   confirmPassword?: string;
 
   constructor(authData) {
