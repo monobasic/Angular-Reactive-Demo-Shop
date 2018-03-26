@@ -80,6 +80,7 @@ export class OrderService implements OnInit {
             currentUser.orders = currentUser.orders || [];
             currentUser.orders.push(order);
 
+            // TODO: USE UPDATE INSTEAD OF SET
             const dbPromise = this.store.object<User>(user).set(currentUser);
 
             return dbPromise;
