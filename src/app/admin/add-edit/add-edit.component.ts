@@ -101,7 +101,14 @@ export class AddEditComponent implements OnInit {
     const calcReduction = Math.round((priceNormal - price) / priceNormal * 100);
     const reduction = calcReduction > 0 ? calcReduction : 0;
     const sale = calcReduction > 0 ? true : false;
+
     const categories = val.categories || '';
+
+    const imageURLs =
+      val.imageURLs &&
+      val.imageURLs.length > 0 ?
+      val.imageURLs :
+      [];
 
     this.product = {
       ...val,
@@ -109,7 +116,7 @@ export class AddEditComponent implements OnInit {
       reduction,
       id,
       categories,
-      imageURLs: this.product.imageURLs || []
+      imageURLs
     };
   }
 
@@ -131,6 +138,7 @@ export class AddEditComponent implements OnInit {
   constructMockProduct() {
     return new Product();
   }
+
   getProduct(id): void {
     this.productService.getProduct(id).subscribe((product) => {
       if (product) {
@@ -155,14 +163,16 @@ export class AddEditComponent implements OnInit {
   }
 
   addProduct(product: Product, files: FileList) {
-    this.productService.addProduct({ product, files }).subscribe((response) => {
-      console.log(response);
-      if (typeof response !== 'function' && response.id) {
+    this.productService
+    .addProduct({ product, files })
+    .subscribe(
+      (response) => {
+        console.log(response);
         console.log('in component: ', response);
         this.product = null;
         this.router.navigate(['/products/' + response.id]);
-      }
-    });
+    },
+    error => this.log.addError('Could not upload your product'));
   }
 
   updateProduct(product: Product, files: FileList) {

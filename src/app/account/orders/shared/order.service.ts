@@ -75,11 +75,6 @@ export class OrderService implements OnInit {
       total
     };
 
-    this.store
-      .list(`users/${user}/orders`)
-      .valueChanges()
-      .subscribe((val) => console.log(val));
-
     const databaseOperation = this.store
       .list(`users/${user}/orders`)
       .push(orderWithMetaData)

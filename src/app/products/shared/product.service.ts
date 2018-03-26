@@ -71,9 +71,7 @@ export class ProductService {
   /** GET products from the server */
   getProducts(): Observable<Product[]> {
     return this.angularFireDatabase
-      .list<Product>('products', (ref) =>
-        ref.orderByChild('date')
-      )
+      .list<Product>('products', (ref) => ref.orderByChild('date'))
       .valueChanges()
       .map((arr) => arr.reverse())
       .pipe(
@@ -201,34 +199,62 @@ export class ProductService {
         .catch((error) => this.handleError(error))
     );
   }
-
   /** POST: add a new Product to the server */
   addProduct(data: { product: Product; files: FileList }) {
-    return fromPromise(
-      this.uploadService
-        .startUpload(data)
-        .then((task) => {
-          console.log(task);
-          console.log(data);
-          data.product.imageURLs.push(task.downloadURL);
-          data.product.imageRefs.push(task.ref.fullPath);
-
-          return this.angularFireDatabase
-            .list('products')
-            .set(data.product.id.toString(), data.product)
-            .then(() => {
-              this.log(`Added Product ${data.product.name}`);
-              return data.product;
-            });
-        })
-        .catch((error) => {
-          this.messageService.addError(
-            `Add Failed, Product ${data.product.name}`
-          );
-          return this.handleError(error);
-        })
-    );
+    const dbOperation = this.uploadService
+      .startUpload(data)
+      .then((task) => {
+        console.log(task);
+        console.log(data);
+        data.product.imageURLs.push(task.downloadURL);
+        data.product.imageRefs.push(task.ref.fullPath);
+        return data;
+      })
+      .then((dataWithImagePath) => {
+        return this.angularFireDatabase
+          .list('products')
+          .set(dataWithImagePath.product.id.toString(), dataWithImagePath.product);
+      })
+      .then((result) => {
+        this.log(`Added Product ${data.product.name}`);
+        return data.product;
+      })
+      .catch((error) => {
+        this.messageService.addError(
+          `Add Failed, Product ${data.product.name}`
+        );
+        this.handleError(error);
+        return error;
+      });
+    return fromPromise(dbOperation);
   }
+  // /** POST: add a new Product to the server */
+  // addProduct(data: { product: Product; files: FileList }) {
+  //   return fromPromise(
+  //     this.uploadService
+  //       .startUpload(data)
+  //       .then((task) => {
+  //         console.log(task);
+  //         console.log(data);
+  //         data.product.imageURLs.push(task.downloadURL);
+  //         data.product.imageRefs.push(task.ref.fullPath);
+
+  //         return this.angularFireDatabase
+  //           .list('products')
+  //           .set(data.product.id.toString(), data.product)
+  //           .then(() => {
+  //             this.log(`Added Product ${data.product.name}`);
+  //             return data.product;
+  //           });
+  //       })
+  //       .catch((error) => {
+  //         this.messageService.addError(
+  //           `Add Failed, Product ${data.product.name}`
+  //         );
+  //         return this.handleError(error);
+  //       })
+  //   );
+  // }
 
   searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
