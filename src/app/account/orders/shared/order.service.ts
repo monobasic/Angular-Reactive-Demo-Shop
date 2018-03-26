@@ -73,13 +73,14 @@ export class OrderService implements OnInit {
     if (userUid) {
       return this.store
         .object<User>(user)
-        .valueChanges()
+        .snapshotChanges().take(1)
         .pipe(
           flatMap((userRecord) => {
-            userRecord.orders = userRecord.orders || [];
-            userRecord.orders.push(order);
+            const currentUser = userRecord.payload.val();
+            currentUser.orders = currentUser.orders || [];
+            currentUser.orders.push(order);
 
-            const dbPromise = this.store.object<User>(user).set(userRecord);
+            const dbPromise = this.store.object<User>(user).set(currentUser);
 
             return dbPromise;
           })
