@@ -105,10 +105,7 @@ export class AddEditComponent implements OnInit {
     const categories = val.categories || '';
 
     const imageURLs =
-      val.imageURLs &&
-      val.imageURLs.length > 0 ?
-      val.imageURLs :
-      [];
+      val.imageURLs && val.imageURLs.length > 0 ? val.imageURLs : [];
 
     this.product = {
       ...val,
@@ -163,26 +160,25 @@ export class AddEditComponent implements OnInit {
   }
 
   addProduct(product: Product, files: FileList) {
-    this.productService
-    .addProduct({ product, files })
-    .subscribe(
+    this.productService.addProduct({ product, files }).subscribe(
       (response) => {
         console.log(response);
         console.log('in component: ', response);
         this.product = null;
         this.router.navigate(['/products/' + response.id]);
-    },
-    error => this.log.addError('Could not upload your product'));
+      },
+      (error) => this.log.addError('Could not upload your product')
+    );
   }
 
   updateProduct(product: Product, files: FileList) {
-    this.productService
-      .updateProduct({ product, files })
-      .subscribe((response) => {
-        if (typeof response !== 'function' && response.id) {
-          this.router.navigate(['/products/' + response.id]);
-        }
-      });
+    this.productService.updateProduct({ product, files }).subscribe(
+      (response) => {
+        console.log(response);
+        this.router.navigate(['/products/' + response.id]);
+      },
+      (error) => this.log.addError('Could not update your product')
+    );
   }
 
   onDelete() {

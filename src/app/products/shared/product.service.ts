@@ -181,23 +181,28 @@ export class ProductService {
   /** PUT: update the Product on the server */
   updateProduct(data: { product: Product; files: FileList }) {
     const url = `${this.productsUrl}/${data.product.id}`;
-    return fromPromise(
-      this.uploadService
-        .startUpload(data)
-        .then((task) => {
-          data.product.imageURLs[0] = task.downloadURL;
-          data.product.imageRefs[0] = task.ref.fullPath;
+    const dbOperation = this.uploadService
+      .startUpload(data)
+      .then((task) => {
+        data.product.imageURLs[0] = task.downloadURL;
+        data.product.imageRefs[0] = task.ref.fullPath;
 
-          return this.angularFireDatabase
-            .object<Product>(url)
-            .update(data.product)
-            .then(() => {
-              this.log(`Updated Product ${data.product.name}`);
-              return data.product;
-            });
-        })
-        .catch((error) => this.handleError(error))
-    );
+        return data;
+      })
+      .then((dataWithImagePath) => {
+        return this.angularFireDatabase
+          .object<Product>(url)
+          .update(data.product);
+      })
+      .then((response) => {
+        this.log(`Updated Product ${data.product.name}`);
+        return data.product;
+      })
+      .catch((error) => {
+        this.handleError(error);
+        return error;
+      });
+    return fromPromise(dbOperation);
   }
   /** POST: add a new Product to the server */
   addProduct(data: { product: Product; files: FileList }) {
@@ -213,9 +218,12 @@ export class ProductService {
       .then((dataWithImagePath) => {
         return this.angularFireDatabase
           .list('products')
-          .set(dataWithImagePath.product.id.toString(), dataWithImagePath.product);
+          .set(
+            dataWithImagePath.product.id.toString(),
+            dataWithImagePath.product
+          );
       })
-      .then((result) => {
+      .then((response) => {
         this.log(`Added Product ${data.product.name}`);
         return data.product;
       })
