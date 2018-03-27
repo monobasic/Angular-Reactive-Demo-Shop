@@ -28,6 +28,7 @@ export class ProductDetailComponent implements OnInit {
   ratingValues: number[];
   selectedRating: any;
   user: User;
+  productLoading: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -52,7 +53,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getProduct(): void {
-    // Show loading spinner
+    this.productLoading = true;
     const id = +this.route.snapshot.paramMap.get('id');
     this.productService.getProduct(id).subscribe((product) => {
       if (product) {
@@ -70,7 +71,8 @@ export class ProductDetailComponent implements OnInit {
         ) {
           this.selectedRating = product.ratings[this.authService.getUserUid()];
         }
-      } // Hide loading spinner
+        this.productLoading = false;
+      }
     });
   }
 

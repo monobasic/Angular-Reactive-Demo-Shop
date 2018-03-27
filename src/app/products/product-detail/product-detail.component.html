@@ -1,123 +1,125 @@
-<div *ngIf="product">
+<div class="product-detail" [ngClass]="{'loading' : productLoading}">
+  <div *ngIf="product">
 
-  <app-page-title title="{{ product.name }}" [children]="[{title: 'Products', link: '/products'}, {title: product.name}]"></app-page-title>
+    <app-page-title title="{{ product.name }}" [children]="[{title: 'Products', link: '/products'}, {title: product.name}]"></app-page-title>
 
 
-  <!-- Page Content-->
-  <div class="container padding-bottom-3x mb-1">
-    <div class="row">
-      <!-- Poduct Gallery-->
-      <div class="col-md-6">
-        <div class="product-gallery">
-          <span *ngIf="product.reduction" class="product-badge text-danger">{{product.reduction}}% Off</span>
-          <div class="product-gallery-image">
-              <img class="img-fluid" [src]="activeImageUrl" alt="{{product.name}}">
+    <!-- Page Content-->
+    <div class="container padding-bottom-3x mb-1">
+      <div class="row">
+        <!-- Poduct Gallery-->
+        <div class="col-md-6">
+          <div class="product-gallery">
+            <span *ngIf="product.reduction" class="product-badge text-danger">{{product.reduction}}% Off</span>
+            <div class="product-gallery-image">
+                <img class="img-fluid" [src]="activeImageUrl" alt="{{product.name}}">
+            </div>
+            <ul class="product-thumbnails">
+              <li *ngFor="let image of product.imageURLs; let i = index" [ngClass]="{'active': i === activeImageIndex}">
+                <a href="" (click)="onSelectThumbnail($event, i)">
+                  <img [src]="image" alt="Product">
+                </a>
+              </li>
+            </ul>
           </div>
-          <ul class="product-thumbnails">
-            <li *ngFor="let image of product.imageURLs; let i = index" [ngClass]="{'active': i === activeImageIndex}">
-              <a href="" (click)="onSelectThumbnail($event, i)">
-                <img [src]="image" alt="Product">
-              </a>
-            </li>
-          </ul>
+        </div>
+        <!-- Product Info-->
+        <div class="col-md-6">
+          <div class="padding-top-2x mt-2 hidden-md-up"></div>
+          <app-rating-stars [rating]="product.currentRating"></app-rating-stars>
+          <span *ngIf="product.ratings" class="text-muted align-middle">{{ ratingCount }} customer reviews</span>
+          <h2 class="padding-top-1x text-normal">{{ product.name }}</h2>
+          <span class="h2 d-block">
+            <app-price [product]="product"></app-price>
+          </span>
+          <p>{{product.description}}</p>
+          <div class="row margin-top-1x">
+            <!-- <div class="col-sm-4">
+              <div class="form-group">
+                <label for="size">Men's size</label>
+                <select class="form-control" id="size">
+                  <option>Chooze size</option>
+                  <option>11.5</option>
+                  <option>11</option>
+                  <option>10.5</option>
+                  <option>10</option>
+                  <option>9.5</option>
+                  <option>9</option>
+                  <option>8.5</option>
+                </select>
+              </div>
+            </div> -->
+            <!-- <div class="col-sm-5">
+              <div class="form-group">
+                <label for="color">Choose color</label>
+                <select class="form-control" id="color">
+                  <option>White/Red/Blue</option>
+                  <option>Black/Orange/Green</option>
+                  <option>Gray/Purple/White</option>
+                </select>
+              </div>
+            </div> -->
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <select class="form-control" id="quantity" (change)="onSelectQuantity($event)">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="pt-1 mb-2">
+            <span class="text-medium">SKU:</span> {{ product.id }}
+          </div>
+          <div class="padding-bottom-1x mb-2">
+            <span class="text-medium">Categories:&nbsp;</span>
+            <a class="navi-link" href="#">Men’s shoes,</a>
+            <a class="navi-link" href="#"> Snickers,</a>
+            <a class="navi-link" href="#"> Sport shoes</a>
+          </div>
+          <div class="form-group" *ngIf="user">
+            <label for="review_rating">Your Rating</label>
+              <select class="form-control form-control-rounded" name="rating" [(ngModel)]="selectedRating" (change)="onRate()">
+                <option *ngFor="let value of ratingValues" [value]="value">{{ value }} Stars</option>
+              </select>
+          </div>
+          <hr class="mb-3">
+          <div class="d-flex flex-wrap justify-content-between">
+            <div class="entry-share mt-2 mb-2">
+              <span class="text-muted">Share:</span>
+              <div class="share-links">
+                <a class="social-button shape-circle sb-facebook" href="#" data-toggle="tooltip" data-placement="top" title="Facebook">
+                  <i class="socicon-facebook"></i>
+                </a>
+                <a class="social-button shape-circle sb-twitter" href="#" data-toggle="tooltip" data-placement="top" title="Twitter">
+                  <i class="socicon-twitter"></i>
+                </a>
+                <a class="social-button shape-circle sb-instagram" href="#" data-toggle="tooltip" data-placement="top" title="Instagram">
+                  <i class="socicon-instagram"></i>
+                </a>
+                <a class="social-button shape-circle sb-google-plus" href="#" data-toggle="tooltip" data-placement="top" title="Google +">
+                  <i class="socicon-googleplus"></i>
+                </a>
+              </div>
+            </div>
+            <div class="sp-buttons mt-2 mb-2">
+              <!-- <button class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Whishlist">
+                <i class="icon-heart"></i>
+              </button> -->
+              <button class="btn btn-primary" (click)="onAddToCart()">
+                <i class="icon-bag"></i> Add to Cart
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
-      <!-- Product Info-->
-      <div class="col-md-6">
-        <div class="padding-top-2x mt-2 hidden-md-up"></div>
-        <app-rating-stars [rating]="product.currentRating"></app-rating-stars>
-        <span *ngIf="product.ratings" class="text-muted align-middle">{{ ratingCount }} customer reviews</span>
-        <h2 class="padding-top-1x text-normal">{{ product.name }}</h2>
-        <span class="h2 d-block">
-          <app-price [product]="product"></app-price>
-        </span>
-        <p>{{product.description}}</p>
-        <div class="row margin-top-1x">
-          <!-- <div class="col-sm-4">
-            <div class="form-group">
-              <label for="size">Men's size</label>
-              <select class="form-control" id="size">
-                <option>Chooze size</option>
-                <option>11.5</option>
-                <option>11</option>
-                <option>10.5</option>
-                <option>10</option>
-                <option>9.5</option>
-                <option>9</option>
-                <option>8.5</option>
-              </select>
-            </div>
-          </div> -->
-          <!-- <div class="col-sm-5">
-            <div class="form-group">
-              <label for="color">Choose color</label>
-              <select class="form-control" id="color">
-                <option>White/Red/Blue</option>
-                <option>Black/Orange/Green</option>
-                <option>Gray/Purple/White</option>
-              </select>
-            </div>
-          </div> -->
-          <div class="col-sm-3">
-            <div class="form-group">
-              <label for="quantity">Quantity</label>
-              <select class="form-control" id="quantity" (change)="onSelectQuantity($event)">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="pt-1 mb-2">
-          <span class="text-medium">SKU:</span> {{ product.id }}
-        </div>
-        <div class="padding-bottom-1x mb-2">
-          <span class="text-medium">Categories:&nbsp;</span>
-          <a class="navi-link" href="#">Men’s shoes,</a>
-          <a class="navi-link" href="#"> Snickers,</a>
-          <a class="navi-link" href="#"> Sport shoes</a>
-        </div>
-        <div class="form-group" *ngIf="user">
-          <label for="review_rating">Your Rating</label>
-            <select class="form-control form-control-rounded" name="rating" [(ngModel)]="selectedRating" (change)="onRate()">
-              <option *ngFor="let value of ratingValues" [value]="value">{{ value }} Stars</option>
-            </select>
-        </div>
-        <hr class="mb-3">
-        <div class="d-flex flex-wrap justify-content-between">
-          <div class="entry-share mt-2 mb-2">
-            <span class="text-muted">Share:</span>
-            <div class="share-links">
-              <a class="social-button shape-circle sb-facebook" href="#" data-toggle="tooltip" data-placement="top" title="Facebook">
-                <i class="socicon-facebook"></i>
-              </a>
-              <a class="social-button shape-circle sb-twitter" href="#" data-toggle="tooltip" data-placement="top" title="Twitter">
-                <i class="socicon-twitter"></i>
-              </a>
-              <a class="social-button shape-circle sb-instagram" href="#" data-toggle="tooltip" data-placement="top" title="Instagram">
-                <i class="socicon-instagram"></i>
-              </a>
-              <a class="social-button shape-circle sb-google-plus" href="#" data-toggle="tooltip" data-placement="top" title="Google +">
-                <i class="socicon-googleplus"></i>
-              </a>
-            </div>
-          </div>
-          <div class="sp-buttons mt-2 mb-2">
-            <!-- <button class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Whishlist">
-              <i class="icon-heart"></i>
-            </button> -->
-            <button class="btn btn-primary" (click)="onAddToCart()">
-              <i class="icon-bag"></i> Add to Cart
-            </button>
-          </div>
-        </div>
 
-      </div>
     </div>
 
   </div>
-
 </div>
