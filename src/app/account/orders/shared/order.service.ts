@@ -63,7 +63,7 @@ export class OrderService {
     return fromPromise(databaseOperation);
   }
 
-  public addAnonOrder(order: Order, total: number) {
+  public addAnonymousOrder(order: Order, total: number) {
     const orderWithMetaData = {
       ...order,
       ...this.constructOrderMetaData(order),
