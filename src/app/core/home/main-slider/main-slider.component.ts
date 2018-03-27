@@ -10,6 +10,7 @@ export class MainSliderComponent implements OnInit {
   @Input()
   items: any[];
   currentSlide: number;
+  imagesLoaded: string[];
 
   options: NgxSiemaOptions = {
     selector: '.siema',
@@ -32,6 +33,7 @@ export class MainSliderComponent implements OnInit {
 
   ngOnInit() {
     this.currentSlide = 0;
+    this.imagesLoaded = [];
   }
 
   prev() {
@@ -57,6 +59,11 @@ export class MainSliderComponent implements OnInit {
       .subscribe((data: any) => {
         this.currentSlide = data.currentSlide;
       });
+  }
+
+  onImageLoad(e: any) {
+    this.imagesLoaded.push(e.target.src);
+    console.log(this.imagesLoaded);
   }
 
 

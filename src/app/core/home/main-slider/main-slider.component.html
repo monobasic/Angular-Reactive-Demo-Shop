@@ -15,7 +15,9 @@
             <a class="btn btn-primary scale-up delay-1" routerLink="/products/{{ item.id }}">Shop now</a>
           </div>
           <div class="col-md-6 padding-bottom-2x mb-3">
-            <img class="d-block mx-auto" src="{{ item.imageFeaturedUrl }}" alt="{{ item.name }}">
+            <div class="image-wrapper" [ngClass]="{'loading': !imagesLoaded.includes(item.imageFeaturedurl)}">
+              <img [hidden]="!imagesLoaded.includes(item.imageFeaturedurl)" class="d-block mx-auto" src="{{ item.imageFeaturedUrl }}" alt="{{ item.name }}" (load)="onImageLoad($event)">
+            </div>
           </div>
         </div>
       </div>
