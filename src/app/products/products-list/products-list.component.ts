@@ -35,8 +35,8 @@ export class ProductsListComponent implements OnInit {
     this.authService.user.subscribe((user) => {
       this.user = user;
     });
+    this.sortBy = 'date:reverse';
     this.displayMode = 'grid';
-    this.sortBy = 'name';
     this.getProducts();
   }
 
@@ -73,6 +73,7 @@ export class ProductsListComponent implements OnInit {
       sortBy.replace(':reverse', ''),
       sortBy.endsWith(':reverse')
     );
+    this.sortBy = sortBy;
     this.setPage(this.pager.currentPage);
   }
 }

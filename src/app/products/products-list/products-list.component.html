@@ -22,13 +22,13 @@
     <div class="shop-toolbar padding-bottom-1x mb-2">
         <div class="column">
             <div class="shop-sorting">
-                <label for="sorting">Sort by:</label>
+                <label for="sorting">Sort by: (currently: {{ sortBy }})</label>
                 <select class="form-control" id="sorting" #selectSort (change)="onSort(selectSort.value)">
-                    <option value="date:reverse">Newest Articles</option>
-                    <option value="price">Low - High Price</option>
-                    <option value="price:reverse">High - Low Price</option>
-                    <option value="name">A - Z Order</option>
-                    <option value="name:reverse">Z - A Order</option>
+                    <option value="date:reverse" [selected]="sortBy === 'date:reverse'">Newest Articles</option>
+                    <option value="price" [selected]="sortBy === 'price'">Low - High Price</option>
+                    <option value="price:reverse" [selected]="sortBy === 'price:reverse'">High - Low Price</option>
+                    <option value="name" [selected]="sortBy === 'name'">A - Z Order</option>
+                    <option value="name:reverse" [selected]="sortBy === 'name:reverse'">Z - A Order</option>
                 </select>
                 <span class="text-muted">Showing:&nbsp;</span>
                 <span>1 - 12 items</span>
