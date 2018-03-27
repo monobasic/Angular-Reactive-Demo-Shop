@@ -26,6 +26,7 @@ import { AuthService } from '../account/shared/auth.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { OffcanvasService } from './shared/offcanvas.service';
 import { PromoService } from './shared/promo.service';
+import { UiService } from '../products/shared/ui.service';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { PromoService } from './shared/promo.service';
         CheckoutService,
         AuthService,
         OffcanvasService,
-        PromoService
+        PromoService,
+        UiService
     ]
 })
 export class CoreModule {
