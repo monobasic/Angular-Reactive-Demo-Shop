@@ -32,21 +32,16 @@ export class OrderService {
   ) {}
 
   public getOrders() {
-    this.authService.userUid$
-      .pipe(
-        tap((userUid) => {
-          if (userUid) {
-            const remoteUserOrders = `/users/${userUid}/orders`;
-            const dbOperation = this.store
-              .list(remoteUserOrders)
-              .valueChanges();
-
-            this.privateOrders$.next(dbOperation);
-          }
-        })
-      )
-      .subscribe((val) => console.log(val), (error) => console.log(error));
-  }
+    return this.authService.userUid$
+      .mergeMap((userUid) => {
+        if (userUid) {
+          const remoteUserOrders = `/users/${userUid}/orders`;
+          return this.store.list(remoteUserOrders).valueChanges();
+        } else {
+          return of(null);
+        }
+      });
+    }
 
   public addUserOrder(order: Order, total: number, user: string) {
     const orderWithMetaData = {

@@ -24,9 +24,8 @@ export class OrdersComponent implements OnInit {
   constructor(public orderService: OrderService) {}
 
   ngOnInit() {
-    this.orderService.getOrders();
-    this.orderService.orders$.subscribe(orders => {
-      this.orders$ = orders;
+    this.orderService.getOrders().subscribe((orders) => {
+      this.orders$ = of(orders);
     });
   }
 }

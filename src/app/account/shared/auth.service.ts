@@ -31,8 +31,7 @@ export class AuthService {
         this.afAuth.authState
             .switchMap(auth => {
                 if (auth) {
-                    /// signed in
-                    console.log('signed in');
+                    console.log(`signin' in`);
                     this.userUid = auth.uid;
                     this.privateUserUid$.next(auth.uid);
                     return this.db.object('users/' + auth.uid).valueChanges();
