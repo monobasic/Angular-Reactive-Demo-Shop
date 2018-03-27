@@ -77,7 +77,7 @@ export class ReviewComponent implements OnInit {
   }
 
   submitAnonOrder(order, total) {
-    this.orderService.addAnonOrder(order, total).subscribe(
+    this.orderService.addAnonymousOrder(order, total).subscribe(
       (response) => {
         console.log(response);
         this.cartService.clearCart();

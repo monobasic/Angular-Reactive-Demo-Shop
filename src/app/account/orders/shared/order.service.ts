@@ -21,7 +21,7 @@ export class OrderService implements OnInit {
   constructor(
     private messageService: MessageService,
     private authService: AuthService,
-    private store: AngularFireDatabase
+    private angularFireDatabase: AngularFireDatabase
   ) {}
 
   ngOnInit() {
@@ -45,7 +45,7 @@ export class OrderService implements OnInit {
     this.authService.userUid$.subscribe((userUid) => {
       if (userUid) {
         const remoteUser = `/users/${userUid}`;
-        this.store
+        this.angularFireDatabase
           .object<User>(remoteUser)
           .valueChanges()
           .pipe(pluck('orders'))
@@ -75,7 +75,7 @@ export class OrderService implements OnInit {
       total
     };
 
-    const databaseOperation = this.store
+    const databaseOperation = this.angularFireDatabase
       .list(`users/${user}/orders`)
       .push(orderWithMetaData)
       .then((response) => response, (error) => error);
@@ -83,14 +83,14 @@ export class OrderService implements OnInit {
     return fromPromise(databaseOperation);
   }
 
-  public addAnonOrder(order: Order, total: number) {
+  public addAnonymousOrder(order: Order, total: number) {
     const orderWithMetaData = {
       ...order,
       ...this.constructOrderMetaData(order),
       total
     };
 
-    const databaseOperation = this.store
+    const databaseOperation = this.angularFireDatabase
       .list('orders')
       .push(orderWithMetaData)
       .then((response) => response, (error) => error);
