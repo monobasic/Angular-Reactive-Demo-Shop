@@ -14,6 +14,7 @@ import { AccountComponent } from './account/account.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { CompleteComponent } from './checkout/complete/complete.component';
+import { UserGuard } from './account/shared/user.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'register-login', component: RegisterLoginComponent },
   {
     path: 'account',
+    canActivate: [UserGuard],
     component: AccountComponent,
     children: [
       { path: '', redirectTo: 'profile', pathMatch: 'full' },
@@ -45,6 +47,9 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AdminGuard]
+  providers: [
+    AdminGuard,
+    UserGuard
+  ]
 })
 export class AppRoutingModule { }
