@@ -21,6 +21,11 @@
       display: block;
       width: 100%;
     }
+
+    &.loading {
+      min-height: 150px;
+      background: url(../../../img/loading.gif) center center no-repeat;
+    }
   }
 
   .product-title {
