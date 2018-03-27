@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter, OnInit } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Order } from '../../../models/order.model';
 import { MessageService } from '../../../messages/message.service';
 import { AuthService } from '../../shared/auth.service';
@@ -16,7 +16,6 @@ export class OrderService implements OnInit {
   private privateOrders$: Subject<Observable<any>> = new Subject();
   public orders$ = this.privateOrders$.asObservable();
   private userId;
-  public ordersChanged: EventEmitter<Order[]> = new EventEmitter<Order[]>();
 
   constructor(
     private messageService: MessageService,
