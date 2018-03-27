@@ -54,7 +54,7 @@ export class ProductDetailComponent implements OnInit {
   getProduct(): void {
     // Show loading spinner
     const id = +this.route.snapshot.paramMap.get('id');
-    this.productsCacheService.get(id, this.productService.getProduct(id)).subscribe((product) => {
+    this.productService.getProduct(id).subscribe((product) => {
       if (product) {
         this.product = product;
         this.activeImageUrl = this.product.imageURLs[0];
@@ -72,15 +72,6 @@ export class ProductDetailComponent implements OnInit {
         }
       } // Hide loading spinner
     });
-    // TODO: fix cached variant
-    // this.productsCacheService
-    //   .get(id, this.productService.getProduct(id))
-    //   .subscribe((product) => {
-    //     this.product = product;
-    //     this.activeImageUrl = this.product.imageURLs[0];
-    //     this.activeImageIndex = 0;
-    //     // Hide loading spinner
-    //   });
   }
 
   onSelectThumbnail(event, index) {
@@ -100,5 +91,6 @@ export class ProductDetailComponent implements OnInit {
   onRate() {
     const rating = parseInt(this.selectedRating, 10);
     this.productService.rateProduct(this.product, rating);
+    this.getProduct();
   }
 }
