@@ -6,6 +6,9 @@ import 'rxjs/add/observable/throw';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 import { tap } from 'rxjs/operators';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Injectable } from '@angular/core';
+import { ProductService } from './product.service';
 
 interface CacheContent {
   expiry: number;
@@ -18,7 +21,10 @@ interface CacheContent {
  * @export
  * @class CacheService
  */
+@Injectable()
 export class ProductsCacheService {
+  private productSub;
+
   private cache: Map<string, CacheContent> = new Map<string, CacheContent>();
 
   private inFlightObservables: Map<string, Subject<any>> = new Map<
@@ -28,8 +34,22 @@ export class ProductsCacheService {
 
   readonly DEFAULT_MAX_AGE: number = 300000;
 
-  constructor() {}
+  constructor(
+    private angularFireDatabase: AngularFireDatabase,
+    private productService: ProductService) {
+      this.subscribeToFirebase();
+    }
 
+  subscribeToFirebase() {
+    this.productSub = this.angularFireDatabase
+      .list('products')
+      .valueChanges()
+      .subscribe((products) => {
+        console.log('from products-cache: value change detected');
+        console.log(products);
+        this.set('product', products);
+      });
+  }
   /**
    * Gets the value from cache if the key is provided.
    * If no value exists in cache, then check if the same call exists

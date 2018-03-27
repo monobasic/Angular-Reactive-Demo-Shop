@@ -9,29 +9,24 @@ import { SortPipe } from './shared/sort.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { RatingStarsComponent } from './shared/rating-stars/rating-stars.component';
 import { FileUploadService } from './shared/file-upload.service';
-
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 @NgModule({
-    declarations: [
-        ProductDetailComponent,
-        ProductsListComponent,
-        ProductsListItemComponent,
-        SortPipe,
-        RatingStarsComponent
-    ],
-    imports: [
-        SharedModule
-    ],
-    exports: [
-        ProductDetailComponent,
-        ProductsListComponent,
-        ProductsListItemComponent,
-        SortPipe,
-        RatingStarsComponent
-    ],
-    providers: [
-        SortPipe,
-        FileUploadService
-    ]
+  declarations: [
+    ProductDetailComponent,
+    ProductsListComponent,
+    ProductsListItemComponent,
+    SortPipe,
+    RatingStarsComponent
+  ],
+  imports: [SharedModule],
+  exports: [
+    ProductDetailComponent,
+    ProductsListComponent,
+    ProductsListItemComponent,
+    SortPipe,
+    RatingStarsComponent
+  ],
+  providers: [SortPipe, FileUploadService]
 })
 export class ProductsModule {}
