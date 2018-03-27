@@ -11,13 +11,13 @@
         <div class="col-md-6">
           <div class="product-gallery">
             <span *ngIf="product.reduction" class="product-badge text-danger">{{product.reduction}}% Off</span>
-            <div class="product-gallery-image">
-                <img class="img-fluid" [src]="activeImageUrl" alt="{{product.name}}">
+            <div class="product-gallery-image" [ngClass]="{'loading': !imagesLoaded.includes(activeImageUrl)}">
+                <img [hidden]="!imagesLoaded.includes(activeImageUrl)" class="img-fluid" src="{{activeImageUrl}}" alt="{{product.name}}" (load)="onImageLoad($event)">
             </div>
             <ul class="product-thumbnails">
               <li *ngFor="let image of product.imageURLs; let i = index" [ngClass]="{'active': i === activeImageIndex}">
-                <a href="" (click)="onSelectThumbnail($event, i)">
-                  <img [src]="image" alt="Product">
+                <a href="" (click)="onSelectThumbnail($event, i)" class="product-thumbnail-image" [ngClass]="{'loading': !imagesLoaded.includes(activeImageUrl)}">
+                  <img [hidden]="!imagesLoaded.includes(image)" [src]="image" alt="{{product.name}}" (load)="onImageLoad($event)">
                 </a>
               </li>
             </ul>

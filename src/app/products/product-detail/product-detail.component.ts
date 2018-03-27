@@ -29,6 +29,7 @@ export class ProductDetailComponent implements OnInit {
   selectedRating: any;
   user: User;
   productLoading: boolean;
+  imagesLoaded: string[];
 
   constructor(
     private route: ActivatedRoute,
@@ -42,6 +43,7 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.ratingValues = [1, 2, 3, 4, 5];
     this.selectedQuantity = 1;
+    this.imagesLoaded = [];
 
     this.route.params.subscribe((params: Params) => {
       this.getProduct();
@@ -94,5 +96,9 @@ export class ProductDetailComponent implements OnInit {
     const rating = parseInt(this.selectedRating, 10);
     this.productService.rateProduct(this.product, rating);
     this.getProduct();
+  }
+
+  onImageLoad(e: any) {
+    this.imagesLoaded.push(e.target.src);
   }
 }
