@@ -1,27 +1,4 @@
-
-<!-- Page Title-->
-<div class="page-title">
-  <div class="container">
-    <div class="column">
-      <h1>My Profile</h1>
-    </div>
-    <div class="column">
-      <ul class="breadcrumbs">
-        <li>
-          <a routerLink="/home" href="">Home</a>
-        </li>
-        <li *ngIf="router.url === '/account/profile'" class="separator">&nbsp;</li>
-        <li *ngIf="router.url === '/account/profile'">
-          My Profile
-        </li>
-        <li *ngIf="router.url === '/account/orders'" class="separator">&nbsp;</li>
-        <li *ngIf="router.url === '/account/orders'">
-          My Orders
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+<app-page-title [title]="router.url === '/account/profile' ? 'My Profile' : 'My Orders'" [children]="[{title: 'Account', link: '/account'}, {title: router.url === '/account/profile' ? 'My Profile' : 'My Orders'}]"></app-page-title>
 
 <!-- Page Content-->
 <div class="container padding-bottom-3x mb-2">

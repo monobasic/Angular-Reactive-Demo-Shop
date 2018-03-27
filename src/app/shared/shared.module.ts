@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { PageTitleComponent } from '../core/page-title/page-title.component';
 
 @NgModule({
     declarations: [
-        PriceComponent
+        PriceComponent,
+        PageTitleComponent
     ],
     imports: [
         CommonModule,
@@ -16,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     ],
     exports: [
         PriceComponent,
+        PageTitleComponent,
         CommonModule,
         AppRoutingModule,
         FormsModule
