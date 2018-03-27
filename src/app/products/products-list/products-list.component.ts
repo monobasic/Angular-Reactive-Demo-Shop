@@ -21,6 +21,7 @@ export class ProductsListComponent implements OnInit {
   productsPaged: Product[];
   pager: any = {};
   user: User;
+  productsLoading: boolean;
 
   constructor(
     private productService: ProductService,
@@ -39,13 +40,13 @@ export class ProductsListComponent implements OnInit {
   }
 
   getProducts() {
-    // Show spinner
+    this.productsLoading = true;
     this.productsCacheService
       .get('products', this.productService.getProducts())
       .subscribe((products) => {
         this.products = products;
         this.setPage(1);
-        // Hide Spinner
+        this.productsLoading = false;
       });
   }
 

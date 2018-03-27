@@ -39,18 +39,19 @@
     </div>
 
 
+    <div class="products-list" [ngClass]="{'loading' : productsLoading}">
+        <!-- Products Grid Mode View -->
+        <div class="row" *ngIf="(uiService.displayMode$ | async) === 'grid'">
+            <app-products-list-item ngClass="col col-sm-6 col-md-4 col-lg-3" *ngFor="let product of productsPaged" [product]="product"
+                [displayMode]="(uiService.displayMode$ | async)">
+            </app-products-list-item>
+        </div>
 
-
-    <!-- Products Grid Mode View -->
-    <div class="row" *ngIf="(uiService.displayMode$ | async) === 'grid'">
-        <app-products-list-item ngClass="col col-sm-6 col-md-4 col-lg-3" *ngFor="let product of productsPaged" [product]="product" [displayMode]="(uiService.displayMode$ | async)">
-        </app-products-list-item>
-    </div>
-
-    <!-- Products List Mode View-->
-    <div class="row" *ngIf="(uiService.displayMode$ | async) === 'list'">
-        <app-products-list-item ngClass="col-12" *ngFor="let product of products" [product]="product" [displayMode]="(uiService.displayMode$ | async)">
-        </app-products-list-item>
+        <!-- Products List Mode View-->
+        <div class="row" *ngIf="(uiService.displayMode$ | async) === 'list'">
+            <app-products-list-item ngClass="col-12" *ngFor="let product of products" [product]="product" [displayMode]="(uiService.displayMode$ | async)">
+            </app-products-list-item>
+        </div>
     </div>
 
 
