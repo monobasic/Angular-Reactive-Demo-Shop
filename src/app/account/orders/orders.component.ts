@@ -21,7 +21,6 @@ import { map } from 'rxjs/operator/map';
 })
 export class OrdersComponent implements OnInit {
   public orders$: Observable<any>;
-  public orderss$: Observable<any>;
 
   constructor(public orderService: OrderService) {}
 
