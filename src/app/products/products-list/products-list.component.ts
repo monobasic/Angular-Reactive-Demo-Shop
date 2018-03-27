@@ -9,6 +9,7 @@ import { SortPipe } from '../shared/sort.pipe';
 import { ProductsCacheService } from '../shared/products-cache.service';
 import { AuthService } from '../../account/shared/auth.service';
 import { User } from '../../models/user.model';
+import { UiService } from '../shared/ui.service';
 
 @Component({
   selector: 'app-products',
@@ -18,9 +19,7 @@ import { User } from '../../models/user.model';
 export class ProductsListComponent implements OnInit {
   products: Product[];
   productsPaged: Product[];
-  displayMode: string;
   pager: any = {};
-  sortBy: string;
   user: User;
 
   constructor(
@@ -28,15 +27,14 @@ export class ProductsListComponent implements OnInit {
     private productsCacheService: ProductsCacheService,
     private pagerService: PagerService,
     private sortPipe: SortPipe,
-    private authService: AuthService
+    private authService: AuthService,
+    public uiService: UiService
   ) {}
 
   ngOnInit() {
     this.authService.user.subscribe((user) => {
       this.user = user;
     });
-    this.sortBy = 'date:reverse';
-    this.displayMode = 'grid';
     this.getProducts();
   }
 
@@ -52,7 +50,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   onDisplayModeChange(mode: string, e: Event) {
-    this.displayMode = mode;
+    this.uiService.displayMode$.next(mode);
     e.preventDefault();
   }
 
@@ -73,7 +71,7 @@ export class ProductsListComponent implements OnInit {
       sortBy.replace(':reverse', ''),
       sortBy.endsWith(':reverse')
     );
-    this.sortBy = sortBy;
+    this.uiService.sorting$.next(sortBy);
     this.setPage(this.pager.currentPage);
   }
 }

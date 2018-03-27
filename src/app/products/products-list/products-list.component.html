@@ -22,13 +22,13 @@
     <div class="shop-toolbar padding-bottom-1x mb-2">
         <div class="column">
             <div class="shop-sorting">
-                <label for="sorting">Sort by: (currently: {{ sortBy }})</label>
+                <label for="sorting">Sort by: (currently: {{ uiService.sorting$ | async }})</label>
                 <select class="form-control" id="sorting" #selectSort (change)="onSort(selectSort.value)">
-                    <option value="date:reverse" [selected]="sortBy === 'date:reverse'">Newest Articles</option>
-                    <option value="price" [selected]="sortBy === 'price'">Low - High Price</option>
-                    <option value="price:reverse" [selected]="sortBy === 'price:reverse'">High - Low Price</option>
-                    <option value="name" [selected]="sortBy === 'name'">A - Z Order</option>
-                    <option value="name:reverse" [selected]="sortBy === 'name:reverse'">Z - A Order</option>
+                    <option value="date:reverse" [selected]="(uiService.sorting$ | async) === 'date:reverse'">Newest Articles</option>
+                    <option value="price" [selected]="(uiService.sorting$ | async) === 'price'">Low - High Price</option>
+                    <option value="price:reverse" [selected]="(uiService.sorting$ | async) === 'price:reverse'">High - Low Price</option>
+                    <option value="name" [selected]="(uiService.sorting$ | async) === 'name'">A - Z Order</option>
+                    <option value="name:reverse" [selected]="(uiService.sorting$ | async) === 'name:reverse'">Z - A Order</option>
                 </select>
                 <span class="text-muted">Showing:&nbsp;</span>
                 <span>1 - 12 items</span>
@@ -40,12 +40,12 @@
                 <span> Add Product</span>
             </a>
             <div class="shop-view">
-                <a href="" class="grid-view" [ngClass]="{active: displayMode === 'grid'}" (click)="onDisplayModeChange('grid', $event)">
+                <a href="" class="grid-view" [ngClass]="{active: (uiService.displayMode$ | async) === 'grid'}" (click)="onDisplayModeChange('grid', $event)">
                     <span></span>
                     <span></span>
                     <span></span>
                 </a>
-                <a href="" class="list-view" [ngClass]="{active: displayMode === 'list'}" (click)="onDisplayModeChange('list', $event)">
+                <a href="" class="list-view" [ngClass]="{active: (uiService.displayMode$ | async) === 'list'}" (click)="onDisplayModeChange('list', $event)">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -58,21 +58,21 @@
 
 
     <!-- Products Grid Mode View -->
-    <div class="row" *ngIf="displayMode === 'grid'">
-        <app-products-list-item ngClass="col col-sm-6 col-md-4 col-lg-3" *ngFor="let product of productsPaged" [product]="product" [displayMode]="displayMode">
+    <div class="row" *ngIf="(uiService.displayMode$ | async) === 'grid'">
+        <app-products-list-item ngClass="col col-sm-6 col-md-4 col-lg-3" *ngFor="let product of productsPaged" [product]="product" [displayMode]="(uiService.displayMode$ | async)">
         </app-products-list-item>
     </div>
 
     <!-- Products List Mode View-->
-    <div class="row" *ngIf="displayMode === 'list'">
-        <app-products-list-item ngClass="col-12" *ngFor="let product of products" [product]="product" [displayMode]="displayMode">
+    <div class="row" *ngIf="(uiService.displayMode$ | async) === 'list'">
+        <app-products-list-item ngClass="col-12" *ngFor="let product of products" [product]="product" [displayMode]="(uiService.displayMode$ | async)">
         </app-products-list-item>
     </div>
 
 
 
     <!-- Pagination-->
-    <nav *ngIf="pager.pages && pager.pages.length && displayMode ==='grid'"class="pagination">
+    <nav *ngIf="pager.pages && pager.pages.length && (uiService.displayMode$ | async) ==='grid'"class="pagination">
         <div class="column text-left hidden-xs-down">
             <a class="btn btn-outline-secondary btn-sm" [ngClass]="{disabled:pager.currentPage === 1}" (click)="setPage(pager.currentPage - 1)"><i class="icon-arrow-left"></i>&nbsp;Previous
             </a>
