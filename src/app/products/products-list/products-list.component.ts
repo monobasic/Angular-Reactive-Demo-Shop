@@ -72,6 +72,6 @@ export class ProductsListComponent implements OnInit {
       sortBy.endsWith(':reverse')
     );
     this.uiService.sorting$.next(sortBy);
-    this.setPage(this.pager.currentPage);
+    this.setPage(1);
   }
 }
