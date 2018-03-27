@@ -12,7 +12,6 @@ export class PageTitleComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.children);
   }
 
 }
