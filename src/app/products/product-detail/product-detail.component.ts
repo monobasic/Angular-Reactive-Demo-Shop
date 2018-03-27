@@ -28,6 +28,8 @@ export class ProductDetailComponent implements OnInit {
   ratingValues: number[];
   selectedRating: any;
   user: User;
+  productLoading: boolean;
+  imagesLoaded: string[];
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +43,7 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.ratingValues = [1, 2, 3, 4, 5];
     this.selectedQuantity = 1;
+    this.imagesLoaded = [];
 
     this.route.params.subscribe((params: Params) => {
       this.getProduct();
@@ -52,7 +55,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getProduct(): void {
-    // Show loading spinner
+    this.productLoading = true;
     const id = +this.route.snapshot.paramMap.get('id');
     this.productService.getProduct(id).subscribe((product) => {
       if (product) {
@@ -70,7 +73,8 @@ export class ProductDetailComponent implements OnInit {
         ) {
           this.selectedRating = product.ratings[this.authService.getUserUid()];
         }
-      } // Hide loading spinner
+        this.productLoading = false;
+      }
     });
   }
 
@@ -92,5 +96,9 @@ export class ProductDetailComponent implements OnInit {
     const rating = parseInt(this.selectedRating, 10);
     this.productService.rateProduct(this.product, rating);
     this.getProduct();
+  }
+
+  onImageLoad(e: any) {
+    this.imagesLoaded.push(e.target.src);
   }
 }

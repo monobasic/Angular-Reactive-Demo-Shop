@@ -1,0 +1,7 @@
+.products-list {
+
+    &.loading {
+        min-height: 200px;
+        background: url('../../../img/loading.gif') center center no-repeat;
+    }
+}

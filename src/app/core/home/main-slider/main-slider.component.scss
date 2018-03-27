@@ -106,3 +106,12 @@
         opacity: 1;
     }
 }
+
+.image-wrapper {
+
+  &.loading {
+    min-height: 400px;
+    background: url('../../../../img/loading.gif') center center no-repeat;
+  }
+}
+

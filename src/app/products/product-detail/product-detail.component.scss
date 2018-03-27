@@ -69,11 +69,31 @@
       }
     }
   }
+
+  .product-thumbnail-image {
+    &.loading {
+      min-height: 80px;
+      background: url('../../../img/loading.gif') center center no-repeat;
+    }
+  }
 }
 
 .product-gallery-image {
 
   img {
     min-width: 100%;
+  }
+
+  &.loading {
+    min-height: 200px;
+    background: url('../../../img/loading.gif') center center no-repeat;
+  }
+}
+
+.product-detail {
+
+  &.loading {
+      min-height: 200px;
+      background: url('../../../img/loading.gif') center center no-repeat;
   }
 }

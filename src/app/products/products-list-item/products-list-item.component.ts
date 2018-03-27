@@ -15,10 +15,12 @@ export class ProductsListItemComponent implements OnInit {
   @Input() product: Product;
   @Input() displayMode: string;
   user: User;
+  imageLoading: boolean;
 
   constructor(private cartService: CartService, private authService: AuthService) {}
 
   ngOnInit() {
+    this.imageLoading = true;
     this.authService.user.subscribe(user => {
       this.user = user;
     });
@@ -26,6 +28,10 @@ export class ProductsListItemComponent implements OnInit {
 
   onAddToCart() {
     this.cartService.addItem(new CartItem(this.product, 1));
+  }
+
+  onImageLoad() {
+    this.imageLoading = false;
   }
 
 }

@@ -6,8 +6,8 @@
     <app-rating-stars [rating]="product.currentRating"></app-rating-stars>
   </div>
 
-  <a class="product-thumb" routerLink="/products/{{product.id}}">
-    <img src="{{product.imageURLs[0]}}" alt="{{product.name}}">
+  <a class="product-thumb" [ngClass]="{'loading': imageLoading}" routerLink="/products/{{product.id}}">
+    <img [hidden]="imageLoading" (load)="onImageLoad()" src="{{product.imageURLs[0]}}" alt="{{product.name}}"/>
   </a>
   <div class="product-info">
     <h3 class="product-title">

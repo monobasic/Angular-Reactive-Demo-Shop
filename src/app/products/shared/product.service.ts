@@ -127,7 +127,7 @@ export class ProductService {
           const combinedProducts = resolvedProducts.map((product, i) => {
             product['imageFeaturedUrl'] = actionsFromSource[
               i
-            ].payload.val().imageUrl;
+            ].payload.val().imageFeaturedUrl;
             return product;
           });
           return resolvedProducts;
