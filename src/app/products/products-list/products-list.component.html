@@ -6,7 +6,7 @@
     <div class="shop-toolbar padding-bottom-1x mb-2">
         <div class="column">
             <div class="shop-sorting">
-                <label for="sorting">Sort by: (currently: {{ uiService.sorting$ | async }})</label>
+                <label for="sorting">Sort by:</label>
                 <select class="form-control" id="sorting" #selectSort (change)="onSort(selectSort.value)">
                     <option value="date:reverse" [selected]="(uiService.sorting$ | async) === 'date:reverse'">Newest Articles</option>
                     <option value="price" [selected]="(uiService.sorting$ | async) === 'price'">Low - High Price</option>
