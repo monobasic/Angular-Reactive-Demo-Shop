@@ -7,16 +7,15 @@ import {
 } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+import { Observable } from 'rxjs/Observable';
+
 import { ProductService } from '../../products/shared/product.service';
 import { ProductsCacheService } from '../../products/shared/products-cache.service';
+import { MessageService } from '../../messages/message.service';
+import { FileUploadService } from '../../products/shared/file-upload.service';
 
 import { Product } from '../../models/product.model';
-import { MessageService } from '../../messages/message.service';
-import { tap, catchError } from 'rxjs/operators';
-import { map } from 'rxjs/operator/map';
-import { FileUploadService } from '../../products/shared/file-upload.service';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { of } from 'rxjs/observable/of';
 
 @Component({
   selector: 'app-add-edit',
@@ -43,11 +42,6 @@ export class AddEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fileUploadService.percentage.subscribe((percentage) => {
-      if (percentage) {
-        this.percentage = percentage;
-      }
-    });
     this.setProduct();
     this.initForm();
   }
@@ -132,6 +126,7 @@ export class AddEditComponent implements OnInit {
       }
     });
   }
+
   constructMockProduct() {
     return new Product();
   }
@@ -147,33 +142,39 @@ export class AddEditComponent implements OnInit {
 
   onSubmit() {
     this.syncProduct({ ...this.product, ...this.productForm.value });
-
     const files: FileList = this.photos.nativeElement.files;
-    console.log(this.product);
+
     const product = { ...this.product, ...this.productForm.value };
-    console.log(this.product);
-    if (this.mode === 'add') {
+
+    if (this.mode === 'add' && files.length > 0) {
       this.addProduct(product, files);
-    } else {
+    } else if (this.mode === 'edit') {
       this.updateProduct(product, files);
+    } else {
+      this.log.addError('Please provide a file for your product');
+      return;
     }
   }
 
   addProduct(product: Product, files: FileList) {
     this.productService.addProduct({ product, files }).subscribe(
-      (response) => {
-        console.log(response);
-        console.log('in component: ', response);
-        this.product = null;
-        this.router.navigate(['/products/' + response.id]);
+      (savedProduct: Product) => {
+        if (savedProduct.id) {
+          console.log(savedProduct);
+          this.product = null;
+          this.router.navigate(['/products/' + savedProduct.id]);
+        }
       },
-      (error) => this.log.addError('Could not upload your product')
+      (error) => {
+        this.log.addError('Could not upload your product');
+        return of(error);
+      }
     );
   }
 
-  updateProduct(product: Product, files: FileList) {
+  updateProduct(product: Product, files?: FileList) {
     this.productService.updateProduct({ product, files }).subscribe(
-      (response) => {
+      (response: Product) => {
         console.log(response);
         this.router.navigate(['/products/' + response.id]);
       },

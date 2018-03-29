@@ -8,43 +8,43 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class FileUploadService {
-  // Main task
-  task: AngularFireUploadTask;
-  // task$: Subject<AngularFireUploadTask>;
+  task$: AngularFireUploadTask;
+
   // Progress monitoring
-  percentage: Subject<Observable<number>> = new Subject();
+  percentage$: Observable<number>;
 
   snapshot: Observable<any>;
 
   // Download URL
   downloadURL: Observable<string>;
 
-  constructor(private storage: AngularFireStorage) {}
+  constructor(public storage: AngularFireStorage) {}
 
   startUpload(data) {
-    // The File object
-    const file = data.files.item(0);
+      // The File object
+      const file = data.files.item(0);
 
-    // Client-side validation example
-    if (file.type.split('/')[0] !== 'image') {
-      console.error('unsupported file type :( ');
-      return;
-    }
+      // Client-side validation example
+      if (file.type.split('/')[0] !== 'image') {
+        console.error('unsupported file type :( ');
+        throw new Error('upload failed, unsupported file type');
+      }
 
-    // The storage path
-    const path = `product-images/${new Date().getTime()}_${file.name}`;
+      // The storage path
+      const path = `product-images/${new Date().getTime()}_${file}`;
 
-    // The main task
-    const task = this.storage.upload(path, file);
-    this.percentage.next(task.percentageChanges());
-    // this.task$.next(task);
+      // The main task
+      this.task$ = this.storage.upload(path, file);
 
-    return task;
+      // the percentage
+      this.percentage$ = this.task$.percentageChanges();
+
+      return this.task$;
   }
 
-  deleteFile(files) {
+  deleteFile(files: string[]) {
     if (files) {
-      files.map((filePath) => {
+      return files.map((filePath) => {
         return this.storage.ref(filePath).delete();
       });
     }

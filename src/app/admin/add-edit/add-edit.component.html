@@ -89,8 +89,9 @@
           </div>
         </div>
 
-        <div *ngIf="this.percentage | async as pct" class="progress margin-bottom-1x">
-          <div class="progress-bar" role="progressbar" [style.width.%]="pct" aria-valuenow="pct | number: '1.0-0'" aria-valuemin="0" aria-valuemax="100">{{pct | number:'1.0-0'}}%</div>
+        <div *ngIf="fileUploadService.percentage$ | async as pct" class="progress margin-bottom-1x">
+          <div class="progress-bar" role="progressbar" [style.width.%]="pct" aria-valuenow="pct | number: '1.0-0'" aria-valuemin="0"
+            aria-valuemax="100">{{pct | number:'1.0-0'}}%</div>
         </div>
 
         <div class="row mb-5">
@@ -103,34 +104,5 @@
       </form>
 
     </div>
-    <div class="col-lg-6">
-      <h2 class="margin-bottom-1x">Product Preview</h2>
-      <div class="product-card product-list">
-
-        <div *ngIf="product.reduction" class="product-badge text-danger">{{ product.reduction }}% Off</div>
-
-        <div class="product-rating">
-          <app-rating-stars [rating]="product.currentRating"></app-rating-stars>
-        </div>
-
-        <a class="product-thumb" routerLink="/products/{{product.id}}">
-          <!-- <img src="{{product.imageURLs[0]}}" alt="{{product.name}}"> -->
-        </a>
-        <div class="product-info">
-          <h3 class="product-title">
-            <a routerLink="/products/{{product.id}}">{{product.name}}</a>
-          </h3>
-          <h4 class="product-price">
-            <app-price [product]="product"></app-price>
-          </h4>
-          <!-- <p *ngIf="displayMode === 'list'"class="hidden-xs-down">{{product.description}}</p> -->
-          <p class="hidden-xs-down">{{product.description}}</p>
-          <div class="product-buttons">
-            <button class="btn btn-outline-primary btn-sm">Add to Cart</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>

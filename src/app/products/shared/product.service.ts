@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AngularFireDatabase } from 'angularfire2/database';
 
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { fromPromise } from 'rxjs/observable/fromPromise';
 import { of } from 'rxjs/observable/of';
-import { catchError, map, tap, concatMap } from 'rxjs/operators';
+import {
+  catchError,
+  map,
+  tap,
+  concatMap,
+  mergeMap,
+  switchMap
+} from 'rxjs/operators';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/forkJoin';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/interval';
 
-import { MessageService } from '../../messages/message.service';
-import { Product } from '../../models/product.model';
-
-import { AngularFireDatabase } from 'angularfire2/database';
-import { Rating } from '../../models/rating.model';
 import { AuthService } from '../../account/shared/auth.service';
 import { FileUploadService } from './file-upload.service';
-import { fromPromise } from 'rxjs/observable/fromPromise';
-import { mergeMap } from 'rxjs/operator/mergeMap';
+import { MessageService } from '../../messages/message.service';
+
+import { Rating } from '../../models/rating.model';
+import { Product } from '../../models/product.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,6 +35,7 @@ export class ProductService {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
     private messageService: MessageService,
     private angularFireDatabase: AngularFireDatabase,
     private authService: AuthService,
@@ -181,6 +187,11 @@ export class ProductService {
   /** PUT: update the Product on the server */
   updateProduct(data: { product: Product; files: FileList }) {
     const url = `${this.productsUrl}/${data.product.id}`;
+
+    if (!data.files.length) {
+      return this.updateProductWithoutNewImage(data.product, url);
+    }
+
     const dbOperation = this.uploadService
       .startUpload(data)
       .then((task) => {
@@ -204,6 +215,22 @@ export class ProductService {
       });
     return fromPromise(dbOperation);
   }
+
+  updateProductWithoutNewImage(product: Product, url: string) {
+    const dbOperation = this.angularFireDatabase
+      .object<Product>(url)
+      .update(product)
+      .then((response) => {
+        this.log(`Updated Product ${product.name}`);
+        return product;
+      })
+      .catch((error) => {
+        this.handleError(error);
+        return error;
+      });
+    return fromPromise(dbOperation);
+  }
+
   /** POST: add a new Product to the server */
   addProduct(data: { product: Product; files: FileList }) {
     const dbOperation = this.uploadService
@@ -213,16 +240,11 @@ export class ProductService {
         console.log(data);
         data.product.imageURLs.push(task.downloadURL);
         data.product.imageRefs.push(task.ref.fullPath);
-        return data;
-      })
-      .then((dataWithImagePath) => {
+
         return this.angularFireDatabase
           .list('products')
-          .set(
-            dataWithImagePath.product.id.toString(),
-            dataWithImagePath.product
-          );
-      })
+          .set(data.product.id.toString(), data.product);
+      }, (error) => error)
       .then((response) => {
         this.log(`Added Product ${data.product.name}`);
         return data.product;
@@ -236,33 +258,6 @@ export class ProductService {
       });
     return fromPromise(dbOperation);
   }
-  // /** POST: add a new Product to the server */
-  // addProduct(data: { product: Product; files: FileList }) {
-  //   return fromPromise(
-  //     this.uploadService
-  //       .startUpload(data)
-  //       .then((task) => {
-  //         console.log(task);
-  //         console.log(data);
-  //         data.product.imageURLs.push(task.downloadURL);
-  //         data.product.imageRefs.push(task.ref.fullPath);
-
-  //         return this.angularFireDatabase
-  //           .list('products')
-  //           .set(data.product.id.toString(), data.product)
-  //           .then(() => {
-  //             this.log(`Added Product ${data.product.name}`);
-  //             return data.product;
-  //           });
-  //       })
-  //       .catch((error) => {
-  //         this.messageService.addError(
-  //           `Add Failed, Product ${data.product.name}`
-  //         );
-  //         return this.handleError(error);
-  //       })
-  //   );
-  // }
 
   searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
