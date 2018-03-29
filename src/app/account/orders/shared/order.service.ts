@@ -5,10 +5,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { tap } from 'rxjs/operators/tap';
 import { of } from 'rxjs/observable/of';
-import { map } from 'rxjs/operator/map';
 import { fromPromise } from 'rxjs/observable/fromPromise';
+import { switchMap } from 'rxjs/operators';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 
@@ -32,16 +31,17 @@ export class OrderService {
   ) {}
 
   public getOrders() {
-    return this.authService.userUid$
-      .mergeMap((userUid) => {
+    return this.authService.userUid$.pipe(
+      switchMap((userUid) => {
         if (userUid) {
           const remoteUserOrders = `/users/${userUid}/orders`;
           return this.store.list(remoteUserOrders).valueChanges();
         } else {
           return of(null);
         }
-      });
-    }
+      })
+    );
+  }
 
   public addUserOrder(order: Order, total: number, user: string) {
     const orderWithMetaData = {

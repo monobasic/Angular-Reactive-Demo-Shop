@@ -12,7 +12,7 @@
     </thead>
     <tbody>
 
-      <tr *ngFor="let order of (orders$ | async)">
+      <tr *ngFor="let order of orders">
         <td>
           <a class="text-medium navi-link" href="#" data-toggle="modal" data-target="#orderDetails">{{order.number}}</a>
         </td>

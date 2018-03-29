@@ -7,11 +7,7 @@ import {
   CurrencyPipe
 } from '@angular/common';
 import { Order } from '../../models/order.model';
-import { Observable } from 'rxjs/Observable';
-import { from } from 'rxjs/observable/from';
-import { concatMap, tap, flatMap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
-import { mergeMap } from 'rxjs/operator/mergeMap';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-orders',
@@ -19,13 +15,14 @@ import { mergeMap } from 'rxjs/operator/mergeMap';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
-  public orders$: Observable<any>;
+  public orders: Order[];
+  private ordersSubscription: Subscription;
 
   constructor(public orderService: OrderService) {}
 
   ngOnInit() {
-    this.orderService.getOrders().subscribe((orders) => {
-      this.orders$ = of(orders);
+    this.ordersSubscription = this.orderService.getOrders().subscribe((orders) => {
+      this.orders = orders;
     });
   }
 }
