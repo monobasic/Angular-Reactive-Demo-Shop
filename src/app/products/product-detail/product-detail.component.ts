@@ -60,7 +60,6 @@ export class ProductDetailComponent implements OnInit {
     this.productLoading = true;
     const id = +this.route.snapshot.paramMap.get('id');
     this.productService.getProduct(id).subscribe((product: Product) => {
-      console.log(product);
       if (product) {
         this.product = product;
         this.activeImageUrl = this.product.imageURLs[0];

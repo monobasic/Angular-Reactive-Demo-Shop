@@ -160,7 +160,6 @@ export class AddEditComponent implements OnInit {
     this.productService.addProduct({ product, files }).subscribe(
       (savedProduct: Product) => {
         if (savedProduct.id) {
-          console.log(savedProduct);
           this.product = null;
           this.router.navigate(['/products/' + savedProduct.id]);
         }
@@ -175,7 +174,6 @@ export class AddEditComponent implements OnInit {
   updateProduct(product: Product, files?: FileList) {
     this.productService.updateProduct({ product, files }).subscribe(
       (response: Product) => {
-        console.log(response);
         this.router.navigate(['/products/' + response.id]);
       },
       (error) => this.log.addError('Could not update your product')
@@ -185,7 +183,6 @@ export class AddEditComponent implements OnInit {
   onDelete() {
     if (this.mode === 'edit') {
       this.productService.deleteProduct(this.product).then((res) => {
-        console.log(res);
         this.router.navigate(['/products']);
       });
     } else {
