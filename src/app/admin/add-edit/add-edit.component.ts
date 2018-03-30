@@ -82,7 +82,6 @@ export class AddEditComponent implements OnInit {
     // product changed
     // calculate reduction
     // add new date
-    // tslint:disable-next-line:no-console
     const randomId = Math.floor(Math.random() * new Date().getTime());
     let id = val.id || randomId;
     if (id === 1) {

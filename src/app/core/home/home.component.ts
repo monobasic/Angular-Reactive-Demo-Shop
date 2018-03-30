@@ -71,14 +71,4 @@ export class HomeComponent implements OnInit {
           }
         );
   }
-
-
-
-    // TODO: fix cache
-    // this.productsCache.get('products', this.productService.getProducts())
-    //   .subscribe(result => {
-    //     this.products = result.products;
-    //   });
-    // }
-
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { User } from '../models/user.model';
+
 import { AuthService } from './shared/auth.service';
 import { Router } from '@angular/router';
 import { OrderService } from './orders/shared/order.service';
+
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-account',
