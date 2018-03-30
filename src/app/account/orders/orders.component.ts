@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderService } from './shared/order.service';
 import {
   CommonModule,
   DatePipe,
   DecimalPipe,
   CurrencyPipe
 } from '@angular/common';
-import { Order } from '../../models/order.model';
+
 import { Subscription } from 'rxjs/Subscription';
+
+import { OrderService } from './shared/order.service';
+
+import { Order } from '../../models/order.model';
 
 @Component({
   selector: 'app-orders',
