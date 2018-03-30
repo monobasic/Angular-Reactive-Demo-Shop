@@ -142,13 +142,20 @@ export class ProductService {
   }
 
   /** GET product by id. Will 404 if id not found */
-  getProduct(id: any): Observable<Product> {
+  getProduct(id: any): Observable<Product | null> {
     const url = `${this.productsUrl}/${id}`;
     return this.angularFireDatabase
       .object<Product>(url)
-      .valueChanges()
-      .pipe(
-        tap(() => this.log(`fetched Product id=${id}`)),
+      .valueChanges().pipe(
+        tap(result => {
+          if (result) {
+            this.log(`fetched Product id=${id}}`);
+            return of(result);
+          } else {
+            this.messageService.addError(`Found no Product with id=${id}`);
+            return of(null);
+          }
+        }),
         catchError(this.handleError<Product>(`getProduct id=${id}`))
       );
   }

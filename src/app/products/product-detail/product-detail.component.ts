@@ -1,18 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Params } from '@angular/router/src/shared';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProductService } from '../shared/product.service';
 import { ProductsCacheService } from '../shared/products-cache.service';
-
-import { Product } from '../../models/product.model';
 import { CartService } from '../../cart/shared/cart.service';
-import { CartItem } from '../../models/cart-item.model';
-import { Params } from '@angular/router/src/shared';
-import { Rating } from '../../models/rating.model';
 import { AuthService } from '../../account/shared/auth.service';
+
+
+import { Rating } from '../../models/rating.model';
+import { CartItem } from '../../models/cart-item.model';
 import { User } from '../../models/user.model';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -32,10 +33,11 @@ export class ProductDetailComponent implements OnInit {
   imagesLoaded: string[];
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
+    private location: Location,
     private productService: ProductService,
     private productsCacheService: ProductsCacheService,
-    private location: Location,
     private cartService: CartService,
     private authService: AuthService
   ) {}
@@ -57,7 +59,8 @@ export class ProductDetailComponent implements OnInit {
   getProduct(): void {
     this.productLoading = true;
     const id = +this.route.snapshot.paramMap.get('id');
-    this.productService.getProduct(id).subscribe((product) => {
+    this.productService.getProduct(id).subscribe((product: Product) => {
+      console.log(product);
       if (product) {
         this.product = product;
         this.activeImageUrl = this.product.imageURLs[0];
@@ -74,6 +77,8 @@ export class ProductDetailComponent implements OnInit {
           this.selectedRating = product.ratings[this.authService.getUserUid()];
         }
         this.productLoading = false;
+      } else {
+        this.router.navigate(['/404-product-not-found']);
       }
     });
   }
