@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { Location } from '@angular/common';
 import { Params } from '@angular/router/src/shared';
@@ -68,6 +69,15 @@ export class ProductDetailComponent implements OnInit {
       .get(id, this.productService.getProduct(id))
       .subscribe((product: Product) => {
         if (product) {
+          product.categories = Object.keys(product.categories).map(
+            (category, index, inputArray) => {
+              category = index < inputArray.length - 1
+                ? category + ','
+                : category;
+              return category;
+            }
+          );
+
           this.product = product;
           this.activeImageUrl = this.product.imageURLs[0];
           this.activeImageIndex = 0;
@@ -106,10 +116,11 @@ export class ProductDetailComponent implements OnInit {
 
   onRate() {
     const rating = parseInt(this.selectedRating, 10);
-    this.productService.rateProduct(this.product, rating)
-    .subscribe(response => {
-      this.getProduct();
-    });
+    this.productService
+      .rateProduct(this.product, rating)
+      .subscribe((response) => {
+        this.getProduct();
+      });
   }
 
   onImageLoad(e: any) {

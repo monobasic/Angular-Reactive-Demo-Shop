@@ -95,7 +95,18 @@ export class AddEditComponent implements OnInit {
     const reduction = calcReduction > 0 ? calcReduction : 0;
     const sale = calcReduction > 0 ? true : false;
 
-    const categories = val.categories || '';
+    const categories =
+      (val.categories.length > 0 &&
+        val.categories.split(',').reduce((all, current, index, inputArray) => {
+          if (current.length > 0) {
+            current = current.trim();
+            all[current] = true;
+            return all;
+          } else {
+            return all;
+          }
+        }, {})) ||
+      '';
 
     const imageURLs =
       val.imageURLs && val.imageURLs.length > 0 ? val.imageURLs : [];
@@ -143,12 +154,10 @@ export class AddEditComponent implements OnInit {
     this.syncProduct({ ...this.product, ...this.productForm.value });
     const files: FileList = this.photos.nativeElement.files;
 
-    const product = { ...this.product, ...this.productForm.value };
-
     if (this.mode === 'add' && files.length > 0) {
-      this.addProduct(product, files);
+      this.addProduct(this.product, files);
     } else if (this.mode === 'edit') {
-      this.updateProduct(product, files);
+      this.updateProduct(this.product, files);
     } else {
       this.log.addError('Please provide a file for your product');
       return;
