@@ -106,8 +106,10 @@ export class ProductDetailComponent implements OnInit {
 
   onRate() {
     const rating = parseInt(this.selectedRating, 10);
-    this.productService.rateProduct(this.product, rating);
-    this.getProduct();
+    this.productService.rateProduct(this.product, rating)
+    .subscribe(response => {
+      this.getProduct();
+    });
   }
 
   onImageLoad(e: any) {

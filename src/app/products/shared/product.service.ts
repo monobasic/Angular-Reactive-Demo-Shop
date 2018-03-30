@@ -182,13 +182,13 @@ export class ProductService {
     updates['/ratings/' + this.authService.getUserUid() + '/'] = rating;
     updates['/currentRating/'] = currentRating;
 
-    return this.angularFireDatabase
+    return fromPromise(this.angularFireDatabase
       .object<Product>(url)
       .update(updates)
       .then(() => this.log(`Rated Product ${product.name} width: ${rating}`))
       .catch((error) => {
         this.handleError<any>(error);
-      });
+      }));
   }
 
   /** PUT: update the Product on the server */
