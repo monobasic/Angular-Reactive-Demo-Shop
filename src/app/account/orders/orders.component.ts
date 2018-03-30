@@ -21,8 +21,12 @@ export class OrdersComponent implements OnInit {
   constructor(public orderService: OrderService) {}
 
   ngOnInit() {
-    this.ordersSubscription = this.orderService.getOrders().subscribe((orders) => {
-      this.orders = orders;
-    });
+    this.ordersSubscription = this.orderService
+      .getOrders()
+      .subscribe((orders: Order[]) => {
+        if (orders) {
+          this.orders = orders.reverse();
+        }
+      });
   }
 }
