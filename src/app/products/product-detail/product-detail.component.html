@@ -76,7 +76,7 @@
             <span class="text-medium">SKU:</span> {{ product.id }}
           </div>
           <div class="padding-bottom-1x mb-2">
-            <span class="text-medium">Categories:&nbsp;</span>
+            <span *ngIf="product.categories.length > 0" class="text-medium">Categories:&nbsp;</span>
             <a *ngFor="let category of product.categories" class="navi-link" href="#">{{ category }}{{' '}}</a>
           </div>
           <div class="form-group" *ngIf="user">

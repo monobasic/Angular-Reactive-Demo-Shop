@@ -69,7 +69,7 @@ export class ProductDetailComponent implements OnInit {
       .get(id, this.productService.getProduct(id))
       .subscribe((product: Product) => {
         if (product) {
-          product.categories = Object.keys(product.categories).map(
+          const categories = Object.keys(product.categories).map(
             (category, index, inputArray) => {
               category = index < inputArray.length - 1
                 ? category + ','
@@ -77,6 +77,7 @@ export class ProductDetailComponent implements OnInit {
               return category;
             }
           );
+          product.categories = categories.length >= 1 && (!Array.isArray(product.categories)) ? categories : [];
 
           this.product = product;
           this.activeImageUrl = this.product.imageURLs[0];
