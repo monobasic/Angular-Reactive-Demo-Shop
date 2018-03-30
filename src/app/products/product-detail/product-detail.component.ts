@@ -9,7 +9,6 @@ import { ProductsCacheService } from '../shared/products-cache.service';
 import { CartService } from '../../cart/shared/cart.service';
 import { AuthService } from '../../account/shared/auth.service';
 
-
 import { Rating } from '../../models/rating.model';
 import { CartItem } from '../../models/cart-item.model';
 import { User } from '../../models/user.model';
@@ -22,24 +21,28 @@ import { Product } from '../../models/product.model';
 })
 export class ProductDetailComponent implements OnInit {
   @Input() product: Product;
+  productLoading: boolean;
+
+  user: User;
+
+  imagesLoaded: string[];
   activeImageUrl: string;
   activeImageIndex: number;
+
   selectedQuantity: number;
+
   ratingCount: number;
   ratingValues: number[];
   selectedRating: any;
-  user: User;
-  productLoading: boolean;
-  imagesLoaded: string[];
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
-    private productService: ProductService,
-    private productsCacheService: ProductsCacheService,
+    private authService: AuthService,
     private cartService: CartService,
-    private authService: AuthService
+    private productsCacheService: ProductsCacheService,
+    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
@@ -58,28 +61,33 @@ export class ProductDetailComponent implements OnInit {
 
   getProduct(): void {
     this.productLoading = true;
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.productService.getProduct(id).subscribe((product: Product) => {
-      if (product) {
-        this.product = product;
-        this.activeImageUrl = this.product.imageURLs[0];
-        this.activeImageIndex = 0;
-        this.ratingCount = product.ratings
-          ? Object.keys(product.ratings).length
-          : 0;
 
-        // check for existing rating
-        if (
-          product.ratings &&
-          Object.keys(product.ratings).includes(this.authService.getUserUid())
-        ) {
-          this.selectedRating = product.ratings[this.authService.getUserUid()];
+    const id = +this.route.snapshot.paramMap.get('id');
+
+    this.productsCacheService
+      .get(id, this.productService.getProduct(id))
+      .subscribe((product: Product) => {
+        if (product) {
+          this.product = product;
+          this.activeImageUrl = this.product.imageURLs[0];
+          this.activeImageIndex = 0;
+          this.ratingCount = product.ratings
+            ? Object.keys(product.ratings).length
+            : 0;
+
+          // check for existing rating
+          if (
+            product.ratings &&
+            Object.keys(product.ratings).includes(this.authService.getUserUid())
+          ) {
+            this.selectedRating =
+              product.ratings[this.authService.getUserUid()];
+          }
+          this.productLoading = false;
+        } else {
+          this.router.navigate(['/404-product-not-found']);
         }
-        this.productLoading = false;
-      } else {
-        this.router.navigate(['/404-product-not-found']);
-      }
-    });
+      });
   }
 
   onSelectThumbnail(event, index) {

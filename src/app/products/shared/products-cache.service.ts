@@ -1,13 +1,15 @@
 // https://hackernoon.com/angular-simple-in-memory-cache-service-on-the-ui-with-rxjs-77f167387e39
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
+import { Injectable } from '@angular/core';
+
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 import { tap } from 'rxjs/operators';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { Injectable } from '@angular/core';
+import 'rxjs/add/observable/throw';
+
 import { ProductService } from './product.service';
 
 interface CacheContent {
@@ -36,9 +38,10 @@ export class ProductsCacheService {
 
   constructor(
     private angularFireDatabase: AngularFireDatabase,
-    private productService: ProductService) {
-      this.subscribeToFirebase();
-    }
+    private productService: ProductService
+  ) {
+    this.subscribeToFirebase();
+  }
 
   subscribeToFirebase() {
     this.productSub = this.angularFireDatabase
@@ -50,6 +53,7 @@ export class ProductsCacheService {
         this.set('product', products);
       });
   }
+
   /**
    * Gets the value from cache if the key is provided.
    * If no value exists in cache, then check if the same call exists
