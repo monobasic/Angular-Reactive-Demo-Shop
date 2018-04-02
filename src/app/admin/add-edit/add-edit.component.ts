@@ -99,7 +99,8 @@ export class AddEditComponent implements OnInit {
     const sale = calcReduction > 0 ? true : false;
 
     const categories =
-      (product.categories.length && product.categories.length > 1 &&
+      (product.categories.length &&
+        product.categories.length > 1 &&
         product.categories
           .split(',')
           .reduce((all, current, index, inputArray) => {
@@ -110,7 +111,9 @@ export class AddEditComponent implements OnInit {
             } else {
               return all;
             }
-          }, {})) || product.categories || '';
+          }, {})) ||
+      product.categories ||
+      '';
 
     const imageURLs =
       product.imageURLs && product.imageURLs.length > 0
