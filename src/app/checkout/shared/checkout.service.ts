@@ -36,6 +36,10 @@ export class CheckoutService {
     console.log(this.orderInProgress);
   }
 
+  resetSteps() {
+    this.activeStep = 0;
+  }
+
   setCustomer(customer: Customer) {
     this.orderInProgress.customer = customer;
     this.orderInProgressChanged.emit(this.orderInProgress);
