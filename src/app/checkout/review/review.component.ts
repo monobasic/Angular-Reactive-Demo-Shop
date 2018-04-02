@@ -67,7 +67,6 @@ export class ReviewComponent implements OnInit {
       (response) => {
         console.log(response);
         this.cartService.clearCart();
-        this.checkoutService.resetSteps();
         this.router.navigate(['/order-complete']);
       },
       (error) => {
@@ -82,7 +81,6 @@ export class ReviewComponent implements OnInit {
       (response) => {
         console.log(response);
         this.cartService.clearCart();
-        this.checkoutService.resetSteps();
         this.router.navigate(['/order-complete']);
       },
       (error) => {
