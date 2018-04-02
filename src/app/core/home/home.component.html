@@ -1,44 +1,60 @@
 <app-main-slider [items]="productsFeatured"></app-main-slider>
 
-    <!-- Product Widgets-->
-    <section class="container padding-bottom-2x padding-top-3x">
-        <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <app-product-widget [widgetTitle]="'New Arrivals'" [products]="productsNewArrivals"></app-product-widget>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <app-product-widget [widgetTitle]="'On Sale'" [products]="productsOnSale"></app-product-widget>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <app-product-widget [widgetTitle]="'Best Rated'" [products]="productsBestRated"></app-product-widget>
-            </div>
-        </div>
-    </section>
+<!-- Product Widgets-->
+<section class="container padding-bottom-2x padding-top-3x">
+  <div class="row">
+    <div class="col-md-4 col-sm-6">
+      <app-product-widget [widgetTitle]="'New Arrivals'" [products]="productsNewArrivals"></app-product-widget>
+    </div>
+    <div class="col-md-4 col-sm-6">
+      <app-product-widget [widgetTitle]="'On Sale'" [products]="productsOnSale"></app-product-widget>
+    </div>
+    <div class="col-md-4 col-sm-6">
+      <app-product-widget [widgetTitle]="'Best Rated'" [products]="productsBestRated"></app-product-widget>
+    </div>
+  </div>
+</section>
 
-    <app-promo *ngIf="promos" [promo]="promos[0]"></app-promo>
+<app-promo *ngIf="promos" [promo]="promos[0]"></app-promo>
 
-    <!-- Services-->
-    <section class="container padding-top-3x padding-bottom-2x">
-        <div class="row">
-            <div class="col-md-3 col-sm-6 text-center mb-30">
-                <img class="d-block w-90 img-thumbnail rounded-circle mx-auto mb-3" src="img/services/01.png" alt="Shipping">
-                <h6>Free Worldwide Shipping</h6>
-                <p class="text-muted margin-bottom-none">Free shipping for all orders over $100</p>
-            </div>
-            <div class="col-md-3 col-sm-6 text-center mb-30">
-                <img class="d-block w-90 img-thumbnail rounded-circle mx-auto mb-3" src="img/services/02.png" alt="Money Back">
-                <h6>Money Back Guarantee</h6>
-                <p class="text-muted margin-bottom-none">We return money within 30 days</p>
-            </div>
-            <div class="col-md-3 col-sm-6 text-center mb-30">
-                <img class="d-block w-90 img-thumbnail rounded-circle mx-auto mb-3" src="img/services/03.png" alt="Support">
-                <h6>24/7 Customer Support</h6>
-                <p class="text-muted margin-bottom-none">Friendly 24/7 customer support</p>
-            </div>
-            <div class="col-md-3 col-sm-6 text-center mb-30">
-                <img class="d-block w-90 img-thumbnail rounded-circle mx-auto mb-3" src="img/services/04.png" alt="Payment">
-                <h6>Secure Online Payment</h6>
-                <p class="text-muted margin-bottom-none">We posess SSL / Secure Certificate</p>
-            </div>
-        </div>
-    </section>
+<!-- Services-->
+<section class="container padding-top-3x padding-bottom-2x">
+  <div class="row">
+    <div class="col-md-3 col-sm-6 text-center mb-30">
+      <img
+        class="d-block w-90 img-thumbnail rounded-circle mx-auto mb-3"
+        src="https://firebasestorage.googleapis.com/v0/b/cas-fee-shop.appspot.com/o/ui-images%2F01.png?alt=media&token=4f062267-683a-4eea-a0fe-03c4f15b97fd"
+        alt="Shipping"
+        />
+      <h6>Free Worldwide Shipping</h6>
+      <p class="text-muted margin-bottom-none">Free shipping for all orders over $100</p>
+    </div>
+    <div class="col-md-3 col-sm-6 text-center mb-30">
+      <img
+        class="d-block w-90 img-thumbnail rounded-circle mx-auto mb-3"
+        src="https://firebasestorage.googleapis.com/v0/b/cas-fee-shop.appspot.com/o/ui-images%2F02.png?alt=media&token=0ea8c942-bec0-401b-ae25-3f11376fd6d3"
+        alt="Money Back"
+        />
+      <h6>Money Back Guarantee</h6>
+      <p class="text-muted margin-bottom-none">We return money within 30 days</p>
+    </div>
+    <div class="col-md-3 col-sm-6 text-center mb-30">
+      <img
+        class="d-block w-90 img-thumbnail rounded-circle mx-auto mb-3"
+        src="https://firebasestorage.googleapis.com/v0/b/cas-fee-shop.appspot.com/o/ui-images%2F03.png?alt=media&token=96361025-07d0-4afa-899d-8e1af4db937e"
+        alt="Support"
+        />
+      <h6>24/7 Customer Support</h6>
+      <p class="text-muted margin-bottom-none">Friendly 24/7 customer support</p>
+    </div>
+    <div class="col-md-3 col-sm-6 text-center mb-30">
+      <img
+        class="d-block w-90 img-thumbnail rounded-circle mx-auto mb-3"
+        src="https://firebasestorage.googleapis.com/v0/b/cas-fee-shop.appspot.com/o/ui-images%2F04.png?alt=media&token=0793b6a1-4f4b-4500-a199-57ee7f449600"
+        alt="Payment"
+        />
+      <h6>Secure Online Payment</h6>
+      <p class="text-muted margin-bottom-none">We posess SSL / Secure Certificate</p>
+    </div>
+  </div>
+</section>

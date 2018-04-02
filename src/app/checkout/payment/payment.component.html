@@ -13,7 +13,11 @@
     <tbody>
       <tr *ngFor="let paymentMethod of paymentMethods">
         <td class="align-middle">
-          <img src="img/paypal.svg" alt="{{paymentMethod}}" *ngIf="paymentMethod === 'Paypal'" /><span *ngIf="paymentMethod !== 'Paypal'" class="text-medium">{{paymentMethod}}</span>
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/cas-fee-shop.appspot.com/o/ui-images%2Fpaypal.svg?alt=media&token=b1267e21-794c-410c-8537-b0e201ff9200"
+            alt="{{paymentMethod}}" *ngIf="paymentMethod === 'Paypal'"
+            />
+            <span *ngIf="paymentMethod !== 'Paypal'" class="text-medium">{{paymentMethod}}</span>
         </td>
         <td class="align-middle">
           <label class="custom-control custom-radio">
