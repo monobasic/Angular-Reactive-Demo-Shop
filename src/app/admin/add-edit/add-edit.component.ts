@@ -54,7 +54,10 @@ export class AddEditComponent implements OnInit {
         Validators.min(0)
       ]),
       date: new FormControl(this.product.date, Validators.required),
-      categories: new FormControl(this.product.categories, Validators.required),
+      categories: new FormControl(
+        Object.keys(this.product.categories),
+        Validators.required
+      ),
       description: new FormControl(
         this.product.description,
         Validators.required
@@ -78,41 +81,44 @@ export class AddEditComponent implements OnInit {
     });
   }
 
-  syncProduct(val) {
+  syncProduct(product) {
     // product changed
     // calculate reduction
     // add new date
     const randomId = Math.floor(Math.random() * new Date().getTime());
-    let id = val.id || randomId;
+    let id = product.id || randomId;
     if (id === 1) {
       id = randomId;
     }
 
-    const priceNormal = val.priceNormal;
-    const price = val.price;
+    const priceNormal = product.priceNormal;
+    const price = product.price;
 
     const calcReduction = Math.round((priceNormal - price) / priceNormal * 100);
     const reduction = calcReduction > 0 ? calcReduction : 0;
     const sale = calcReduction > 0 ? true : false;
 
     const categories =
-      (val.categories.length > 0 &&
-        val.categories.split(',').reduce((all, current, index, inputArray) => {
-          if (current.length > 0) {
-            current = current.trim();
-            all[current] = true;
-            return all;
-          } else {
-            return all;
-          }
-        }, {})) ||
-      '';
+      (product.categories.length && product.categories.length > 1 &&
+        product.categories
+          .split(',')
+          .reduce((all, current, index, inputArray) => {
+            if (current.length > 0) {
+              current = current.trim();
+              all[current] = true;
+              return all;
+            } else {
+              return all;
+            }
+          }, {})) || product.categories || '';
 
     const imageURLs =
-      val.imageURLs && val.imageURLs.length > 0 ? val.imageURLs : [];
+      product.imageURLs && product.imageURLs.length > 0
+        ? product.imageURLs
+        : [];
 
     this.product = {
-      ...val,
+      ...product,
       sale,
       reduction,
       id,
