@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row mb-5">
-    <div class="col-lg-6">
+    <div class="col-lg-8">
       <h2 class="margin-bottom-1x">Add/Edit Product</h2>
       <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="form-group row">
@@ -95,7 +95,7 @@
         </div>
 
         <div class="row mb-5">
-          <div class="col">
+          <div class="col text-right">
             <button [disabled]="(mode === 'add')" class="btn btn-danger" type="button" (click)="onDelete()">Delete Product</button>
             <button [disabled]="productForm.invalid" class="btn btn-primary" type="submit">Save Changes</button>
           </div>
