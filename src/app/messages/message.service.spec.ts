@@ -34,7 +34,10 @@ describe('MessageService Setup', () => {
 
     it('add("hello world")', () => {
         messageService.add('hello world');
-        console.log(toastrServiceSpy.success.calls.count());
+        expect(messageService.messages).toEqual(['hello world']);
+
+        // These are failing, but why?
         expect(toastrServiceSpy.success.calls.count()).toBe(1, 'toastrServiceSpy "success" method was called once');
+        expect(toastrServiceSpy.success).toHaveBeenCalled();
     });
 });
