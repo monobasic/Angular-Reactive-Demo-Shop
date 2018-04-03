@@ -6,9 +6,88 @@
 @import '~scss/helpers/mixins';
 // stylelint-disable selector-no-qualifying-type
 
-//
-// Base styles
-//
+.shopping-cart {
+  margin-bottom: floor($grid-vertical-step / 1.2); //~20px
+  .table { margin-bottom: 0; }
+  .btn { margin: 0; }
+  > table > thead > tr,
+  > table > tbody > tr {
+    > th,
+    > td { vertical-align: middle !important; }
+  }
+  > table thead th {
+    padding: {
+      top: 17px;
+      bottom: 17px;
+    }
+    border-width: 1px;
+  }
+  .remove-from-cart {
+    display: inline-block;
+    color: $brand-danger;
+    font-size: $font-size-lead;
+    line-height: 1;
+    text-decoration: none;
+  }
+  .count-input {
+    display: inline-block;
+    width: 100%;
+    width: 170px;
+  }
+  .product-item {
+    display: table;
+    width: 100%;
+    min-width: 150px;
+    margin: {
+      top: 5px;
+      bottom: 3px;
+    }
+    .product-thumb,
+    .product-info {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .product-thumb {
+      width: ($cart-thumb-size + 20);
+      padding-right: 20px;
+      > img {
+        display: block;
+        width: 100%;
+      }
+      @media screen and (max-width: 860px) { display: none; }
+    }
+    .product-info span {
+      display: block;
+      font-size: $font-size-xs;
+      > em {
+        font: {
+          weight: 500;
+          style: normal;
+        }
+      }
+    }
+    .product-title {
+      margin-bottom: floor($grid-vertical-step / 4);
+      padding-top: 5px;
+      font: {
+        size: $font-size-base;
+        weight: 500;
+      }
+      > a {
+        transition: color .3s;
+        color: $product-title-color;
+        line-height: $line-height-base;
+        text-decoration: none;
+        &:hover { color: $nav-link-hover-color; }
+      }
+      small {
+        display: inline;
+        margin-left: 6px;
+        font-weight: 500;
+      }
+    }
+  }
+}
 
 .input-group {
   position: relative;
@@ -57,14 +136,6 @@
     &:not(:first-child) .custom-file-label::before { @include border-left-radius(0); }
   }
 }
-
-
-// Prepend and append
-//
-// While it requires one extra layer of HTML for each, dedicated prepend and
-// append elements allow us to 1) be less clever, 2) simplify our selectors, and
-// 3) support HTML5 form validation.
-
 .input-group-prepend,
 .input-group-append {
   display: flex;
@@ -84,15 +155,8 @@
     margin-left: -$input-border-width;
   }
 }
-
 .input-group-prepend { margin-right: -$input-border-width; }
 .input-group-append { margin-left: -$input-border-width; }
-
-
-// Textual addons
-//
-// Serves as a catch-all element for any text or radio/checkbox input you wish
-// to prepend or append to an input.
 
 .input-group-text {
   display: flex;
@@ -116,12 +180,6 @@
   }
 }
 
-
-// Sizing
-//
-// Remix the default form control sizing classes into new ones for easier
-// manipulation.
-
 .input-group-lg > .form-control,
 .input-group-lg > .input-group-prepend > .input-group-text,
 .input-group-lg > .input-group-append > .input-group-text,
@@ -137,14 +195,6 @@
 .input-group-sm > .input-group-append > .btn {
   @extend .form-control-sm;
 }
-
-
-// Prepend and append rounded corners
-//
-// These rulesets must come after the sizing ones to properly override sm and lg
-// border-radius values when extending. They're more specific than we'd like
-// with the `.input-group >` part, but without it, we cannot override the sizing.
-
 
 .input-group > .input-group-prepend > .btn,
 .input-group > .input-group-prepend > .input-group-text,
@@ -163,7 +213,6 @@
 .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
   @include border-left-radius(0);
 }
-
 
 .shopping-cart-footer {
   display: table;
