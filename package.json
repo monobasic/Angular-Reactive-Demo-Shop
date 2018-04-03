@@ -41,7 +41,7 @@
     "passport-local": "^1.0.0",
     "rxjs": "^5.5.6",
     "uuid": "^3.2.1",
-    "zone.js": "^0.8.20"
+    "zone.js": "git://github.com/JiaLiPassion/zone.js#jasmine-dist"
   },
   "devDependencies": {
     "@angular/animations": "^5.2.4",
@@ -49,7 +49,7 @@
     "@angular/compiler-cli": "^5.2.4",
     "@angular/language-service": "^5.2.4",
     "@types/dotenv": "^4.0.2",
-    "@types/express-jwt": "0.0.38",
+    "@types/express-jwt": "0.0.39",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.2",
     "@types/multer": "^1.3.6",
