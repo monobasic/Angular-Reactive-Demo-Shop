@@ -11,13 +11,15 @@ export class MessageService {
     this.messages.push(message);
     this.toastr.success(message, 'Message:', {
       disableTimeOut: false,
-      closeButton: false
+      closeButton: false,
+      positionClass: 'toast-bottom-right'
     });
   }
   addError(message: string): void {
     this.toastr.error(message, 'Message:', {
       disableTimeOut: false,
-      closeButton: false
+      closeButton: false,
+      positionClass: 'toast-bottom-right'
     });
   }
 
