@@ -70,7 +70,6 @@ export class ProductService {
       .valueChanges()
       .map((arr) => arr.reverse())
       .pipe(
-        // tap(() => this.log(`fetched Products`)),
         catchError(this.handleError<Product[]>(`getProducts`))
       );
   }
@@ -87,7 +86,10 @@ export class ProductService {
           .equalTo(equalTo)
           .limitToFirst(limitToFirst)
       )
-      .valueChanges();
+      .valueChanges()
+      .pipe(
+        catchError(this.handleError<Product[]>(`getProductsQuery`))
+      );
   }
 
   getProductsByDate(limitToLast: number): Observable<Product[]> {
@@ -96,7 +98,10 @@ export class ProductService {
         ref.orderByChild('date').limitToLast(limitToLast)
       )
       .valueChanges()
-      .map((arr) => arr.reverse());
+      .map((arr) => arr.reverse())
+      .pipe(
+        catchError(this.handleError<Product[]>(`getProductsByDate`))
+      );
   }
 
   getProductsByRating(limitToLast: number): Observable<Product[]> {
@@ -105,7 +110,10 @@ export class ProductService {
         ref.orderByChild('currentRating').limitToLast(limitToLast)
       )
       .valueChanges()
-      .map((arr) => arr.reverse());
+      .map((arr) => arr.reverse())
+      .pipe(
+        catchError(this.handleError<Product[]>(`getProductsByRating`))
+      );
   }
 
   getFeaturedProducts(): Observable<any[]> {
@@ -127,6 +135,9 @@ export class ProductService {
           });
           return resolvedProducts;
         }
+      )
+      .pipe(
+        catchError(this.handleError<Product[]>(`getFeaturedProducts`))
       );
   }
 
