@@ -1,9 +1,9 @@
 # CAS FEE PROJEKT 2 : SPA Shop Front End Implementation
-Christian Zellweger (https://github.com/chzellweger), 
+Christian Zellweger (https://github.com/chzellweger),
 André Abt (https://github.com/monobasic)
 
 ## Background
-The initial idea for this project was to implement a SPA based shop frontend which can be coupled to existing shop backends via REST API. The performance of a SPA application would be very nice to make the shopping process for users as fluid as possible. Imagine adding items to the cart, browsing and filtering products, typeahead search, updating your favorites/wish list - all handled by the front end application. 
+The initial idea for this project was to implement a SPA based shop frontend which can be coupled to existing shop backends via REST API. The performance of a SPA application would be very nice to make the shopping process for users as fluid as possible. Imagine adding items to the cart, browsing and filtering products, typeahead search, updating your favorites/wish list - all handled by the front end application.
 
 Although this would be cool, it's most likely a bit out of scope to provide all the API mappings for different shops like Shopify, Woocommerce, PrestaShop, Magento and the likes.
 
@@ -20,30 +20,31 @@ So we decided to implement basic shop functionality for now and base the project
 - Is Angular5 suited for fast, high end visual front ends or is React (Or another SPA framework) needed?
 - Are there replacements for well known jQuery front end ui components in Angular or do we need to relinquish for some parts?
 
-## Basic Feature Set
+## Feature Set
 ### Shop functionality
-- Products served from backend via REST API
+
+#### Products
 - Products List, Product Detail View
+
+#### Cart
 - Add to Cart functionality, View Cart, Edit Cart
 - Search functionality with typeahead
 
-### Authentication
+#### Authentication
 - Checkout: As registered user / guest
 - Sign up: Create user account
 - Log in: General login or during checkout
+- Role based authentication
 
-### Orders
+#### Orders
 - Checkout process generates Order for registered user or guest
 - Order / Confirmation Email for Shop/User/Guest
 - Orders can be viewed by logged in user
 
-### Payment
-- Via paypal, invoice, pre-pay
+
 
 ### Security
-- HTTPS
-
-
+- FireBase Security Rules for Shop User / Admin
 
 
 
@@ -62,7 +63,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Development with Express-Server/mLab remote-DB as backend
 
 - Remove HttpClientInMemoryWebApiModule from app.module imports.
-- Run `npm run start:remote` to spin up ng-server at port 4200 and an express-driven backend at 3000. Requests to /api/* will be redirected to the server (as defined in proxy.config.json) 
+- Run `npm run start:remote` to spin up ng-server at port 4200 and an express-driven backend at 3000. Requests to /api/* will be redirected to the server (as defined in proxy.config.json)
 
 ## Code scaffolding
 
