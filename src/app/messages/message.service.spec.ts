@@ -23,4 +23,11 @@ describe('MessageService Setup', () => {
     it('init messages array', inject([MessageService], (service: MessageService) => {
         expect(service.messages).toEqual([]);
     }));
+
+    it('add("hello world")', inject([MessageService], (service: MessageService) => {
+        const toastrServiceSpy = TestBed.get(ToastrService);
+        service.add('hello world');
+        console.log(toastrServiceSpy.success.calls.count());
+        expect(toastrServiceSpy.success.calls.count()).toBe(1);
+    }));
 });
