@@ -125,8 +125,12 @@ So we decided to implement basic shop functionality for now and base the project
 ## Custom Express/MongoDB Backend
 - (...)
 
+## Special Mentions
+- Off Canvas Navigation is handled via Service, several CSS classes needs to be applied to different components
+
 
 ## Possible future features and updates
+- Product categories
 - Make Featured Products for the slider editable via UI
 - Save cart for logged in user
 - Login option during checkout
@@ -134,6 +138,7 @@ So we decided to implement basic shop functionality for now and base the project
 - Better Product Service Cache "Reactivity"
 - Customer Address or multiple delivery addresses could be handled via account profile page
 - Attach real payment gateways
+- Multilanguage functionality
 - Order Detail View for logged in users via account/orders
 - Admin users could edit other users roles via UI, instead of Firebase (User CRUD)
 - Add password recovery functionality for lost user passwords
