@@ -23,12 +23,46 @@ So we decided to implement basic shop functionality for now and base the project
 ## Feature Set
 ### Shop functionality
 
+#### General
+- All displayed prices are handled via a PriceComponent to simplify currency display/formatting
+
+#### Shop Front Page
+- Featured Products with link to corresponding product detail page
+- Features for "New Arrivals", "On Sale" and "Best Rated" Products
+
 #### Products
-- Products List, Product Detail View
+- Products fetched from FireBase backend and cached for future requests
+- Sorting: Products can be sorted by date created, price and name
+- Products can be viewed in a grid or a list view
+- Products are shown paged via a PagingService
+- When logged in as a user with adminstrative rights, additional buttons are shown for product CRUD operations, it's possible to add a new product, edit a product or delete. Images are handled via FirebaseStorage
+
+##### Rating
+- Products can be rated by logged in users from 1 to 5
+- User can change his previous rating
+- Previous rating is reflected in the UI
+- Overall rating gets calculated and displayed instantly
+- Rating is updated in a reactive manner, even for cached products
 
 #### Cart
-- Add to Cart functionality, View Cart, Edit Cart
-- Search functionality with typeahead
+- Products can be added from the list/grid View or product detail view
+- Cart is handled via a CartService
+- Adding the same product multiple times, increases the amount in cart
+- Cart has a dedicated cart page and is visible as a dropdown widget as well
+- Quantity of each cart item can be adjusted via cart page
+- Cart can be cleared at once
+- Single products can be removed from cart
+- Subtotal and Totals will be calculated on the fly
+- Link to Checkout is available from both carts
+
+#### Checkout
+- Prefill fields, if user is already logged in
+- Enter Address, Shipping Method and Payment Data with Validation
+- Show review of the order before final submit
+- When submitting a order, OrderService creates a new Order linked to the user
+- Anonymous Orders are possible too, in that case OrderService creates a new anonymous order
+- Order summary is shown in the sidebar during the checkout process
+
 
 #### Authentication
 - Checkout: As registered user / guest
@@ -36,22 +70,41 @@ So we decided to implement basic shop functionality for now and base the project
 - Log in: General login or during checkout
 - Role based authentication
 
+#### Account
+- Create new shop user accounts
+- Login with existing user account
+- User Profile, Email, Password, Firstname, Lastname are updateable via account page
+- Order history is visible to logged in users
+- Role base authentication via Firebase, roles can be assigned to users like isAdmin
+
 #### Orders
 - Checkout process generates Order for registered user or guest
 - Order / Confirmation Email for Shop/User/Guest
 - Orders can be viewed by logged in user
 
-
-
 ### Security
 - FireBase Security Rules for Shop User / Admin
 
 
-## Possible future features
+## Possible future features and updates
+- Make Featured Products for the slider editable via UI
 - Save cart for logged in user
 - Login option during checkout
-- Search
+- Search with Typeahead functionality
 - Better Product Service Cache "Reactivity"
+- Customer Address or multiple delivery addresses could be handled via account profile page
+- Attach real payment gateways
+- Order Detail View for logged in users via account/orders
+- Admin users could edit other users roles via UI, instead of Firebase (User CRUD)
+- Add password recovery functionality for lost user passwords
+- Better solution for responsive tables
+- Lazy load some modules that are not needed on inital page load
+- Separate routes to modules
+- Multiple Product Images CRUD
+- Think about implementing a state management
+- Social sharing functionality
+- Authenticate with Google, Facebook and other OAUTH services
+
 
 
 
