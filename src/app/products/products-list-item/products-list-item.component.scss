@@ -139,3 +139,10 @@
     }
   }
 }
+
+
+:host ::ng-deep .rating-stars {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+}
