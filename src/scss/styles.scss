@@ -1,11 +1,6 @@
-/*
- * Unishop | Universal E-Commerce Template
- * Copyright 2017 rokaux
- * Theme Styles
- */
-
 //Import Google Fonts (Maven Pro)
 @import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900');
+
 
 // Import Bootstrap Modules
 @import "~bootstrap/scss/functions";
@@ -50,11 +45,15 @@
 @import 'helpers/mixins';
 @import 'helpers/placeholders';
 
+
+// Import third party lib styles
 @import "~ngx-toastr/toastr-bs4-alert";
+
 
 // Base
 @import 'base/scaffolding';
 @import 'base/utilities';
+
 
 // Components
 @import 'components/icons';
