@@ -93,6 +93,7 @@ export class AuthService {
 
   signOut() {
     this.afAuth.auth.signOut();
+    this.messageService.add('You have been logged out.');
   }
 
   updateProfile(userData: User) {
