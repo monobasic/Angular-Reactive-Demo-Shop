@@ -132,6 +132,7 @@ So we decided to implement basic shop functionality for now and base the project
 ## Possible future features and updates
 - Product categories
 - Make Featured Products for the slider editable via UI
+- Make banner on start page editable via UI
 - Save cart for logged in user
 - Login option during checkout
 - Search with Typeahead functionality
