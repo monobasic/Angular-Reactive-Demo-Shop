@@ -1,0 +1,83 @@
+@import '~scss/helpers/variables';
+@import '~scss/helpers/mixins';
+
+// Page Title
+.page-title {
+  width: 100%;
+  margin-bottom: ceil($grid-vertical-step * 2.5); //~60px
+  padding: floor($grid-vertical-step * 1.5) 0; //~36px 0
+  border-bottom: 1px solid $border-color;
+  background-color: $gray-lighter;
+  > .container,
+  > .container-fluid { display: table; }
+  .column {
+    display: table-cell;
+    vertical-align: middle;
+    &:first-child { padding-right: 20px; }
+  }
+  h1, h2, h3 {
+    margin: 0;
+    font: {
+      size: $font-size-h3;
+      weight: normal;
+    }
+    line-height: $line-height-h3;
+  }
+  @media (max-width: $screen-sm) { margin-bottom: ceil($grid-vertical-step * 2.2); }
+}
+
+// Breadcrumbs
+.breadcrumbs {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+  > li {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 5px 0;
+    color: $gray;
+    font-size: $font-size-sm;
+    cursor: default;
+    vertical-align: middle;
+    &.separator {
+      width: 3px;
+      height: 3px;
+      margin-top: 2px;
+      padding: 0;
+      border-radius: 50%;
+      background-color: $gray;;
+    }
+    > a {
+      transition: color .25s;
+      color: $nav-link-color;
+      text-decoration: none;
+      &:hover { color: $nav-link-hover-color; }
+    }
+  }
+}
+
+// Media query (max-width: 768px)
+@media (max-width: $screen-md) {
+  .page-title {
+    > .container,
+    > .container-fluid { display: block; }
+    .column {
+      display: block;
+      width: 100%;
+      text-align: center;
+      &:first-child { padding-right: 0; }
+    }
+  }
+  .breadcrumbs {
+    padding-top: 10px;
+    text-align: center;
+    > li {
+      margin: {
+        left: 3px;
+        margin-right: 3px;
+      }
+    }
+  }
+}
