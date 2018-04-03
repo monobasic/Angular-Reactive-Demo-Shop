@@ -125,22 +125,6 @@
 }
 
 
-// Product Rating
-// -------------------------------------------------------
-
-.rating-stars {
-  display: inline-block;
-  > i {
-    display: inline-block;
-    margin-right: 2px;
-    color: lighten($gray, 15%);
-    font-size: $font-size-sm;
-    &.filled { color: $brand-warning; }
-    &:last-child { margin-right: 0; }
-  }
-}
-
-
 // Shop Toolbar
 // -------------------------------------------------------
 
