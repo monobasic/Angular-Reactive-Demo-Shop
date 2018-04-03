@@ -149,7 +149,6 @@ export class ProductService {
       .valueChanges().pipe(
         tap(result => {
           if (result) {
-            this.log(`fetched Product id=${id}}`);
             return of(result);
           } else {
             this.messageService.addError(`Found no Product with id=${id}`);
