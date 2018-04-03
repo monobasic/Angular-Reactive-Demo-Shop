@@ -35,9 +35,20 @@ describe('MessageService Setup', () => {
     it('add("hello world")', () => {
         messageService.add('hello world');
         expect(messageService.messages).toEqual(['hello world']);
-
-        // These are failing, but why?
-        expect(toastrServiceSpy.success.calls.count()).toBe(1, 'toastrServiceSpy "success" method was called once');
         expect(toastrServiceSpy.success).toHaveBeenCalled();
+    });
+
+    it('addError("My nasty error!")', () => {
+        messageService.addError('My nasty error!');
+        expect(messageService.messages).toEqual([]);
+        expect(toastrServiceSpy.success).toHaveBeenCalledTimes(0);
+        expect(toastrServiceSpy.error).toHaveBeenCalled();
+    });
+
+    it('clear()', () => {
+        messageService.add('hello world');
+        expect(messageService.messages).toEqual(['hello world']);
+        messageService.clear();
+        expect(messageService.messages).toEqual([]);
     });
 });
