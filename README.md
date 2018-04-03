@@ -50,6 +50,8 @@ So we decided to implement basic shop functionality for now and base the project
 ## Possible future features
 - Save cart for logged in user
 - Login option during checkout
+- Search
+- Better Product Service Cache "Reactivity"
 
 
 
