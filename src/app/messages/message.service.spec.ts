@@ -4,30 +4,37 @@ import { MessageService } from './message.service';
 import { ToastrService } from 'ngx-toastr';
 
 describe('MessageService Setup', () => {
+    let messageService: MessageService;
+    let toastrServiceSpy: jasmine.SpyObj<ToastrService>;
 
     beforeEach(() => {
-        const toastrServiceSpy = jasmine.createSpyObj('ToastrService', ['success', 'error']);
+        const spy = jasmine.createSpyObj('ToastrService', [
+            'success',
+            'error'
+        ]);
 
         TestBed.configureTestingModule({
             providers: [
                 MessageService,
-                { provide: ToastrService, useValue: toastrServiceSpy }
+                { provide: ToastrService, useValue: spy }
             ]
         });
+
+        messageService = TestBed.get(MessageService);
+        toastrServiceSpy = TestBed.get(ToastrService);
     });
 
-    it('should be created', inject([MessageService], (service: MessageService) => {
-        expect(service).toBeTruthy();
-    }));
+    it('should be created', () => {
+        expect(messageService).toBeTruthy();
+    });
 
-    it('init messages array', inject([MessageService], (service: MessageService) => {
-        expect(service.messages).toEqual([]);
-    }));
+    it('init messages array', () => {
+        expect(messageService.messages).toEqual([]);
+    });
 
-    it('add("hello world")', inject([MessageService], (service: MessageService) => {
-        const toastrServiceSpy = TestBed.get(ToastrService);
-        service.add('hello world');
+    it('add("hello world")', () => {
+        messageService.add('hello world');
         console.log(toastrServiceSpy.success.calls.count());
-        expect(toastrServiceSpy.success.calls.count()).toBe(1);
-    }));
+        expect(toastrServiceSpy.success.calls.count()).toBe(1, 'toastrServiceSpy "success" method was called once');
+    });
 });
