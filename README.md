@@ -169,6 +169,7 @@ So we decided to implement basic shop functionality for now and base the project
 - UI Performance - yay!
 - Firebase reactivity - cool!
 - Tests run slow, Jest would be a good alternative (See Branch -> ...)
+- Testing: Mocking AngularFire/Firebase stuff is pain in the ass
 
 
 
