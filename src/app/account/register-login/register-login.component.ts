@@ -54,8 +54,9 @@ export class RegisterLoginComponent implements OnInit {
       this.authenticationService.emailSignUp(this.registerForm.value.email, this.registerForm.value.password)
       .then(
         () => {
-          this.messageService.add('Registration successful!');
-          this.router.navigate(['/home']);
+          this.messageService.add('Account created successfully. Please login with your new credentials!');
+          this.loginForm.setValue({ email: this.registerForm.value.email, password: ''});
+          this.initRegisterForm();
         },
         (error) => {
           console.log('onRegister() error: ');
