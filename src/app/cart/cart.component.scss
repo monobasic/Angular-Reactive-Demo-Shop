@@ -1,8 +1,9 @@
-
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/forms";
+@import '~scss/helpers/variables';
+@import '~scss/helpers/mixins';
 // stylelint-disable selector-no-qualifying-type
 
 //
@@ -161,4 +162,35 @@
 .input-group > .input-group-prepend:first-child > .btn:not(:first-child),
 .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
   @include border-left-radius(0);
+}
+
+
+.shopping-cart-footer {
+  display: table;
+  width: 100%;
+  padding: 10px 0;
+  border-top: 1px solid $border-color;
+  > .column {
+    display: table-cell;
+    padding: 5px 0;
+    vertical-align: middle;
+    &:last-child {
+      text-align: right;
+      .btn {
+        margin: {
+          right: 0;
+          left: 15px;
+        }
+      }
+    }
+    @media (max-width: $screen-md) {
+      display: block;
+      width: 100%;
+      &:last-child { text-align: center; }
+      .btn {
+        width: 100%;
+        margin: floor($grid-vertical-step / 2) 0 !important;
+      }
+    }
+  }
 }
