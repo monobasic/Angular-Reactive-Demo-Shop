@@ -47,13 +47,6 @@ export class ProductService {
     this.messageService.add('ProductService: ' + message);
   }
 
-  private simulateHttp(val: any, delay: number) {
-    return Observable.of(val).delay(delay);
-  }
-
-  private simulateFirebase(val: any, delay: number) {
-    return Observable.interval(delay).map((index) => val + ' ' + index);
-  }
 
   /**
    * Handle Http operation that failed.
@@ -63,12 +56,8 @@ export class ProductService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
-
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
