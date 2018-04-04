@@ -69,12 +69,18 @@ describe('CartService Methods', () => {
             ),
             3
         );
+
+        spyOn(cartService.itemsChanged, 'emit');
+
         // Add a cart item
         cartService.addItem(testProduct);
+
         // Check items in cart
         expect(cartService.getItems()).toEqual([
             testProduct
         ]);
+
+        expect(cartService.itemsChanged.emit).toHaveBeenCalled();
     });
 
 });
