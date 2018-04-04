@@ -57,43 +57,40 @@ describe('CartService Methods', () => {
     });
 
     it('addItem() 3 of the same products at once', () => {
-        const testProduct = new CartItem(
-            new Product(
-                666,
-                new Date().toISOString().split('T')[0],
-                'Foo Product',
-                'Lorem Ipsum...',
-                89,
-                99,
-                10,
-            ),
-            3
+        const testProduct = new Product(
+            666,
+            new Date().toISOString().split('T')[0],
+            'Foo Product',
+            'Lorem Ipsum...',
+            89,
+            99,
+            10,
         );
 
         spyOn(cartService.itemsChanged, 'emit');
 
         // Add a cart item
-        cartService.addItem(testProduct);
+        cartService.addItem(new CartItem(testProduct, 3));
 
         // Check items in cart
         expect(cartService.getItems()).toEqual([
-            testProduct
+            new CartItem(testProduct, 3)
         ]);
 
         expect(cartService.itemsChanged.emit).toHaveBeenCalled();
+        expect(messageService.add).toHaveBeenCalled();
     });
 
     it('twice addItem() of the same product, amount should increase', () => {
-        const testProduct =
-            new Product(
-                666,
-                new Date().toISOString().split('T')[0],
-                'Foo Product',
-                'Lorem Ipsum...',
-                89,
-                99,
-                10,
-            );
+        const testProduct = new Product(
+            666,
+            new Date().toISOString().split('T')[0],
+            'Foo Product',
+            'Lorem Ipsum...',
+            89,
+            99,
+            10,
+        );
 
         spyOn(cartService.itemsChanged, 'emit');
 
@@ -106,6 +103,7 @@ describe('CartService Methods', () => {
         ]);
 
         expect(cartService.itemsChanged.emit).toHaveBeenCalled();
+        expect(messageService.add).toHaveBeenCalled();
 
         // Add another of the same cart item
         cartService.addItem(new CartItem(testProduct, 1));
@@ -116,6 +114,7 @@ describe('CartService Methods', () => {
         ]);
 
         expect(cartService.itemsChanged.emit).toHaveBeenCalledTimes(2);
+        expect(messageService.add).toHaveBeenCalledTimes(2);
     });
 
 });
