@@ -1,136 +1,203 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { AddEditComponent, DomainProduct } from './add-edit.component';
+
 import { Product } from '../../models/product.model';
-import { AddEditComponent } from './add-edit.component';
-import { CoreModule } from '../../core/core.module';
-import { ProductsModule } from '../../products/products.module';
-import { CheckoutModule } from '../../checkout/checkout.module';
-import { CartComponent } from '../../cart/cart.component';
 
-// describe('CartService Methods', () => {
-//   let cartService: CartService;
-//   let messageService: jasmine.SpyObj<MessageService>;
+import { ActivatedRoute, Router } from '@angular/router';
+import { FileUploadService } from '../../products/shared/file-upload.service';
+import { MessageService } from '../../messages/message.service';
+import { ProductService } from '../../products/shared/product.service';
+import { ProductsCacheService } from '../../products/shared/products-cache.service';
 
-//   beforeEach(() => {
-//     const spy = jasmine.createSpyObj('MessageService', ['add', 'addError']);
+class MockRouter {}
+class MockActivatedRoute {}
+class MockProductService {}
+class MockFileUploadService {}
+class MockProductsCacheService {}
+class MockMessageService {}
 
-//     TestBed.configureTestingModule({
-//       providers: [CartService, { provide: MessageService, useValue: spy }]
-//     });
+describe('AddEditComponent', () => {
+  let addEditComponent: AddEditComponent;
 
-//     cartService = TestBed.get(CartService);
-//     messageService = TestBed.get(MessageService);
-//   });
+  beforeEach(() => {
+    // const spy = jasmine.createSpyObj('MessageService', ['add', 'addError']);
 
-//   it('addItem() 3 of the same products at once', () => {
-//     const testProduct = new Product(
-//       666,
-//       new Date().toISOString().split('T')[0],
-//       'Foo Product',
-//       'Lorem Ipsum...',
-//       89,
-//       99,
-//       10
-//     );
+    TestBed.configureTestingModule({
+      providers: [
+        AddEditComponent,
+        { provide: Router, useClass: MockRouter },
+        { provide: ActivatedRoute, useClass: MockActivatedRoute },
+        { provide: MessageService, useClass: MockMessageService },
+        { provide: ProductService, useClass: MockProductService },
+        { provide: FileUploadService, useClass: MockFileUploadService },
+        { provide: ProductsCacheService, useClass: MockProductsCacheService }
+      ]
+    });
+    addEditComponent = TestBed.get(AddEditComponent);
+  });
 
-//     spyOn(cartService.itemsChanged, 'emit');
+  it('should be created', () => {
+    expect(addEditComponent).toBeTruthy();
+  });
 
-//     // Add a cart item
-//     cartService.addItem(new CartItem(testProduct, 3));
+  describe('has a method constructProductToSubmit, it', () => {
+    it('should turn a DomainProduct to a Product', () => {
+      const testDomainProduct = new DomainProduct(
+        1,
+        new Date().toISOString().split('T')[0],
+        '',
+        '',
+        0,
+        0,
+        0,
+        [],
+        [],
+        'hello, world',
+      );
 
-//     // Check items in cart
-//     expect(cartService.getItems()).toEqual([new CartItem(testProduct, 3)]);
+      const result = addEditComponent.constructProductToSubmit(testDomainProduct);
+      expect(result.categories).toEqual({hello: true, world: true});
+    });
+  });
 
-//     expect(cartService.itemsChanged.emit).toHaveBeenCalled();
-//     expect(messageService.add).toHaveBeenCalled();
-//   });
+  describe('has a method createId, it', () => {
+    it('returns a random id if provided product id is 1', () => {
+      const testProduct = new Product(
+        1,
+        new Date().toISOString().split('T')[0],
+        'Foo Product',
+        'Lorem Ipsum...',
+        100,
+        200,
+        10
+      );
+      const result = addEditComponent.createId(testProduct);
+      expect(result).toBeGreaterThan(1);
+    });
 
-//   it('twice addItem() of the same product, amount should increase', () => {
-//     const testProduct = new Product(
-//       666,
-//       new Date().toISOString().split('T')[0],
-//       'Foo Product',
-//       'Lorem Ipsum...',
-//       89,
-//       99,
-//       10
-//     );
+    it('returns the same id if provided product id is  greater 1', () => {
+      const testProduct = new Product(
+        666,
+        new Date().toISOString().split('T')[0],
+        'Foo Product',
+        'Lorem Ipsum...',
+        100,
+        200,
+        10
+      );
+      const result = addEditComponent.createId(testProduct);
+      expect(result).toBe(666);
+    });
+  });
 
-//     spyOn(cartService.itemsChanged, 'emit');
+  describe('has a method categoriesFromObjectToString', () => {
+    it('should return "example, category" if provided an empty object', () => {
+      const result = addEditComponent.categoriesFromObjectToString({});
+      expect(result).toBe('example, category');
+    });
 
-//     // Add a cart item
-//     cartService.addItem(new CartItem(testProduct, 1));
+    it('should turn "key: boolean"-objects into comma-seperated strings', () => {
+      const result = addEditComponent.categoriesFromObjectToString({
+        test: true,
+        test2: true
+      });
+      expect(result).toEqual('test,test2');
+    });
+  });
 
-//     // Check items in cart
-//     expect(cartService.getItems()).toEqual([new CartItem(testProduct, 1)]);
+  describe('has a method categoriesFromStringToObject, it', () => {
+    it('should turn empty strings to empty objects', () => {
+      const result = addEditComponent.categoriesFromStringToObject('');
+      expect(result).toEqual({});
+    });
 
-//     expect(cartService.itemsChanged.emit).toHaveBeenCalled();
-//     expect(messageService.add).toHaveBeenCalled();
+    it('should turn strings to "key: true"-objects', () => {
+      const result = addEditComponent.categoriesFromStringToObject(
+        'test, test2'
+      );
+      expect(result).toEqual({ test: true, test2: true });
+    });
+  });
 
-//     // Add another of the same cart item
-//     cartService.addItem(new CartItem(testProduct, 1));
+  describe('has a method checkForSale, it', () => {
+    it('should return true if provided a value > 0', () => {
+      const result = addEditComponent.checkForSale(1);
+      expect(result).toBe(true);
+    });
 
-//     // Check items in cart
-//     expect(cartService.getItems()).toEqual([new CartItem(testProduct, 2)]);
+    it('should return false if provided 0', () => {
+      const result = addEditComponent.checkForSale(0);
+      expect(result).toBe(false);
+    });
+  });
 
-//     expect(cartService.itemsChanged.emit).toHaveBeenCalledTimes(2);
-//     expect(messageService.add).toHaveBeenCalledTimes(2);
-//   });
+  describe('has a method calculateReduction, it', () => {
+    it('should calculate the correct reduction', () => {
+      const testProduct = new Product(
+        666,
+        new Date().toISOString().split('T')[0],
+        'Foo Product',
+        'Lorem Ipsum...',
+        100,
+        200,
+        10,
+        ['/hello-world.jpg']
+      );
+      const result = addEditComponent.calculateReduction(
+        testProduct.priceNormal,
+        testProduct.price
+      );
+      expect(result).toBe(50);
+    });
 
-//   it('addItems() 3 products in array at once', () => {
-//     const testProduct = new Product(
-//       666,
-//       new Date().toISOString().split('T')[0],
-//       'Foo Product',
-//       'Lorem Ipsum...',
-//       89,
-//       99,
-//       10
-//     );
+    it('should return 0 if reduction is less than zero', () => {
+      const testProduct = new Product(
+        666,
+        new Date().toISOString().split('T')[0],
+        'Foo Product',
+        'Lorem Ipsum...',
+        199.5,
+        200,
+        10,
+        ['/hello-world.jpg']
+      );
+      const result = addEditComponent.calculateReduction(
+        testProduct.priceNormal,
+        testProduct.price
+      );
+      expect(result).toBe(0);
+    });
+  });
 
-//     const testArray = [
-//       new CartItem(testProduct, 1),
-//       new CartItem(testProduct, 2),
-//       new CartItem(testProduct, 3)
-//     ];
+  describe('has a method handleImageURLs, it', () => {
+    it('should return an array if provided a not-empty-array', () => {
+      const testProduct = new Product(
+        666,
+        new Date().toISOString().split('T')[0],
+        'Foo Product',
+        'Lorem Ipsum...',
+        89,
+        99,
+        10,
+        ['/hello-world.jpg']
+      );
+      const result = addEditComponent.handleImageURLs(testProduct);
+      expect(result).toBe(testProduct.imageURLs);
+    });
 
-//     spyOn(cartService, 'addItem').and.callThrough();
-
-//     // Add a cart item
-//     cartService.addItems(testArray);
-
-//     // Check items in cart
-//     expect(cartService.addItem).toHaveBeenCalledTimes(3);
-//     expect(messageService.add).toHaveBeenCalledTimes(3);
-//     expect(cartService.getItems()).toEqual([new CartItem(testProduct, 6)]);
-//   });
-
-//   it('removeItem()', () => {
-//     const testProduct = new Product(
-//       666,
-//       new Date().toISOString().split('T')[0],
-//       'Foo Product',
-//       'Lorem Ipsum...',
-//       89,
-//       99,
-//       10
-//     );
-
-//     spyOn(cartService.itemsChanged, 'emit');
-
-//     // Add a cart item
-//     cartService.addItem(new CartItem(testProduct, 3));
-
-//     // Check items in cart
-//     expect(cartService.getItems()).toEqual([new CartItem(testProduct, 3)]);
-
-//     expect(cartService.itemsChanged.emit).toHaveBeenCalled();
-//     expect(messageService.add).toHaveBeenCalled();
-
-//     // Remove item
-//     cartService.removeItem(new CartItem(testProduct, 1));
-
-//     expect(cartService.itemsChanged.emit).toHaveBeenCalled();
-//     expect(messageService.add).toHaveBeenCalled();
-//     expect(cartService.getItems()).toEqual([]);
-//   });
-// });
+    it('should return an empty array if provided an empty array', () => {
+      const testProduct = new Product(
+        666,
+        new Date().toISOString().split('T')[0],
+        'Foo Product',
+        'Lorem Ipsum...',
+        89,
+        99,
+        10,
+        []
+      );
+      const result = addEditComponent.handleImageURLs(testProduct);
+      expect(result).toEqual([]);
+    });
+  });
+});
