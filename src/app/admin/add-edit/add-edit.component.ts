@@ -39,7 +39,7 @@ export class AddEditComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
+    public route: ActivatedRoute,
     private productService: ProductService,
     public fileUploadService: FileUploadService,
     private productsCacheService: ProductsCacheService,

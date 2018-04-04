@@ -8,9 +8,21 @@ import { FileUploadService } from '../../products/shared/file-upload.service';
 import { MessageService } from '../../messages/message.service';
 import { ProductService } from '../../products/shared/product.service';
 import { ProductsCacheService } from '../../products/shared/products-cache.service';
+import { of } from 'rxjs/observable/of';
 
 class MockRouter {}
-class MockActivatedRoute {}
+class MockActivatedRoute {
+  params;
+  snapshot;
+  constructor() {
+    this.params = of(100);
+    this.snapshot = {
+      paramMap: {
+        get: (key) => 100
+      }
+    };
+  }
+}
 class MockProductService {}
 class MockFileUploadService {}
 class MockProductsCacheService {}
@@ -20,8 +32,6 @@ describe('AddEditComponent', () => {
   let addEditComponent: AddEditComponent;
 
   beforeEach(() => {
-    // const spy = jasmine.createSpyObj('MessageService', ['add', 'addError']);
-
     TestBed.configureTestingModule({
       providers: [
         AddEditComponent,
@@ -40,6 +50,49 @@ describe('AddEditComponent', () => {
     expect(addEditComponent).toBeTruthy();
   });
 
+  describe('has a method setProduct, it', () => {
+    it('should set mode to edit if id is provided', () => {
+      spyOn(addEditComponent, 'getProduct');
+      addEditComponent.setProduct();
+      expect(addEditComponent.getProduct).toHaveBeenCalled();
+      expect(addEditComponent.mode).toEqual('edit');
+    });
+
+    it('should set mode to add if no id is provided', () => {
+      spyOn(addEditComponent, 'constructProduct');
+      addEditComponent.route.snapshot.paramMap.get = () => null;
+      addEditComponent.setProduct();
+      expect(addEditComponent.mode).toBe('add');
+    });
+  });
+
+  it('has a working method syncProduct', () => {
+    const testDomainProduct = new DomainProduct(
+      1,
+      new Date().toISOString().split('T')[0],
+      'My name',
+      'My new description',
+      100,
+      200,
+      0,
+      ['/my-image'],
+      [],
+      'hello, world'
+    );
+    const result = addEditComponent.syncProduct(testDomainProduct);
+    expect(addEditComponent.product.description).toEqual('My new description');
+    expect(addEditComponent.product.name).toEqual('My name');
+    expect(addEditComponent.product.id).toBeGreaterThan(1);
+    expect(addEditComponent.product.reduction).toBe(50);
+    expect(addEditComponent.product.sale).toBe(true);
+    expect(addEditComponent.product.imageURLs).toEqual(['/my-image']);
+  });
+
+  it('has a working method constructMockProduct', () => {
+    const result = addEditComponent.constructMockProduct();
+    expect(result.id).toBe(1);
+  });
+
   describe('has a method constructProductToSubmit, it', () => {
     it('should turn a DomainProduct to a Product', () => {
       const testDomainProduct = new DomainProduct(
@@ -52,11 +105,13 @@ describe('AddEditComponent', () => {
         0,
         [],
         [],
-        'hello, world',
+        'hello, world'
       );
 
-      const result = addEditComponent.constructProductToSubmit(testDomainProduct);
-      expect(result.categories).toEqual({hello: true, world: true});
+      const result = addEditComponent.constructProductToSubmit(
+        testDomainProduct
+      );
+      expect(result.categories).toEqual({ hello: true, world: true });
     });
   });
 
@@ -90,7 +145,7 @@ describe('AddEditComponent', () => {
     });
   });
 
-  describe('has a method categoriesFromObjectToString', () => {
+  describe('has a method categoriesFromObjectToString, it', () => {
     it('should return "example, category" if provided an empty object', () => {
       const result = addEditComponent.categoriesFromObjectToString({});
       expect(result).toBe('example, category');
