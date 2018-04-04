@@ -1,26 +1,10 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { Product } from '../../models/product.model';
 import { AddEditComponent } from './add-edit.component';
-
-describe('CartService Setup', () => {
-  let addEditComponent: AddEditComponent;
-
-  beforeEach(() => {
-    // const spy = jasmine.createSpyObj('MessageService', ['add', 'addError']);
-
-    TestBed.configureTestingModule({
-      imports: [AddEditComponent]
-      // providers: [CartService, { provide: MessageService, useValue: spy }]
-    });
-
-    addEditComponent = TestBed.get(AddEditComponent);
-    // messageService = TestBed.get(MessageService);
-  });
-
-  it('should be created', () => {
-    expect(addEditComponent).toBeTruthy();
-  });
-});
+import { CoreModule } from '../../core/core.module';
+import { ProductsModule } from '../../products/products.module';
+import { CheckoutModule } from '../../checkout/checkout.module';
+import { CartComponent } from '../../cart/cart.component';
 
 // describe('CartService Methods', () => {
 //   let cartService: CartService;
