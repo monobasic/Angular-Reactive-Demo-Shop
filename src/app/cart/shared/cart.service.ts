@@ -39,7 +39,7 @@ export class CartService {
   }
 
   addItems(items: CartItem[]) {
-    items.forEach(function(cartItem) {
+    items.forEach((cartItem) => {
       this.addItem(cartItem);
     });
   }
