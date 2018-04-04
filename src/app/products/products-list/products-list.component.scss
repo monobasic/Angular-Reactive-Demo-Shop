@@ -1,7 +1,127 @@
+@import '~scss/helpers/variables';
+@import '~scss/helpers/mixins';
+
 .products-list {
 
     &.loading {
         min-height: 200px;
         background: url('https://firebasestorage.googleapis.com/v0/b/cas-fee-shop.appspot.com/o/ui-images%2Floading.gif?alt=media&token=df35fc27-f06d-4d29-90e4-ef13de64bef8') center center no-repeat;
     }
+}
+
+.shop-toolbar {
+  display: table;
+  width: 100%;
+  > .column {
+    display: table-cell;
+    vertical-align: middle;
+    &:last-child { text-align: right; }
+  }
+  @media (max-width: $screen-sm) {
+    > .column {
+      display: block;
+      width: 100%;
+      text-align: center;
+      &:last-child {
+        padding-top: $grid-vertical-step;
+        text-align: center;
+      }
+    }
+  }
+}
+.shop-sorting {
+  label,
+  .form-control,
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  span { padding: 8px 0; }
+  label {
+    margin: 0;
+    padding: 8px 5px 8px 0;
+    color: $gray;
+    font: {
+      size: $font-size-sm;
+      weight: normal;
+    }
+  }
+  .form-control {
+    width: 100%;
+    max-width: 186px;
+    margin-right: 10px;
+  }
+  @media (max-width: $screen-sm) {
+    label, .form-control {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: {
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+}
+.shop-view {
+  display: inline-block;
+  @include clearfix;
+  > a {
+    display: block;
+    width: $shop-view-size;
+    height: $shop-view-size;
+    margin-left: 10px;
+    padding: 13px;
+    float: left;
+    transition: background-color .35s;
+    border: 1px solid $border-color;
+    border-radius: 50%;
+    background-color: $shop-view-bg-color;
+    span {
+      display: block;
+      position: relative;
+      width: 3px;
+      height: 3px;
+      margin-bottom: 3px;
+      background-color: $shop-view-color;
+      &::before,
+      &::after {
+        display: block;
+        position: absolute;
+        background-color: $shop-view-color;
+      }
+      &:last-child { margin-bottom: 0; }
+    }
+    &:hover { background-color: $shop-view-hover-bg-color; }
+    &.active {
+      border-color: $shop-view-active-bg-color;
+      background-color: $shop-view-active-bg-color;
+      cursor: default;
+      pointer-events: none;
+      span,
+      span::before,
+      span::after { background-color: $white-color; }
+    }
+    &.grid-view span {
+      &::before,
+      &::after {
+        top: 0;
+        width: 3px;
+        height: 3px;
+        content: '';
+      }
+      &::before { left: 6px; }
+      &::after { left: 12px; }
+    }
+    &.list-view span {
+      &::before {
+        top: 1px;
+        left: 6px;
+        width: 9px;
+        height: 1px;
+        content: '';
+      }
+    }
+  }
 }

@@ -97,3 +97,12 @@
       background: url('https://firebasestorage.googleapis.com/v0/b/cas-fee-shop.appspot.com/o/ui-images%2Floading.gif?alt=media&token=df35fc27-f06d-4d29-90e4-ef13de64bef8') center center no-repeat;
   }
 }
+
+// IE10+ specific styles
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+  .product-gallery .gallery-item { display: none !important; }
+}
+// Microsoft Edge specific styles
+@supports (-ms-ime-align: auto) {
+  .product-gallery .gallery-item { display: none !important; }
+}

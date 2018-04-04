@@ -1,0 +1,118 @@
+@import '~scss/helpers/variables';
+@import '~scss/helpers/mixins';
+
+.user-info-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: -1px;
+  padding: {
+    top: ($cover-height - 30);
+    bottom: 30px;
+  }
+  border: 1px solid $border-color;
+  border-top-left-radius: $border-radius-lg;
+  border-top-right-radius: $border-radius-lg;
+  overflow: hidden;
+  .user-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $cover-height;
+    background: {
+      position: center;
+      color: $gray-lighter;
+      repeat: no-repeat;
+      size: cover;
+    }
+    .tooltip .tooltip-inner {
+      width: 230px;
+      max-width: 100%;
+      padding: 10px 15px;
+    }
+  }
+  .info-label {
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    height: 26px;
+    padding: 0 12px;
+    border-radius: 13px;
+    background-color: $white-color;
+    color: $gray-dark;
+    font-size: floor(($font-size-base / 1.33)); //~12px
+    line-height: 26px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .18);
+    cursor: pointer;
+    > i {
+      display: inline-block;
+      margin-right: 3px;
+      font-size: 1.2em;
+      vertical-align: middle;
+    }
+  }
+  .user-info {
+    display: table;
+    position: relative;
+    width: 100%;
+    padding: 0 18px;
+    z-index: 5;
+    .user-avatar,
+    .user-data {
+      display: table-cell;
+      vertical-align: top;
+    }
+    .user-avatar {
+      position: relative;
+      width: $user-ava-size;
+      > img {
+        display: block;
+        width: 100%;
+        border: 5px solid $white-color;
+        border-radius: 50%;
+      }
+      .edit-avatar {
+        display: block;
+        position: absolute;
+        top: -2px;
+        right: 2px;
+        width: $btn-sm-height;
+        height: $btn-sm-height;
+        transition: opacity .3s;
+        border-radius: 50%;
+        background-color: $white-color;
+        color: $gray-dark;
+        line-height: $btn-sm-height - 2;
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2);
+        cursor: pointer;
+        opacity: 0;
+        text: {
+          align: center;
+          decoration: none;
+        }
+        &::before {
+          font: {
+            family: feather;
+            size: $font-size-base + 1;
+          }
+          content: '\e058';
+        }
+      }
+      &:hover .edit-avatar { opacity: 1; }
+    }
+    .user-data {
+      padding: {
+        top: 48px;
+        left: 12px;
+      }
+      h4 { margin-bottom: 2px; }
+      span {
+        display: block;
+        color: $gray;
+        font-size: $font-size-xs;
+      }
+    }
+  }
+  & + .list-group .list-group-item:first-child { border-radius: 0; }
+}

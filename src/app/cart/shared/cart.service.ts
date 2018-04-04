@@ -30,17 +30,16 @@ export class CartService {
           cartItem.amount += item.amount;
         }
       });
-      this.itemsChanged.emit(this.cartItems.slice());
       this.messageService.add('Amount in cart changed for: ' + item.product.name);
     } else {
       this.cartItems.push(item);
-      this.itemsChanged.emit(this.cartItems.slice());
       this.messageService.add('Added to cart: ' + item.product.name);
     }
+    this.itemsChanged.emit(this.cartItems.slice());
   }
 
   addItems(items: CartItem[]) {
-    items.forEach(function(cartItem) {
+    items.forEach((cartItem) => {
       this.addItem(cartItem);
     });
   }
