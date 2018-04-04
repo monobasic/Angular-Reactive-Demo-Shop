@@ -123,7 +123,13 @@ So we decided to implement basic shop functionality for now and base the project
 
 
 ## Custom Express/MongoDB Backend
-- (...)
+Implementation started with a custom MEAN-backend.
+We switched to firebase-implementation due to several reasons:
+- Backend not in the scope of this front-end-project and the CAS-FEE-task.
+- Firebase provides complete functionality set
+- Failure of knowledge-transfer between developers
+
+The unfinished project can be found under: [CAS-FEE-PROJEKT-2-CUSTOM-MEAN-BACKEND](https://github.com/chzellweger/CAS-FEE-PROJEKT-2-CUSTOM-MEAN-BACKEND)
 
 ## Special Mentions
 - Off Canvas Navigation is handled via Service, several CSS classes needs to be applied to different components
@@ -177,11 +183,3 @@ So we decided to implement basic shop functionality for now and base the project
 - Firebase reactivity - cool!
 - Tests run slow, Jest would be a good alternative (See Branch -> ...)
 - Testing: Mocking AngularFire/Firebase stuff is pain in the ass
-
-
-
-
-
-
-
-
