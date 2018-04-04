@@ -117,4 +117,32 @@ describe('CartService Methods', () => {
         expect(messageService.add).toHaveBeenCalledTimes(2);
     });
 
+    it('addItems() 3 products in array at once', () => {
+        const testProduct = new Product(
+            666,
+            new Date().toISOString().split('T')[0],
+            'Foo Product',
+            'Lorem Ipsum...',
+            89,
+            99,
+            10,
+        );
+
+        const testArray = [
+            new CartItem(testProduct, 1),
+            new CartItem(testProduct, 2),
+            new CartItem(testProduct, 3),
+        ];
+
+        spyOn(cartService, 'addItem').and.callThrough();
+
+        // Add a cart item
+        cartService.addItems(testArray);
+
+        // Check items in cart
+        expect(cartService.addItem).toHaveBeenCalledTimes(3);
+        expect(messageService.add).toHaveBeenCalledTimes(3);
+        expect(cartService.getItems()).toEqual([new CartItem(testProduct, 6)]);
+    });
+
 });
