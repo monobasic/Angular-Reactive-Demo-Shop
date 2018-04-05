@@ -17,10 +17,6 @@
       <!-- <a class="offcanvas-toggle cats-toggle" href="" data-toggle="offcanvas"></a> -->
       <!-- Off-Canvas Toggle (#mobile-menu)-->
       <a class="offcanvas-toggle" href="" (click)="onMenuToggle($event)"></a>
-      <!-- Site Logo-->
-      <a class="site-logo" href="index.html">
-        <!-- <img src="img/logo/logo.png" alt="Unishop"> -->
-      </a>
     </div>
   </div>
 
@@ -43,11 +39,10 @@
           <i class="icon-head"></i>
           <ul *ngIf="user" class="toolbar-dropdown">
             <li class="sub-menu-user">
-              <!-- <div class="user-ava">
-                <img src="img/account/user-ava-sm.jpg" alt={{userInfo.email}}>
-              </div> -->
               <div class="user-info">
-                <h6 class="user-name">{{ user.email }}<span *ngIf="user.roles.admin"> (Admin)</span></h6>
+                <h6 class="user-name">{{ user.email }}
+                  <span *ngIf="user.roles.admin"> (Admin)</span>
+                </h6>
               </div>
             </li>
             <li>

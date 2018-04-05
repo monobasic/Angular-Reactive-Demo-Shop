@@ -1,41 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AngularFireDatabase } from 'angularfire2/database';
 
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import { of } from 'rxjs/observable/of';
-import {
-  catchError,
-  map,
-  tap,
-  concatMap,
-  mergeMap,
-  switchMap
-} from 'rxjs/operators';
+import { catchError } from 'rxjs/operators/catchError';
+import { tap } from 'rxjs/operators/tap';
 import 'rxjs/add/observable/combineLatest';
-import 'rxjs/add/observable/forkJoin';
-import 'rxjs/add/observable/interval';
 
 import { AuthService } from '../../account/shared/auth.service';
 import { FileUploadService } from './file-upload.service';
 import { MessageService } from '../../messages/message.service';
 
-import { Rating } from '../../models/rating.model';
 import { Product } from '../../models/product.model';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { Rating } from '../../models/rating.model';
 
 @Injectable()
 export class ProductService {
-  private productsUrl = '/products'; // URL to web api
+  private productsUrl = '/products'; // firebase-bucket
 
   constructor(
-    private http: HttpClient,
-    private router: Router,
     private messageService: MessageService,
     private angularFireDatabase: AngularFireDatabase,
     private authService: AuthService,
@@ -46,7 +30,6 @@ export class ProductService {
   private log(message: string) {
     this.messageService.add('ProductService: ' + message);
   }
-
 
   /**
    * Handle Http operation that failed.
@@ -63,7 +46,6 @@ export class ProductService {
     };
   }
 
-  /** GET products from the server */
   getProducts(): Observable<Product[]> {
     return this.angularFireDatabase
       .list<Product>('products', (ref) => ref.orderByChild('date'))
@@ -141,7 +123,6 @@ export class ProductService {
       );
   }
 
-  /** GET product by id. Will 404 if id not found */
   getProduct(id: any): Observable<Product | null> {
     const url = `${this.productsUrl}/${id}`;
     return this.angularFireDatabase
@@ -190,7 +171,6 @@ export class ProductService {
       }));
   }
 
-  /** PUT: update the Product on the server */
   updateProduct(data: { product: Product; files: FileList }) {
     const url = `${this.productsUrl}/${data.product.id}`;
 
@@ -237,7 +217,6 @@ export class ProductService {
     return fromPromise(dbOperation);
   }
 
-  /** POST: add a new Product to the server */
   addProduct(data: { product: Product; files: FileList }) {
     const dbOperation = this.uploadService
       .startUpload(data)
@@ -263,19 +242,6 @@ export class ProductService {
         return error;
       });
     return fromPromise(dbOperation);
-  }
-
-  searchProducts(term: string): Observable<Product[]> {
-    if (!term.trim()) {
-      // if not search term, return empty Product array.
-      return of([]);
-    }
-    return this.http
-      .get<Product[]>(`api/products/?name=${term}`)
-      .pipe(
-        tap(() => this.log(`found Productes matching "${term}"`)),
-        catchError(this.handleError<Product[]>('searchProducts', []))
-      );
   }
 
   deleteProduct(product: Product) {
