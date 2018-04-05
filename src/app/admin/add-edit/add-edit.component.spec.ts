@@ -1,14 +1,16 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { of } from 'rxjs/observable/of';
+
 import { AddEditComponent, DomainProduct } from './add-edit.component';
 
-import { Product } from '../../models/product.model';
-
-import { ActivatedRoute, Router } from '@angular/router';
 import { FileUploadService } from '../../products/shared/file-upload.service';
 import { MessageService } from '../../messages/message.service';
 import { ProductService } from '../../products/shared/product.service';
 import { ProductsCacheService } from '../../products/shared/products-cache.service';
-import { of } from 'rxjs/observable/of';
+
+import { Product } from '../../models/product.model';
 
 class MockRouter {}
 class MockActivatedRoute {
@@ -61,6 +63,7 @@ describe('AddEditComponent', () => {
     it('should set mode to add if no id is provided', () => {
       spyOn(addEditComponent, 'constructProduct');
       addEditComponent.route.snapshot.paramMap.get = () => null;
+
       addEditComponent.setProduct();
       expect(addEditComponent.mode).toBe('add');
     });
