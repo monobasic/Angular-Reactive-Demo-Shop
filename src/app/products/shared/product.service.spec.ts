@@ -44,7 +44,6 @@ describe('ProductService', () => {
       const product = new Product();
 
       const result = productService.constructRating(product, 5);
-      console.log(result);
       expect(result).toEqual({
         '/ratings/123456789/': 5,
         '/currentRating/': 5
@@ -72,7 +71,7 @@ describe('ProductService', () => {
       product.ratings = {'123456789': 5};
 
       const result = productService.constructRating(product, 1);
-      console.log('RESULT', result);
+
       expect(result).toEqual({
         '/currentRating/': 3,
         '/ratings/987654321/': 1
