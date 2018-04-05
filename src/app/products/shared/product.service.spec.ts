@@ -18,7 +18,6 @@ describe('ProductService', () => {
     TestBed.configureTestingModule({
       providers: [
         ProductService,
-        { provide: HttpClient },
         { provide: Router },
         { provide: MessageService },
         { provide: AngularFireDatabase },
