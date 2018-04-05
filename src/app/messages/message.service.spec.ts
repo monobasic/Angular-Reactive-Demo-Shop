@@ -3,7 +3,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { MessageService } from './message.service';
 import { ToastrService } from 'ngx-toastr';
 
-describe('MessageService Setup', () => {
+describe('MessageService Setup and Methods', () => {
     let messageService: MessageService;
     let toastrServiceSpy: jasmine.SpyObj<ToastrService>;
 
