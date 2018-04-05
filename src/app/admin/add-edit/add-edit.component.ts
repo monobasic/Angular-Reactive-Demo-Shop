@@ -20,7 +20,7 @@ import { Product } from '../../models/product.model';
 // we send and receive categories as {key:true},
 // but for the input field we need
 // a product with categories of type string
-class DomainProduct extends Product {
+export class DomainProduct extends Product {
   categories: string;
 }
 
@@ -39,7 +39,7 @@ export class AddEditComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
+    public route: ActivatedRoute,
     private productService: ProductService,
     public fileUploadService: FileUploadService,
     private productsCacheService: ProductsCacheService,
@@ -198,18 +198,18 @@ export class AddEditComponent implements OnInit {
   }
 
   // pure helper functions start here:
-  private constructMockProduct() {
+  constructMockProduct() {
     return new Product();
   }
 
-  private constructProductToSubmit(product: DomainProduct): Product {
+  constructProductToSubmit(product: DomainProduct): Product {
     return {
       ...product,
-      categories: this.categoriesFromStringToObject(this.product.categories)
+      categories: this.categoriesFromStringToObject(product.categories)
     };
   }
 
-  private createId(product: Product): number {
+  createId(product: Product): number {
     const randomId = Math.floor(Math.random() * new Date().getTime());
     let id = product.id || randomId;
     if (id === 1) {
@@ -218,7 +218,7 @@ export class AddEditComponent implements OnInit {
     return id;
   }
 
-  private categoriesFromObjectToString(categories: {}): string | null {
+  categoriesFromObjectToString(categories: {}): string | null {
     console.log(categories);
     // categories: { key: true, key: true} || {}
     if (Object.keys(categories).length === 0) {
@@ -235,7 +235,7 @@ export class AddEditComponent implements OnInit {
     );
   }
 
-  private categoriesFromStringToObject(categories: string): {} {
+  categoriesFromStringToObject(categories: string): {} {
     // categories: 'cat1, cat2, cat3' || ''
     if (categories.length === 0) {
       return {};
@@ -248,16 +248,16 @@ export class AddEditComponent implements OnInit {
       }, {});
   }
 
-  private checkForSale(reduction: number): boolean {
+  checkForSale(reduction: number): boolean {
     return reduction > 0;
   }
 
-  private calculateReduction(priceNormal: number, price: number): number {
+  calculateReduction(priceNormal: number, price: number): number {
     const reduction = Math.round((priceNormal - price) / priceNormal * 100);
     return reduction > 0 ? reduction : 0;
   }
 
-  private handleImageURLs(product: Product): string[] {
+  handleImageURLs(product: Product): string[] {
     if (product.imageURLs && product.imageURLs.length > 0) {
       return product.imageURLs;
     }
