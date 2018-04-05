@@ -51,9 +51,7 @@ export class ProductService {
       .list<Product>('products', (ref) => ref.orderByChild('date'))
       .valueChanges()
       .map((arr) => arr.reverse())
-      .pipe(
-        catchError(this.handleError<Product[]>(`getProducts`))
-      );
+      .pipe(catchError(this.handleError<Product[]>(`getProducts`)));
   }
 
   getProductsQuery(
@@ -69,9 +67,7 @@ export class ProductService {
           .limitToFirst(limitToFirst)
       )
       .valueChanges()
-      .pipe(
-        catchError(this.handleError<Product[]>(`getProductsQuery`))
-      );
+      .pipe(catchError(this.handleError<Product[]>(`getProductsQuery`)));
   }
 
   getProductsByDate(limitToLast: number): Observable<Product[]> {
@@ -81,9 +77,7 @@ export class ProductService {
       )
       .valueChanges()
       .map((arr) => arr.reverse())
-      .pipe(
-        catchError(this.handleError<Product[]>(`getProductsByDate`))
-      );
+      .pipe(catchError(this.handleError<Product[]>(`getProductsByDate`)));
   }
 
   getProductsByRating(limitToLast: number): Observable<Product[]> {
@@ -93,9 +87,7 @@ export class ProductService {
       )
       .valueChanges()
       .map((arr) => arr.reverse())
-      .pipe(
-        catchError(this.handleError<Product[]>(`getProductsByRating`))
-      );
+      .pipe(catchError(this.handleError<Product[]>(`getProductsByRating`)));
   }
 
   getFeaturedProducts(): Observable<any[]> {
@@ -118,17 +110,16 @@ export class ProductService {
           return resolvedProducts;
         }
       )
-      .pipe(
-        catchError(this.handleError<Product[]>(`getFeaturedProducts`))
-      );
+      .pipe(catchError(this.handleError<Product[]>(`getFeaturedProducts`)));
   }
 
   getProduct(id: any): Observable<Product | null> {
     const url = `${this.productsUrl}/${id}`;
     return this.angularFireDatabase
       .object<Product>(url)
-      .valueChanges().pipe(
-        tap(result => {
+      .valueChanges()
+      .pipe(
+        tap((result) => {
           if (result) {
             return of(result);
           } else {
@@ -140,8 +131,19 @@ export class ProductService {
       );
   }
 
-  rateProduct(product: Product, rating: number) {
-    const url = `${this.productsUrl}/${product.id}`;
+  calculateOverallRating(product: Product, rating: number): number {
+    // Calculate and add new overall rating
+    const currentRating =
+      <number>Object.values(product.ratings).reduce(
+        (a: number, b: number) => a + b,
+        0
+      ) / Object.values(product.ratings).length;
+
+    return currentRating;
+  }
+
+  constructRating(product: Product, rating: number) {
+    // construct container for update content
     const updates = {};
 
     // Add user rating to local version of ratings
@@ -151,24 +153,29 @@ export class ProductService {
       product['ratings'] = [];
       product['ratings'][this.authService.getUserUid()] = rating;
     }
-    // Calculate and add new overall rating
-    const currentRating =
-      <number>Object.values(product.ratings).reduce(
-        (a: number, b: number) => a + b,
-        0
-      ) / Object.values(product.ratings).length;
 
     // Add user rating
     updates['/ratings/' + this.authService.getUserUid() + '/'] = rating;
-    updates['/currentRating/'] = currentRating;
 
-    return fromPromise(this.angularFireDatabase
-      .object<Product>(url)
-      .update(updates)
-      .then(() => this.log(`Rated Product ${product.name} width: ${rating}`))
-      .catch((error) => {
-        this.handleError<any>(error);
-      }));
+    // calculate current overall rating
+    updates['/currentRating/'] = this.calculateOverallRating(product, rating);
+
+    return updates;
+  }
+
+  rateProduct(product: Product, rating: number) {
+    const url = `${this.productsUrl}/${product.id}`;
+    const updates = this.constructRating(product, rating);
+
+    return fromPromise(
+      this.angularFireDatabase
+        .object<Product>(url)
+        .update(updates)
+        .then(() => this.log(`Rated Product ${product.name} width: ${rating}`))
+        .catch((error) => {
+          this.handleError<any>(error);
+        })
+    );
   }
 
   updateProduct(data: { product: Product; files: FileList }) {
