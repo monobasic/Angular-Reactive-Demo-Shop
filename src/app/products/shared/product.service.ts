@@ -22,7 +22,7 @@ export class ProductService {
   constructor(
     private messageService: MessageService,
     private angularFireDatabase: AngularFireDatabase,
-    private authService: AuthService,
+    public authService: AuthService,
     private uploadService: FileUploadService
   ) {}
 
@@ -133,11 +133,8 @@ export class ProductService {
 
   calculateOverallRating(product: Product, rating: number): number {
     // Calculate and add new overall rating
-    const currentRating =
-      <number>Object.values(product.ratings).reduce(
-        (a: number, b: number) => a + b,
-        0
-      ) / Object.values(product.ratings).length;
+    const currentRating = <number>Object.values(product.ratings)
+    .reduce((a: number, b: number) => a + b, 0) / Object.values(product.ratings).length;
 
     return currentRating;
   }
@@ -159,7 +156,6 @@ export class ProductService {
 
     // calculate current overall rating
     updates['/currentRating/'] = this.calculateOverallRating(product, rating);
-
     return updates;
   }
 
