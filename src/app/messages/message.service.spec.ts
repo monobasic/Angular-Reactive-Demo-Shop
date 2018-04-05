@@ -3,7 +3,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { MessageService } from './message.service';
 import { ToastrService } from 'ngx-toastr';
 
-describe('MessageService Setup and Methods', () => {
+describe('MessageService', () => {
     let messageService: MessageService;
     let toastrServiceSpy: jasmine.SpyObj<ToastrService>;
 
@@ -28,24 +28,24 @@ describe('MessageService Setup and Methods', () => {
         expect(messageService).toBeTruthy();
     });
 
-    it('init messages array', () => {
+    it('should init messages array', () => {
         expect(messageService.messages).toEqual([]);
     });
 
-    it('add("hello world")', () => {
+    it('should handle adding messages', () => {
         messageService.add('hello world');
         expect(messageService.messages).toEqual(['hello world']);
         expect(toastrServiceSpy.success).toHaveBeenCalled();
     });
 
-    it('addError("My nasty error!")', () => {
+    it('should handle adding errors', () => {
         messageService.addError('My nasty error!');
         expect(messageService.messages).toEqual([]);
         expect(toastrServiceSpy.success).toHaveBeenCalledTimes(0);
         expect(toastrServiceSpy.error).toHaveBeenCalled();
     });
 
-    it('clear()', () => {
+    it('should handle clearing', () => {
         messageService.add('hello world');
         expect(messageService.messages).toEqual(['hello world']);
         messageService.clear();
