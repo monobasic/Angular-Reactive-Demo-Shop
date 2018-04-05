@@ -45,19 +45,12 @@ $ng e2e
 ```
 Executes the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-
-
-
-
-
-
 ## Background
 The initial idea for this project was to implement a SPA based shop frontend which can be coupled to existing shop backends via REST API. The performance of a SPA application would be very nice to make the shopping process for users as fluid as possible. Imagine adding items to the cart, browsing and filtering products, typeahead search, updating your favorites/wish list - all handled by the front end application.
 
 Although this would be cool, it's most likely a bit out of scope to provide all the API mappings for different shops like Shopify, Woocommerce, PrestaShop, Magento and the likes.
 
 So we decided to implement basic shop functionality for now and base the project target more around finding conclusions for challenges we will face during the process.
-
 
 ## Feature Set
 ### Shop functionality
@@ -74,7 +67,13 @@ So we decided to implement basic shop functionality for now and base the project
 - Sorting: Products can be sorted by date created, price and name
 - Products can be viewed in a grid or a list view
 - Products are shown paged via a PagingService
-- When logged in as a user with adminstrative rights, additional buttons are shown for product CRUD operations, it's possible to add a new product, edit a product or delete. Images are handled via FirebaseStorage
+- When logged in as a user with adminstrative rights, additional buttons are shown for product CRUD operations
+
+### Product CRUD
+- Add a new product
+- Edit existing product
+- Delete existing product
+- Images handled with Firebase Storage
 
 #### Rating
 - Products can be rated by logged in users from 1 to 5
@@ -102,7 +101,6 @@ So we decided to implement basic shop functionality for now and base the project
 - Anonymous Orders are possible too, in that case OrderService creates a new anonymous order
 - Order summary is shown in the sidebar during the checkout process
 
-
 #### Authentication
 - Checkout: As registered user / guest
 - Sign up: Create user account
@@ -124,10 +122,9 @@ So we decided to implement basic shop functionality for now and base the project
 ### Security
 - FireBase Security Rules for Shop User / Admin
 
-
 ## Custom Express/MongoDB Backend
-Implementation started with a custom MEAN-backend.
-We switched to firebase-implementation due to several reasons:
+Implementation started with a custom MEAN-architecture.
+We switched to serverless with Firebase due to several reasons:
 - Backend not in the scope of this front-end-project and the CAS-FEE-task.
 - Firebase provides complete functionality set
 - Failure of knowledge-transfer between developers
@@ -136,7 +133,6 @@ The unfinished project can be found under: [CAS-FEE-PROJEKT-2-CUSTOM-MEAN-BACKEN
 
 ## Special Mentions
 - Off Canvas Navigation is handled via Service, several CSS classes needs to be applied to different components
-
 
 ## Possible future features and updates
 - Product categories
@@ -160,11 +156,7 @@ The unfinished project can be found under: [CAS-FEE-PROJEKT-2-CUSTOM-MEAN-BACKEN
 - Think about implementing a state management
 - Social sharing functionality
 - Authenticate with Google, Facebook and other OAUTH services
-
-
-
-
-
+- i18n
 
 ## Expected challenges
 - Theme / third party ui component integration: Very common in the daily web agency business: Using a third party Template/Theme as a starting point. The challenge here is: Themes are commonly based around a styling framework like Bootstrap, HTML/CSS and user interface logic code in jQuery. As it seems, some of the well known UI components like Isotope grid, imagesLoaded, Carsousels and so on are not ported to Angular5 yet.
