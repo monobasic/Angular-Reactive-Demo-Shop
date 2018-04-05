@@ -56,6 +56,7 @@ describe('AddEditComponent', () => {
     it('should set mode to edit if id is provided', () => {
       spyOn(addEditComponent, 'getProduct');
       addEditComponent.setProduct();
+
       expect(addEditComponent.getProduct).toHaveBeenCalled();
       expect(addEditComponent.mode).toEqual('edit');
     });
@@ -69,7 +70,25 @@ describe('AddEditComponent', () => {
     });
   });
 
-  it('has a working method syncProduct', () => {
+  it('should have a working method constructProduct', () => {
+    spyOn(addEditComponent, 'initForm');
+
+    addEditComponent.constructProduct();
+
+    expect(addEditComponent.initForm).toHaveBeenCalled();
+    expect(addEditComponent.product.categories).toEqual('example, category');
+  });
+
+  it('should have a working method initForm', () => {
+    spyOn(addEditComponent, 'onFormChanges');
+
+    addEditComponent.initForm();
+
+    expect(addEditComponent.productForm).toBeTruthy();
+    expect(addEditComponent.onFormChanges).toHaveBeenCalled();
+  });
+
+  it('should have a working method syncProduct', () => {
     const testDomainProduct = new DomainProduct(
       1,
       new Date().toISOString().split('T')[0],
@@ -91,7 +110,7 @@ describe('AddEditComponent', () => {
     expect(addEditComponent.product.imageURLs).toEqual(['/my-image']);
   });
 
-  it('has a working method constructMockProduct', () => {
+  it('should have a working method constructMockProduct', () => {
     const result = addEditComponent.constructMockProduct();
     expect(result.id).toBe(1);
   });
@@ -119,7 +138,7 @@ describe('AddEditComponent', () => {
   });
 
   describe('has a method createId, it', () => {
-    it('returns a random id if provided product id is 1', () => {
+    it('should return a random id if provided product id is 1', () => {
       const testProduct = new Product(
         1,
         new Date().toISOString().split('T')[0],
@@ -133,7 +152,7 @@ describe('AddEditComponent', () => {
       expect(result).toBeGreaterThan(1);
     });
 
-    it('returns the same id if provided product id is  greater 1', () => {
+    it('should return the same id if provided product id is  greater 1', () => {
       const testProduct = new Product(
         666,
         new Date().toISOString().split('T')[0],
