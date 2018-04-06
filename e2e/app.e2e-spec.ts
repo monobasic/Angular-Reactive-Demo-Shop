@@ -1,14 +1,14 @@
-import { AppPage } from './app.po';
+import { ProductsPage } from './products.po';
 
-describe('shop App', () => {
-  let page: AppPage;
+describe('products page', () => {
+  let page: ProductsPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new ProductsPage();
   });
 
-  it('should display welcome message', () => {
+  it('should have the right page title', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getTitleText()).toEqual('Products');
   });
 });
