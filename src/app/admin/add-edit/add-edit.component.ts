@@ -12,10 +12,10 @@ import { of } from 'rxjs/observable/of';
 
 import { FileUploadService } from '../../products/shared/file-upload.service';
 import { MessageService } from '../../messages/message.service';
-import { ProductsCacheService } from '../../products/shared/products-cache.service';
 import { ProductService } from '../../products/shared/product.service';
 
 import { Product } from '../../models/product.model';
+import { ProductsCacheService } from '../../products/shared/products-cache.service';
 
 // we send and receive categories as {key:true},
 // but for the input field we need

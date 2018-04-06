@@ -16,7 +16,6 @@ import { ProductWidgetComponent } from './home/product-widget/product-widget.com
 import { PromoComponent } from './home/promo/promo.component';
 
 import { ProductService } from '../products/shared/product.service';
-import { ProductsCacheService } from '../products/shared/products-cache.service';
 import { MessageService } from '../messages/message.service';
 import { CartService } from '../cart/shared/cart.service';
 import { PagerService } from '../pager/pager.service';
@@ -27,6 +26,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { OffcanvasService } from './shared/offcanvas.service';
 import { PromoService } from './shared/promo.service';
 import { UiService } from '../products/shared/ui.service';
+import { ProductsCacheService } from '../products/shared/products-cache.service';
 
 
 @NgModule({

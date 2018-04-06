@@ -6,10 +6,11 @@ import { Product } from '../../models/product.model';
 import { ProductService } from '../shared/product.service';
 import { PagerService } from '../../pager/pager.service';
 import { SortPipe } from '../shared/sort.pipe';
-import { ProductsCacheService } from '../shared/products-cache.service';
+// import { OLDProductsCacheService } from '../shared/products-cache.service';
 import { AuthService } from '../../account/shared/auth.service';
 import { User } from '../../models/user.model';
 import { UiService } from '../shared/ui.service';
+import { ProductsCacheService } from '../shared/products-cache.service';
 
 @Component({
   selector: 'app-products',
@@ -25,6 +26,7 @@ export class ProductsListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    // private _productsCacheService: OLDProductsCacheService,
     private productsCacheService: ProductsCacheService,
     private pagerService: PagerService,
     private sortPipe: SortPipe,

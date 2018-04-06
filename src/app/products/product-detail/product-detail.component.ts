@@ -6,7 +6,7 @@ import { Params } from '@angular/router/src/shared';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProductService } from '../shared/product.service';
-import { ProductsCacheService } from '../shared/products-cache.service';
+// import { OLDProductsCacheService } from '../shared/products-cache.service';
 import { CartService } from '../../cart/shared/cart.service';
 import { AuthService } from '../../account/shared/auth.service';
 
@@ -14,6 +14,7 @@ import { Rating } from '../../models/rating.model';
 import { CartItem } from '../../models/cart-item.model';
 import { User } from '../../models/user.model';
 import { Product } from '../../models/product.model';
+import { ProductsCacheService } from '../shared/products-cache.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -66,18 +67,22 @@ export class ProductDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.productsCacheService
-      .get(id, this.productService.getProduct(id))
+      // .get(id, this.productService.getProduct(id))
+      .get(id, this.productService.getProducts())
       .subscribe((product: Product) => {
+        console.log('product', product);
         if (product) {
           const categories = Object.keys(product.categories).map(
             (category, index, inputArray) => {
-              category = index < inputArray.length - 1
-                ? category + ','
-                : category;
+              category =
+                index < inputArray.length - 1 ? category + ',' : category;
               return category;
             }
           );
-          product.categories = categories.length >= 1 && (!Array.isArray(product.categories)) ? categories : [];
+          product.categories =
+            categories.length >= 1 && !Array.isArray(product.categories)
+              ? categories
+              : [];
 
           this.product = product;
           this.activeImageUrl = this.product.imageURLs[0];
