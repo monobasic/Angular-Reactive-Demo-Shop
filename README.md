@@ -176,8 +176,8 @@ Angular 5 is great as a foundation for bigger web projects and multiple develope
 ### SEO
 - SEO - still a big topic around SPAs as it seems. For a shop application, indexing and deep linking to shop product details are most probably the most important thing. Also xml file generation for google merchant could be a issue. The thing is, without using Angular Universal and server side rendering, its not even possible to provide meta page title and description.
 ### UI performance
-UI performance and User experience is great for a shop on SPA basis
-Instant feedback for user interactions like rating of products via Firebase reacitivty is very cool.
+UI performance and User experience is great for a shop on SPA basis.
+Instant feedback for user interactions, like rating of products via Firebase, is very cool too.
 
 ### Testing
 Karma tests run quite slow, this could be a issue if you have a lot of tests when the app is growing. Jest, the testing framework of Facebook/React would be a good alternative. We did some research and it was quite easy to integrate into an Angular 5 application. Also worth mentioning: we found our way around, but if you need to mock AngularFire and/or Firebase API stuff, this could be major pain in the ass ;)
