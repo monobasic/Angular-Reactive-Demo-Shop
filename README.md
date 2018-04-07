@@ -174,7 +174,7 @@ Angular 5 is great as a foundation for bigger web projects and multiple develope
 ### Learning curve
 - Angular & RxJS both have a steep learning curve
 ### SEO
-- SEO - still a big topic arouns SPAs as it seems. For a shop application, indexing and deep linking to shop product details are most probably the most important thing. Also xml file generation for google merchant could be a issue. The thing is, without using Angular Universal and server side rendering, its not even possible to provide meta page title and description
+- SEO - still a big topic around SPAs as it seems. For a shop application, indexing and deep linking to shop product details are most probably the most important thing. Also xml file generation for google merchant could be a issue. The thing is, without using Angular Universal and server side rendering, its not even possible to provide meta page title and description.
 ### UI performance
 UI performance and User experience is great for a shop on SPA basis
 Instant feedback for user interactions like rating of products via Firebase reacitivty is very cool.
