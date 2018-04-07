@@ -140,6 +140,7 @@ The unfinished project can be found under: [CAS-FEE-PROJEKT-2-CUSTOM-MEAN-BACKEN
 - Off Canvas Navigation is handled via Service, several CSS classes needs to be applied to different components
 
 ## Possible future features and updates
+- Speed up initial page load with server rendered start page and/or lazy load modules
 - SEO optimization, was out of scope as it invloves server side rendering with Angular Universal
 - Product categories
 - Product stock amounts
