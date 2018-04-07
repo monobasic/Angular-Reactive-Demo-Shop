@@ -29,7 +29,7 @@ $ng serve
 Runs a development server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ### Checkout the shop
-Point your browser to localhost:4200
+Point your browser to localhost:4200.
 In any case the dev build is not working, there is an already built app available on http://shop.andre-abt.com for checking out. Deeplinking for the Angular router is handled via .htaccess config.
 
 ### Run unit tests
