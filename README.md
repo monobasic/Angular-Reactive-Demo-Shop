@@ -165,23 +165,19 @@ The unfinished project can be found under: [CAS-FEE-PROJEKT-2-CUSTOM-MEAN-BACKEN
 - Authenticate with Google, Facebook and other OAUTH services
 - i18n
 
-## Expected challenges
-- Theme / third party ui component integration: Very common in the daily web agency business: Using a third party Template/Theme as a starting point. The challenge here is: Themes are commonly based around a styling framework like Bootstrap, HTML/CSS and user interface logic code in jQuery. As it seems, some of the well known UI components like Isotope grid, imagesLoaded, Carsousels and so on are not ported to Angular5 yet.
-- SEO - still a big topic arouns SPAs as it seems. For a shop application, indexing and deep linking to shop product details are most probably the most important thing. Also xml file generation for google merchant could be a issue
-- Angular5 ui performance: Is the performance of Angualr really as shiny as "they tell", Reacts UI performance should be much better "they say" so we will find out, worst case we could reroute to a React application and see if it performs better
-
-## Expected outcome and conclusions
-- Is a shop front end implementation with a SPA reasonable?
-- Is the SEO thing something, that can be handled within reasonable additional expenditure?
-- Is Angular5 suited for fast, high end visual front ends or is React (Or another SPA framework) needed?
-- Are there replacements for well known jQuery front end ui components in Angular or do we need to relinquish for some parts?
-
 
 ## Final verdict
-- Theming/jQuery
-- Third Party Component availability
-- Angular & RxJS steep learning curve
-- UI Performance - yay!
-- Firebase reactivity - cool!
-- Tests run slow, Jest would be a good alternative (See Branch -> ...)
-- Testing: Mocking AngularFire/Firebase stuff is pain in the ass
+### General outcome
+Angular 5 is great as a foundation for bigger web projects and multiple developers involved. The framework has a very defined structure and this helps, keeping things un-messy. However, third party components are rare right now, so even for basic UI stuff like carousels one need to spend a lot of time, to re-create well known jquery moduls functionalites in "the Angular way".
+### Theming/jQuery
+- Theme / third party ui component integration: Very common in the daily web agency business: Using a third party Template/Theme as a starting point. The challenge here is: Themes are commonly based around a styling framework like Bootstrap, HTML/CSS and user interface logic code in jQuery. As it seems, some of the well known UI components like Isotope grid, imagesLoaded, Carsousels and so on are not ported to Angular5 yet.
+### Learning curve
+- Angular & RxJS both have a steep learning curve
+### SEO
+- SEO - still a big topic arouns SPAs as it seems. For a shop application, indexing and deep linking to shop product details are most probably the most important thing. Also xml file generation for google merchant could be a issue. The thing is, without using Angular Universal and server side rendering, its not even possible to provide meta page title and description
+### UI performance
+UI performance and User experience is great for a shop on SPA basis
+Instant feedback for user interactions like rating of products via Firebase reacitivty is very cool.
+
+### Testing
+Karma tests run quite slow, this could be a issue if you have a lot of tests when the app is growing. Jest, the testing framework of Facebook/React would be a good alternative. We did some research and it was quite easy to integrate into an Angular 5 application. Also worth mentioning: we found our way around, but if you need to mock AngularFire and/or Firebase API stuff, this could be major pain in the ass ;)
