@@ -30,6 +30,7 @@ Runs a development server. Navigate to `http://localhost:4200/`. The app will au
 
 ### Checkout the shop
 Point your browser to localhost:4200
+In any case the dev build is not working, there is an already built app available on http://shop.andre-abt.com for checking out. Deeplinking for the Angular router is handled via .htaccess config.
 
 ### Run unit tests
 ```
@@ -37,13 +38,17 @@ $ng test
 ```
 Executes the unit tests via [Karma](https://karma-runner.github.io).
 
-
-
 ### Running end-to-end tests
 ```
 $ng e2e
 ```
 Executes the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+### Build app for prod
+```
+$ng build --prod --build-optimizer
+```
+This builds the app for prod environment into a /dist folder.
 
 ## Background
 The initial idea for this project was to implement a SPA based shop frontend which can be coupled to existing shop backends via REST API. The performance of a SPA application would be very nice to make the shopping process for users as fluid as possible. Imagine adding items to the cart, browsing and filtering products, typeahead search, updating your favorites/wish list - all handled by the front end application.
@@ -135,6 +140,7 @@ The unfinished project can be found under: [CAS-FEE-PROJEKT-2-CUSTOM-MEAN-BACKEN
 - Off Canvas Navigation is handled via Service, several CSS classes needs to be applied to different components
 
 ## Possible future features and updates
+- SEO optimization, was out of scope as it invloves server side rendering with Angular Universal
 - Product categories
 - Product stock amounts
 - Make Featured Products for the slider editable via UI
