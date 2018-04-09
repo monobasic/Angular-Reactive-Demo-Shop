@@ -8,9 +8,9 @@ import { AddEditComponent, DomainProduct } from './add-edit.component';
 import { FileUploadService } from '../../products/shared/file-upload.service';
 import { MessageService } from '../../messages/message.service';
 import { ProductService } from '../../products/shared/product.service';
+import { ProductsCacheService } from '../../products/shared/products-cache.service';
 
 import { Product } from '../../models/product.model';
-import { ProductsCacheService } from '../../products/shared/products-cache.service';
 
 class MockRouter {}
 class MockActivatedRoute {
