@@ -179,6 +179,6 @@ Angular 5 is great as a foundation for bigger web projects and multiple develope
 UI performance and User experience is great for a shop on SPA basis.
 Instant feedback for user interactions, like rating of products via Firebase, is very cool too.
 ### Firebase Backend
-The security rules configuration needs a lot of attention. In general there is a lot of potential for security holes. As example in our configuration its theoretically possible, to view all anonymous orders under /orders for every logged in user. This is hard to fix and would need a lot of restructuring.
+The security rules configuration needs a lot of attention. In general there is a lot of potential for security holes.
 ### Testing
 Karma tests run quite slow, this could be a issue if you have a lot of tests when the app is growing. Jest, the testing framework of Facebook/React would be a good alternative. We did some research and it was quite easy to integrate into an Angular 5 application. Also worth mentioning: we found our way around, but if you need to mock AngularFire and/or Firebase API stuff, this could be major pain in the ass ;)
