@@ -23,6 +23,7 @@ export class ProductsListComponent implements OnInit {
   pager: any = {};
   user: User;
   productsLoading: boolean;
+  currentPagingPage: number;
 
   constructor(
     private productService: ProductService,
@@ -38,6 +39,9 @@ export class ProductsListComponent implements OnInit {
     this.authService.user.subscribe((user) => {
       this.user = user;
     });
+    this.uiService.currentPagingPage$.subscribe((page) => {
+      this.currentPagingPage = page;
+    });
     this.getProducts();
   }
 
@@ -47,7 +51,7 @@ export class ProductsListComponent implements OnInit {
       .get('products', this.productService.getProducts())
       .subscribe((products) => {
         this.products = products;
-        this.setPage(1);
+        this.setPage(this.currentPagingPage);
         this.productsLoading = false;
       });
   }
@@ -66,6 +70,7 @@ export class ProductsListComponent implements OnInit {
       this.pager.startIndex,
       this.pager.endIndex + 1
     );
+    this.uiService.currentPagingPage$.next(page);
   }
 
   onSort(sortBy: string) {
