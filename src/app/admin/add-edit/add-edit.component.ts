@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import {
   FormGroup,
   ReactiveFormsModule,
@@ -16,6 +16,7 @@ import { ProductService } from '../../products/shared/product.service';
 
 import { Product } from '../../models/product.model';
 import { ProductsCacheService } from '../../products/shared/products-cache.service';
+import { Subscription } from 'rxjs/Subscription';
 
 // we send and receive categories as {key:true},
 // but for the input field we need
@@ -29,8 +30,9 @@ export class DomainProduct extends Product {
   templateUrl: './add-edit.component.html',
   styleUrls: ['./add-edit.component.scss']
 })
-export class AddEditComponent implements OnInit {
+export class AddEditComponent implements OnInit, OnDestroy {
   @ViewChild('photos') photos;
+  formSubscription: Subscription;
   productForm: FormGroup;
   product: DomainProduct;
   mode: 'edit' | 'add';
@@ -125,10 +127,12 @@ export class AddEditComponent implements OnInit {
   }
 
   onFormChanges() {
-    this.productForm.valueChanges.subscribe((formFieldValues) => {
-      const product = { ...this.product, ...formFieldValues };
-      this.syncProduct(product);
-    });
+    this.formSubscription = this.productForm.valueChanges.subscribe(
+      (formFieldValues) => {
+        const product = { ...this.product, ...formFieldValues };
+        this.syncProduct(product);
+      }
+    );
   }
 
   syncProduct(product): void {
@@ -262,5 +266,9 @@ export class AddEditComponent implements OnInit {
       return product.imageURLs;
     }
     return [];
+  }
+
+  ngOnDestroy() {
+    this.formSubscription.unsubscribe();
   }
 }
