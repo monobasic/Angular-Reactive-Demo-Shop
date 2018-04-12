@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ProductService } from '../../products/shared/product.service';
 import { ProductsCacheService } from '../../products/shared/products-cache.service';
@@ -7,13 +7,16 @@ import { MessageService } from '../../messages/message.service';
 
 import { Product } from '../../models/product.model';
 import { Promo } from '../../models/promo.model';
+import { Subject } from 'rxjs/Subject';
+import { takeUntil } from 'rxjs/operators/takeUntil';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  unsubscribe$ = new Subject();
   products: Product[];
   productsFeatured: any;
   productsNewArrivals: Product[];
@@ -31,40 +34,61 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.productsCache
       .get('products', this.productService.getProducts())
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe((products) => {
         this.products = products;
       });
 
-    this.productService.getFeaturedProducts().subscribe(
-      (products) => {
-        this.productsFeatured = products;
-      },
-      (err) => console.error(err)
-    );
+    this.productService
+      .getFeaturedProducts()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (products) => {
+          this.productsFeatured = products;
+        },
+        (err) => console.error(err)
+      );
 
-    this.productService.getProductsByDate(3).subscribe(
-      (products) => {
-        this.productsNewArrivals = products;
-      },
-      (err) => console.error(err)
-    );
+    this.productService
+      .getProductsByDate(3)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (products) => {
+          this.productsNewArrivals = products;
+        },
+        (err) => console.error(err)
+      );
 
-    this.productService.getProductsByRating(3).subscribe(
-      (products) => {
-        this.productsBestRated = products;
-      },
-      (err) => console.error(err)
-    );
+    this.productService
+      .getProductsByRating(3)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (products) => {
+          this.productsBestRated = products;
+        },
+        (err) => console.error(err)
+      );
 
-    this.productService.getProductsQuery('sale', true, 3).subscribe(
-      (products) => {
-        this.productsOnSale = products;
-      },
-      (err) => console.error(err)
-    );
+    this.productService
+      .getProductsQuery('sale', true, 3)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (products) => {
+          this.productsOnSale = products;
+        },
+        (err) => console.error(err)
+      );
 
-    this.promoService.getPromos().subscribe((promos) => {
-      this.promos = promos;
-    });
+    this.promoService
+      .getPromos()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((promos) => {
+        this.promos = promos;
+      });
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
