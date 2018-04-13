@@ -126,7 +126,7 @@ So we decided to implement basic shop functionality for now and base the project
 ### Security
 - FireBase Security Rules for Shop User / Admin
 
-## Custom Express/MongoDB Backend
+### Custom Express/MongoDB Backend
 Implementation started with a custom MEAN-architecture, which used a mLab-database.
 We switched to «serverless» with Firebase due to several reasons:
 - Backend not in the scope of this front-end-project and the CAS-FEE-task.
@@ -136,7 +136,7 @@ We switched to «serverless» with Firebase due to several reasons:
 
 The unfinished project can be found under: [CAS-FEE-PROJEKT-2-CUSTOM-MEAN-BACKEND](https://github.com/chzellweger/CAS-FEE-PROJEKT-2-CUSTOM-MEAN-BACKEND)
 
-## Special Mentions
+### Special Mentions
 - All product data changes are propagated in real time to all clients without reloading, via Firebase Real Time Data Base and reactive programming with RxJs (try rating a product or update a property in the CRUD-module)
 - Off Canvas Navigation is handled via Service, several CSS classes needs to be applied to different components
 
