@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 
-import { Product } from '../../models/product.model';
+import { Subject } from 'rxjs/Subject';
+import { takeUntil } from 'rxjs/operators/takeUntil';
 
-import { ProductService } from '../shared/product.service';
-import { PagerService } from '../../pager/pager.service';
-import { SortPipe } from '../shared/sort.pipe';
-// import { OLDProductsCacheService } from '../shared/products-cache.service';
 import { AuthService } from '../../account/shared/auth.service';
-import { User } from '../../models/user.model';
-import { UiService } from '../shared/ui.service';
+import { PagerService } from '../../pager/pager.service';
 import { ProductsCacheService } from '../shared/products-cache.service';
+import { ProductService } from '../shared/product.service';
+import { SortPipe } from '../shared/sort.pipe';
+import { UiService } from '../shared/ui.service';
+
+import { User } from '../../models/user.model';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit, OnDestroy {
+  unsubscribe$ = new Subject();
   products: Product[];
   productsPaged: Product[];
   pager: any = {};
@@ -36,12 +39,16 @@ export class ProductsListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.user.subscribe((user) => {
-      this.user = user;
-    });
-    this.uiService.currentPagingPage$.subscribe((page) => {
-      this.currentPagingPage = page;
-    });
+    this.authService.user
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((user) => {
+        this.user = user;
+      });
+    this.uiService.currentPagingPage$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((page) => {
+        this.currentPagingPage = page;
+      });
     this.getProducts();
   }
 
@@ -49,6 +56,7 @@ export class ProductsListComponent implements OnInit {
     this.productsLoading = true;
     this.productsCacheService
       .get('products', this.productService.getProducts())
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe((products) => {
         this.products = products;
         this.setPage(this.currentPagingPage);
@@ -81,5 +89,10 @@ export class ProductsListComponent implements OnInit {
     );
     this.uiService.sorting$.next(sortBy);
     this.setPage(1);
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

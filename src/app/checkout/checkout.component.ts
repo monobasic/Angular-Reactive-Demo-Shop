@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { CheckoutService } from './shared/checkout.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
+import { Subscription } from 'rxjs/Subscription';
+
+import { CheckoutService } from './shared/checkout.service';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
+  checkoutSubscription: Subscription;
   steps: string[];
   activeStep: number;
 
@@ -18,8 +21,12 @@ export class CheckoutComponent implements OnInit {
   ngOnInit() {
     this.steps = ['1. Address', '2. Shipping', '3. Payment', '4. Review'];
     this.activeStep = this.checkoutService.activeStep;
-    this.checkoutService.stepChanged.subscribe((step: number) => {
+    this.checkoutSubscription = this.checkoutService.stepChanged.subscribe((step: number) => {
       this.activeStep = step;
     });
+  }
+
+  ngOnDestroy() {
+    this.checkoutSubscription.unsubscribe();
   }
 }

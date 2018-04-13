@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { Subscription } from 'rxjs/Subscription';
+
 import { CartService } from '../../../../cart/shared/cart.service';
+
 import { CartItem } from '../../../../models/cart-item.model';
 
 @Component({
@@ -7,16 +11,16 @@ import { CartItem } from '../../../../models/cart-item.model';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class ToolbarCartComponent implements OnInit {
+export class ToolbarCartComponent implements OnInit, OnDestroy {
   public items: CartItem[];
   public total: number;
-
+  private cartSubscription: Subscription;
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
     this.items = this.cartService.getItems();
     this.total = this.cartService.getTotal();
-    this.cartService.itemsChanged.subscribe(
+    this.cartSubscription = this.cartService.itemsChanged.subscribe(
       (items: CartItem[]) => {
         this.items = items;
         this.total = this.cartService.getTotal();
@@ -29,4 +33,7 @@ export class ToolbarCartComponent implements OnInit {
     this.cartService.removeItem(item);
   }
 
+  ngOnDestroy() {
+    this.cartSubscription.unsubscribe();
+  }
 }

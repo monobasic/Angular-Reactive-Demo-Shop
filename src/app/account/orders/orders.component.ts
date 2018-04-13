@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   CommonModule,
   DatePipe,
@@ -17,7 +17,7 @@ import { Order } from '../../models/order.model';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnDestroy {
   public orders: Order[];
   private ordersSubscription: Subscription;
 
@@ -31,5 +31,9 @@ export class OrdersComponent implements OnInit {
           this.orders = orders.reverse();
         }
       });
+  }
+
+  ngOnDestroy() {
+    this.ordersSubscription.unsubscribe();
   }
 }

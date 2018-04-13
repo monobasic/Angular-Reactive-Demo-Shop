@@ -1,12 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Location } from '@angular/common';
 import { Params } from '@angular/router/src/shared';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { Subject } from 'rxjs/Subject';
+import { takeUntil } from 'rxjs/operators/takeUntil';
+
 import { ProductService } from '../shared/product.service';
-// import { OLDProductsCacheService } from '../shared/products-cache.service';
+import { ProductsCacheService } from '../shared/products-cache.service';
 import { CartService } from '../../cart/shared/cart.service';
 import { AuthService } from '../../account/shared/auth.service';
 
@@ -14,14 +17,14 @@ import { Rating } from '../../models/rating.model';
 import { CartItem } from '../../models/cart-item.model';
 import { User } from '../../models/user.model';
 import { Product } from '../../models/product.model';
-import { ProductsCacheService } from '../shared/products-cache.service';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
+  unsubscribe$ = new Subject();
   @Input() product: Product;
   productLoading: boolean;
 
@@ -52,13 +55,17 @@ export class ProductDetailComponent implements OnInit {
     this.selectedQuantity = 1;
     this.imagesLoaded = [];
 
-    this.route.params.subscribe((params: Params) => {
-      this.getProduct();
-    });
+    this.route.params
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((params: Params) => {
+        this.getProduct();
+      });
 
-    this.authService.user.subscribe((user) => {
-      this.user = user;
-    });
+    this.authService.user
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((user) => {
+        this.user = user;
+      });
   }
 
   getProduct(): void {
@@ -69,6 +76,7 @@ export class ProductDetailComponent implements OnInit {
     this.productsCacheService
       // .get(id, this.productService.getProduct(id))
       .get(id, this.productService.getProducts())
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe((product: Product) => {
         console.log('product', product);
         if (product) {
@@ -124,6 +132,7 @@ export class ProductDetailComponent implements OnInit {
     const rating = parseInt(this.selectedRating, 10);
     this.productService
       .rateProduct(this.product, rating)
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe((response) => {
         this.getProduct();
       });
@@ -131,5 +140,10 @@ export class ProductDetailComponent implements OnInit {
 
   onImageLoad(e: any) {
     this.imagesLoaded.push(e.target.src);
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
