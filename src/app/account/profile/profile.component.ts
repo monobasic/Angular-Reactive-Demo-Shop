@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { AuthService } from '../shared/auth.service';
 
 import { User } from '../../models/user.model';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
+  authSubscription: Subscription;
   formProfile: FormGroup;
   profileErrors: string;
   user: User;
@@ -19,7 +21,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.initFormGroup();
-    this.authService.user.subscribe(
+    this.authSubscription = this.authService.user.subscribe(
       user => {
         if (user) {
           this.formProfile.patchValue({
@@ -75,4 +77,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.authSubscription.unsubscribe();
+  }
 }

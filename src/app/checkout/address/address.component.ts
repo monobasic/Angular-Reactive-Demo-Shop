@@ -1,14 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
-import { CheckoutService } from '../shared/checkout.service';
+
+import { Subscription } from 'rxjs/Subscription';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 import { AuthService } from '../../account/shared/auth.service';
+import { CheckoutService } from '../shared/checkout.service';
+
 @Component({
   selector: 'app-checkout-address',
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss']
 })
-export class AddressComponent implements OnInit {
+export class AddressComponent implements OnInit, OnDestroy {
+  authSubscription: Subscription;
   @Input() user;
   formAddress: FormGroup;
   countries: string[];
@@ -19,7 +24,7 @@ export class AddressComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.user.subscribe((user) => {
+    this.authSubscription = this.authService.user.subscribe((user) => {
       if (user) {
         this.user = user;
         console.log(this.user);
@@ -77,5 +82,9 @@ export class AddressComponent implements OnInit {
       company: '',
       country: 'Switzerland'
     });
+  }
+
+  ngOnDestroy() {
+    this.authSubscription.unsubscribe();
   }
 }

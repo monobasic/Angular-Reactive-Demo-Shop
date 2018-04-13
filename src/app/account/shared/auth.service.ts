@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -11,12 +11,13 @@ import 'rxjs/add/operator/take';
 import { MessageService } from '../../messages/message.service';
 import { of } from 'rxjs/observable/of';
 import { map } from 'rxjs/operator/map';
-import { tap } from 'rxjs/operators';
+import { tap, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements OnDestroy {
   user: BehaviorSubject<User> = new BehaviorSubject(null);
+  private unsubscribe$ = new Subject();
   private userUid: string;
   private privateUserUid$: BehaviorSubject<string> = new BehaviorSubject(null);
   public userUid$ = this.privateUserUid$.asObservable();
@@ -40,6 +41,7 @@ export class AuthService {
           return Observable.of(null);
         }
       })
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe((user) => {
         this.user.next(user);
         console.log('authState changed, user is now: ');
@@ -131,6 +133,7 @@ export class AuthService {
     const ref = this.db.object('users/' + authData.uid);
     ref
       .valueChanges()
+      .pipe(takeUntil(this.unsubscribe$))
       .take(1)
       .subscribe((user) => {
         if (!user) {
@@ -144,9 +147,15 @@ export class AuthService {
     const ref = this.db.object('users/' + currentUser.uid);
     ref
       .valueChanges()
+      .pipe(takeUntil(this.unsubscribe$))
       .take(1)
       .subscribe((user) => {
         ref.update(userData);
       });
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
