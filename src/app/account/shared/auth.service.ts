@@ -1,23 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { User, Roles } from '../../models/user.model';
+
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/take';
-import { MessageService } from '../../messages/message.service';
-import { of } from 'rxjs/observable/of';
-import { map } from 'rxjs/operator/map';
-import { tap } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
+import { of } from 'rxjs/observable/of';
+import { tap } from 'rxjs/operators/tap';
+import { take } from 'rxjs/operators/take';
+import { takeUntil } from 'rxjs/operators/takeUntil';
+
+import { MessageService } from '../../messages/message.service';
+import { User, Roles } from '../../models/user.model';
+import { switchMap } from 'rxjs/operators/switchMap';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements OnDestroy {
   user: BehaviorSubject<User> = new BehaviorSubject(null);
+  private unsubscribe$ = new Subject();
+
   private userUid: string;
+
   private privateUserUid$: BehaviorSubject<string> = new BehaviorSubject(null);
   public userUid$ = this.privateUserUid$.asObservable();
 
@@ -27,19 +30,22 @@ export class AuthService {
     private messageService: MessageService
   ) {
     this.afAuth.authState
-      .switchMap((auth) => {
-        if (auth) {
-          console.log(`signin' in`);
-          this.userUid = auth.uid;
-          this.privateUserUid$.next(auth.uid);
-          return this.db.object('users/' + auth.uid).valueChanges();
-        } else {
-          /// not signed in
-          console.log('not signed in');
-          this.userUid = null;
-          return Observable.of(null);
-        }
-      })
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        switchMap((auth) => {
+          if (auth) {
+            console.log(`signin' in`);
+            this.userUid = auth.uid;
+            this.privateUserUid$.next(auth.uid);
+            return this.db.object('users/' + auth.uid).valueChanges();
+          } else {
+            /// not signed in
+            console.log('not signed in');
+            this.userUid = null;
+            return of(null);
+          }
+        }),
+      )
       .subscribe((user) => {
         this.user.next(user);
         console.log('authState changed, user is now: ');
@@ -131,7 +137,10 @@ export class AuthService {
     const ref = this.db.object('users/' + authData.uid);
     ref
       .valueChanges()
-      .take(1)
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        take(1)
+      )
       .subscribe((user) => {
         if (!user) {
           ref.update(userData);
@@ -144,9 +153,17 @@ export class AuthService {
     const ref = this.db.object('users/' + currentUser.uid);
     ref
       .valueChanges()
-      .take(1)
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        take(1)
+      )
       .subscribe((user) => {
         ref.update(userData);
       });
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
