@@ -18,11 +18,6 @@ import { AuthService } from '../../shared/auth.service';
 
 @Injectable()
 export class OrderService {
-  private privateOrders$: BehaviorSubject<
-    Observable<any>
-  > = new BehaviorSubject(of(null));
-  public orders$ = this.privateOrders$.asObservable();
-
   constructor(
     private messageService: MessageService,
     private authService: AuthService,
