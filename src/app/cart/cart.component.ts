@@ -11,11 +11,11 @@ import { CartItem } from '../models/cart-item.model';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit, OnDestroy {
-  cartSubscription: Subscription;
+  private cartSubscription: Subscription;
   public items: CartItem[];
   public total: number;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {
     this.items = this.cartService.getItems();
@@ -28,33 +28,35 @@ export class CartComponent implements OnInit, OnDestroy {
     );
   }
 
-  onClearCart(event) {
+  public onClearCart(event) {
     event.preventDefault();
     event.stopPropagation();
     this.cartService.clearCart();
   }
 
-  onRemoveItem(event, item: CartItem) {
+  public onRemoveItem(event, item: CartItem) {
     event.preventDefault();
     event.stopPropagation();
     this.cartService.removeItem(item);
   }
 
-  increaseAmount(item: CartItem) {
+  public increaseAmount(item: CartItem) {
     this.cartService.updateItemAmount(item, item.amount + 1);
   }
 
-  decreaseAmount(item: CartItem) {
-    const newAmount = (item.amount === 1) ?  1 : item.amount - 1;
+  public decreaseAmount(item: CartItem) {
+    const newAmount = item.amount === 1 ? 1 : item.amount - 1;
     this.cartService.updateItemAmount(item, newAmount);
   }
 
-  checkAmount(item: CartItem) {
-    this.cartService.updateItemAmount(item, (item.amount < 1 || !item.amount || isNaN(item.amount) ? 1 : item.amount));
+  public checkAmount(item: CartItem) {
+    this.cartService.updateItemAmount(
+      item,
+      item.amount < 1 || !item.amount || isNaN(item.amount) ? 1 : item.amount
+    );
   }
 
   ngOnDestroy() {
     this.cartSubscription.unsubscribe();
   }
-
 }
