@@ -183,8 +183,6 @@ export class ProductService {
     const dbOperation = this.uploadService
       .startUpload(data)
       .then((task) => {
-        console.log(task);
-        console.log(data);
         data.product.imageURLs.push(task.downloadURL);
         data.product.imageRefs.push(task.ref.fullPath);
 

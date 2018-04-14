@@ -72,7 +72,6 @@ export class MainSliderComponent implements OnInit, OnDestroy {
 
   public onImageLoad(e: any) {
     this.imagesLoaded.push(e.target.src);
-    console.log(this.imagesLoaded);
   }
 
   ngOnDestroy() {

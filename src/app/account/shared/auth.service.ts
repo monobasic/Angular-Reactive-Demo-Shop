@@ -48,9 +48,6 @@ export class AuthService implements OnDestroy {
       )
       .subscribe((user) => {
         this.user.next(user);
-        console.log('authState changed, user is now: ');
-        console.log(this.user.getValue());
-        console.log(this.userUid);
       });
   }
 

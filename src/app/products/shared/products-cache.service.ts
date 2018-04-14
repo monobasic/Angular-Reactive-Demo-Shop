@@ -21,9 +21,7 @@ export class ProductsCacheService {
   }
 
   private getProducts(fallback: Observable<Product[]>) {
-    console.log('products cache: get products');
     if (!this.products) {
-      console.log('...remotely');
       this.products = fallback.pipe(publishReplay(1), refCount());
     }
     return this.products;

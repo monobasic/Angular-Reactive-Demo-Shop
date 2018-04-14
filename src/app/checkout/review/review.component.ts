@@ -77,13 +77,11 @@ export class ReviewComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (response) => {
-          console.log(response);
           this.cartService.clearCart();
           this.checkoutService.resetSteps();
           this.router.navigate(['/order-complete']);
         },
         (error) => {
-          console.log(error);
           this.messageService.addError('Could not submit order, try again.');
         }
       );
@@ -95,13 +93,11 @@ export class ReviewComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (response) => {
-          console.log(response);
           this.cartService.clearCart();
           this.checkoutService.resetSteps();
           this.router.navigate(['/order-complete']);
         },
         (error) => {
-          console.log(error);
           this.messageService.addError('Could not submit order, try again.');
         }
       );

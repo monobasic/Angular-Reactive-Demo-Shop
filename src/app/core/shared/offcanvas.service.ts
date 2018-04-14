@@ -10,7 +10,6 @@ export class OffcanvasService {
   public toggleOffcanvasNavigation() {
     const state = !this.offcanvasNavigationOpen.getValue();
     this.offcanvasNavigationOpen.next(state);
-    console.log('toggleOffcanvasNavigation() called with: ' + state);
   }
 
   public openOffcanvasNavigation() {

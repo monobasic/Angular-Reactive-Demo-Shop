@@ -114,7 +114,6 @@ export class AddEditComponent implements OnInit, OnDestroy {
         product.categories = this.categoriesFromObjectToString(
           product.categories
         );
-        console.log(product.categories);
         this.syncProduct(product);
         this.initForm();
       }
@@ -218,7 +217,6 @@ export class AddEditComponent implements OnInit, OnDestroy {
   }
 
   private categoriesFromObjectToString(categories: {}): string | null {
-    console.log(categories);
     // categories: { key: true, key: true} || {}
     if (Object.keys(categories).length === 0) {
       return 'example, category';
