@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { OffcanvasService } from './core/shared/offcanvas.service';
 
 @Component({
@@ -6,12 +6,8 @@ import { OffcanvasService } from './core/shared/offcanvas.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  products: any;
+export class AppComponent {
+  public products: any;
 
-  constructor(
-    public offcanvasService: OffcanvasService
-  ) {}
-
-  ngOnInit() {}
+  constructor(public offcanvasService: OffcanvasService) {}
 }
