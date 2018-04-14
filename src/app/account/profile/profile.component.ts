@@ -12,10 +12,10 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  authSubscription: Subscription;
-  formProfile: FormGroup;
-  profileErrors: string;
-  user: User;
+  private authSubscription: Subscription;
+  public formProfile: FormGroup;
+  public profileErrors: string;
+  private user: User;
 
   constructor(private authService: AuthService) { }
 
@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSubmit() {
+  public onSubmit() {
 
     // Update Email
     if (this.user.email !== this.formProfile.value.email) {
