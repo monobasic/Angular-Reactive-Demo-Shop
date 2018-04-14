@@ -10,9 +10,9 @@ import { Product } from '../../models/product.model';
 
 @Injectable()
 export class ProductsCacheService {
-  products: Observable<Product[]>;
+  private products: Observable<Product[]>;
 
-  get(key: string | number, fallback: Observable<Product[]>) {
+  public get(key: string | number, fallback: Observable<Product[]>) {
     if (typeof key === 'string') {
       return this.getProducts(fallback);
     } else {
@@ -20,7 +20,7 @@ export class ProductsCacheService {
     }
   }
 
-  getProducts(fallback: Observable<Product[]>) {
+  private getProducts(fallback: Observable<Product[]>) {
     console.log('products cache: get products');
     if (!this.products) {
       console.log('...remotely');
@@ -29,7 +29,7 @@ export class ProductsCacheService {
     return this.products;
   }
 
-  getProduct(key: any, fallback: Observable<Product[]>) {
+  private getProduct(key: any, fallback: Observable<Product[]>) {
     return this.getProducts(fallback).pipe(
       switchMap((products) => {
         const selectedProduct = products.filter((product) => {
@@ -46,7 +46,7 @@ export class ProductsCacheService {
     );
   }
 
-  clearCache() {
+  public clearCache() {
     this.products = null;
   }
 }
