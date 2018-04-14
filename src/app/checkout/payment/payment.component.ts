@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { CheckoutService } from '../shared/checkout.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout-payment',
@@ -8,9 +9,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
-  formPayment: FormGroup;
-  paypalLoggedIn: boolean;
-  paymentMethods: string[];
+  public formPayment: FormGroup;
+  public paypalLoggedIn: boolean;
+  public paymentMethods: string[];
 
   constructor(private checkoutService: CheckoutService) { }
 
@@ -22,15 +23,15 @@ export class PaymentComponent implements OnInit {
     });
   }
 
-  onPaypalLogin(event: Event) {
+  public onPaypalLogin(event: Event) {
     this.paypalLoggedIn = true;
   }
 
-  onBack() {
+  public onBack() {
     this.checkoutService.previousStep();
   }
 
-  onContinue() {
+  public onContinue() {
     this.checkoutService.setPaymentMethod(this.formPayment.controls.paymentMethod.value);
     this.checkoutService.nextStep();
   }
