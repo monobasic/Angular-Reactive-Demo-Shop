@@ -10,12 +10,12 @@ import { takeUntil } from 'rxjs/operators/takeUntil';
   styleUrls: ['./main-slider.component.scss']
 })
 export class MainSliderComponent implements OnInit, OnDestroy {
-  unsubscribe$ = new Subject();
-  @Input() items: any[];
-  currentSlide: number;
-  imagesLoaded: string[];
+  private unsubscribe$ = new Subject();
+  @Input() public items: any[];
+  public currentSlide: number;
+  public imagesLoaded: string[];
 
-  options: NgxSiemaOptions = {
+  public options: NgxSiemaOptions = {
     selector: '.siema',
     duration: 200,
     easing: 'ease-out',
@@ -39,7 +39,7 @@ export class MainSliderComponent implements OnInit, OnDestroy {
     this.imagesLoaded = [];
   }
 
-  prev() {
+  public prev() {
     if (this.currentSlide > 0) {
       this.ngxSiemaService
         .prev(1)
@@ -50,7 +50,7 @@ export class MainSliderComponent implements OnInit, OnDestroy {
     }
   }
 
-  next() {
+  public next() {
     if (this.currentSlide < this.items.length - 1) {
       this.ngxSiemaService
         .next(1)
@@ -61,7 +61,7 @@ export class MainSliderComponent implements OnInit, OnDestroy {
     }
   }
 
-  goTo(index: number) {
+  public goTo(index: number) {
     this.ngxSiemaService
       .goTo(index)
       .pipe(takeUntil(this.unsubscribe$))
@@ -70,7 +70,7 @@ export class MainSliderComponent implements OnInit, OnDestroy {
       });
   }
 
-  onImageLoad(e: any) {
+  public onImageLoad(e: any) {
     this.imagesLoaded.push(e.target.src);
     console.log(this.imagesLoaded);
   }
