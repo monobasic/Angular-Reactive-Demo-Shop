@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
@@ -14,28 +14,29 @@ import { User } from '../../models/user.model';
   styleUrls: ['./navigation-off-canvas.component.scss']
 })
 export class NavigationOffCanvasComponent implements OnInit, OnDestroy {
-  authSubscription: Subscription;
-  user: User;
+  private authSubscription: Subscription;
+  public user: User;
 
-  constructor(public offcanvasService: OffcanvasService,
+  constructor(
+    public offcanvasService: OffcanvasService,
     public authService: AuthService,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.authSubscription = this.authService.user.subscribe(user => {
+    this.authSubscription = this.authService.user.subscribe((user) => {
       this.user = user;
     });
   }
 
-
-  onLogout(e: Event) {
+  public onLogout(e: Event) {
     this.offcanvasService.closeOffcanvasNavigation();
     this.authService.signOut();
     this.router.navigate(['/register-login']);
     e.preventDefault();
   }
 
-  onNavigationClick() {
+  public onNavigationClick() {
     this.offcanvasService.closeOffcanvasNavigation();
   }
 
