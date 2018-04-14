@@ -13,6 +13,7 @@ import { RatingStarsComponent } from './shared/rating-stars/rating-stars.compone
 import { FileUploadService } from './shared/file-upload.service';
 import { SortPipe } from './shared/sort.pipe';
 import { ProductsCacheService } from './shared/products-cache.service';
+import { ProductRatingService } from './shared/product-rating.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,6 @@ import { ProductsCacheService } from './shared/products-cache.service';
     SortPipe,
     RatingStarsComponent
   ],
-  providers: [SortPipe, FileUploadService, ProductsCacheService]
+  providers: [SortPipe, FileUploadService, ProductsCacheService, ProductRatingService]
 })
 export class ProductsModule {}

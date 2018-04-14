@@ -17,6 +17,7 @@ import { Rating } from '../../models/rating.model';
 import { CartItem } from '../../models/cart-item.model';
 import { User } from '../../models/user.model';
 import { Product } from '../../models/product.model';
+import { ProductRatingService } from '../shared/product-rating.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -47,7 +48,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private cartService: CartService,
     private productsCacheService: ProductsCacheService,
-    private productService: ProductService
+    private productService: ProductService,
+    private productRatingService: ProductRatingService
   ) {}
 
   ngOnInit(): void {
@@ -104,7 +106,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   onRate() {
     const rating = parseInt(this.selectedRating, 10);
-    this.productService
+    this.productRatingService
       .rateProduct(this.product, rating)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((response) => {
