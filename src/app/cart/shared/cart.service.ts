@@ -13,7 +13,7 @@ export class CartService {
     this.cartItems = [];
   }
 
-  getItems() {
+  public getItems() {
     return this.cartItems.slice();
   }
 
@@ -22,7 +22,7 @@ export class CartService {
     return this.getItems().map(cartItem => cartItem.product.id);
   }
 
-  addItem(item: CartItem) {
+  public addItem(item: CartItem) {
     // If item is already in cart, add to the amount, otherwise push item into cart
     if (this.getItemIds().includes(item.product.id)) {
       this.cartItems.forEach(function (cartItem) {
@@ -38,20 +38,20 @@ export class CartService {
     this.itemsChanged.emit(this.cartItems.slice());
   }
 
-  addItems(items: CartItem[]) {
+  public addItems(items: CartItem[]) {
     items.forEach((cartItem) => {
       this.addItem(cartItem);
     });
   }
 
-  removeItem(item: CartItem) {
+  public removeItem(item: CartItem) {
     const indexToRemove = this.cartItems.findIndex(element => element === item);
     this.cartItems.splice(indexToRemove, 1);
     this.itemsChanged.emit(this.cartItems.slice());
     this.messageService.add('Deleted from cart: ' + item.product.name);
   }
 
-  updateItemAmount(item: CartItem, newAmount: number) {
+  public updateItemAmount(item: CartItem, newAmount: number) {
     this.cartItems.forEach((cartItem) => {
       if (cartItem.product.id === item.product.id) {
         cartItem.amount = newAmount;
@@ -61,13 +61,13 @@ export class CartService {
     this.messageService.add('Updated amount for: ' + item.product.name);
   }
 
-  clearCart() {
+  public clearCart() {
     this.cartItems = [];
     this.itemsChanged.emit(this.cartItems.slice());
     this.messageService.add('Cleared cart');
   }
 
-  getTotal() {
+  public getTotal() {
     let total = 0;
     this.cartItems.forEach((cartItem) => {
       total += cartItem.amount * cartItem.product.price;
