@@ -3,15 +3,13 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class UiService {
-
-  sorting$: BehaviorSubject<string>;
-  displayMode$: BehaviorSubject<string>;
-  currentPagingPage$: BehaviorSubject<number>;
+  public sorting$: BehaviorSubject<string>;
+  public displayMode$: BehaviorSubject<string>;
+  public currentPagingPage$: BehaviorSubject<number>;
 
   constructor() {
     this.sorting$ = new BehaviorSubject('date:reverse');
     this.displayMode$ = new BehaviorSubject('grid');
     this.currentPagingPage$ = new BehaviorSubject(1);
   }
-
 }
