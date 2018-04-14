@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -15,7 +15,7 @@ export class ToolbarCartComponent implements OnInit, OnDestroy {
   public items: CartItem[];
   public total: number;
   private cartSubscription: Subscription;
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {
     this.items = this.cartService.getItems();
@@ -28,7 +28,7 @@ export class ToolbarCartComponent implements OnInit, OnDestroy {
     );
   }
 
-  onRemoveItem(event, item: CartItem) {
+  public onRemoveItem(event, item: CartItem) {
     event.stopPropagation();
     this.cartService.removeItem(item);
   }
