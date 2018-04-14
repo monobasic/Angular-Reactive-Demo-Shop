@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Promo } from '../../../models/promo.model';
 
 @Component({
@@ -6,13 +6,6 @@ import { Promo } from '../../../models/promo.model';
   templateUrl: './promo.component.html',
   styleUrls: ['./promo.component.scss']
 })
-export class PromoComponent implements OnInit {
-  @Input()
-  promo: Promo;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class PromoComponent {
+  @Input() public promo: Promo;
 }
