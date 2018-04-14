@@ -1,23 +1,20 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Params } from '@angular/router/src/shared';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Params } from '@angular/router/src/shared';
 
 import { Subject } from 'rxjs/Subject';
 import { takeUntil } from 'rxjs/operators/takeUntil';
 
-import { ProductService } from '../shared/product.service';
-import { ProductsCacheService } from '../shared/products-cache.service';
-import { CartService } from '../../cart/shared/cart.service';
 import { AuthService } from '../../account/shared/auth.service';
-
-import { Rating } from '../../models/rating.model';
+import { CartService } from '../../cart/shared/cart.service';
 import { CartItem } from '../../models/cart-item.model';
-import { User } from '../../models/user.model';
-import { Product } from '../../models/product.model';
+import { ProductsCacheService } from '../shared/products-cache.service';
 import { ProductRatingService } from '../shared/product-rating.service';
+import { ProductService } from '../shared/product.service';
+
+import { Product } from '../../models/product.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -25,21 +22,21 @@ import { ProductRatingService } from '../shared/product-rating.service';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
-  unsubscribe$ = new Subject();
-  @Input() product: Product;
-  productLoading: boolean;
+  private unsubscribe$ = new Subject();
+  @Input() public product: Product;
+  public productLoading: boolean;
 
-  user: User;
+  public user: User;
 
-  imagesLoaded: string[];
-  activeImageUrl: string;
-  activeImageIndex: number;
+  public imagesLoaded: string[];
+  public activeImageUrl: string;
+  public activeImageIndex: number;
 
-  selectedQuantity: number;
+  public selectedQuantity: number;
 
-  ratingCount: number;
-  ratingValues: number[];
-  selectedRating: any;
+  public ratingCount: number;
+  public ratingValues: number[];
+  public selectedRating: any;
 
   constructor(
     private router: Router,
@@ -70,7 +67,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       });
   }
 
-  getProduct(): void {
+  private getProduct(): void {
     this.productLoading = true;
 
     const id = +this.route.snapshot.paramMap.get('id');
@@ -90,21 +87,21 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       });
   }
 
-  onSelectThumbnail(event, index) {
+  public onSelectThumbnail(event, index) {
     event.preventDefault();
     this.activeImageUrl = this.product.imageURLs[index];
     this.activeImageIndex = index;
   }
 
-  onAddToCart() {
+  public onAddToCart() {
     this.cartService.addItem(new CartItem(this.product, this.selectedQuantity));
   }
 
-  onSelectQuantity(event) {
+  public onSelectQuantity(event) {
     this.selectedQuantity = <number>+event.target.value;
   }
 
-  onRate() {
+  public onRate() {
     const rating = parseInt(this.selectedRating, 10);
     this.productRatingService
       .rateProduct(this.product, rating)
@@ -114,11 +111,11 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       });
   }
 
-  onImageLoad(e: any) {
+  public onImageLoad(e: any) {
     this.imagesLoaded.push(e.target.src);
   }
 
-  setupProduct() {
+  private setupProduct() {
     if (this.product) {
       this.checkCategories();
       this.checkRatings();
@@ -127,7 +124,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkCategories() {
+  private checkCategories() {
     const categories = Object.keys(this.product.categories).map(
       (category, index, inputArray) => {
         category = index < inputArray.length - 1 ? category + ',' : category;
@@ -140,7 +137,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         : [];
   }
 
-  checkRatings() {
+  private checkRatings() {
     this.ratingCount = this.product.ratings
       ? Object.keys(this.product.ratings).length
       : 0;
