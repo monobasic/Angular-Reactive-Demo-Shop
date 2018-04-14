@@ -1,8 +1,7 @@
-import { Component, OnInit, SimpleChanges, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Subject } from 'rxjs/Subject';
-import { tap } from 'rxjs/operators/tap';
 import { takeUntil } from 'rxjs/operators/takeUntil';
 
 import { AuthService } from '../../account/shared/auth.service';
@@ -54,11 +53,11 @@ export class ReviewComponent implements OnInit, OnDestroy {
       });
   }
 
-  onBack() {
+  public onBack() {
     this.checkoutService.previousStep();
   }
 
-  onCompleteOrder() {
+  public onCompleteOrder() {
     const userUid = this.authService.getUserUid();
     const order = this.checkoutService.getOrderInProgress();
     const total = this.cartService.getTotal();
@@ -72,7 +71,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
     }
   }
 
-  submitUserOrder(order, total, userUid) {
+  private submitUserOrder(order, total, userUid) {
     this.orderService
       .addUserOrder(order, total, userUid)
       .pipe(takeUntil(this.unsubscribe$))
@@ -90,7 +89,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
       );
   }
 
-  submitAnonOrder(order, total) {
+  private submitAnonOrder(order, total) {
     this.orderService
       .addAnonymousOrder(order, total)
       .pipe(takeUntil(this.unsubscribe$))
