@@ -15,7 +15,7 @@ export class AdminGuard implements CanActivate {
     private authService: AuthService
   ) {}
 
-  canActivate (
+  public canActivate (
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
