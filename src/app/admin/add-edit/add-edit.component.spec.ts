@@ -54,38 +54,38 @@ describe('AddEditComponent', () => {
 
   describe('has a method setProduct, it', () => {
     it('should set mode to edit if id is provided', () => {
-      spyOn(addEditComponent, 'getProduct');
-      addEditComponent.setProduct();
+      spyOn<any>(addEditComponent, 'getProduct');
+      addEditComponent['setProduct']();
 
-      expect(addEditComponent.getProduct).toHaveBeenCalled();
-      expect(addEditComponent.mode).toEqual('edit');
+      expect(addEditComponent['getProduct']).toHaveBeenCalled();
+      expect(addEditComponent['mode']).toEqual('edit');
     });
 
     it('should set mode to add if no id is provided', () => {
-      spyOn(addEditComponent, 'constructProduct');
+      spyOn<any>(addEditComponent, 'constructProduct');
       addEditComponent.route.snapshot.paramMap.get = () => null;
 
-      addEditComponent.setProduct();
-      expect(addEditComponent.mode).toBe('add');
+      addEditComponent['setProduct']();
+      expect(addEditComponent['mode']).toBe('add');
     });
   });
 
   it('should have a working method constructProduct', () => {
-    spyOn(addEditComponent, 'initForm');
+    spyOn<any>(addEditComponent, 'initForm');
 
-    addEditComponent.constructProduct();
+    addEditComponent['constructProduct']();
 
-    expect(addEditComponent.initForm).toHaveBeenCalled();
+    expect(addEditComponent['initForm']).toHaveBeenCalled();
     expect(addEditComponent.product.categories).toEqual('example, category');
   });
 
   it('should have a working method initForm', () => {
-    spyOn(addEditComponent, 'onFormChanges');
+    spyOn<any>(addEditComponent, 'onFormChanges');
 
-    addEditComponent.initForm();
+    addEditComponent['initForm']();
 
     expect(addEditComponent.productForm).toBeTruthy();
-    expect(addEditComponent.onFormChanges).toHaveBeenCalled();
+    expect(addEditComponent['onFormChanges']).toHaveBeenCalled();
   });
 
   it('should have a working method syncProduct', () => {
@@ -101,7 +101,7 @@ describe('AddEditComponent', () => {
       [],
       'hello, world'
     );
-    const result = addEditComponent.syncProduct(testDomainProduct);
+    const result = addEditComponent['syncProduct'](testDomainProduct);
     expect(addEditComponent.product.description).toEqual('My new description');
     expect(addEditComponent.product.name).toEqual('My name');
     expect(addEditComponent.product.id).toBeGreaterThan(1);
@@ -111,7 +111,7 @@ describe('AddEditComponent', () => {
   });
 
   it('should have a working method constructMockProduct', () => {
-    const result = addEditComponent.constructMockProduct();
+    const result = addEditComponent['constructMockProduct']();
     expect(result.id).toBe(1);
   });
 
@@ -130,7 +130,7 @@ describe('AddEditComponent', () => {
         'hello, world'
       );
 
-      const result = addEditComponent.constructProductToSubmit(
+      const result = addEditComponent['constructProductToSubmit'](
         testDomainProduct
       );
       expect(result.categories).toEqual({ hello: true, world: true });
@@ -148,7 +148,7 @@ describe('AddEditComponent', () => {
         200,
         10
       );
-      const result = addEditComponent.createId(testProduct);
+      const result = addEditComponent['createId'](testProduct);
       expect(result).toBeGreaterThan(1);
     });
 
@@ -162,19 +162,19 @@ describe('AddEditComponent', () => {
         200,
         10
       );
-      const result = addEditComponent.createId(testProduct);
+      const result = addEditComponent['createId'](testProduct);
       expect(result).toBe(666);
     });
   });
 
   describe('has a method categoriesFromObjectToString, it', () => {
     it('should return "example, category" if provided an empty object', () => {
-      const result = addEditComponent.categoriesFromObjectToString({});
+      const result = addEditComponent['categoriesFromObjectToString']({});
       expect(result).toBe('example, category');
     });
 
     it('should turn "key: boolean"-objects into comma-seperated strings', () => {
-      const result = addEditComponent.categoriesFromObjectToString({
+      const result = addEditComponent['categoriesFromObjectToString']({
         test: true,
         test2: true
       });
@@ -184,12 +184,12 @@ describe('AddEditComponent', () => {
 
   describe('has a method categoriesFromStringToObject, it', () => {
     it('should turn empty strings to empty objects', () => {
-      const result = addEditComponent.categoriesFromStringToObject('');
+      const result = addEditComponent['categoriesFromStringToObject']('');
       expect(result).toEqual({});
     });
 
     it('should turn strings to "key: true"-objects', () => {
-      const result = addEditComponent.categoriesFromStringToObject(
+      const result = addEditComponent['categoriesFromStringToObject'](
         'test, test2'
       );
       expect(result).toEqual({ test: true, test2: true });
@@ -198,12 +198,12 @@ describe('AddEditComponent', () => {
 
   describe('has a method checkForSale, it', () => {
     it('should return true if provided a value > 0', () => {
-      const result = addEditComponent.checkForSale(1);
+      const result = addEditComponent['checkForSale'](1);
       expect(result).toBe(true);
     });
 
     it('should return false if provided 0', () => {
-      const result = addEditComponent.checkForSale(0);
+      const result = addEditComponent['checkForSale'](0);
       expect(result).toBe(false);
     });
   });
@@ -220,7 +220,7 @@ describe('AddEditComponent', () => {
         10,
         ['/hello-world.jpg']
       );
-      const result = addEditComponent.calculateReduction(
+      const result = addEditComponent['calculateReduction'](
         testProduct.priceNormal,
         testProduct.price
       );
@@ -238,7 +238,7 @@ describe('AddEditComponent', () => {
         10,
         ['/hello-world.jpg']
       );
-      const result = addEditComponent.calculateReduction(
+      const result = addEditComponent['calculateReduction'](
         testProduct.priceNormal,
         testProduct.price
       );
@@ -258,7 +258,7 @@ describe('AddEditComponent', () => {
         10,
         ['/hello-world.jpg']
       );
-      const result = addEditComponent.handleImageURLs(testProduct);
+      const result = addEditComponent['handleImageURLs'](testProduct);
       expect(result).toBe(testProduct.imageURLs);
     });
 
@@ -273,7 +273,7 @@ describe('AddEditComponent', () => {
         10,
         []
       );
-      const result = addEditComponent.handleImageURLs(testProduct);
+      const result = addEditComponent['handleImageURLs'](testProduct);
       expect(result).toEqual([]);
     });
   });

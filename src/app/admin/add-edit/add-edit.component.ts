@@ -1,22 +1,17 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import {
-  FormGroup,
-  ReactiveFormsModule,
-  FormControl,
-  Validators
-} from '@angular/forms';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { of } from 'rxjs/observable/of';
 
-import { FileUploadService } from '../../products/shared/file-upload.service';
 import { MessageService } from '../../messages/message.service';
+import { FileUploadService } from '../../products/shared/file-upload.service';
 import { ProductService } from '../../products/shared/product.service';
+import { ProductsCacheService } from '../../products/shared/products-cache.service';
 
 import { Product } from '../../models/product.model';
-import { ProductsCacheService } from '../../products/shared/products-cache.service';
-import { Subscription } from 'rxjs/Subscription';
 
 // we send and receive categories as {key:true},
 // but for the input field we need
@@ -32,12 +27,12 @@ export class DomainProduct extends Product {
 })
 export class AddEditComponent implements OnInit, OnDestroy {
   @ViewChild('photos') photos;
-  formSubscription: Subscription;
-  productForm: FormGroup;
-  product: DomainProduct;
-  mode: 'edit' | 'add';
-  id;
-  percentage: Observable<number>;
+  private formSubscription: Subscription;
+  public productForm: FormGroup;
+  public product: DomainProduct;
+  private mode: 'edit' | 'add';
+  public id;
+  public percentage: Observable<number>;
 
   constructor(
     private router: Router,
@@ -52,7 +47,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     this.setProduct();
   }
 
-  initForm() {
+  private initForm() {
     this.productForm = new FormGroup({
       name: new FormControl(
         this.product && this.product.name,
@@ -89,7 +84,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     this.onFormChanges();
   }
 
-  setProduct() {
+  private setProduct() {
     this.route.params.subscribe((params: Params) => {
       this.id = +this.route.snapshot.paramMap.get('id');
       // if we have an id, we're in edit mode
@@ -106,14 +101,14 @@ export class AddEditComponent implements OnInit, OnDestroy {
     });
   }
 
-  constructProduct() {
+  private constructProduct() {
     const product = this.constructMockProduct();
     product.categories = this.categoriesFromObjectToString(product.categories);
     this.syncProduct(product);
     this.initForm();
   }
 
-  getProduct(id): void {
+  private getProduct(id): void {
     this.productService.getProduct(id).subscribe((product) => {
       if (product) {
         product.categories = this.categoriesFromObjectToString(
@@ -126,7 +121,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     });
   }
 
-  onFormChanges() {
+  private onFormChanges() {
     this.formSubscription = this.productForm.valueChanges.subscribe(
       (formFieldValues) => {
         const product = { ...this.product, ...formFieldValues };
@@ -135,7 +130,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     );
   }
 
-  syncProduct(product): void {
+  private syncProduct(product): void {
     const id = this.createId(product);
     const imageURLs = this.handleImageURLs(product);
     const reduction = this.calculateReduction(
@@ -153,7 +148,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     };
   }
 
-  onSubmit() {
+  public onSubmit() {
     this.syncProduct({ ...this.product, ...this.productForm.value });
     const productToSubmit = this.constructProductToSubmit(this.product);
     const files: FileList = this.photos.nativeElement.files;
@@ -167,7 +162,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  addProduct(product: Product, files: FileList) {
+  private addProduct(product: Product, files: FileList) {
     this.productService.addProduct({ product, files }).subscribe(
       (savedProduct: Product) => {
         if (savedProduct.id) {
@@ -182,7 +177,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     );
   }
 
-  updateProduct(product: Product, files?: FileList) {
+  private updateProduct(product: Product, files?: FileList) {
     this.productService.updateProduct({ product, files }).subscribe(
       (response: Product) => {
         this.router.navigate(['/products/' + response.id]);
@@ -191,7 +186,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     );
   }
 
-  onDelete() {
+  public onDelete() {
     if (this.mode === 'edit') {
       this.productService.deleteProduct(this.product).then((res) => {
         this.router.navigate(['/products']);
@@ -202,18 +197,18 @@ export class AddEditComponent implements OnInit, OnDestroy {
   }
 
   // pure helper functions start here:
-  constructMockProduct() {
+  private constructMockProduct() {
     return new Product();
   }
 
-  constructProductToSubmit(product: DomainProduct): Product {
+  private constructProductToSubmit(product: DomainProduct): Product {
     return {
       ...product,
       categories: this.categoriesFromStringToObject(product.categories)
     };
   }
 
-  createId(product: Product): number {
+  private createId(product: Product): number {
     const randomId = Math.floor(Math.random() * new Date().getTime());
     let id = product.id || randomId;
     if (id === 1) {
@@ -222,7 +217,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     return id;
   }
 
-  categoriesFromObjectToString(categories: {}): string | null {
+  private categoriesFromObjectToString(categories: {}): string | null {
     console.log(categories);
     // categories: { key: true, key: true} || {}
     if (Object.keys(categories).length === 0) {
@@ -239,7 +234,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     );
   }
 
-  categoriesFromStringToObject(categories: string): {} {
+  private categoriesFromStringToObject(categories: string): {} {
     // categories: 'cat1, cat2, cat3' || ''
     if (categories.length === 0) {
       return {};
@@ -252,16 +247,16 @@ export class AddEditComponent implements OnInit, OnDestroy {
       }, {});
   }
 
-  checkForSale(reduction: number): boolean {
+  private checkForSale(reduction: number): boolean {
     return reduction > 0;
   }
 
-  calculateReduction(priceNormal: number, price: number): number {
+  private calculateReduction(priceNormal: number, price: number): number {
     const reduction = Math.round((priceNormal - price) / priceNormal * 100);
     return reduction > 0 ? reduction : 0;
   }
 
-  handleImageURLs(product: Product): string[] {
+  private handleImageURLs(product: Product): string[] {
     if (product.imageURLs && product.imageURLs.length > 0) {
       return product.imageURLs;
     }
