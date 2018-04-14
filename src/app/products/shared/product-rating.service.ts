@@ -4,15 +4,13 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import { of } from 'rxjs/observable/of';
-import { catchError } from 'rxjs/operators/catchError';
 
 import { AuthService } from '../../account/shared/auth.service';
-import { FileUploadService } from './file-upload.service';
 import { MessageService } from '../../messages/message.service';
+import { FileUploadService } from './file-upload.service';
 
-import { Product } from '../../models/product.model';
-import { Rating } from '../../models/rating.model';
 import { ProductsUrl } from './productsUrl';
+import { Product } from '../../models/product.model';
 
 @Injectable()
 export class ProductRatingService {
@@ -21,8 +19,7 @@ export class ProductRatingService {
   constructor(
     private messageService: MessageService,
     private angularFireDatabase: AngularFireDatabase,
-    public authService: AuthService,
-    private uploadService: FileUploadService
+    public authService: AuthService
   ) {}
 
   /** Log a ProductService message with the MessageService */
@@ -45,7 +42,7 @@ export class ProductRatingService {
     };
   }
 
-  rateProduct(product: Product, rating: number) {
+  public rateProduct(product: Product, rating: number) {
     const url = `${this.productsUrl}/${product.id}`;
     const updates = this.constructRating(product, rating);
 
@@ -60,7 +57,7 @@ export class ProductRatingService {
     );
   }
 // pure helper functions start here
-  constructRating(product: Product, rating: number) {
+  private constructRating(product: Product, rating: number) {
     // construct container for update content
     const updates = {};
 
@@ -80,7 +77,7 @@ export class ProductRatingService {
     return updates;
   }
 
-  calculateOverallRating(product: Product, rating: number): number {
+  private calculateOverallRating(product: Product, rating: number): number {
     // Calculate and add new overall rating
     const currentRating =
       <number>Object.values(product.ratings).reduce(
