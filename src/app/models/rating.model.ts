@@ -1,4 +1,4 @@
 export class Rating {
-  userUid: string;
-  rating: number;
+  public userUid: string;
+  public rating: number;
 }

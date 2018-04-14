@@ -1,8 +1,8 @@
 export class Promo {
-    preHeading?: string;
-    heading: string;
-    afterHeading?: string;
-    imageUrl: string;
-    buttonText?: string;
-    link?: string;
+  public preHeading?: string;
+  public heading: string;
+  public afterHeading?: string;
+  public imageUrl: string;
+  public buttonText?: string;
+  public link?: string;
 }
