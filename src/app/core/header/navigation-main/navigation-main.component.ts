@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
 import { AuthService } from '../../../account/shared/auth.service';
+
 import { User } from '../../../models/user.model';
 
 @Component({
@@ -11,8 +12,8 @@ import { User } from '../../../models/user.model';
   styleUrls: ['./navigation-main.component.scss']
 })
 export class NavigationMainComponent implements OnInit, OnDestroy {
-  user: User;
-  authSubscription: Subscription;
+  public user: User;
+  private authSubscription: Subscription;
 
   constructor(public authService: AuthService) {}
 
