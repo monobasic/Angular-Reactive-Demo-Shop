@@ -74,39 +74,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.productsCacheService
-      // .get(id, this.productService.getProduct(id))
       .get(id, this.productService.getProducts())
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((product: Product) => {
         console.log('product', product);
         if (product) {
-          const categories = Object.keys(product.categories).map(
-            (category, index, inputArray) => {
-              category =
-                index < inputArray.length - 1 ? category + ',' : category;
-              return category;
-            }
-          );
-          product.categories =
-            categories.length >= 1 && !Array.isArray(product.categories)
-              ? categories
-              : [];
-
           this.product = product;
-          this.activeImageUrl = this.product.imageURLs[0];
-          this.activeImageIndex = 0;
-          this.ratingCount = product.ratings
-            ? Object.keys(product.ratings).length
-            : 0;
-
-          // check for existing rating
-          if (
-            product.ratings &&
-            Object.keys(product.ratings).includes(this.authService.getUserUid())
-          ) {
-            this.selectedRating =
-              product.ratings[this.authService.getUserUid()];
-          }
+          this.setupProduct();
           this.productLoading = false;
         } else {
           this.router.navigate(['/404-product-not-found']);
@@ -140,6 +114,42 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   onImageLoad(e: any) {
     this.imagesLoaded.push(e.target.src);
+  }
+
+  setupProduct() {
+    if (this.product) {
+      this.checkCategories();
+      this.checkRatings();
+      this.activeImageUrl = this.product.imageURLs[0];
+      this.activeImageIndex = 0;
+    }
+  }
+
+  checkCategories() {
+    const categories = Object.keys(this.product.categories).map(
+      (category, index, inputArray) => {
+        category = index < inputArray.length - 1 ? category + ',' : category;
+        return category;
+      }
+    );
+    this.product.categories =
+      categories.length >= 1 && !Array.isArray(this.product.categories)
+        ? categories
+        : [];
+  }
+
+  checkRatings() {
+    this.ratingCount = this.product.ratings
+      ? Object.keys(this.product.ratings).length
+      : 0;
+
+    // check for existing rating
+    if (
+      this.product.ratings &&
+      Object.keys(this.product.ratings).includes(this.authService.getUserUid())
+    ) {
+      this.selectedRating = this.product.ratings[this.authService.getUserUid()];
+    }
   }
 
   ngOnDestroy() {
