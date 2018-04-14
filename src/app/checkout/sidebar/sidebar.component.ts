@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CartService } from '../../cart/shared/cart.service';
 
 @Component({
@@ -7,11 +8,11 @@ import { CartService } from '../../cart/shared/cart.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  cartSubtotal: number;
-  shipping: number;
-  orderTotal: number;
+  public cartSubtotal: number;
+  public shipping: number;
+  public orderTotal: number;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {
     this.cartSubtotal = this.cartService.getTotal();
@@ -19,5 +20,4 @@ export class SidebarComponent implements OnInit {
     this.shipping = 9;
     this.orderTotal = this.cartSubtotal + this.shipping;
   }
-
 }
