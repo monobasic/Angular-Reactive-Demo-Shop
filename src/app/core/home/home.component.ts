@@ -1,14 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
+import { Subject } from 'rxjs/Subject';
+import { takeUntil } from 'rxjs/operators/takeUntil';
+
+import { MessageService } from '../../messages/message.service';
 import { ProductService } from '../../products/shared/product.service';
 import { ProductsCacheService } from '../../products/shared/products-cache.service';
 import { PromoService } from '../shared/promo.service';
-import { MessageService } from '../../messages/message.service';
 
 import { Product } from '../../models/product.model';
 import { Promo } from '../../models/promo.model';
-import { Subject } from 'rxjs/Subject';
-import { takeUntil } from 'rxjs/operators/takeUntil';
 
 @Component({
   selector: 'app-home',
@@ -16,13 +17,13 @@ import { takeUntil } from 'rxjs/operators/takeUntil';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  unsubscribe$ = new Subject();
-  products: Product[];
-  productsFeatured: any;
-  productsNewArrivals: Product[];
-  productsOnSale: Product[];
-  productsBestRated: Product[];
-  promos: Promo[];
+  private unsubscribe$ = new Subject();
+  public products: Product[];
+  public productsFeatured: any;
+  public productsNewArrivals: Product[];
+  public productsOnSale: Product[];
+  public productsBestRated: Product[];
+  public promos: Promo[];
 
   constructor(
     private messageService: MessageService,
