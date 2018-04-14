@@ -3,8 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class MessageService {
-  messages: string[] = [];
-  toastrConfig: {} = {
+  private messages: string[] = [];
+  private toastrConfig: {} = {
     disableTimeOut: false,
     closeButton: false,
     positionClass: 'toast-bottom-right'
@@ -12,15 +12,16 @@ export class MessageService {
 
   constructor(private toastr: ToastrService) {}
 
-  add(message: string): void {
+  public add(message: string): void {
     this.messages.push(message);
     this.toastr.success(message, 'Message:', this.toastrConfig);
   }
-  addError(message: string): void {
+
+  public addError(message: string): void {
     this.toastr.error(message, 'Message:', this.toastrConfig);
   }
 
-  clear(): void {
+  public clear(): void {
     this.messages = [];
   }
 }
