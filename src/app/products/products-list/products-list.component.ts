@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subject } from 'rxjs/Subject';
 import { takeUntil } from 'rxjs/operators/takeUntil';
@@ -8,11 +7,11 @@ import { AuthService } from '../../account/shared/auth.service';
 import { PagerService } from '../../pager/pager.service';
 import { ProductsCacheService } from '../shared/products-cache.service';
 import { ProductService } from '../shared/product.service';
-import { SortPipe } from '../shared/sort.pipe';
 import { UiService } from '../shared/ui.service';
+import { SortPipe } from '../shared/sort.pipe';
 
-import { User } from '../../models/user.model';
 import { Product } from '../../models/product.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-products',
@@ -30,7 +29,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   constructor(
     private productService: ProductService,
-    // private _productsCacheService: OLDProductsCacheService,
     private productsCacheService: ProductsCacheService,
     private pagerService: PagerService,
     private sortPipe: SortPipe,
