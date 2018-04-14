@@ -16,7 +16,7 @@ import { switchMap } from 'rxjs/operators/switchMap';
 
 @Injectable()
 export class AuthService implements OnDestroy {
-  user: BehaviorSubject<User> = new BehaviorSubject(null);
+  public user: BehaviorSubject<User> = new BehaviorSubject(null);
   private unsubscribe$ = new Subject();
 
   private userUid: string;
@@ -54,11 +54,11 @@ export class AuthService implements OnDestroy {
       });
   }
 
-  getUserUid() {
+  public getUserUid() {
     return this.userUid;
   }
 
-  googleLogin() {
+  public googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     return this.afAuth.auth.signInWithPopup(provider).then(
       (credential) => {
@@ -71,7 +71,7 @@ export class AuthService implements OnDestroy {
     );
   }
 
-  emailSignUp(email: string, password: string) {
+  public emailSignUp(email: string, password: string) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(
@@ -97,17 +97,17 @@ export class AuthService implements OnDestroy {
     );
   }
 
-  signOut() {
+  public signOut() {
     this.afAuth.auth.signOut();
     this.messageService.add('You have been logged out.');
   }
 
-  updateProfile(userData: User) {
+  public updateProfile(userData: User) {
     this.updateExistingUser(userData);
     this.messageService.add('User profile has been updated!');
   }
 
-  updatePassword(password: string) {
+  public updatePassword(password: string) {
     return this.afAuth.auth.currentUser
       .updatePassword(password)
       .then(() => {
@@ -119,7 +119,7 @@ export class AuthService implements OnDestroy {
       });
   }
 
-  updateEmail(email: string) {
+  public updateEmail(email: string) {
     return this.afAuth.auth.currentUser
       .updateEmail(email)
       .then(() => {
