@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
+import { catchError } from 'rxjs/operators/catchError';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import { of } from 'rxjs/observable/of';
-import { catchError } from 'rxjs/operators/catchError';
 import { tap } from 'rxjs/operators/tap';
-import 'rxjs/add/observable/combineLatest';
 
 import { AuthService } from '../../account/shared/auth.service';
 import { FileUploadService } from './file-upload.service';
 import { MessageService } from '../../messages/message.service';
 
 import { Product } from '../../models/product.model';
-import { Rating } from '../../models/rating.model';
 import { ProductsUrl } from './productsUrl';
+import { ProductRatingService } from './product-rating.service';
 
 @Injectable()
 export class ProductService {
@@ -24,7 +24,8 @@ export class ProductService {
     private messageService: MessageService,
     private angularFireDatabase: AngularFireDatabase,
     public authService: AuthService,
-    private uploadService: FileUploadService
+    private uploadService: FileUploadService,
+    private productRatingService: ProductRatingService
   ) {}
 
   /** Log a ProductService message with the MessageService */
@@ -47,7 +48,7 @@ export class ProductService {
     };
   }
 
-  getProducts(): Observable<Product[]> {
+  public getProducts(): Observable<Product[]> {
     return this.angularFireDatabase
       .list<Product>('products', (ref) => ref.orderByChild('date'))
       .valueChanges()
@@ -55,7 +56,7 @@ export class ProductService {
       .pipe(catchError(this.handleError<Product[]>(`getProducts`)));
   }
 
-  getProductsQuery(
+  public getProductsQuery(
     byChild: string,
     equalTo: string | boolean,
     limitToFirst: number
@@ -71,7 +72,7 @@ export class ProductService {
       .pipe(catchError(this.handleError<Product[]>(`getProductsQuery`)));
   }
 
-  getProductsByDate(limitToLast: number): Observable<Product[]> {
+  public getProductsByDate(limitToLast: number): Observable<Product[]> {
     return this.angularFireDatabase
       .list<Product>('products', (ref) =>
         ref.orderByChild('date').limitToLast(limitToLast)
@@ -81,7 +82,7 @@ export class ProductService {
       .pipe(catchError(this.handleError<Product[]>(`getProductsByDate`)));
   }
 
-  getProductsByRating(limitToLast: number): Observable<Product[]> {
+  public getProductsByRating(limitToLast: number): Observable<Product[]> {
     return this.angularFireDatabase
       .list<Product>('products', (ref) =>
         ref.orderByChild('currentRating').limitToLast(limitToLast)
@@ -91,7 +92,7 @@ export class ProductService {
       .pipe(catchError(this.handleError<Product[]>(`getProductsByRating`)));
   }
 
-  getFeaturedProducts(): Observable<any[]> {
+  public getFeaturedProducts(): Observable<any[]> {
     return this.angularFireDatabase
       .list<Product>('featured')
       .snapshotChanges()
@@ -114,7 +115,7 @@ export class ProductService {
       .pipe(catchError(this.handleError<Product[]>(`getFeaturedProducts`)));
   }
 
-  getProduct(id: any): Observable<Product | null> {
+  public getProduct(id: any): Observable<Product | null> {
     const url = `${this.productsUrl}/${id}`;
     return this.angularFireDatabase
       .object<Product>(url)
@@ -132,22 +133,7 @@ export class ProductService {
       );
   }
 
-  rateProduct(product: Product, rating: number) {
-    const url = `${this.productsUrl}/${product.id}`;
-    const updates = this.constructRating(product, rating);
-
-    return fromPromise(
-      this.angularFireDatabase
-        .object<Product>(url)
-        .update(updates)
-        .then(() => this.log(`Rated Product ${product.name} width: ${rating}`))
-        .catch((error) => {
-          this.handleError<any>(error);
-        })
-    );
-  }
-
-  updateProduct(data: { product: Product; files: FileList }) {
+  public updateProduct(data: { product: Product; files: FileList }) {
     const url = `${this.productsUrl}/${data.product.id}`;
 
     if (!data.files.length) {
@@ -178,7 +164,7 @@ export class ProductService {
     return fromPromise(dbOperation);
   }
 
-  updateProductWithoutNewImage(product: Product, url: string) {
+  private updateProductWithoutNewImage(product: Product, url: string) {
     const dbOperation = this.angularFireDatabase
       .object<Product>(url)
       .update(product)
@@ -193,7 +179,7 @@ export class ProductService {
     return fromPromise(dbOperation);
   }
 
-  addProduct(data: { product: Product; files: FileList }) {
+  public addProduct(data: { product: Product; files: FileList }) {
     const dbOperation = this.uploadService
       .startUpload(data)
       .then((task) => {
@@ -220,7 +206,7 @@ export class ProductService {
     return fromPromise(dbOperation);
   }
 
-  deleteProduct(product: Product) {
+  public deleteProduct(product: Product) {
     const url = `${this.productsUrl}/${product.id}`;
 
     this.uploadService.deleteFile(product.imageRefs);
@@ -233,37 +219,5 @@ export class ProductService {
         this.messageService.addError('Delete failed ' + product.name);
         this.handleError('delete product');
       });
-  }
-
-  // pure helper functions start here
-  constructRating(product: Product, rating: number) {
-    // construct container for update content
-    const updates = {};
-
-    // Add user rating to local version of ratings
-    if (product.ratings) {
-      product.ratings[this.authService.getUserUid()] = rating;
-    } else {
-      product['ratings'] = [];
-      product['ratings'][this.authService.getUserUid()] = rating;
-    }
-
-    // Add user rating
-    updates['/ratings/' + this.authService.getUserUid() + '/'] = rating;
-
-    // calculate current overall rating
-    updates['/currentRating/'] = this.calculateOverallRating(product, rating);
-    return updates;
-  }
-
-  calculateOverallRating(product: Product, rating: number): number {
-    // Calculate and add new overall rating
-    const currentRating =
-      <number>Object.values(product.ratings).reduce(
-        (a: number, b: number) => a + b,
-        0
-      ) / Object.values(product.ratings).length;
-
-    return currentRating;
   }
 }
