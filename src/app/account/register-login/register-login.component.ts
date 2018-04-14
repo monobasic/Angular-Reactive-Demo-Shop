@@ -15,9 +15,9 @@ import { AuthService } from '../shared/auth.service';
   styleUrls: ['./register-login.component.scss']
 })
 export class RegisterLoginComponent implements OnInit {
-  loginForm: FormGroup;
-  registerForm: FormGroup;
-  registerErrors: string;
+  public loginForm: FormGroup;
+  public registerForm: FormGroup;
+  public registerErrors: string;
 
   constructor(
     private authenticationService: AuthService,
@@ -30,14 +30,14 @@ export class RegisterLoginComponent implements OnInit {
     this.initRegisterForm();
   }
 
-  initLoginForm() {
+  private initLoginForm() {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, Validators.required)
     });
   }
 
-  initRegisterForm() {
+  private initRegisterForm() {
     this.registerForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, Validators.required),
@@ -45,7 +45,7 @@ export class RegisterLoginComponent implements OnInit {
     });
   }
 
-  onRegister() {
+  public onRegister() {
     if (this.registerForm.value.password !== this.registerForm.value.confirmPassword) {
       this.registerErrors = 'Passwords don\'t match!';
       this.registerForm.controls.password.setErrors({ password: true });
@@ -74,7 +74,7 @@ export class RegisterLoginComponent implements OnInit {
     }
   }
 
-  onLogin() {
+  public onLogin() {
     this.authenticationService
       .emailLogin(this.loginForm.value.email, this.loginForm.value.password)
       .then(
