@@ -14,10 +14,11 @@ import { MessageService } from '../../messages/message.service';
 
 import { Product } from '../../models/product.model';
 import { Rating } from '../../models/rating.model';
+import { ProductsUrl } from './productsUrl';
 
 @Injectable()
 export class ProductService {
-  private productsUrl = '/products'; // firebase-bucket
+  private productsUrl = ProductsUrl.productsUrl;
 
   constructor(
     private messageService: MessageService,
