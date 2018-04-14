@@ -13,10 +13,10 @@ import { CheckoutService } from '../shared/checkout.service';
   styleUrls: ['./address.component.scss']
 })
 export class AddressComponent implements OnInit, OnDestroy {
-  authSubscription: Subscription;
-  @Input() user;
-  formAddress: FormGroup;
-  countries: string[];
+  private authSubscription: Subscription;
+  @Input() public user;
+  public formAddress: FormGroup;
+  public countries: string[];
 
   constructor(
     private checkoutService: CheckoutService,
@@ -34,7 +34,8 @@ export class AddressComponent implements OnInit, OnDestroy {
       }
     });
   }
-  initFormGroup() {
+
+  private initFormGroup() {
     this.countries = ['Switzerland'];
     this.formAddress = new FormGroup({
       firstname: new FormControl(
@@ -62,13 +63,13 @@ export class AddressComponent implements OnInit, OnDestroy {
     });
   }
 
-  onContinue() {
+  public onContinue() {
     this.checkoutService.setCustomer(this.formAddress.value);
     this.checkoutService.nextStep();
   }
 
   // Debug: Fill Form Helper MEthod
-  onFillForm(event: Event) {
+  public onFillForm(event: Event) {
     event.preventDefault();
     this.formAddress.setValue({
       firstname: 'Hans',
