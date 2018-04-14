@@ -1,26 +1,22 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-import {
-  AngularFireStorage,
-  AngularFireUploadTask
-} from 'angularfire2/storage';
+import { Injectable } from '@angular/core';
+import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class FileUploadService {
-  task$: AngularFireUploadTask;
+  public task$: AngularFireUploadTask;
 
   // Progress monitoring
-  percentage$: Observable<number>;
+  public percentage$: Observable<number>;
 
-  snapshot: Observable<any>;
+  public snapshot: Observable<any>;
 
   // Download URL
-  downloadURL: Observable<string>;
+  public downloadURL: Observable<string>;
 
   constructor(public storage: AngularFireStorage) {}
 
-  startUpload(data) {
+  public startUpload(data) {
       // The File object
       const file = data.files.item(0);
 
@@ -42,7 +38,7 @@ export class FileUploadService {
       return this.task$;
   }
 
-  deleteFile(files: string[]) {
+  public deleteFile(files: string[]) {
     if (files) {
       return files.map((filePath) => {
         return this.storage.ref(filePath).delete();
@@ -51,7 +47,7 @@ export class FileUploadService {
   }
 
   // Determines if the upload task is active
-  isActive(snapshot) {
+  public isActive(snapshot) {
     return (
       snapshot.state === 'running' &&
       snapshot.bytesTransferred < snapshot.totalBytes
