@@ -3,6 +3,7 @@
 - André Abt (https://github.com/monobasic)
 
 Check out this project online at [http://shop.andre-abt.com](http://shop.andre-abt.com)
+Note: The pixelated product images are there because of image licensing reasons.
 
 ##  Installation
 ### Clone repository
@@ -58,9 +59,6 @@ So we decided to implement basic shop functionality for now and base the project
 
 ## Feature Set
 ### Shop functionality
-
-#### General
-- All displayed prices are handled via a PriceComponent to simplify currency display/formatting
 
 #### Shop Front Page
 - Featured Products with link to corresponding product detail page
@@ -125,6 +123,9 @@ So we decided to implement basic shop functionality for now and base the project
 
 ### Security
 - FireBase Security Rules for Shop User / Admin
+
+#### General
+- All displayed prices are handled via a PriceComponent to simplify currency display/formatting
 
 ### Custom Express/MongoDB Backend
 Implementation started with a custom MEAN-architecture, which used a mLab-database.
