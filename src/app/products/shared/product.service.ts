@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
@@ -8,13 +7,14 @@ import { fromPromise } from 'rxjs/observable/fromPromise';
 import { of } from 'rxjs/observable/of';
 import { tap } from 'rxjs/operators/tap';
 
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../../account/shared/auth.service';
 import { FileUploadService } from './file-upload.service';
 import { MessageService } from '../../messages/message.service';
+import { ProductRatingService } from './product-rating.service';
 
 import { Product } from '../../models/product.model';
 import { ProductsUrl } from './productsUrl';
-import { ProductRatingService } from './product-rating.service';
 
 @Injectable()
 export class ProductService {
