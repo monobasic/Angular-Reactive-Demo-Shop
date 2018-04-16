@@ -1,0 +1,21 @@
+// Progress bars
+@import '../../../scss/helpers/_variables.scss';
+
+//
+// Progress Bars
+// --------------------------------------------------
+
+.progress {
+  height: auto;
+  border-radius: ceil($progress-height / 2);
+  background-color: darken($gray-lighter, 2%);
+  font: {
+    size: $font-size-xs;
+    weight: 500;
+  }
+  line-height: $progress-height;
+}
+.progress-bar {
+  height: $progress-height;
+  background-color: $progress-bg;
+}
