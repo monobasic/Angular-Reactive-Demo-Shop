@@ -30,7 +30,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
   private formSubscription: Subscription;
   public productForm: FormGroup;
   public product: DomainProduct;
-  private mode: 'edit' | 'add';
+  public mode: 'edit' | 'add';
   public id;
   public percentage: Observable<number>;
 
