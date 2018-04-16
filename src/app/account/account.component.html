@@ -5,16 +5,16 @@
   <div class="row">
     <div class="col-lg-4">
       <aside class="user-info-wrapper">
-        <div
-          class="user-cover"
-          style="background-image: url(https://firebasestorage.googleapis.com/v0/b/cas-fee-shop.appspot.com/o/ui-images%2Fuser-cover-img.jpg?alt=media&token=ff3cd8b2-10b8-45c3-b076-b68b007d6575);">
+        <div class="user-cover" style="background-image: url(img/account/user-cover-img.jpg);">
         </div>
         <div class="user-info">
+          <!-- <div class="user-avatar">
+            <a class="edit-avatar" href="#"></a>
+            <img src="img/account/user-ava.jpg" alt="User">
+          </div> -->
           <div *ngIf="user" class="user-data">
             <h4>{{ user.firstName }} {{ user.lastName }}</h4>
-            <span>{{ user.email }}
-              <span *ngIf="user.roles.admin">(Admin)</span>
-            </span>
+            <span>{{ user.email }} <span *ngIf="user.roles.admin">(Admin)</span></span>
           </div>
         </div>
       </aside>
@@ -33,3 +33,4 @@
     </div>
   </div>
 </div>
+

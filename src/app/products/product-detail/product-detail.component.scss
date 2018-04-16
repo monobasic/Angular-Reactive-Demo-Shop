@@ -73,7 +73,7 @@
   .product-thumbnail-image {
     &.loading {
       min-height: 80px;
-      background: url('https://firebasestorage.googleapis.com/v0/b/cas-fee-shop.appspot.com/o/ui-images%2Floading.gif?alt=media&token=df35fc27-f06d-4d29-90e4-ef13de64bef8') center center no-repeat;
+      background: url('../../../img/loading.gif') center center no-repeat;
     }
   }
 }
@@ -86,7 +86,7 @@
 
   &.loading {
     min-height: 200px;
-    background: url('https://firebasestorage.googleapis.com/v0/b/cas-fee-shop.appspot.com/o/ui-images%2Floading.gif?alt=media&token=df35fc27-f06d-4d29-90e4-ef13de64bef8') center center no-repeat;
+    background: url('../../../img/loading.gif') center center no-repeat;
   }
 }
 
@@ -94,7 +94,7 @@
 
   &.loading {
       min-height: 200px;
-      background: url('https://firebasestorage.googleapis.com/v0/b/cas-fee-shop.appspot.com/o/ui-images%2Floading.gif?alt=media&token=df35fc27-f06d-4d29-90e4-ef13de64bef8') center center no-repeat;
+      background: url('../../../img/loading.gif') center center no-repeat;
   }
 }
 
