@@ -3,23 +3,20 @@ Implementation Shop mit Angular5 / Firebase auf Basis eines Themes (HTML/CSS/jQu
 Features im README.md
 
 # Besonders gut gelöst?
-- Applikation sehr gut strukturiert und einfach zu Verstehen für Entwickler
+- Applikation sehr gut strukturiert und einfach zu verstehen für Entwickler
 - Komponenten sind relativ klein und spezifisch
-- Reactivity mit Firebase Backend
-- Cross Component Kommunikations mit RxJS Observables
-- Rating
+- Reactivity mit Firebase Backend & RxJS
+- Cross-Component-Communications mit RxJS-Observables
+- Produkte-Rating
 - Reactive Authentication / Authorization
-- Produkte CRUD für Administratoren
+- Produkte-CRUD für Administratoren
 - Image Loaders
 - Toastr Message Service
 
 # Was würden wir anders machen?
-- Zentrales error handling
-- Zentrales logging für dev Umgebung
-- Jest als Unit-Testing Framework
-- e2e Tests, momentaner bug mit AngularFire
-- Statische assets nicht via FireStore
-- SEO: nur mit AngularUniversal sinnvoll möglich
+- Zentrales Error Handling
+- Zentrales Logging für Dev-Umgebung
+- E2E-Tests, momentaner Bug mit AngularFire- SEO: nur mit AngularUniversal sinnvoll möglich
 
 # Was haben wir gelernt?
 - Angular 5
