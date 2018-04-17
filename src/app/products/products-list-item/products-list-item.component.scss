@@ -11,6 +11,14 @@
   background-color: $white-color;
   margin-bottom: 20px;
 
+  .product-badge {
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    z-index: 1;
+  }
+
   .product-thumb {
     display: block;
     width: 100%;
