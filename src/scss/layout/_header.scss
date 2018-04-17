@@ -145,9 +145,21 @@
   height: 100%;
 }
 .search-results {
-  position: relative;
-  top: 120px;
+  position: absolute;
+  top: 100px;
+  left: -20px;
+  width: 100%;
   background: #ffffff;
+
+  ul {
+    padding: 10px;
+    margin: 0;
+    list-style: none;
+
+    li {
+      padding: 10px 40px;
+     }
+  }
 }
 .site-search {
   display: block;
