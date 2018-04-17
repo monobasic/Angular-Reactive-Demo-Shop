@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { MainSliderComponent } from './home/main-slider/main-slider.component';
 import { ProductWidgetComponent } from './home/product-widget/product-widget.component';
 import { PromoComponent } from './home/promo/promo.component';
+import { SearchComponent } from './header/search/search.component';
 
 import { ProductService } from '../products/shared/product.service';
 import { MessageService } from '../messages/message.service';
@@ -41,7 +42,8 @@ import { ProductsCacheService } from '../products/shared/products-cache.service'
         HomeComponent,
         MainSliderComponent,
         ProductWidgetComponent,
-        PromoComponent
+        PromoComponent,
+        SearchComponent
     ],
     imports: [
         CommonModule,

@@ -1,0 +1,22 @@
+<div class="site-search search-visible">
+  <input type="text" (input)="term$.next($event.target.value)" placeholder="Type to search...">
+  <div class="search-tools">
+    <span class="clear-search">Clear</span>
+    <span class="close-search">
+      <i class="icon-cross"></i>
+    </span>
+  </div>
+<ul>
+  <li *ngFor="let product of products">
+    <h4>{{product.name}}</h4>
+  </li>
+</ul>
+
+<hr />
+<div *ngIf="products?.length < 1">
+  <p>Not found!</p>
+</div>
+
+</div>
+
+
