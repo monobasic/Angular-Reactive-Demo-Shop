@@ -72,6 +72,18 @@ export class ProductService {
       .pipe(catchError(this.handleError<Product[]>(`getProductsQuery`)));
   }
 
+  public findProducts(term): Observable<any> {
+    return this.angularFireDatabase
+      .list<Product>('products', (ref) =>
+        ref
+          .orderByChild('name')
+          .startAt(term)
+          .endAt(term + '\uf8ff')
+      )
+      .valueChanges()
+      .pipe(catchError(this.handleError<Product[]>(`getProductsQuery`)));
+  }
+
   public getProductsByDate(limitToLast: number): Observable<Product[]> {
     return this.angularFireDatabase
       .list<Product>('products', (ref) =>
