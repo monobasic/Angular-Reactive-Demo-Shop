@@ -16,6 +16,7 @@ import { User } from '../../models/user.model';
 export class HeaderComponent implements OnInit, OnDestroy {
   private authSubscription: Subscription;
   public user: User;
+  public showSearch;
 
   constructor(
     private authService: AuthService,
@@ -38,6 +39,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public onMenuToggle(e: Event) {
     this.offcanvasService.openOffcanvasNavigation();
     e.preventDefault();
+  }
+
+  public onSearchClick(e: Event) {
+    console.log('show search');
   }
 
   ngOnDestroy() {

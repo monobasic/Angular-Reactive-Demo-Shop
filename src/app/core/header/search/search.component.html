@@ -1,8 +1,8 @@
-<div class="site-search search-visible">
+<div class="site-search" [ngClass]="{'search-visible' : showSearch}">
   <input type="text" (input)="onSearchInput($event)" placeholder="Type to search...">
   <div class="search-tools">
     <span class="close-search">
-      <i class="icon-cross"></i>
+      <i class="icon-cross" (click)="showSearch = false"></i>
     </span>
   </div>
 </div>

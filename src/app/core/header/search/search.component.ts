@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ProductService } from '../../../products/shared/product.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
@@ -18,6 +18,8 @@ import 'rxjs/add/operator/switchMap';
 export class SearchComponent implements OnInit {
   products: any[];
   term$ = new Subject<string>();
+  @Input()
+  showSearch: boolean;
 
   constructor(private productService: ProductService) {}
 

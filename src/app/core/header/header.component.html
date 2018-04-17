@@ -2,7 +2,7 @@
 <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
 <header class="navbar navbar-sticky">
 
-  <app-search class="site-search-wrapper"></app-search>
+  <app-search [showSearch]="showSearch" class="site-search-wrapper"></app-search>
 
   <div class="site-branding">
     <div class="inner">
@@ -20,7 +20,7 @@
     <div class="inner">
       <div class="tools">
         <div class="search">
-          <i class="icon-search"></i>
+          <i (click)="showSearch = true" class="icon-search"></i>
         </div>
         <div class="account">
           <a *ngIf="!user; else whenLoggedIn" routerLink="/register-login"></a>
