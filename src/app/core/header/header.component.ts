@@ -41,10 +41,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     e.preventDefault();
   }
 
-  public onSearchClick(e: Event) {
-    console.log('show search');
-  }
-
   ngOnDestroy() {
     this.authSubscription.unsubscribe();
   }
