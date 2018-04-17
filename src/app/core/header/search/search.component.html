@@ -1,21 +1,23 @@
 <div class="site-search search-visible">
-  <input type="text" (input)="term$.next($event.target.value)" placeholder="Type to search...">
+  <input type="text" (input)="onSearchInput($event)" placeholder="Type to search...">
   <div class="search-tools">
     <span class="clear-search">Clear</span>
     <span class="close-search">
       <i class="icon-cross"></i>
     </span>
   </div>
-<ul>
-  <li *ngFor="let product of products">
-    <h4>{{product.name}}</h4>
-  </li>
-</ul>
+  <div class="search-results">
+    <ul>
+      <li *ngFor="let product of products">
+        <a routerLink="/products/{{product.id}}">{{product.name}}</a>
+      </li>
+    </ul>
 
-<hr />
-<div *ngIf="products?.length < 1">
-  <p>Not found!</p>
-</div>
+    <hr />
+    <div *ngIf="products?.length < 1">
+      <p>Not found!</p>
+    </div>
+  </div>
 
 </div>
 

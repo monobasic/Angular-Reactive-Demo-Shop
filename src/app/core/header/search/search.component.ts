@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
     this.term$
       .debounceTime(400)
       .distinctUntilChanged()
-      .filter(term => term.length > 1)
+      .filter(term => term.length > 0)
       .switchMap(term => this.search(term))
       .subscribe(results => {
         this.products = results;
@@ -38,6 +38,17 @@ export class SearchComponent implements OnInit {
   search(term: string) {
     console.log('search for: ' + term);
     return this.productService.findProducts(term);
+  }
+
+  onSearchInput(event) {
+    let term = event.target.value;
+    if (term.length > 0) {
+      term = term.charAt(0).toUpperCase() + term.slice(1);
+      this.term$.next(term);
+    } else {
+      this.products = [];
+      this.term$.next('');
+    }
   }
 
 
