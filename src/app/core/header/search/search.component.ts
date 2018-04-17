@@ -19,9 +19,7 @@ export class SearchComponent implements OnInit {
   products: any[];
   term$ = new Subject<string>();
 
-  constructor(private productService: ProductService) {
-
-  }
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.term$
