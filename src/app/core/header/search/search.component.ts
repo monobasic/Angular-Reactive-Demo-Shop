@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angular/core';
 import { ProductService } from '../../../products/shared/product.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
@@ -18,8 +18,8 @@ import 'rxjs/add/operator/switchMap';
 export class SearchComponent implements OnInit {
   products: any[];
   term$ = new Subject<string>();
-  @Input()
-  showSearch: boolean;
+  @Input() showSearch: boolean;
+  @Output() onHideSearch = new EventEmitter<boolean>();
 
   constructor(private productService: ProductService) {}
 
@@ -35,12 +35,12 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  search(term: string) {
+  public search(term: string) {
     console.log('search for: ' + term);
     return this.productService.findProducts(term);
   }
 
-  onSearchInput(event) {
+  public onSearchInput(event) {
     let term = event.target.value;
     if (term.length > 0) {
       term = term.charAt(0).toUpperCase() + term.slice(1);
@@ -49,6 +49,11 @@ export class SearchComponent implements OnInit {
       this.products = [];
       this.term$.next('');
     }
+  }
+
+  public onCloseSearch() {
+    this.showSearch = false;
+    this.onHideSearch.emit(false);
   }
 
 

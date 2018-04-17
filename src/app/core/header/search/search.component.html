@@ -2,16 +2,17 @@
   <input type="text" (input)="onSearchInput($event)" placeholder="Type to search...">
   <div class="search-tools">
     <span class="close-search">
-      <i class="icon-cross" (click)="showSearch = false"></i>
+      <i class="icon-cross" (click)="onCloseSearch()"></i>
     </span>
   </div>
+  <div class="search-results">
+    <ul>
+      <li *ngFor="let product of products">
+        <a routerLink="/products/{{product.id}}">{{product.name}}</a>
+      </li>
+    </ul>
+  </div>
 </div>
-<div class="search-results">
-  <ul>
-    <li *ngFor="let product of products">
-      <a routerLink="/products/{{product.id}}">{{product.name}}</a>
-    </li>
-  </ul>
-</div>
+
 
 
