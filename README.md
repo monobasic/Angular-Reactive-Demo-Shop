@@ -126,6 +126,7 @@ So we decided to implement basic shop functionality for now and base the project
 
 #### General
 - All displayed prices are handled via a PriceComponent to simplify currency display/formatting
+- Search with Typeahead functionality
 
 ### Custom Express/MongoDB Backend
 Implementation started with a custom MEAN-architecture, which used a mLab-database.
@@ -151,7 +152,6 @@ The unfinished project can be found under: [CAS-FEE-PROJEKT-2-CUSTOM-MEAN-BACKEN
 - UI for editing users/user-roles (admin only) instead of Firebase-only (i. e. User CRUD)
 - Save cart for logged in user
 - Login option during checkout
-- Search with Typeahead functionality
 - Customer Address or multiple delivery addresses could be handled via account profile page
 - Attach real payment gateways
 - Multilanguage functionality (i18n)
