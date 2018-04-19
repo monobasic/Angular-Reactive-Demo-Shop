@@ -93,7 +93,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
         this.getProduct(this.id);
         this.initForm();
       } else {
-        // else we are in add mode and use a placeholder
+        // else we are in add mode
         this.mode = 'add';
         this.constructProduct();
         this.initForm();
