@@ -126,7 +126,7 @@ So we decided to implement basic shop functionality for now and base the project
 
 #### General
 - All displayed prices are handled via a PriceComponent to simplify currency display/formatting
-- Search with Typeahead functionality
+- Search with Typeahead functionality (Unfortunately, FireBase has very limited  functionality for full text search. For a real application, local search would be the better option)
 
 ### Custom Express/MongoDB Backend
 Implementation started with a custom MEAN-architecture, which used a mLab-database.
