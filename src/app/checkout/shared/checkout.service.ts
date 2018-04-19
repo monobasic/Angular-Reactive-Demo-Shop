@@ -6,9 +6,7 @@ import { CartItem } from '../../models/cart-item.model';
 @Injectable()
 export class CheckoutService {
   private orderInProgress: Order;
-  public orderInProgressChanged: EventEmitter<Order> = new EventEmitter<
-    Order
-  >();
+  public orderInProgressChanged: EventEmitter<Order> = new EventEmitter<Order>();
   public stepChanged: EventEmitter<number> = new EventEmitter<number>();
   public activeStep: number;
 

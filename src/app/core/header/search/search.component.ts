@@ -1,14 +1,12 @@
 import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angular/core';
-import { ProductService } from '../../../products/shared/product.service';
+
 import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
+
+import { ProductService } from '../../../products/shared/product.service';
 
 @Component({
   selector: 'app-search',
@@ -36,7 +34,6 @@ export class SearchComponent implements OnInit {
   }
 
   public search(term: string) {
-    console.log('search for: ' + term);
     return this.productService.findProducts(term);
   }
 

@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.cartSubtotal = this.cartService.getTotal();
-    // TODO: shipping
+    // TODO: shipping, hardcoded for now
     this.shipping = 9;
     this.orderTotal = this.cartSubtotal + this.shipping;
   }

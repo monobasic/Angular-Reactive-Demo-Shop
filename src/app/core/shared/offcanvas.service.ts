@@ -3,9 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class OffcanvasService {
-  public offcanvasNavigationOpen: BehaviorSubject<
-    boolean
-  > = new BehaviorSubject(false);
+  public offcanvasNavigationOpen: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public toggleOffcanvasNavigation() {
     const state = !this.offcanvasNavigationOpen.getValue();
