@@ -2,8 +2,8 @@
 
 ## 1. Probleme/Hypothesen
 
-1. Auf der Produkte-Detail-Seite gibt es keinen Zurück-Button
-2. Die Dropdowns für Quantity und Rating sehen sich ähnlich
+1. Auf der Produkte-Detail-Seite gibt es keinen Zurück-Button. Kunden finden nicht auf die Produkte-Übersicht zurück.
+2. Die Dropdowns für Quantity und Rating sehen sich ähnlich. Kunden verwechseln die Inputs, ohne es zu merken.
 
 ### Problem 1: Back-Button
 
@@ -57,7 +57,11 @@ Ist der Kunde eingeloggt, wird ihm neben dem Quantity-Dropdown auch das Dropdown
 
 - a) kein Effekt, der Kunde wählt das richtige Dropdown
 - b) der Kunde wählt das falsche Dropdown und bemerkt den Fehler frühestens beim Checkout
-- c) der Kunde wählt das falsche Dropdown, bemerkt den Fehler, findet aber nicht heraus, an was es liegt und bricht ab
+- c) der Kunde wählt das falsche Dropdown, bemerkt den Fehler, findet aber nicht heraus an was es liegt und bricht ab
+
+#### Alternative Wege
+
+Der Nutzer könnte mehrmals auf den Add To Cart-Button klicken, dann würde er das Problem umgehen.
 
 ## 2. Aufgaben
 
@@ -73,6 +77,16 @@ Ist der Kunde eingeloggt, wird ihm neben dem Quantity-Dropdown auch das Dropdown
 
 ### Problem 1: Back-Button
 
+Der fehlende Back-Button war für die Probanden kein Problem. Alternative Lösungswege waren der Back-Button, die Zurück-Wisch-Geste auf dem Trackpad und der Klick auf den Menü-Punkt «Products» im Header.
+
 ### Problem 2: Quantity vs. Rating
+Für die Probanden schien die Unterscheidung zwischen den beiden Input-Feldern soweit klar zu sein. Eine Versuchsperson klickte fünfmal auf dem Add To Cart-Button und wurde dabei von den Toast-Messages gestört.
+
+### Fazit
+
+Die getesteten Unsicherheiten scheinen die Nutzererfahrung auf der Seite nicht zu beinträchtigen. Die Probanden kamen gut mit der Nutzeroberfläche zurecht oder fanden Umwege, welche zum gewünschten Ziel führten.
 
 ## 4. Bilder
+
+Test 1
+![uxtest](https://user-images.githubusercontent.com/16070364/39084035-e8afcaa4-456e-11e8-96d6-8d987010ee20.jpg)
