@@ -171,6 +171,10 @@ The unfinished project can be found under: [CAS-FEE-PROJEKT-2-CUSTOM-MEAN-BACKEN
 - All product data changes are propagated in real time to all clients without reloading, via Firebase Real Time Data Base and reactive programming with RxJs (try rating a product or update a property in the CRUD-module)
 - Off Canvas Navigation is handled via Service, several CSS classes needs to be applied to different components
 
+## UX-Test
+
+UX-Tests are documented in [ux-test-md](./ux-test.md).
+
 ## Possible future features and updates
 
 - Speed up initial page load with server rendered start page and/or lazy load modules
