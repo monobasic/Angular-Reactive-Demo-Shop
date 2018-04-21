@@ -61,14 +61,18 @@ Ist der Kunde eingeloggt, wird ihm neben dem Quantity-Dropdown auch das Dropdown
 
 ## 2. Aufgaben
 
-### Back-Button
+### Problem 1: Back-Button
 
 «Sie möchten sich ein Produkt im Detail ansehen. Das ausgewählte Produkt ist Ihnen aber zu teuer. Sie möchten wissen, was es im Shop sonst noch zu kaufen gibt. Bitte kommentieren Sie Ihre Überlegungen.»
 
-### Add To Cart-Button
+### Problem 2: Quantity vs. Rating
 
 «Sie sehen sich das Produkt 'Not-So-Classic Fedora' an. Weil Ihnen der Hut gefällt, wollen Sie nun gleich fünf Stück für einen Ausflug mit Freunden bestellen. Bitte kommentieren Sie Ihre Überlegungen.»
 
 ## 3. Ergebnisse
+
+### Problem 1: Back-Button
+
+### Problem 2: Quantity vs. Rating
 
 ## 4. Bilder
