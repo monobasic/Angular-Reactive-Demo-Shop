@@ -30,13 +30,9 @@ export class ProductsCacheService {
   private getProduct(key: any, fallback: Observable<Product[]>) {
     return this.getProducts(fallback).pipe(
       switchMap((products) => {
-        const selectedProduct = products.filter((product) => {
-          if (product.id === key) {
-            return product;
-          } else {
-            return null;
-          }
-        })[0];
+        const selectedProduct = products.find((product) => {
+          return product.id === key;
+        });
         return of(selectedProduct);
       }),
       publishReplay(1),
