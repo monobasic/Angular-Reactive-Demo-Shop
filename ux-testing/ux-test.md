@@ -44,7 +44,7 @@ Der Kunde ist auf der Detailansicht eines Produktes. Zudem ist er registriert un
 
 Der Kunde ist auf der Detailansicht des Produktes und möchte nun mehrere davon in den Warenkorb legen.
 
-![ScreenShot][https://raw.githubusercontent.com/monobasic/CAS-FEE-PROJEKT-2/develop/ux-testing/task2_step1.png]
+<img width="911" alt="task2_step1" src="https://user-images.githubusercontent.com/16070364/39083187-c319fafc-4560-11e8-9064-dd5bce7b9ef5.png">
 
 #### Problem
 
