@@ -19,8 +19,11 @@ Der Kunde ist auf der Produkteübersichts-Seite des Shops.
 
 Der Kunde interessiert sich für ein Produktedetail und klickt auf das Produkt, um auf die Detailseite zu kommen. Nachdem er sich die Details angesehen hat, möchte er wieder zurück zur Übersicht gelangen.
 
-[[https://github.com/monobasic/CAS-FEE-PROJEKT-2/blob/develop/ux-testing/task1_step1.png|alt=task1_step1]]
-[[https://github.com/monobasic/CAS-FEE-PROJEKT-2/blob/develop/ux-testing/task1_step2.png|alt=task1_step2]]
+Schritt 1
+<img width="959" alt="task1_step1" src="https://user-images.githubusercontent.com/16070364/39083212-25ff3ace-4561-11e8-9973-dd5a7caa625c.png">
+
+Schritt 2
+<img width="946" alt="task1_step2" src="https://user-images.githubusercontent.com/16070364/39083208-1806cc48-4561-11e8-9136-3d0018f75e3a.png">
 
 #### Problem
 
@@ -44,7 +47,7 @@ Der Kunde ist auf der Detailansicht eines Produktes. Zudem ist er registriert un
 
 Der Kunde ist auf der Detailansicht des Produktes und möchte nun mehrere davon in den Warenkorb legen.
 
-[[https://github.com/monobasic/CAS-FEE-PROJEKT-2/blob/develop/ux-testing/task2_step1.png|alt=task2_step1]]
+<img width="911" alt="task2_step1" src="https://user-images.githubusercontent.com/16070364/39083187-c319fafc-4560-11e8-9064-dd5bce7b9ef5.png">
 
 #### Problem
 
