@@ -173,7 +173,7 @@ The unfinished project can be found under: [CAS-FEE-PROJEKT-2-CUSTOM-MEAN-BACKEN
 
 ## UX-Test
 
-UX-Tests are documented in [ux-test-md](./ux-test.md).
+UX-Tests are documented in [ux-testing/ux-test.md](./ux-testing/ux-test.md).
 
 ## Possible future features and updates
 
