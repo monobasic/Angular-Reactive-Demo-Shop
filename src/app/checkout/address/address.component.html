@@ -1,6 +1,6 @@
 <h4>Billing Address</h4>
 <hr class="padding-bottom-1x">
-<form [formGroup]="formAddress">
+<form *ngIf="formAddress" [formGroup]="formAddress">
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group" [ngClass]="{'has-danger': formAddress.get('firstname').invalid && formAddress.get('firstname').touched}">
