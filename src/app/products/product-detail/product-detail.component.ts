@@ -144,9 +144,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     // check for existing rating
     if (
       this.product.ratings &&
-      Object.keys(this.product.ratings).includes(this.authService.getUserUid())
+      Object.keys(this.product.ratings).includes(this.user.uid)
     ) {
-      this.selectedRating = this.product.ratings[this.authService.getUserUid()];
+      this.selectedRating = this.product.ratings[this.user.uid];
     }
   }
 
