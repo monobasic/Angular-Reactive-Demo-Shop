@@ -22,11 +22,13 @@ class MockAuthService {
       uid: '123456789'
     });
   }
+
 }
 
 describe('Rating', () => {
   let productRatingService: ProductRatingService;
   let angularFireDatabase: AngularFireDatabase;
+  let authService: MockAuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -40,6 +42,7 @@ describe('Rating', () => {
 
     productRatingService = TestBed.get(ProductRatingService);
     angularFireDatabase = TestBed.get(AngularFireDatabase);
+    authService = TestBed.get(AuthService);
   });
 
   it('should be created', () => {
@@ -72,17 +75,15 @@ describe('Rating', () => {
     });
 
     it('should handle a rating from a second user', () => {
-
-
       const product = new Product();
       product.currentRating = 5;
-      product.ratings = {'123456789': 5};
+      product.ratings = {'987654321': 5};
 
       const result = productRatingService['constructRating'](product, 1);
 
       expect(result).toEqual({
         '/currentRating/': 3,
-        '/ratings/987654321/': 1
+        '/ratings/123456789/': 1
       });
     });
   });
