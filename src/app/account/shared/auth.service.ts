@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -13,7 +13,7 @@ import { MessageService } from '../../messages/message.service';
 import { User, Roles } from '../../models/user.model';
 
 @Injectable()
-export class AuthService implements OnDestroy {
+export class AuthService {
   public user: Observable<User>;
 
   constructor(
@@ -119,7 +119,6 @@ export class AuthService implements OnDestroy {
     ref
       .valueChanges()
       .pipe(
-        // takeUntil(this.unsubscribe$),
         take(1)
       )
       .subscribe((user) => {
@@ -135,16 +134,10 @@ export class AuthService implements OnDestroy {
     ref
       .valueChanges()
       .pipe(
-        // takeUntil(this.unsubscribe$),
         take(1)
       )
       .subscribe((user) => {
         ref.update(userData);
       });
-  }
-
-  ngOnDestroy() {
-    // this.unsubscribe$.next();
-    // this.unsubscribe$.complete();
   }
 }
