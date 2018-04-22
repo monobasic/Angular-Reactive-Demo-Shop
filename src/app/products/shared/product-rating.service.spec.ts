@@ -1,13 +1,28 @@
 import { TestBed } from '@angular/core/testing';
 import { AngularFireDatabase } from 'angularfire2/database';
 
+import { Observable } from 'rxjs/observable';
+import { of } from 'rxjs/observable/of';
+
 import { AuthService } from '../../account/shared/auth.service';
 import { MessageService } from '../../messages/message.service';
 import { ProductRatingService } from './product-rating.service';
 
 import { Product } from '../../models/product.model';
+import { User, Roles } from '../../models/user.model';
 
-class MockAuthService {}
+class MockAuthService {
+  user: Observable<User>;
+
+  constructor() {
+    this.user = of({
+      email: 'foo@bar.com',
+      firstName: 'foo',
+      lastName: 'bar',
+      uid: '123456789'
+    });
+  }
+}
 
 describe('Rating', () => {
   let productRatingService: ProductRatingService;
@@ -32,9 +47,6 @@ describe('Rating', () => {
   });
 
   describe('should handle rating actions and', () => {
-    beforeEach(() => {
-      productRatingService.authService.getUserUid = () => '123456789';
-    });
 
     it('should handle a first rating', () => {
       const product = new Product();
@@ -60,7 +72,7 @@ describe('Rating', () => {
     });
 
     it('should handle a rating from a second user', () => {
-      productRatingService.authService.getUserUid = () => '987654321';
+
 
       const product = new Product();
       product.currentRating = 5;
