@@ -3,6 +3,10 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './auth.service';
 
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/take';
+
 @Injectable()
 export class UserGuard implements CanActivate {
   constructor(
@@ -10,7 +14,7 @@ export class UserGuard implements CanActivate {
     private router: Router
   ) {}
 
-  canActivate(
+  public canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
