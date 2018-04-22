@@ -5,7 +5,6 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class UserGuard implements CanActivate {
-
   constructor(
     private authService: AuthService,
     private router: Router
@@ -14,6 +13,7 @@ export class UserGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+
     return this.authService.user
       .take(1)
       .map(user => user ? true : false)
