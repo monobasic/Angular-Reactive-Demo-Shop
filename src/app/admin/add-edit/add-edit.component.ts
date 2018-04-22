@@ -180,6 +180,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
   }
 
   private updateProduct(product: Product, files?: FileList) {
+    this.productSubscription.unsubscribe();
     this.productService.updateProduct({ product, files }).subscribe(
       (response: Product) => {
         this.router.navigate(['/products/' + response.id]);
