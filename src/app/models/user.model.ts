@@ -13,6 +13,7 @@ export class User {
   public password?: string;
   public orders?: object;
   public confirmPassword?: string;
+  public uid?: string;
 
   constructor(authData) {
     this.email = authData.email;
