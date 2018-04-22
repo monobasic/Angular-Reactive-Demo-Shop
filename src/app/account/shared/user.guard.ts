@@ -6,14 +6,14 @@ import {
   Router
 } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from '../../account/shared/auth.service';
+import { AuthService } from './auth.service';
 
 import { take } from 'rxjs/operators/take';
-import { map } from 'rxjs/operators/map';
 import { tap } from 'rxjs/operators/tap';
+import { map } from 'rxjs/operators/map';
 
 @Injectable()
-export class AdminGuard implements CanActivate {
+export class UserGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   public canActivate(
@@ -22,7 +22,7 @@ export class AdminGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
     return this.authService.user.pipe(
       take(1),
-      map((user) => (user && user.roles.admin ? true : false)),
+      map((user) => (user ? true : false)),
       tap((authorized) => {
         if (!authorized) {
           this.router.navigate(['/register-login']);

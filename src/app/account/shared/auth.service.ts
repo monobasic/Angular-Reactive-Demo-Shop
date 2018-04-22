@@ -1,58 +1,40 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { tap } from 'rxjs/operators/tap';
 import { take } from 'rxjs/operators/take';
 import { takeUntil } from 'rxjs/operators/takeUntil';
+import { switchMap } from 'rxjs/operators/switchMap';
 
 import { MessageService } from '../../messages/message.service';
 import { User, Roles } from '../../models/user.model';
-import { switchMap } from 'rxjs/operators/switchMap';
 
 @Injectable()
-export class AuthService implements OnDestroy {
-  public user: BehaviorSubject<User> = new BehaviorSubject(null);
-  private unsubscribe$ = new Subject();
-
-  private userUid: string;
-
-  private privateUserUid$: BehaviorSubject<string> = new BehaviorSubject(null);
-  public userUid$ = this.privateUserUid$.asObservable();
+export class AuthService {
+  public user: Observable<User>;
 
   constructor(
     private afAuth: AngularFireAuth,
     private db: AngularFireDatabase,
     private messageService: MessageService
   ) {
-    this.afAuth.authState
-      .pipe(
-        takeUntil(this.unsubscribe$),
-        switchMap((auth) => {
-          if (auth) {
-            console.log(`signin' in`);
-            this.userUid = auth.uid;
-            this.privateUserUid$.next(auth.uid);
-            return this.db.object('users/' + auth.uid).valueChanges();
-          } else {
-            /// not signed in
-            console.log('not signed in');
-            this.userUid = null;
-            return of(null);
-          }
-        }),
-      )
-      .subscribe((user) => {
-        this.user.next(user);
+    this.user = this.afAuth.authState
+      .switchMap((auth) => {
+        if (auth) {
+          return this.db.object('users/' + auth.uid).valueChanges()
+          .map(user => {
+            return {
+              ...user,
+              uid: auth.uid
+            };
+          });
+        } else {
+          return of(null);
+        }
       });
-  }
-
-  public getUserUid() {
-    return this.userUid;
   }
 
   public googleLogin() {
@@ -62,7 +44,6 @@ export class AuthService implements OnDestroy {
         this.updateNewUser(credential.user);
       },
       (error) => {
-        console.log('auth service googleLogin error');
         throw error;
       }
     );
@@ -76,7 +57,6 @@ export class AuthService implements OnDestroy {
           this.updateNewUser(user);
         },
         (error) => {
-          console.log('auth service emailSignUp error');
           throw error;
         }
       );
@@ -88,7 +68,6 @@ export class AuthService implements OnDestroy {
         this.updateNewUser(user);
       },
       (error) => {
-        console.log('auth service emailLogin error');
         throw error;
       }
     );
@@ -111,7 +90,6 @@ export class AuthService implements OnDestroy {
         this.messageService.add('Password has been updated!');
       })
       .catch(function(error) {
-        console.log('auth service updatePassword error');
         throw error;
       });
   }
@@ -124,7 +102,6 @@ export class AuthService implements OnDestroy {
         this.messageService.add('User email have been updated!');
       })
       .catch(function(error) {
-        console.log('auth service updateEmail error');
         throw error;
       });
   }
@@ -135,7 +112,6 @@ export class AuthService implements OnDestroy {
     ref
       .valueChanges()
       .pipe(
-        takeUntil(this.unsubscribe$),
         take(1)
       )
       .subscribe((user) => {
@@ -151,16 +127,10 @@ export class AuthService implements OnDestroy {
     ref
       .valueChanges()
       .pipe(
-        takeUntil(this.unsubscribe$),
         take(1)
       )
       .subscribe((user) => {
         ref.update(userData);
       });
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 }

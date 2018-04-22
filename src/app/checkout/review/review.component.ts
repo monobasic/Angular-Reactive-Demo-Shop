@@ -13,6 +13,7 @@ import { OrderService } from '../../account/orders/shared/order.service';
 import { CartItem } from '../../models/cart-item.model';
 import { Customer } from '../../models/customer.model';
 import { Order } from '../../models/order.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-checkout-review',
@@ -25,6 +26,8 @@ export class ReviewComponent implements OnInit, OnDestroy {
   customer: Customer;
   paymentMethod: string;
   unsubscribe$ = new Subject();
+  user: User;
+
 
   constructor(
     private cartService: CartService,
@@ -36,6 +39,8 @@ export class ReviewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.authService.user.subscribe(user => this.user = user);
+
     this.items = this.cartService.getItems();
     this.total = this.cartService.getTotal();
     this.cartService.itemsChanged
@@ -58,7 +63,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
   }
 
   public onCompleteOrder() {
-    const userUid = this.authService.getUserUid();
+    const userUid = this.user ? this.user.uid : false;
     const order = this.checkoutService.getOrderInProgress();
     const total = this.cartService.getTotal();
 

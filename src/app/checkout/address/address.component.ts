@@ -2,7 +2,6 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { AuthService } from '../../account/shared/auth.service';
 import { CheckoutService } from '../shared/checkout.service';
@@ -24,11 +23,11 @@ export class AddressComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.initFormGroup();
+
     this.authSubscription = this.authService.user.subscribe((user) => {
       if (user) {
         this.user = user;
-        this.initFormGroup();
-      } else {
         this.initFormGroup();
       }
     });
@@ -38,11 +37,11 @@ export class AddressComponent implements OnInit, OnDestroy {
     this.countries = ['Switzerland'];
     this.formAddress = new FormGroup({
       firstname: new FormControl(
-        this.user && this.user.firstName || null,
+        this.user && this.user.firstName,
         Validators.required
       ),
       lastname: new FormControl(
-        this.user && this.user.lastName || null,
+        this.user && this.user.lastName,
         Validators.required
       ),
       address1: new FormControl(null, Validators.required),
@@ -53,7 +52,7 @@ export class AddressComponent implements OnInit, OnDestroy {
       ]),
       city: new FormControl(null, Validators.required),
       email: new FormControl(
-        this.user && this.user.email || null,
+        this.user && this.user.email,
         Validators.email
       ),
       phone: new FormControl(null),

@@ -59,8 +59,6 @@ export class RegisterLoginComponent implements OnInit {
           this.initRegisterForm();
         },
         (error) => {
-          console.log('onRegister() error: ');
-          console.log(error);
           this.registerErrors = error.message;
           if (error.code === 'auth/weak-password') {
             this.registerForm.controls.password.setErrors({ password: true });
@@ -83,9 +81,6 @@ export class RegisterLoginComponent implements OnInit {
           this.router.navigate(['/home']);
         },
         (error) => {
-          console.log('onLogin() error: ');
-          console.log(error.code);
-          console.log(error.message);
           if (error.code === 'auth/user-not-found') {
             this.loginForm.controls.email.setErrors({ email: true });
           }

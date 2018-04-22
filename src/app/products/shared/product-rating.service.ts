@@ -11,16 +11,20 @@ import { FileUploadService } from './file-upload.service';
 
 import { ProductsUrl } from './productsUrl';
 import { Product } from '../../models/product.model';
+import { User } from '../../models/user.model';
 
 @Injectable()
 export class ProductRatingService {
   private productsUrl = ProductsUrl.productsUrl;
+  private user: User;
 
   constructor(
     private messageService: MessageService,
     private angularFireDatabase: AngularFireDatabase,
     public authService: AuthService
-  ) {}
+  ) {
+    this.authService.user.subscribe(user => this.user = user);
+  }
 
   /** Log a ProductService message with the MessageService */
   private log(message: string) {
@@ -63,14 +67,14 @@ export class ProductRatingService {
 
     // Add user rating to local version of ratings
     if (product.ratings) {
-      product.ratings[this.authService.getUserUid()] = rating;
+      product.ratings[this.user.uid] = rating;
     } else {
       product['ratings'] = [];
-      product['ratings'][this.authService.getUserUid()] = rating;
+      product['ratings'][this.user.uid] = rating;
     }
 
     // Add user rating
-    updates['/ratings/' + this.authService.getUserUid() + '/'] = rating;
+    updates['/ratings/' + this.user.uid + '/'] = rating;
 
     // calculate current overall rating
     updates['/currentRating/'] = this.calculateOverallRating(product, rating);

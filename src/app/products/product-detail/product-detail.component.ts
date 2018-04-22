@@ -50,6 +50,12 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.authService.user
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((user) => {
+        this.user = user;
+      });
+
     this.ratingValues = [1, 2, 3, 4, 5];
     this.selectedQuantity = 1;
     this.imagesLoaded = [];
@@ -58,12 +64,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((params: Params) => {
         this.getProduct();
-      });
-
-    this.authService.user
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((user) => {
-        this.user = user;
       });
   }
 
@@ -144,9 +144,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     // check for existing rating
     if (
       this.product.ratings &&
-      Object.keys(this.product.ratings).includes(this.authService.getUserUid())
+      this.user &&
+      Object.keys(this.product.ratings).includes(this.user.uid)
     ) {
-      this.selectedRating = this.product.ratings[this.authService.getUserUid()];
+      this.selectedRating = this.product.ratings[this.user.uid];
     }
   }
 

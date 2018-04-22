@@ -6,8 +6,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { fromPromise } from 'rxjs/observable/fromPromise';
-import { switchMap } from 'rxjs/operators/switchMap';
-
 import { AngularFireDatabase } from 'angularfire2/database';
 
 import { Order } from '../../../models/order.model';
@@ -25,16 +23,15 @@ export class OrderService {
   ) {}
 
   public getOrders() {
-    return this.authService.userUid$.pipe(
-      switchMap((userUid) => {
-        if (userUid) {
-          const remoteUserOrders = `/users/${userUid}/orders`;
+    return this.authService.user
+      .switchMap((user) => {
+        if (user) {
+          const remoteUserOrders = `/users/${user.uid}/orders`;
           return this.store.list(remoteUserOrders).valueChanges();
         } else {
           return of(null);
         }
-      })
-    );
+      });
   }
 
   public addUserOrder(order: Order, total: number, user: string) {

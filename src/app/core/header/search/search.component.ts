@@ -1,10 +1,17 @@
-import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  EventEmitter,
+  Output
+} from '@angular/core';
 
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/switchMap';
+import { debounceTime } from 'rxjs/operators/debounceTime';
+import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
+import { filter } from 'rxjs/operators/filter';
+import { switchMap } from 'rxjs/operators/switchMap';
 
 import { ProductService } from '../../../products/shared/product.service';
 
@@ -23,13 +30,14 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.term$
-      .debounceTime(400)
-      .distinctUntilChanged()
-      .filter(term => term.length > 0)
-      .switchMap(term => this.search(term))
-      .subscribe(results => {
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged(),
+        filter((term) => term.length > 0),
+        switchMap((term) => this.search(term))
+      )
+      .subscribe((results) => {
         this.products = results;
-        console.log(this.products);
       });
   }
 
@@ -52,6 +60,4 @@ export class SearchComponent implements OnInit {
     this.showSearch = false;
     this.onHideSearch.emit(false);
   }
-
-
 }
