@@ -52,7 +52,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.authService.updateEmail(this.formProfile.value.email)
       .catch(
         error => {
-          console.log(error);
           this.profileErrors = error.message;
           this.formProfile.patchValue({ email: this.user.email });
         }
@@ -70,7 +69,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.authService.updatePassword(this.formProfile.value.password)
       .catch(
         error => {
-          console.log(error);
           this.profileErrors = error.message;
         }
       );

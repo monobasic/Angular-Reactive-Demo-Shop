@@ -25,7 +25,6 @@ export class AdminGuard implements CanActivate {
       map((user) => (user && user.roles.admin ? true : false)),
       tap((authorized) => {
         if (!authorized) {
-          console.log('route prevented!');
           this.router.navigate(['/register-login']);
         }
       })

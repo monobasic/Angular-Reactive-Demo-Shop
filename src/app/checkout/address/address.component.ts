@@ -27,7 +27,6 @@ export class AddressComponent implements OnInit, OnDestroy {
 
     this.authSubscription = this.authService.user.subscribe((user) => {
       if (user) {
-        console.log('we have a user, build form');
         this.user = user;
         this.initFormGroup();
       }

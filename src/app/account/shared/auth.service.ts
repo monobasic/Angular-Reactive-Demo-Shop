@@ -24,7 +24,6 @@ export class AuthService {
     this.user = this.afAuth.authState
       .switchMap((auth) => {
         if (auth) {
-          console.log(`signin' in`);
           return this.db.object('users/' + auth.uid).valueChanges()
           .map(user => {
             return {
@@ -33,7 +32,6 @@ export class AuthService {
             };
           });
         } else {
-          console.log('not signed in');
           return of(null);
         }
       });
@@ -46,7 +44,6 @@ export class AuthService {
         this.updateNewUser(credential.user);
       },
       (error) => {
-        console.log('auth service googleLogin error');
         throw error;
       }
     );
@@ -60,7 +57,6 @@ export class AuthService {
           this.updateNewUser(user);
         },
         (error) => {
-          console.log('auth service emailSignUp error');
           throw error;
         }
       );
@@ -72,7 +68,6 @@ export class AuthService {
         this.updateNewUser(user);
       },
       (error) => {
-        console.log('auth service emailLogin error');
         throw error;
       }
     );
@@ -95,7 +90,6 @@ export class AuthService {
         this.messageService.add('Password has been updated!');
       })
       .catch(function(error) {
-        console.log('auth service updatePassword error');
         throw error;
       });
   }
@@ -108,7 +102,6 @@ export class AuthService {
         this.messageService.add('User email have been updated!');
       })
       .catch(function(error) {
-        console.log('auth service updateEmail error');
         throw error;
       });
   }

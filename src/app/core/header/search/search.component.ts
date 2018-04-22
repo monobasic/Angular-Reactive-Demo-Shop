@@ -38,7 +38,6 @@ export class SearchComponent implements OnInit {
       )
       .subscribe((results) => {
         this.products = results;
-        console.log(this.products);
       });
   }
 

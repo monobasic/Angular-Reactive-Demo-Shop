@@ -22,14 +22,9 @@ export class UserGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
     return this.authService.user.pipe(
       take(1),
-      tap((user) => {
-        console.log('user from guard: ');
-        console.log(user);
-      }),
       map((user) => (user ? true : false)),
       tap((authorized) => {
         if (!authorized) {
-          console.log('route prevented!');
           this.router.navigate(['/register-login']);
         }
       })
