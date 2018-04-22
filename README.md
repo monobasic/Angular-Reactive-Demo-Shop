@@ -24,7 +24,7 @@ npm install -g @angular/cli
 
 ```bash
 cd CAS-FEE-PROJEKT-2
-$npm install
+npm install
 ```
 
 ### Run development server
@@ -228,3 +228,9 @@ Firebase provides a whole lot of functionalities which make things like user-man
 ### Testing
 
 Karma tests run quite slow, this could be a issue if you have a lot of tests when the app is growing. Jest, the testing framework of Facebook/React would be a good alternative. We did some research and it was quite easy to integrate into an Angular 5 application. Also worth mentioning: we found our way around, but if you need to mock AngularFire and/or Firebase API stuff, this could be major pain in the ass ;)
+
+## Extra extra
+
+If you want to see how this project came to life according to its git-repo, checkout this awesome and funny video made with [Gource](http://gource.io) ([how to here](https://github.com/acaudwell/Gource/wiki/Videos)):
+
+[<img width="906" alt="bildschirmfoto 2018-04-22 um 16 38 46" src="https://user-images.githubusercontent.com/16070364/39096101-ac275aec-464b-11e8-884d-c623920a43a6.png">](https://drive.google.com/file/d/1XE7w15OPPKVKA1PFKpfTc04G_kNFEABo/view?usp=sharing)
