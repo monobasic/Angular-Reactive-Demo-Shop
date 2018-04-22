@@ -26,8 +26,9 @@ export class DomainProduct extends Product {
   styleUrls: ['./add-edit.component.scss']
 })
 export class AddEditComponent implements OnInit, OnDestroy {
-  @ViewChild('photos') photos;
+  private productSubscription: Subscription;
   private formSubscription: Subscription;
+  @ViewChild('photos') photos;
   public productForm: FormGroup;
   public product: DomainProduct;
   public mode: 'edit' | 'add';
@@ -109,15 +110,17 @@ export class AddEditComponent implements OnInit, OnDestroy {
   }
 
   private getProduct(id): void {
-    this.productService.getProduct(id).subscribe((product) => {
-      if (product) {
-        product.categories = this.categoriesFromObjectToString(
-          product.categories
-        );
-        this.syncProduct(product);
-        this.initForm();
-      }
-    });
+    this.productSubscription = this.productService
+      .getProduct(id)
+      .subscribe((product) => {
+        if (product) {
+          product.categories = this.categoriesFromObjectToString(
+            product.categories
+          );
+          this.syncProduct(product);
+          this.initForm();
+        }
+      });
   }
 
   private onFormChanges() {
@@ -187,6 +190,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
 
   public onDelete() {
     if (this.mode === 'edit') {
+      this.productSubscription.unsubscribe();
       this.productService.deleteProduct(this.product).then((res) => {
         this.router.navigate(['/products']);
       });
