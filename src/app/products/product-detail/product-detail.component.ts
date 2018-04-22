@@ -51,7 +51,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.authService.user
-      // .pipe(takeUntil(this.unsubscribe$))
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe((user) => {
         this.user = user;
       });
@@ -143,7 +143,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
     // check for existing rating
     if (
-      this.product.ratings && this.user && Object.keys(this.product.ratings).includes(this.user.uid)
+      this.product.ratings &&
+      this.user &&
+      Object.keys(this.product.ratings).includes(this.user.uid)
     ) {
       this.selectedRating = this.product.ratings[this.user.uid];
     }
