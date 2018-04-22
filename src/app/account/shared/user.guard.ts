@@ -14,15 +14,14 @@ export class UserGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
-    // return this.authService.user
-    //   .take(1)
-    //   .map(user => user ? true : false)
-    //   .do(authorized => {
-    //     if (!authorized) {
-    //       console.log('route prevented!');
-    //       this.router.navigate(['/register-login']);
-    //     }
-    //  });
+    return this.authService.user
+      .take(1)
+      .map(user => user ? true : false)
+      .do(authorized => {
+        if (!authorized) {
+          console.log('route prevented!');
+          this.router.navigate(['/register-login']);
+        }
+     });
   }
 }
