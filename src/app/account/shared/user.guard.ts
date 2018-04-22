@@ -20,6 +20,10 @@ export class UserGuard implements CanActivate {
 
     return this.authService.user
       .take(1)
+      .do(user => {
+        console.log('user from guard: ');
+        console.log(user);
+      })
       .map(user => user ? true : false)
       .do(authorized => {
         if (!authorized) {
