@@ -1,5 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable ,  of ,  from as fromPromise } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 import { Order } from '../../../models/order.model';
@@ -17,14 +18,16 @@ export class OrderService {
 
   public getOrders() {
     return this.authService.user
-      .switchMap((user) => {
-        if (user) {
-          const remoteUserOrders = `/users/${user.uid}/orders`;
-          return this.store.list(remoteUserOrders).valueChanges();
-        } else {
-          return of(null);
-        }
-      });
+      .pipe(
+        switchMap((user) => {
+          if (user) {
+            const remoteUserOrders = `/users/${user.uid}/orders`;
+            return this.store.list(remoteUserOrders).valueChanges();
+          } else {
+            return of(null);
+          }
+        })
+      );
   }
 
   public addUserOrder(order: Order, total: number, user: string) {
