@@ -49,8 +49,7 @@ export class ProductService {
     return this.angularFireDatabase
       .list<Product>('products', (ref) => ref.orderByChild('date'))
       .valueChanges()
-      .map((arr) => arr.reverse())
-      .pipe(catchError(this.handleError<Product[]>(`getProducts`)));
+      .pipe(map((arr) => arr.reverse()), catchError(this.handleError<Product[]>(`getProducts`)));
   }
 
   public getProductsQuery(
