@@ -2,9 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { of } from 'rxjs/observable/of';
+import { Observable ,  Subscription ,  of } from 'rxjs';
 
 import { MessageService } from '../../messages/message.service';
 import { FileUploadService } from '../../products/shared/file-upload.service';

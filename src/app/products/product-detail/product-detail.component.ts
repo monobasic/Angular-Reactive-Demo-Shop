@@ -3,8 +3,8 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Params } from '@angular/router/src/shared';
 
-import { Subject } from 'rxjs/Subject';
-import { takeUntil } from 'rxjs/operators/takeUntil';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { AuthService } from '../../account/shared/auth.service';
 import { CartService } from '../../cart/shared/cart.service';

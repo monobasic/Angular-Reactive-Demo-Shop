@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import { AuthService } from '../../account/shared/auth.service';
 import { CheckoutService } from '../shared/checkout.service';

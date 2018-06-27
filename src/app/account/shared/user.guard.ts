@@ -5,12 +5,10 @@ import {
   RouterStateSnapshot,
   Router
 } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
-import { take } from 'rxjs/operators/take';
-import { tap } from 'rxjs/operators/tap';
-import { map } from 'rxjs/operators/map';
+import { take ,  tap ,  map } from 'rxjs/operators';
 
 @Injectable()
 export class UserGuard implements CanActivate {

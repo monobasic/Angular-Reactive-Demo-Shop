@@ -7,11 +7,8 @@ import {
   Output
 } from '@angular/core';
 
-import { Subject } from 'rxjs/Subject';
-import { debounceTime } from 'rxjs/operators/debounceTime';
-import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
-import { filter } from 'rxjs/operators/filter';
-import { switchMap } from 'rxjs/operators/switchMap';
+import { Subject } from 'rxjs';
+import { debounceTime ,  distinctUntilChanged ,  filter ,  switchMap } from 'rxjs/operators';
 
 import { ProductService } from '../../../products/shared/product.service';
 

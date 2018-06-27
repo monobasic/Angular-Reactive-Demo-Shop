@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 
-import { Observable } from 'rxjs/Observable';
-import { fromPromise } from 'rxjs/observable/fromPromise';
-import { of } from 'rxjs/observable/of';
+import { Observable ,  from as fromPromise ,  of } from 'rxjs';
 
 import { AuthService } from '../../account/shared/auth.service';
 import { MessageService } from '../../messages/message.service';

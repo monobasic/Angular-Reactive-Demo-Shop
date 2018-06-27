@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { publishReplay } from 'rxjs/operators/publishReplay';
-import { refCount } from 'rxjs/operators/refCount';
-import { switchMap } from 'rxjs/operators/switchMap';
+import { Observable ,  of } from 'rxjs';
+import { publishReplay ,  refCount ,  switchMap } from 'rxjs/operators';
 
 import { Product } from '../../models/product.model';
 

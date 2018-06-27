@@ -4,7 +4,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../shared/auth.service';
 
 import { User } from '../../models/user.model';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',

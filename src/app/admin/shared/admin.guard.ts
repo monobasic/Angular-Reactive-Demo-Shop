@@ -5,12 +5,10 @@ import {
   RouterStateSnapshot,
   Router
 } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AuthService } from '../../account/shared/auth.service';
 
-import { take } from 'rxjs/operators/take';
-import { map } from 'rxjs/operators/map';
-import { tap } from 'rxjs/operators/tap';
+import { take ,  map ,  tap } from 'rxjs/operators';
 
 @Injectable()
 export class AdminGuard implements CanActivate {

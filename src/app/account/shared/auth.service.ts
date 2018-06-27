@@ -3,11 +3,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { take } from 'rxjs/operators/take';
-import { takeUntil } from 'rxjs/operators/takeUntil';
-import { switchMap } from 'rxjs/operators/switchMap';
+import { Observable ,  of } from 'rxjs';
+import { take ,  takeUntil ,  switchMap } from 'rxjs/operators';
 
 import { MessageService } from '../../messages/message.service';
 import { User, Roles } from '../../models/user.model';

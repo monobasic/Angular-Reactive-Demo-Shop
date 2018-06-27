@@ -2,10 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { fromPromise } from 'rxjs/observable/fromPromise';
+import { BehaviorSubject ,  Observable ,  of ,  from as fromPromise } from 'rxjs';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 import { Order } from '../../../models/order.model';

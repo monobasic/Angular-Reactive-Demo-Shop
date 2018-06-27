@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class FileUploadService {

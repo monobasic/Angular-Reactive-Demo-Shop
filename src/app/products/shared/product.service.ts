@@ -1,11 +1,8 @@
+
+import {combineLatest as observableCombineLatest,  Observable ,  from as fromPromise ,  of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/combineLatest';
-import { catchError } from 'rxjs/operators/catchError';
-import { fromPromise } from 'rxjs/observable/fromPromise';
-import { of } from 'rxjs/observable/of';
-import { tap } from 'rxjs/operators/tap';
+import { catchError ,  tap } from 'rxjs/operators';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../../account/shared/auth.service';
@@ -110,7 +107,7 @@ export class ProductService {
       .snapshotChanges()
       .switchMap(
         (actions) => {
-          return Observable.combineLatest(
+          return observableCombineLatest(
             actions.map((action) => this.getProduct(action.key))
           );
         },
