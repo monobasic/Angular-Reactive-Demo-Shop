@@ -113,7 +113,7 @@ export class ProductService {
             );
           },
           (actionsFromSource, resolvedProducts) => {
-            const combinedProducts = resolvedProducts.map((product, i) => {
+            resolvedProducts.map((product, i) => {
               product['imageFeaturedUrl'] = actionsFromSource[
                 i
               ].payload.val().imageFeaturedUrl;

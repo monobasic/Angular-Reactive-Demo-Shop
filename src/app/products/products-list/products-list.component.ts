@@ -56,7 +56,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
       .get('products', this.productService.getProducts())
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((products) => {
-        this.products = products;
+        this.products = <Product[]>products;
         this.setPage(this.currentPagingPage);
         this.productsLoading = false;
       });

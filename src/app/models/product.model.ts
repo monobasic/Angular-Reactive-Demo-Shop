@@ -1,4 +1,6 @@
 export class Product {
+  public imageFeaturedUrl?;
+
   constructor(
     public id: number = 1,
     public date: string = new Date().toISOString().split('T')[0],

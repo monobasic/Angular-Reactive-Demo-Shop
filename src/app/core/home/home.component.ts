@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .get('products', this.productService.getProducts())
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((products) => {
-        this.products = products;
+        this.products = <Product[]>products;
       });
 
     this.productService
