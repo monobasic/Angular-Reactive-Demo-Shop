@@ -11,7 +11,7 @@ Note: The pixelated product images are there because of image licensing reasons.
 ### Clone repository
 
 ```bash
-git clone git@github.com:monobasic/CAS-FEE-PROJEKT-2.git
+git clone git@github.com:monobasic/Angular-6-Demo-Shop.git
 ```
 
 ### Install Angular-Cli globally
@@ -23,7 +23,7 @@ npm install -g @angular/cli
 ### Install NPM packages
 
 ```bash
-cd CAS-FEE-PROJEKT-2
+cd Angular-6-Demo-Shop
 npm install
 ```
 
@@ -58,7 +58,7 @@ Executes the end-to-end tests via [Protractor](http://www.protractortest.org/).
 ### Build app for prod
 
 ```bash
-ng build --aot --prod
+ng build --prod --build-optimizer
 ```
 
 This builds the app for prod environment into a /dist folder. Uses the Angular-AOT-mode to precompile the the app. This reduces the app-footstep (compiler is around 1/3 of bundle).
@@ -203,7 +203,7 @@ UX-Tests are documented in [ux-testing/ux-test.md](./ux-testing/ux-test.md).
 
 ### General outcome
 
-Angular 5 is great as a foundation for bigger web projects and multiple developers involved. The framework has a very defined structure and this helps, keeping things un-messy. However, third party components are rare right now, so even for basic UI stuff like carousels one need to spend a lot of time, to re-create well known jquery moduls functionalites in "the Angular way".
+Angular is great as a foundation for bigger web projects and multiple developers involved. The framework has a very defined structure and this helps, keeping things un-messy. However, third party components are rare right now, so even for basic UI stuff like carousels one need to spend a lot of time, to re-create well known jquery moduls functionalites in "the Angular way".
 
 ### Theming/jQuery
 
@@ -227,7 +227,7 @@ Firebase provides a whole lot of functionalities which make things like user-man
 
 ### Testing
 
-Karma tests run quite slow, this could be a issue if you have a lot of tests when the app is growing. Jest, the testing framework of Facebook/React would be a good alternative. We did some research and it was quite easy to integrate into an Angular 5 application. Also worth mentioning: we found our way around, but if you need to mock AngularFire and/or Firebase API stuff, this could be major pain in the ass ;)
+Karma tests run quite slow, this could be a issue if you have a lot of tests when the app is growing. Jest, the testing framework of Facebook/React would be a good alternative. We did some research and it was quite easy to integrate into an Angular application. Also worth mentioning: we found our way around, but if you need to mock AngularFire and/or Firebase API stuff, this could be major pain in the ass ;)
 
 ## Extra extra
 
