@@ -1,12 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
-
-import { AngularFireAuth } from 'angularfire2/auth';
-
-import { BehaviorSubject ,  Observable ,  of ,  from as fromPromise } from 'rxjs';
+import { Observable ,  of ,  from as fromPromise } from 'rxjs';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 import { Order } from '../../../models/order.model';
-import { User } from '../../../models/user.model';
 
 import { MessageService } from '../../../messages/message.service';
 import { AuthService } from '../../shared/auth.service';
