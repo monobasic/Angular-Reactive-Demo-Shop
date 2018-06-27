@@ -2,7 +2,7 @@
 import {combineLatest as observableCombineLatest,  Observable ,  from as fromPromise ,  of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { catchError ,  tap } from 'rxjs/operators';
+import { catchError ,  tap, switchMap, map } from 'rxjs/operators';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../../account/shared/auth.service';
@@ -87,8 +87,10 @@ export class ProductService {
         ref.orderByChild('date').limitToLast(limitToLast)
       )
       .valueChanges()
-      .map((arr) => arr.reverse())
-      .pipe(catchError(this.handleError<Product[]>(`getProductsByDate`)));
+        .pipe(
+          map((arr) => arr.reverse()),
+          catchError(this.handleError<Product[]>(`getProductsByDate`))
+        );
   }
 
   public getProductsByRating(limitToLast: number): Observable<Product[]> {
@@ -97,31 +99,31 @@ export class ProductService {
         ref.orderByChild('currentRating').limitToLast(limitToLast)
       )
       .valueChanges()
-      .map((arr) => arr.reverse())
-      .pipe(catchError(this.handleError<Product[]>(`getProductsByRating`)));
+      .pipe(map((arr) => arr.reverse()), catchError(this.handleError<Product[]>(`getProductsByRating`)));
   }
 
   public getFeaturedProducts(): Observable<any[]> {
     return this.angularFireDatabase
       .list<Product>('featured')
       .snapshotChanges()
-      .switchMap(
-        (actions) => {
-          return observableCombineLatest(
-            actions.map((action) => this.getProduct(action.key))
-          );
-        },
-        (actionsFromSource, resolvedProducts) => {
-          const combinedProducts = resolvedProducts.map((product, i) => {
-            product['imageFeaturedUrl'] = actionsFromSource[
-              i
-            ].payload.val().imageFeaturedUrl;
-            return product;
-          });
-          return resolvedProducts;
-        }
-      )
-      .pipe(catchError(this.handleError<Product[]>(`getFeaturedProducts`)));
+      .pipe(
+        switchMap(
+          (actions) => {
+            return observableCombineLatest(
+              actions.map((action) => this.getProduct(action.key))
+            );
+          },
+          (actionsFromSource, resolvedProducts) => {
+            const combinedProducts = resolvedProducts.map((product, i) => {
+              product['imageFeaturedUrl'] = actionsFromSource[
+                i
+              ].payload.val().imageFeaturedUrl;
+              return product;
+            });
+            return resolvedProducts;
+          }
+        ),
+        catchError(this.handleError<Product[]>(`getFeaturedProducts`)));
   }
 
   public getProduct(id: any): Observable<Product | null> {
