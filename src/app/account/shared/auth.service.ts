@@ -4,7 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 import { Observable ,  of } from 'rxjs';
-import { take ,  takeUntil ,  switchMap } from 'rxjs/operators';
+import { take ,  takeUntil ,  switchMap, map } from 'rxjs/operators';
 
 import { MessageService } from '../../messages/message.service';
 import { User, Roles } from '../../models/user.model';
@@ -19,19 +19,23 @@ export class AuthService {
     private messageService: MessageService
   ) {
     this.user = this.afAuth.authState
-      .switchMap((auth) => {
-        if (auth) {
-          return this.db.object('users/' + auth.uid).valueChanges()
-          .map(user => {
-            return {
-              ...user,
-              uid: auth.uid
-            };
-          });
-        } else {
-          return of(null);
-        }
-      });
+      .pipe(
+        switchMap((auth) => {
+          if (auth) {
+            return this.db.object('users/' + auth.uid).valueChanges()
+              .pipe(
+                map(user => {
+                  return {
+                    ...user,
+                    uid: auth.uid
+                  };
+                })
+              );
+          } else {
+            return of(null);
+          }
+        })
+      );
   }
 
   public googleLogin() {
