@@ -28,8 +28,9 @@
     "firebase": "^5.1.0",
     "modernizr": "^3.6.0",
     "ngx-siema": "^2.0.1",
-    "ngx-toastr": "^8.2.1",
+    "ngx-toastr": "^8.8.0",
     "rxjs": "^6.2.1",
+    "rxjs-compat": "^6.2.1",
     "ts-node": "~5.0.1",
     "typescript": "2.7.2",
     "zone.js": "^0.8.26"
