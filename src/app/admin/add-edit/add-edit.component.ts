@@ -26,7 +26,7 @@ export class DomainProduct extends Product {
 export class AddEditComponent implements OnInit, OnDestroy {
   private productSubscription: Subscription;
   private formSubscription: Subscription;
-  @ViewChild('photos') photos;
+  @ViewChild('photos', { static: true }) photos;
   public productForm: FormGroup;
   public product: DomainProduct;
   public mode: 'edit' | 'add';
