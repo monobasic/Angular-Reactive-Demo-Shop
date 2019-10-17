@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Params } from '@angular/router/src/shared';
+import { Params } from '@angular/router';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -72,8 +72,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
     const id = +this.route.snapshot.paramMap.get('id');
 
-    this.productsCacheService
-      .get(id, this.productService.getProducts())
+    this.productService
+      .getProduct(id)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((product: Product) => {
         if (product) {
