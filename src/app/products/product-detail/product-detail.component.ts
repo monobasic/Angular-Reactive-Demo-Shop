@@ -72,8 +72,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
     const id = +this.route.snapshot.paramMap.get('id');
 
-    this.productsCacheService
-      .get(id, this.productService.getProducts())
+    this.productService
+      .getProduct(id)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((product: Product) => {
         if (product) {

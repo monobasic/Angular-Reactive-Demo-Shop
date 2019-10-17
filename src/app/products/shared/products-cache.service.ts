@@ -17,7 +17,7 @@ export class ProductsCacheService {
     }
   }
 
-  private getProducts(fallback: Observable<Product[]>) {
+  private getProducts(fallback: Observable<Product[]>): Observable<Product[]> {
     if (!this.products) {
       this.products = fallback.pipe(publishReplay(1), refCount());
     }

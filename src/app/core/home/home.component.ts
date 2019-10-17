@@ -33,8 +33,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.productsCache
-      .get('products', this.productService.getProducts())
+    this.productService
+      .getProducts()
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((products) => {
         this.products = <Product[]>products;
