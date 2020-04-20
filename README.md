@@ -66,6 +66,9 @@ This builds the app for prod environment into a /dist folder. Uses the Angular-A
 ## Firebase Data Structure and Security Setup
 There are demo json files in the data folder for you to check out.
 
+## Firebase Data Structure and Security Setup
+There are demo json files in the data folder for you to check out.
+
 
 ## Background
 
