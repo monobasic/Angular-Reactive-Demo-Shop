@@ -66,10 +66,6 @@ This builds the app for prod environment into a /dist folder. Uses the Angular-A
 ## Firebase Data Structure and Security Setup
 There are demo json files in the data folder for you to check out.
 
-## Firebase Data Structure and Security Setup
-There are demo json files in the data folder for you to check out.
-
-
 ## Background
 
 The initial idea for this project was to implement a SPA based shop frontend which can be coupled to existing shop backends via REST API. The performance of a SPA application would be very nice to make the shopping process for users as fluid as possible. Imagine adding items to the cart, browsing and filtering products, typeahead search, updating your favorites/wish list - all handled by the front end application.
