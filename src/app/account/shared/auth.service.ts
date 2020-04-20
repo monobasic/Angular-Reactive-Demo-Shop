@@ -24,7 +24,7 @@ export class AuthService {
           if (auth) {
             return this.db.object('users/' + auth.uid).valueChanges()
               .pipe(
-                map(user => {
+                map((user: User) => {
                   return {
                     ...user,
                     uid: auth.uid
