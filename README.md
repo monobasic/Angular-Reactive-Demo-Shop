@@ -234,3 +234,6 @@ Karma tests run quite slow, this could be a issue if you have a lot of tests whe
 If you want to see how this project came to life according to its git-repo, checkout this awesome and funny video made with [Gource](http://gource.io) ([how to here](https://github.com/acaudwell/Gource/wiki/Videos)):
 
 [<img width="906" alt="bildschirmfoto 2018-04-22 um 16 38 46" src="https://user-images.githubusercontent.com/16070364/39096101-ac275aec-464b-11e8-884d-c623920a43a6.png">](https://drive.google.com/file/d/1XE7w15OPPKVKA1PFKpfTc04G_kNFEABo/view?usp=sharing)
+
+## Firebase Data Structure and Security Setup
+There are demo json files in the data folder for you to check out.

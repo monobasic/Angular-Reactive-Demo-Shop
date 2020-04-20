@@ -1,0 +1,33 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "products": {
+      ".read": true,
+      ".write": "auth != null && root.child('users/' + auth.uid + '/roles/admin').exists() && root.child('users/' + auth.uid + '/roles/admin').val() === true",
+      ".indexOn": ["date", "sale", "currentRating", "name"],
+      "ratings": {
+        ".write": "auth != null"
+      }
+    },
+    "users": {
+      ".write": "auth != null",
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "promos": {
+      ".read": true,
+      ".write": "auth != null && root.child('users/' + auth.uid + '/roles/admin').exists() && root.child('users/' + auth.uid + '/roles/admin').val() === true",
+    },
+    "featured": {
+      ".read": true,
+      ".write": "auth != null && root.child('users/' + auth.uid + '/roles/admin').exists() && root.child('users/' + auth.uid + '/roles/admin').val() === true"
+    },
+    "orders": {
+      ".read": "auth != null && root.child('users/' + auth.uid + '/roles/admin').exists() && root.child('users/' + auth.uid + '/roles/admin').val() === true",
+      ".write": true
+    }
+  }
+}
