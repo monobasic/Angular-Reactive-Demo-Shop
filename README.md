@@ -1,3 +1,6 @@
+PLEASE NOTE: THIE PROJECT IS UN-MAINTAINED AND ARCHIVED. (2022)
+
+
 # CAS FEE PROJEKT 2 : SPA Shop Front End Implementation
 
 - Christian Zellweger (https://github.com/chzellweger)
