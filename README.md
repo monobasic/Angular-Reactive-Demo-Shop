@@ -1,4 +1,6 @@
-PLEASE NOTE: THIE PROJECT IS UN-MAINTAINED AND ARCHIVED. (2022)
+PLEASE NOTE: THIS PROJECT IS NOT MUCH MAINTAINED ANY MORE
+Currently, it's running on Angular 8.2.11.
+You may need to use Node v10.13.0, to get the NPM installation and build running.
 
 
 # CAS FEE PROJEKT 2 : SPA Shop Front End Implementation
