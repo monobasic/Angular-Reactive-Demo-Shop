@@ -25,7 +25,6 @@
     "core-js": "^3.3.2",
     "firebase": "^5.5.7",
     "modernizr": "^3.7.1",
-    "ngx-siema": "^2.0.1",
     "ngx-toastr": "^11.1.2",
     "rxjs": "^6.5.3",
     "rxjs-compat": "^6.5.3",
