@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 import { Observable } from 'rxjs/observable';
 import { of } from 'rxjs/observable/of';

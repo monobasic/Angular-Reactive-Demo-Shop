@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { SharedModule } from '../shared/shared.module';
 
 import { ProductsListComponent } from './products-list/products-list.component';

@@ -10,10 +10,10 @@ import { CoreModule } from './core/core.module';
 import { CheckoutModule } from './checkout/checkout.module';
 import { AccountModule } from './account/account.module';
 import { AdminModule } from './admin/admin.module';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireStorageModule } from 'angularfire2/storage';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 // Components

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { catchError ,  tap, switchMap, map } from 'rxjs/operators';
 
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from '../../account/shared/auth.service';
 import { FileUploadService } from './file-upload.service';
 import { MessageService } from '../../messages/message.service';
