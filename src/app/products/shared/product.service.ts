@@ -152,8 +152,9 @@ export class ProductService {
 
     const dbOperation = this.uploadService
       .startUpload(data)
-      .then((task) => {
-        data.product.imageURLs[0] = task.downloadURL;
+      .then(async (task) => {
+        const downloadUrl = await task.ref.getDownloadURL()
+        data.product.imageURLs[0] = downloadUrl;
         data.product.imageRefs[0] = task.ref.fullPath;
 
         return data;
@@ -192,8 +193,9 @@ export class ProductService {
   public addProduct(data: { product: Product; files: FileList }) {
     const dbOperation = this.uploadService
       .startUpload(data)
-      .then((task) => {
-        data.product.imageURLs.push(task.downloadURL);
+      .then(async (task) => {
+        const downloadUrl = await task.ref.getDownloadURL()
+        data.product.imageURLs.push(downloadUrl);
         data.product.imageRefs.push(task.ref.fullPath);
 
         return this.angularFireDatabase
