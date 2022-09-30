@@ -1,7 +1,6 @@
 PLEASE NOTE: THIS PROJECT IS NOT MUCH MAINTAINED ANY MORE
-Currently, it's running on Angular 8.2.11.
-You may need to use Node v10.13.0, to get the NPM installation and build running.
-
+Currently, it's running on Angular 10.2.5.
+You may need to use Node v16.17.1, to get the NPM installation and build running.
 
 # CAS FEE PROJEKT 2 : SPA Shop Front End Implementation
 
@@ -69,6 +68,7 @@ ng build --prod --build-optimizer
 This builds the app for prod environment into a /dist folder. Uses the Angular-AOT-mode to precompile the the app. This reduces the app-footstep (compiler is around 1/3 of bundle).
 
 ## Firebase Data Structure and Security Setup
+
 There are demo json files in the data folder for you to check out.
 
 ## Background
@@ -160,7 +160,7 @@ So we decided to implement basic shop functionality for now and base the project
 #### General
 
 - All displayed prices are handled via a PriceComponent to simplify currency display/formatting
-- Search with Typeahead functionality (Unfortunately, FireBase has very limited  functionality for full text search. For a real application, local search would be the better option)
+- Search with Typeahead functionality (Unfortunately, FireBase has very limited functionality for full text search. For a real application, local search would be the better option)
 
 ### Custom Express/MongoDB Backend
 
@@ -242,4 +242,3 @@ Karma tests run quite slow, this could be a issue if you have a lot of tests whe
 If you want to see how this project came to life according to its git-repo, checkout this awesome and funny video made with [Gource](http://gource.io) ([how to here](https://github.com/acaudwell/Gource/wiki/Videos)):
 
 [<img width="906" alt="bildschirmfoto 2018-04-22 um 16 38 46" src="https://user-images.githubusercontent.com/16070364/39096101-ac275aec-464b-11e8-884d-c623920a43a6.png">](https://drive.google.com/file/d/1XE7w15OPPKVKA1PFKpfTc04G_kNFEABo/view?usp=sharing)
-
