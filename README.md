@@ -1,7 +1,7 @@
 PLEASE NOTE: THIS PROJECT IS NOT MUCH MAINTAINED ANY MORE
 Currently, it's running on Angular 14.2.4.
 You may need to use Node v16.17.1, to get the NPM installation and build running.
-Also you probably need to use "$npm install --force" to force the very old ngx-siema dependency.. it still runs tho.
+Also you probably need to use "$npm install --force" to force the very old ngx-siema dependency to behave.. it still runs tho.
 
 # CAS FEE PROJEKT 2 : SPA Shop Front End Implementation
 
