@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 
 import { Observable ,  of } from 'rxjs';
 import { take ,  takeUntil ,  switchMap, map } from 'rxjs/operators';
@@ -40,7 +40,7 @@ export class AuthService {
 
   public googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
-    return this.afAuth.auth.signInWithPopup(provider).then(
+    return this.afAuth.signInWithPopup(provider).then(
       (credential) => {
         this.updateNewUser(credential.user);
       },
@@ -51,7 +51,7 @@ export class AuthService {
   }
 
   public emailSignUp(email: string, password: string) {
-    return this.afAuth.auth
+    return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then(
         (user) => {
@@ -64,7 +64,7 @@ export class AuthService {
   }
 
   emailLogin(email: string, password: string) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
+    return this.afAuth.signInWithEmailAndPassword(email, password).then(
       (user) => {
         this.updateNewUser(user);
       },
@@ -75,7 +75,7 @@ export class AuthService {
   }
 
   public signOut() {
-    this.afAuth.auth.signOut();
+    this.afAuth.signOut();
     this.messageService.add('You have been logged out.');
   }
 
@@ -85,8 +85,8 @@ export class AuthService {
   }
 
   public updatePassword(password: string) {
-    return this.afAuth.auth.currentUser
-      .updatePassword(password)
+    return this.afAuth.currentUser
+    .then(user => user.updatePassword(password))
       .then(() => {
         this.messageService.add('Password has been updated!');
       })
@@ -96,8 +96,8 @@ export class AuthService {
   }
 
   public updateEmail(email: string) {
-    return this.afAuth.auth.currentUser
-      .updateEmail(email)
+    return this.afAuth.currentUser
+    .then(user => user.updateEmail(email))
       .then(() => {
         this.updateExistingUser({ email: email });
         this.messageService.add('User email have been updated!');
@@ -123,9 +123,9 @@ export class AuthService {
   }
 
   private updateExistingUser(userData) {
-    const currentUser = this.afAuth.auth.currentUser;
-    const ref = this.db.object('users/' + currentUser.uid);
-    ref
+     this.afAuth.currentUser.then(user => {
+      const ref = this.db.object('users/' + user.uid);
+      ref
       .valueChanges()
       .pipe(
         take(1)
@@ -133,5 +133,7 @@ export class AuthService {
       .subscribe((user) => {
         ref.update(userData);
       });
+    });
+
   }
 }
