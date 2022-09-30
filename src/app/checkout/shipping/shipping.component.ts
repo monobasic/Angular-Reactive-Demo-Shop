@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { CheckoutService } from '../shared/checkout.service';
 import { Customer } from '../../models/customer.model';
 
@@ -9,7 +9,7 @@ import { Customer } from '../../models/customer.model';
   styleUrls: ['./shipping.component.scss']
 })
 export class ShippingComponent implements OnInit {
-  public formShipping: FormGroup;
+  public formShipping: UntypedFormGroup;
   public shippingMethods: {method: string, time: string, fee: number, value: string}[];
 
   constructor(private checkoutService: CheckoutService) { }
@@ -29,8 +29,8 @@ export class ShippingComponent implements OnInit {
         value: 'economy'
       }
     ];
-    this.formShipping = new FormGroup({
-      'shippingMethod': new FormControl(this.shippingMethods[1].value, Validators.required)
+    this.formShipping = new UntypedFormGroup({
+      'shippingMethod': new UntypedFormControl(this.shippingMethods[1].value, Validators.required)
     });
   }
 

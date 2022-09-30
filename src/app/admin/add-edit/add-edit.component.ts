@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable ,  Subscription ,  of } from 'rxjs';
@@ -27,7 +27,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
   private productSubscription: Subscription;
   private formSubscription: Subscription;
   @ViewChild('photos', { static: true }) photos;
-  public productForm: FormGroup;
+  public productForm: UntypedFormGroup;
   public product: DomainProduct;
   public mode: 'edit' | 'add';
   public id;
@@ -47,35 +47,35 @@ export class AddEditComponent implements OnInit, OnDestroy {
   }
 
   private initForm() {
-    this.productForm = new FormGroup({
-      name: new FormControl(
+    this.productForm = new UntypedFormGroup({
+      name: new UntypedFormControl(
         this.product && this.product.name,
         Validators.required
       ),
-      id: new FormControl(
+      id: new UntypedFormControl(
         {
           value: this.product && this.product.id,
           disabled: true
         },
         [Validators.required, Validators.min(0)]
       ),
-      date: new FormControl(
+      date: new UntypedFormControl(
         this.product && this.product.date,
         Validators.required
       ),
-      categories: new FormControl(
+      categories: new UntypedFormControl(
         this.product && this.product.categories,
         Validators.required
       ),
-      description: new FormControl(
+      description: new UntypedFormControl(
         this.product && this.product.description,
         Validators.required
       ),
-      price: new FormControl(this.product && this.product.price, [
+      price: new UntypedFormControl(this.product && this.product.price, [
         Validators.required,
         Validators.min(0)
       ]),
-      priceNormal: new FormControl(this.product && this.product.priceNormal, [
+      priceNormal: new UntypedFormControl(this.product && this.product.priceNormal, [
         Validators.required,
         Validators.min(0)
       ])

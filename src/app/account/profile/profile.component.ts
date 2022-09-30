@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormControl } from '@angular/forms';
 
 import { AuthService } from '../shared/auth.service';
 
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   private authSubscription: Subscription;
-  public formProfile: FormGroup;
+  public formProfile: UntypedFormGroup;
   public profileErrors: string;
   private user: User;
 
@@ -36,12 +36,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   private initFormGroup() {
-    this.formProfile = new FormGroup({
-      firstName: new FormControl(null, Validators.required),
-      lastName: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.email),
-      password: new FormControl(null),
-      confirmPassword: new FormControl(null),
+    this.formProfile = new UntypedFormGroup({
+      firstName: new UntypedFormControl(null, Validators.required),
+      lastName: new UntypedFormControl(null, Validators.required),
+      email: new UntypedFormControl(null, Validators.email),
+      password: new UntypedFormControl(null),
+      confirmPassword: new UntypedFormControl(null),
     });
   }
 

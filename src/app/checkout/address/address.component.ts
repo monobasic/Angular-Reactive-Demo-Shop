@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgForm, UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
@@ -14,7 +14,7 @@ import { CheckoutService } from '../shared/checkout.service';
 export class AddressComponent implements OnInit, OnDestroy {
   private authSubscription: Subscription;
   @Input() public user;
-  public formAddress: FormGroup;
+  public formAddress: UntypedFormGroup;
   public countries: string[];
 
   constructor(
@@ -35,29 +35,29 @@ export class AddressComponent implements OnInit, OnDestroy {
 
   private initFormGroup() {
     this.countries = ['Switzerland'];
-    this.formAddress = new FormGroup({
-      firstname: new FormControl(
+    this.formAddress = new UntypedFormGroup({
+      firstname: new UntypedFormControl(
         this.user && this.user.firstName,
         Validators.required
       ),
-      lastname: new FormControl(
+      lastname: new UntypedFormControl(
         this.user && this.user.lastName,
         Validators.required
       ),
-      address1: new FormControl(null, Validators.required),
-      address2: new FormControl(null),
-      zip: new FormControl(null, [
+      address1: new UntypedFormControl(null, Validators.required),
+      address2: new UntypedFormControl(null),
+      zip: new UntypedFormControl(null, [
         Validators.required,
         Validators.pattern(/^\d\d\d\d$/)
       ]),
-      city: new FormControl(null, Validators.required),
-      email: new FormControl(
+      city: new UntypedFormControl(null, Validators.required),
+      email: new UntypedFormControl(
         this.user && this.user.email,
         Validators.email
       ),
-      phone: new FormControl(null),
-      company: new FormControl(null),
-      country: new FormControl({ value: this.countries[0], disabled: false })
+      phone: new UntypedFormControl(null),
+      company: new UntypedFormControl(null),
+      country: new UntypedFormControl({ value: this.countries[0], disabled: false })
     });
   }
 

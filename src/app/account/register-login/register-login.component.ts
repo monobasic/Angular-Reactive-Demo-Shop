@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
 import {
-  FormGroup,
+  UntypedFormGroup,
   ReactiveFormsModule,
-  FormControl,
+  UntypedFormControl,
   Validators
 } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -15,8 +15,8 @@ import { AuthService } from '../shared/auth.service';
   styleUrls: ['./register-login.component.scss']
 })
 export class RegisterLoginComponent implements OnInit {
-  public loginForm: FormGroup;
-  public registerForm: FormGroup;
+  public loginForm: UntypedFormGroup;
+  public registerForm: UntypedFormGroup;
   public registerErrors: string;
 
   constructor(
@@ -31,17 +31,17 @@ export class RegisterLoginComponent implements OnInit {
   }
 
   private initLoginForm() {
-    this.loginForm = new FormGroup({
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, Validators.required)
+    this.loginForm = new UntypedFormGroup({
+      email: new UntypedFormControl(null, [Validators.required, Validators.email]),
+      password: new UntypedFormControl(null, Validators.required)
     });
   }
 
   private initRegisterForm() {
-    this.registerForm = new FormGroup({
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, Validators.required),
-      confirmPassword: new FormControl(null, Validators.required)
+    this.registerForm = new UntypedFormGroup({
+      email: new UntypedFormControl(null, [Validators.required, Validators.email]),
+      password: new UntypedFormControl(null, Validators.required),
+      confirmPassword: new UntypedFormControl(null, Validators.required)
     });
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { CheckoutService } from '../shared/checkout.service';
 
@@ -9,7 +9,7 @@ import { CheckoutService } from '../shared/checkout.service';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
-  public formPayment: FormGroup;
+  public formPayment: UntypedFormGroup;
   public paypalLoggedIn: boolean;
   public paymentMethods: string[];
 
@@ -18,8 +18,8 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     this.paypalLoggedIn = false;
     this.paymentMethods = ['Paypal', 'Prepayment'];
-    this.formPayment = new FormGroup({
-      'paymentMethod': new FormControl(this.paymentMethods[0], Validators.required)
+    this.formPayment = new UntypedFormGroup({
+      'paymentMethod': new UntypedFormControl(this.paymentMethods[0], Validators.required)
     });
   }
 

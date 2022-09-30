@@ -113,7 +113,6 @@
       }
     }
   },
-  "defaultProject": "shop",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
