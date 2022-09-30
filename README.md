@@ -1,5 +1,5 @@
 PLEASE NOTE: THIS PROJECT IS NOT MUCH MAINTAINED ANY MORE
-Currently, it's running on Angular 10.2.5.
+Currently, it's running on Angular 11.2.14.
 You may need to use Node v16.17.1, to get the NPM installation and build running.
 
 # CAS FEE PROJEKT 2 : SPA Shop Front End Implementation
